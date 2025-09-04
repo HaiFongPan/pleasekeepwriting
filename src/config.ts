@@ -6,7 +6,7 @@ export const themeConfig: ThemeConfig = {
     // site title
     title: "生活漏洞",
     // site subtitle
-    subtitle: "A 35-year-old Chinese programmer's life",
+    subtitle: "代码有漏洞，生活也有",
     // site description
     description: "世界真奇妙",
     // use i18n title/subtitle/description from src/i18n/ui.ts instead of static ones above
