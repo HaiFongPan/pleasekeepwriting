@@ -146,9 +146,9 @@ export const themeConfig: ThemeConfig = {
     // https://follow.is/
     follow: {
       // feed ID
-      feedID: "",
+      feedID: "188261053751575552",
       // user ID
-      userID: "",
+      userID: "75538582044891136",
     },
     // apiflash access key
     // automatically generate website screenshots for open graph images
@@ -163,7 +163,7 @@ export const themeConfig: ThemeConfig = {
     links: [
       {
         name: "RSS",
-        url: "/atom.xml", // or /rss.xml
+        url: "/rss.xml", // or /rss.xml
       },
       // {
       //   name: "GitHub",
