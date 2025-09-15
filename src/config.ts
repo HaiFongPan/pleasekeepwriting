@@ -138,10 +138,10 @@ export const themeConfig: ThemeConfig = {
     },
     // google analytics
     // https://analytics.google.com
-    googleAnalyticsID: "",
+    // googleAnalyticsID: "",
     // umami analytics
     // https://cloud.umami.is
-    // umamiAnalyticsID: "520af332-bfb7-4e7c-9386-5f273ee3d697",
+    umamiAnalyticsID: "7e3c6e93-6b71-45d8-be07-6a4c4225f8d0",
     // follow verification
     // https://follow.is/
     follow: {

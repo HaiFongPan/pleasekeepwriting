@@ -1,5 +1,5 @@
 ---
-title: 一周 Vibe 的感受
+title: 关于 Vibe Coding 的感受
 published: 2025-09-13T10:17:53.118Z
 description: ""
 updated: ""
