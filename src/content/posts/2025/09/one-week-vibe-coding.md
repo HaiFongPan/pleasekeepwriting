@@ -46,7 +46,7 @@ abbrlink: ""
 
 心态有点崩是从图片不能渲染开始的，彻底崩溃是在图片渲染问题解决不了的时候。反复文字描述+截图描述，加之又一次额度用完，我觉得它在此时此刻就是一个智障，我也没有精力去了解怎么解决 bubbletea 和图片渲染的问题了，关机睡觉。
 
-![5 hour limit](https://images.bugnone.dev/pics%2F5hour_limit.png)
+![5 hour limit](https://images.bugnone.dev/5hour_limit.png)
 
 **加入一些技巧**
 
@@ -62,7 +62,7 @@ abbrlink: ""
 
 最后，[第一个简单可用的版本就诞生了](https://github.com/HaiFongPan/r2s3-cli)。
 
-![r2s3-cli](https://images.bugnone.dev/Ir2s3%20cli.png)
+![r2s3-cli](https://images.bugnone.dev/r2s3.png)
 ### **Spec-Driven Development**
 
 在这期间简单体验了一下 Kiro 的 Spec，我觉得还蛮有意思，三阶段的工作流程比较符合当下研发实际的情况：需求分析 -> 设计 -> 任务拆解。同时 Github 也发布了自己的 [spec-kit](https://github.com/github/spec-kit)，这种方式其实能让使用者更好地参与到需求研发的每一个环节，并形成规范文档，让 Agent 在指定的框架内干活，比它自己发散性地处理任务效率高得多。值得后面深入的去体验。
