@@ -165,10 +165,10 @@ export const themeConfig: ThemeConfig = {
         name: "RSS",
         url: "/atom.xml", // or /rss.xml
       },
-      // {
-      //   name: "GitHub",
-      //   url: "https://github.com/radishzzz/astro-theme-retypeset",
-      // },
+      {
+        name: "GitHub",
+        url: "https://github.com/HaiFongPan",
+      },
       // {
       //   name: "Email",
       //   url: "email@radishzz.cc",
