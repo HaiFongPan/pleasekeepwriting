@@ -5,6 +5,7 @@
  * 然后运行 `pnpm sync-weread`。凭据只从进程环境读取，不接受命令行参数，也不会写入文件。
  */
 
+import type { WereadBook } from '../src/types/weread'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
@@ -47,14 +48,16 @@ interface ReviewResponse extends GatewayError {
   }>
 }
 
-interface WereadBook {
+interface BookInfoResponse extends GatewayError {
   bookId: string
-  title: string
-  author: string
-  cover: string
-  finishedAt: string | null
-  rating: number | null
-  deepLink: string
+  translator?: string
+  intro?: string
+  category?: string
+  publisher?: string
+  publishTime?: string
+  isbn?: string
+  newRating?: number
+  newRatingCount?: number
 }
 
 function getToken(): string {
@@ -122,6 +125,14 @@ function getRating(response: ReviewResponse): number | null {
   return star / 20
 }
 
+function normalizeText(value?: string): string | null {
+  const normalized = value
+    ?.replace(/[\u00A0\u1680\u2000-\u200B\u202F\u205F\u3000]/g, ' ')
+    .trim()
+
+  return normalized || null
+}
+
 async function mapWithConcurrency<T, R>(items: T[], concurrency: number, worker: (item: T) => Promise<R>): Promise<R[]> {
   const results: R[] = []
   let nextIndex = 0
@@ -140,6 +151,14 @@ async function mapWithConcurrency<T, R>(items: T[], concurrency: number, worker:
 async function syncBook(token: string, book: ShelfBook): Promise<WereadBook> {
   let finishedAt = formatShanghaiDate(book.readUpdateTime)
   let rating: number | null = null
+  let info: BookInfoResponse | null = null
+
+  try {
+    info = await callApi<BookInfoResponse>(token, '/book/info', { bookId: book.bookId })
+  }
+  catch (error) {
+    console.warn(`警告：${book.title}（${book.bookId}）书籍详情同步失败，已按基础信息处理：${String(error)}`)
+  }
 
   try {
     const progress = await callApi<ProgressResponse>(token, '/book/getprogress', { bookId: book.bookId })
@@ -163,12 +182,20 @@ async function syncBook(token: string, book: ShelfBook): Promise<WereadBook> {
 
   return {
     bookId: String(book.bookId),
-    title: book.title,
-    author: book.author,
+    title: normalizeText(book.title) ?? book.title,
+    author: normalizeText(book.author) ?? book.author,
+    translator: normalizeText(info?.translator),
     cover: book.cover,
     finishedAt,
     rating,
     deepLink: book.deepLink,
+    intro: normalizeText(info?.intro),
+    category: normalizeText(info?.category),
+    publisher: normalizeText(info?.publisher),
+    publishTime: normalizeText(info?.publishTime),
+    isbn: normalizeText(info?.isbn),
+    publicRating: info?.newRating && info.newRating > 0 ? info.newRating : null,
+    publicRatingCount: info?.newRatingCount && info.newRatingCount > 0 ? info.newRatingCount : null,
   }
 }
 

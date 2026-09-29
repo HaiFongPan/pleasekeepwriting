@@ -1,0 +1,106 @@
+---
+import type { WereadBook } from '@/types/weread'
+
+interface Props {
+  book: WereadBook
+  booksHref: string
+  reviewHref?: string
+}
+
+const { book, booksHref, reviewHref } = Astro.props
+const roundedRating = book.rating == null ? null : Math.round(book.rating)
+const stars = roundedRating == null
+  ? ''
+  : `${'★'.repeat(roundedRating)}${'☆'.repeat(5 - roundedRating)}`
+const publicRating = book.publicRating == null
+  ? null
+  : (book.publicRating / 100).toFixed(1)
+const published = book.publishTime?.slice(0, 10) || null
+const metadata = [
+  book.translator && ['译者', book.translator],
+  book.publisher && ['出版社', book.publisher],
+  published && ['出版时间', published],
+  book.category && ['分类', book.category],
+  book.isbn && ['ISBN', book.isbn],
+].filter(Boolean) as string[][]
+---
+
+<article>
+  <a
+    class="mb-8 inline-block text-3.3 c-secondary underline decoration-secondary/25 underline-offset-4 hover:c-primary focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-3"
+    href={booksHref}
+  >返回书架</a>
+
+  <div class="grid items-start gap-8 md:grid-cols-[minmax(12rem,16rem)_1fr] md:gap-12">
+    <div class="relative mx-auto max-w-60 w-full md:mx-0">
+      <div class="absolute inset-0 translate-x-2 translate-y-2 border border-secondary/15 border-solid" aria-hidden="true" />
+      <img
+        class="relative block aspect-[3/4] w-full border border-secondary/12 border-solid bg-secondary/5 object-cover"
+        src={book.cover}
+        alt={`《${book.title}》封面`}
+        decoding="async"
+        data-no-zoom
+      />
+    </div>
+
+    <div class="min-w-0 pt-1">
+      <h1 class="break-words text-8.5 c-primary font-semibold leading-[1.18] md:text-10 cjk:tracking-0.02em">
+        {book.title}
+      </h1>
+      <p class="mt-3 text-4.2 c-secondary">{book.author}</p>
+
+      <div class="mt-7 flex flex-wrap gap-x-7 gap-y-3 border-y border-secondary/12 border-solid py-4 text-3.4">
+        {book.finishedAt && (
+          <p>
+            <span class="block text-2.9 c-secondary">读完</span>
+            <time class="mt-0.5 block c-primary font-time" datetime={book.finishedAt}>{book.finishedAt}</time>
+          </p>
+        )}
+        {book.rating != null && (
+          <p>
+            <span class="block text-2.9 c-secondary">我的评分</span>
+            <span class="mt-0.5 block c-primary tracking-0.08em" role="img" aria-label={`${book.rating} / 5`}>{stars}</span>
+          </p>
+        )}
+        {publicRating && (
+          <p>
+            <span class="block text-2.9 c-secondary">微信读书评分</span>
+            <span class="mt-0.5 block c-primary">
+              {publicRating}
+              {book.publicRatingCount && <small class="ml-1 c-secondary">({book.publicRatingCount})</small>}
+            </span>
+          </p>
+        )}
+      </div>
+
+      {metadata.length > 0 && (
+        <dl class="grid grid-cols-[4.5rem_1fr] mt-6 gap-x-4 gap-y-2 text-3.4 leading-1.65em">
+          {metadata.map(([label, value]) => (
+            <>
+              <dt class="c-secondary">{label}</dt>
+              <dd class="min-w-0 c-secondary">{value}</dd>
+            </>
+          ))}
+        </dl>
+      )}
+
+      <div class="mt-7 flex flex-wrap gap-3 text-3.3">
+        {reviewHref && (
+          <a class="border border-primary border-solid bg-primary px-4 py-2 c-background hover:op-85 focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-3" href={reviewHref}>
+            阅读我的读后感
+          </a>
+        )}
+        <a class="border border-secondary/25 border-solid px-4 py-2 c-primary hover:border-primary focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-3" href={book.deepLink} target="_blank" rel="noreferrer">
+          在微信读书查看
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <section class="mt-14 border-t border-secondary/15 border-solid pt-8 md:mt-17 md:pt-10">
+    <h2 class="text-5.2 c-primary font-semibold">书籍简介</h2>
+    {book.intro
+      ? <p class="mt-5 max-w-165 whitespace-pre-line text-3.9 c-secondary leading-1.9em">{book.intro}</p>
+      : <p class="mt-5 c-secondary">微信读书暂未提供这本书的简介。</p>}
+  </section>
+</article>

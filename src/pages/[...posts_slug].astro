@@ -3,10 +3,13 @@ import type { CollectionEntry } from 'astro:content'
 import { getCollection, render } from 'astro:content'
 import Comment from '@/components/Comment/Index.astro'
 import PostDate from '@/components/PostDate.astro'
+import RelatedBook from '@/components/RelatedBook.astro'
 import TagList from '@/components/TagList.astro'
 import BackButton from '@/components/Widgets/BackButton.astro'
 import TOC from '@/components/Widgets/TOC.astro'
 import { allLocales, defaultLocale, moreLocales } from '@/config'
+import booksData from '@/data/weread-books.json'
+import { getBookPath } from '@/i18n/path'
 import Layout from '@/layouts/Layout.astro'
 import { checkPostSlugDuplication } from '@/utils/content'
 import { getPostDescription } from '@/utils/description'
@@ -98,6 +101,9 @@ const { post, lang, supportedLangs } = Astro.props
 const slug = post.data.abbrlink || post.id
 const description = getPostDescription(post, 'meta')
 const { Content, headings, remarkPluginFrontmatter } = await render(post)
+const relatedBook = post.data.bookId
+  ? booksData.books.find(book => book.bookId === post.data.bookId)
+  : undefined
 ---
 
 <Layout
@@ -124,7 +130,10 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
     <!-- Date -->
     <div
       id="post-date"
-      class="mb-17.2 block c-primary font-time"
+      class:list={[
+        'block c-primary font-time',
+        relatedBook ? 'mb-7' : 'mb-17.2',
+      ]}
       transition:name={`time-${slug}${lang ? `-${lang}` : ''}`}
       data-disable-theme-transition
     >
@@ -134,6 +143,14 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
         minutes={remarkPluginFrontmatter.minutes}
       />
     </div>
+    {relatedBook && (
+      <RelatedBook
+        title={relatedBook.title}
+        author={relatedBook.author}
+        cover={relatedBook.cover}
+        href={getBookPath(relatedBook.bookId, lang)}
+      />
+    )}
     <!-- TOC -->
     {post.data.toc && <TOC headings={headings} />}
     <!-- Content -->

@@ -1,0 +1,37 @@
+---
+import type { WereadBook, WereadBooksData } from '@/types/weread'
+import BookDetail from '@/components/BookDetail.astro'
+import { moreLocales } from '@/config'
+import booksData from '@/data/weread-books.json'
+import { getLocalizedPath, getPostPath } from '@/i18n/path'
+import Layout from '@/layouts/Layout.astro'
+import { getBookReviews } from '@/utils/content'
+
+export function getStaticPaths() {
+  const { books } = booksData as WereadBooksData
+  return moreLocales.flatMap(lang => books.map(book => ({
+    params: { lang, bookId: book.bookId },
+    props: { book, lang },
+  })))
+}
+
+interface Props {
+  book: WereadBook
+  lang: string
+}
+
+const { book, lang } = Astro.props
+const reviews = await getBookReviews(lang)
+const review = reviews.get(book.bookId)
+const reviewHref = review
+  ? getPostPath(review.data.abbrlink || review.id, lang)
+  : undefined
+---
+
+<Layout postTitle={book.title} postDescription={book.intro || `${book.author}《${book.title}》书籍详情`}>
+  <BookDetail
+    {book}
+    booksHref={getLocalizedPath('/books/', lang)}
+    {reviewHref}
+  />
+</Layout>

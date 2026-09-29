@@ -101,6 +101,24 @@ async function _getPosts(lang?: string) {
 export const getPosts = memoize(_getPosts)
 
 /**
+ * Get the newest review post associated with each WeRead book.
+ */
+async function _getBookReviews(lang?: string): Promise<Map<string, Post>> {
+  const posts = await getPosts(lang)
+  const reviews = new Map<string, Post>()
+
+  posts.forEach((post) => {
+    if (post.data.bookId && !reviews.has(post.data.bookId)) {
+      reviews.set(post.data.bookId, post)
+    }
+  })
+
+  return reviews
+}
+
+export const getBookReviews = memoize(_getBookReviews)
+
+/**
  * Get all non-pinned posts
  *
  * @param lang The language code to filter by, defaults to site's default language

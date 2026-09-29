@@ -1,17 +1,14 @@
 ---
+import type { WereadBook } from '@/types/weread'
 import BookCard from '@/components/BookCard.astro'
 
-interface Book {
-  bookId: string
-  title: string
-  cover: string
-  finishedAt: string | null
-  rating: number | null
-  deepLink: string
+interface BookWallItem extends WereadBook {
+  detailHref: string
+  reviewHref?: string
 }
 
 interface Props {
-  books: Book[]
+  books: BookWallItem[]
 }
 
 const { books } = Astro.props

@@ -32,6 +32,21 @@ export function getPostPath(slug: string, lang: string): string {
 }
 
 /**
+ * Get path to a specific book page with language support
+ *
+ * @param bookId WeRead book ID
+ * @param lang Current language code
+ * @returns Path to book page
+ */
+export function getBookPath(bookId: string, lang: string): string {
+  const bookPath = lang === defaultLocale
+    ? `/books/${bookId}/`
+    : `/${lang}/books/${bookId}/`
+
+  return base ? `${base}${bookPath}` : bookPath
+}
+
+/**
  * Generate localized path based on current language
  *
  * @param path Path to localize

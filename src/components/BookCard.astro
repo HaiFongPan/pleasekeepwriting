@@ -4,9 +4,11 @@ interface Props {
   cover: string
   finishedAt: string | null
   rating: number | null
+  detailHref: string
+  reviewHref?: string
 }
 
-const { title, cover, finishedAt, rating } = Astro.props
+const { title, cover, finishedAt, rating, detailHref, reviewHref } = Astro.props
 const roundedRating = rating == null ? null : Math.round(rating)
 const stars = roundedRating == null
   ? ''
@@ -14,7 +16,11 @@ const stars = roundedRating == null
 ---
 
 <article class="group min-w-0 transition-transform duration-200 ease-out motion-reduce:transform-none lg:hover:-translate-y-1">
-  <div class="overflow-hidden border border-secondary/10 rounded-0.5 border-solid">
+  <a
+    class="block overflow-hidden border border-secondary/10 rounded-0.5 border-solid focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-3"
+    href={detailHref}
+    aria-label={`查看《${title}》详情`}
+  >
     <img
       class="block aspect-[3/4] w-full bg-secondary/5 object-cover"
       src={cover}
@@ -23,13 +29,32 @@ const stars = roundedRating == null
       decoding="async"
       data-no-zoom
     />
-  </div>
+  </a>
 
   <div class="mt-3 text-3.25 c-secondary leading-1.55em">
     <h3 class="line-clamp-2 min-h-3.1em c-primary font-medium cjk:tracking-0.02em">
-      <span class="highlight-hover after:bottom-0.15em">《{title}》</span>
+      <a class="highlight-hover after:bottom-0.15em focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2" href={detailHref}>
+        《{title}》
+      </a>
     </h3>
-    {finishedAt && <time class="mt-1 block font-time" datetime={finishedAt}>{finishedAt}</time>}
+    {finishedAt && (
+      <div class="mt-1 flex items-center gap-1.5">
+        <time class="font-time" datetime={finishedAt}>{finishedAt}</time>
+        {reviewHref && (
+          <a
+            class="inline-flex c-secondary/65 transition-colors hover:c-primary focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+            href={reviewHref}
+            title={`阅读《${title}》读后感`}
+            aria-label={`阅读《${title}》读后感`}
+          >
+            <svg aria-hidden="true" class="h-3.4 w-3.4" viewBox="0 0 16 16" fill="none">
+              <path d="M3.5 1.75h6l3 3v9.5H3.5V1.75Z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round" />
+              <path d="M9.5 1.75v3h3M5.75 8h4.5M5.75 10.5h4.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        )}
+      </div>
+    )}
     {rating != null && (
       <p class="mt-0.25 tracking-0.08em">
         <span role="img" aria-label={`${rating} / 5`}>{stars}</span>

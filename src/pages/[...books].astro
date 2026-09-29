@@ -2,8 +2,10 @@
 import BookWall from '@/components/BookWall.astro'
 import { defaultLocale, moreLocales } from '@/config'
 import booksData from '@/data/weread-books.json'
+import { getBookPath, getPostPath } from '@/i18n/path'
 import { ui } from '@/i18n/ui'
 import Layout from '@/layouts/Layout.astro'
+import { getBookReviews } from '@/utils/content'
 
 export async function getStaticPaths() {
   type PathItem = {
@@ -28,8 +30,17 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.props
 const currentUI = ui[lang as keyof typeof ui] ?? ui[defaultLocale as keyof typeof ui]
+const reviews = await getBookReviews(lang)
+const books = booksData.books.map((book) => {
+  const review = reviews.get(book.bookId)
+  return {
+    ...book,
+    detailHref: getBookPath(book.bookId, lang),
+    reviewHref: review ? getPostPath(review.data.abbrlink || review.id, lang) : undefined,
+  }
+})
 ---
 
 <Layout postTitle={currentUI.books}>
-  <BookWall books={booksData.books} />
+  <BookWall {books} />
 </Layout>
