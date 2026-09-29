@@ -43,9 +43,11 @@ export function getLocalizedPath(path: string, currentLang?: string) {
   const lang = currentLang ?? getLangFromPath(path)
 
   const langPrefix = lang === defaultLocale ? '' : `/${lang}`
+  // Files like rss.xml must not get a trailing slash
+  const isFile = /\.[a-z0-9]+$/i.test(normalizedPath)
   const localizedPath = normalizedPath === ''
     ? `${langPrefix}/`
-    : `${langPrefix}/${normalizedPath}/`
+    : `${langPrefix}/${normalizedPath}${isFile ? '' : '/'}`
 
   return base ? `${base}${localizedPath}` : localizedPath
 }
