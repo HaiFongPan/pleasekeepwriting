@@ -136,6 +136,10 @@ const ImageZoom = {
       return
     }
 
+    if (target.hasAttribute('data-no-zoom')) {
+      return
+    }
+
     // Check if image is larger than 100x100px
     if (!(target.complete && target.naturalWidth >= 100 && target.naturalHeight >= 100)) {
       return

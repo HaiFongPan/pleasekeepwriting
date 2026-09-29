@@ -1,0 +1,392 @@
+{
+  "generatedAt": "2026-09-29T13:12:07.793Z",
+  "books": [
+    {
+      "bookId": "3300054143",
+      "title": "史蒂夫·乔布斯传（典藏版）",
+      "author": "沃尔特·艾萨克森",
+      "cover": "https://cdn.weread.qq.com/weread/cover/68/cpplatform_h6zlv6y9eqqarmeykbk2ff/t6_cpplatform_h6zlv6y9eqqarmeykbk2ff1680578829.jpg",
+      "finishedAt": "2026-09-29",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=df332000813ab7ba6g013fc6"
+    },
+    {
+      "bookId": "CB_3frFf5Ffj4Mq76875N1Im0O9",
+      "title": "安史之乱 : 历史、宣传与神话",
+      "author": "张诗坪 / 胡可奇",
+      "cover": "https://res.weread.qq.com/wrepub/CB_3frFf5Ffj4Mq76875N1Im0O9_parsecover",
+      "finishedAt": "2026-09-27",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=96042783643425f33667246663546666a344d7137363837354e31496d304f398cf"
+    },
+    {
+      "bookId": "41626009",
+      "title": "贪婪的多巴胺",
+      "author": "[美]丹尼尔·利伯曼 [美]迈克尔·E.朗",
+      "cover": "https://wfqqreader-1252317822.image.myqcloud.com/cover/9/41626009/t6_41626009.jpg",
+      "finishedAt": "2025-08-09",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=92932780727b2999929fce4"
+    },
+    {
+      "bookId": "CB_CIK1J21JHFvi6sA6su2Tz4Wb",
+      "title": "小城与不确定性的墙（村上春树 时隔6年最新长篇）",
+      "author": "[日]村上春树",
+      "cover": "https://res.weread.qq.com/wrepub/CB_63n0CR0DW78D6rh6tLCXADyP_parsecover",
+      "finishedAt": "2024-11-20",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=41742c63643425f43494b314a32314a4846766936734136737532547a34576275b"
+    },
+    {
+      "bookId": "3300072295",
+      "title": "太白金星有点烦",
+      "author": "马伯庸",
+      "cover": "https://cdn.weread.qq.com/weread/cover/72/cpplatform_huhykqamxcvke1jfkpqxiv/t6_cpplatform_huhykqamxcvke1jfkpqxiv1695711014.jpg",
+      "finishedAt": "2024-10-18",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=23e32130813ab82bdg015cd2"
+    },
+    {
+      "bookId": "909893",
+      "title": "深度工作：如何有效使用每一点脑力",
+      "author": "卡尔·纽波特",
+      "cover": "https://cdn.weread.qq.com/weread/cover/16/yuewen_909893/t6_yuewen_9098931775031546.jpg",
+      "finishedAt": "2024-07-04",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=0e5327005de2450e58c115d"
+    },
+    {
+      "bookId": "3300076264",
+      "title": "李光耀观天下（精装版）",
+      "author": "李光耀",
+      "cover": "https://cdn.weread.qq.com/weread/cover/79/cpplatform_wdghcvhzndnxtmgbbdm5dg/t6_cpplatform_wdghcvhzndnxtmgbbdm5dg1698833759.jpg",
+      "finishedAt": "2024-06-26",
+      "rating": 5,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=63c32e90813ab844ag014d47"
+    },
+    {
+      "bookId": "3300063304",
+      "title": "负零",
+      "author": "广濑正",
+      "cover": "https://cdn.weread.qq.com/weread/cover/8/cpplatform_nuiplz5laf1hp3jn7mna4v/t6_cpplatform_nuiplz5laf1hp3jn7mna4v1688446864.jpg",
+      "finishedAt": "2024-03-08",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=26532d20813ab7f3ag014a9d"
+    },
+    {
+      "bookId": "CB_FiF4vL4vNDC36bH6cK",
+      "title": "土摩托看世界",
+      "author": "袁越",
+      "cover": "https://res.weread.qq.com/wrepub/CB_FiF4vL4vNDC36bH6cK_parsecover",
+      "finishedAt": "2024-03-03",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=5f742af2a43425f46694634764c34764e44433336624836634bc86"
+    },
+    {
+      "bookId": "26991919",
+      "title": "呼吸（译林幻系列）",
+      "author": "特德·姜",
+      "cover": "https://cdn.weread.qq.com/weread/cover/80/YueWen_26991919/t6_YueWen_26991919.jpg",
+      "finishedAt": "2024-01-14",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=13932f20719bdd2f139065d"
+    },
+    {
+      "bookId": "32463124",
+      "title": "重来3：跳出疯狂的忙碌",
+      "author": "[美]贾森·弗里德 [丹]戴维·海涅迈尔·汉森",
+      "cover": "https://wfqqreader-1252317822.image.myqcloud.com/cover/124/32463124/t6_32463124.jpg",
+      "finishedAt": "2023-12-04",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=0ba3276071ef59140ba5a51"
+    },
+    {
+      "bookId": "857863",
+      "title": "献给阿尔吉侬的花束",
+      "author": "丹尼尔·凯斯",
+      "cover": "https://cdn.weread.qq.com/weread/cover/11/yuewen_857863/t6_yuewen_8578631681827306.jpg",
+      "finishedAt": "2023-11-02",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=03b326005d170703ba15f85"
+    },
+    {
+      "bookId": "41598972",
+      "title": "工作、消费主义和新穷人",
+      "author": "齐格蒙特·鲍曼",
+      "cover": "https://wfqqreader-1252317822.image.myqcloud.com/cover/972/41598972/t6_41598972.jpg",
+      "finishedAt": "2023-10-18",
+      "rating": 5,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=c9d327e0727abffcc9d74ab"
+    },
+    {
+      "bookId": "651366",
+      "title": "乡土中国",
+      "author": "费孝通",
+      "cover": "https://cdn.weread.qq.com/weread/cover/89/yuewen_651366/t6_yuewen_6513661742315957.jpg",
+      "finishedAt": "2023-07-26",
+      "rating": 5,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=22e32b3059f06622e6e5c85"
+    },
+    {
+      "bookId": "3300053438",
+      "title": "翦商：殷周之变与华夏新生",
+      "author": "李硕",
+      "cover": "https://cdn.weread.qq.com/weread/cover/31/cpplatform_qgm8mx4we5qpr3jsaspa9n/t6_cpplatform_qgm8mx4we5qpr3jsaspa9n1679558201.jpg",
+      "finishedAt": "2023-06-23",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=7b032ae0813ab7b5fg0180c0"
+    },
+    {
+      "bookId": "39136896",
+      "title": "卡片笔记写作法：如何实现从阅读到写作",
+      "author": "申克·阿伦斯",
+      "cover": "https://cdn.weread.qq.com/weread/cover/15/YueWen_39136896/t6_YueWen_39136896.jpg",
+      "finishedAt": "2023-05-03",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=3d8326d072552e803d87c41"
+    },
+    {
+      "bookId": "3300018939",
+      "title": "心中有数 生活中的数学思维",
+      "author": "刘雪峰",
+      "cover": "https://cdn.weread.qq.com/weread/cover/39/3300018939/t6_3300018939.jpg",
+      "finishedAt": "2023-02-10",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=df6323a0813ab6de5g019a31"
+    },
+    {
+      "bookId": "CB_5TmEryEsN6MQ6cw6cK",
+      "title": "动物凶猛(2015版） (王朔作品精选)",
+      "author": "王朔",
+      "cover": "https://res.weread.qq.com/wrepub/CB_1wo4DC4CAAZb6Rb6QC_parsecover",
+      "finishedAt": "2023-01-24",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=f2e42a42a43425f35546d45727945734e364d5136637736634b771"
+    },
+    {
+      "bookId": "3300029331",
+      "title": "漫长的余生",
+      "author": "罗新",
+      "cover": "https://cdn.weread.qq.com/weread/cover/56/cpPlatform_fpgTiqycc4RonoNdV6ZXqJ/t6_cpPlatform_fpgTiqycc4RonoNdV6ZXqJ.jpg",
+      "finishedAt": "2022-12-04",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=55b32840813ab71f5g011671"
+    },
+    {
+      "bookId": "CB_6UTBcPBak4Bj6aN6YD",
+      "title": "毫无意义的工作（真实得就像在你头顶装了一台“职场监控器”。40%的工作无意义，我们还能怎么做？梁永安、严飞作序，陈嘉映、项飙、刘擎、罗家德、冯仑联袂推荐。）",
+      "author": "大卫·格雷伯",
+      "cover": "https://res.weread.qq.com/wrepub/CB_6UTBcPBak4Bj6aN6YD_parsecover",
+      "finishedAt": "2022-10-30",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=b9142e02a43425f36555442635042616b34426a36614e36594495f"
+    },
+    {
+      "bookId": "25926862",
+      "title": "美丽新世界（译文经典）",
+      "author": "奥尔德斯·赫胥黎",
+      "cover": "https://cdn.weread.qq.com/weread/cover/86/YueWen_25926862/t6_YueWen_25926862.jpg",
+      "finishedAt": "2022-08-27",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=92532760718b9cce9259f4d"
+    },
+    {
+      "bookId": "42766048",
+      "title": "枪炮、病菌与钢铁",
+      "author": "贾雷德·戴蒙德",
+      "cover": "https://cdn.weread.qq.com/weread/cover/99/YueWen_42766048/t6_YueWen_42766048.jpg",
+      "finishedAt": "2022-08-15",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=843329f0728c8ee08434fb1"
+    },
+    {
+      "bookId": "35433088",
+      "title": "弃猫：当我谈起父亲时",
+      "author": "[日]村上春树",
+      "cover": "https://cdn.weread.qq.com/weread/cover/34/YueWen_35433088/t6_YueWen_35433088.jpg",
+      "finishedAt": "2022-08-11",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=6df328c0721caa806dfe015"
+    },
+    {
+      "bookId": "CB_CMT96994O0zH6a76YD",
+      "title": "如何预防下一次大流行（比尔·盖茨2022年新书，直面当下全球健康与创新议题，在危机中找机会，向科学要答案！）",
+      "author": "比尔·盖茨",
+      "cover": "https://res.weread.qq.com/wrepub/CB_CMT96994O0zH6a76YD_parsecover",
+      "finishedAt": "2022-08-10",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=2bb427c2a43425f434d5439363939344f307a483661373659441c6"
+    },
+    {
+      "bookId": "917691",
+      "title": "OKR工作法：谷歌、领英等顶级公司的高绩效秘籍",
+      "author": "克里斯蒂娜·沃特克",
+      "cover": "https://cdn.weread.qq.com/weread/cover/95/YueWen_917691/t6_YueWen_917691.jpg",
+      "finishedAt": "2022-08-01",
+      "rating": 5,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=d87320605e00bbd874a12ae"
+    },
+    {
+      "bookId": "CB_Gm3BudBrC0v66a46YD",
+      "title": "枪炮、病菌与钢铁:人类社会的命运(修订版)",
+      "author": "贾雷德·戴蒙德(Jared Diamond)",
+      "cover": "https://res.weread.qq.com/wrepub/CB_Gm3BudBrC0v66a46YD_parsecover",
+      "finishedAt": "2022-07-31",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=4e942242a43425f476d334275644272433076363661343659446c4"
+    },
+    {
+      "bookId": "CB_3s2D7yD9N4Ij6Z76YD",
+      "title": "大教堂与集市（开源运动的《圣经》，中文版首次出版） (O'Reilly精品图书系列)",
+      "author": "Eric S. Raymond",
+      "cover": "https://res.weread.qq.com/wrepub/CB_3s2D7yD9N4Ij6Z76YD_parsecover",
+      "finishedAt": "2022-06-10",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=8b742702a43425f33733244377944394e34496a365a37365944a6d"
+    },
+    {
+      "bookId": "172213",
+      "title": "红拂夜奔",
+      "author": "王小波",
+      "cover": "https://cdn.weread.qq.com/weread/cover/32/YueWen_172213/t6_YueWen_172213.jpg",
+      "finishedAt": "2022-05-28",
+      "rating": 5,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=d69328a052a0b5d69c41e57"
+    },
+    {
+      "bookId": "40726681",
+      "title": "焦虑的人",
+      "author": "弗雷德里克·巴克曼",
+      "cover": "https://cdn.weread.qq.com/weread/cover/20/YueWen_40726681/t6_YueWen_40726681.jpg",
+      "finishedAt": "2022-05-04",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=5c432bf0726d70995c4f25f"
+    },
+    {
+      "bookId": "24953118",
+      "title": "鞑靼人沙漠",
+      "author": "迪诺·布扎蒂",
+      "cover": "https://wfqqreader-1252317822.image.myqcloud.com/cover/118/24953118/t6_24953118.jpg",
+      "finishedAt": "2022-04-17",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=376323b0717cc11e376fc59"
+    },
+    {
+      "bookId": "40726710",
+      "title": "也许你该找个人聊聊",
+      "author": "洛莉·戈特利布",
+      "cover": "https://cdn.weread.qq.com/weread/cover/63/YueWen_40726710/t6_YueWen_40726710.jpg",
+      "finishedAt": "2022-04-01",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=16832d80726d70b6168b11e"
+    },
+    {
+      "bookId": "729213",
+      "title": "Vim实用技巧",
+      "author": "Drew Neil",
+      "cover": "https://cdn.weread.qq.com/weread/cover/34/YueWen_729213/t6_YueWen_729213.jpg",
+      "finishedAt": "2022-03-13",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=ce132a905b207dce166506f"
+    },
+    {
+      "bookId": "35551088",
+      "title": "蛤蟆先生去看心理医生",
+      "author": "罗伯特·戴博德",
+      "cover": "https://cdn.weread.qq.com/weread/cover/81/YueWen_35551088/t6_YueWen_35551088.jpg",
+      "finishedAt": "2022-02-15",
+      "rating": 5,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=66832530721e777066806c9"
+    },
+    {
+      "bookId": "25856501",
+      "title": "且听风吟",
+      "author": "[日]村上春树",
+      "cover": "https://wfqqreader-1252317822.image.myqcloud.com/cover/501/25856501/t6_25856501.jpg",
+      "finishedAt": "2022-02-11",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=88732d60718a89f5887d22b"
+    },
+    {
+      "bookId": "26859484",
+      "title": "永久记录",
+      "author": "爱德华·斯诺登",
+      "cover": "https://cdn.weread.qq.com/weread/cover/92/YueWen_26859484/t6_YueWen_26859484.jpg",
+      "finishedAt": "2022-02-10",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=350323407199d7dc3507021"
+    },
+    {
+      "bookId": "3300003116",
+      "title": "第一人称单数",
+      "author": "[日]村上春树",
+      "cover": "https://rescdn.qqmail.com/weread/cover/116/3300003116/t6_3300003116.jpg",
+      "finishedAt": "2022-02-10",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=0fa321f0813ab67b7g016327"
+    },
+    {
+      "bookId": "41355053",
+      "title": "祥瑞：王莽和他的时代",
+      "author": "张向荣",
+      "cover": "https://wfqqreader-1252317822.image.myqcloud.com/cover/53/41355053/t6_41355053.jpg",
+      "finishedAt": "2022-02-10",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=e3e323f07277072de3eda5b"
+    },
+    {
+      "bookId": "24953405",
+      "title": "看不见的城市",
+      "author": "伊塔洛·卡尔维诺",
+      "cover": "https://wfqqreader-1252317822.image.myqcloud.com/cover/405/24953405/t6_24953405.jpg",
+      "finishedAt": "2022-02-09",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=946321a0717cc23d946b482"
+    },
+    {
+      "bookId": "38493609",
+      "title": "UNIX传奇：历史与回忆",
+      "author": "布莱恩·W.克尼汉",
+      "cover": "https://cdn.weread.qq.com/weread/cover/94/YueWen_38493609/t6_YueWen_38493609.jpg",
+      "finishedAt": "2022-02-09",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=9a1323d0724b5da99a1fb47"
+    },
+    {
+      "bookId": "26785302",
+      "title": "有所不为的反叛者：批判、怀疑与想象力",
+      "author": "罗新",
+      "cover": "https://cdn.weread.qq.com/weread/cover/45/YueWen_26785302/t6_YueWen_26785302.jpg",
+      "finishedAt": "2022-01-28",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=57032b907198b61657026d4"
+    },
+    {
+      "bookId": "24147392",
+      "title": "银河系搭车客指南",
+      "author": "道格拉斯·亚当斯",
+      "cover": "https://cdn.weread.qq.com/weread/cover/74/YueWen_24147392/t6_YueWen_24147392.jpg",
+      "finishedAt": "2021-07-18",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=07c32ca0717075c007cc3ad"
+    },
+    {
+      "bookId": "30180143",
+      "title": "柏青哥（尹汝贞、李敏镐等人主演美剧《弹子球游戏》原著）",
+      "author": "李敏金",
+      "cover": "https://cdn.weread.qq.com/weread/cover/0/YueWen_30180143/t6_YueWen_30180143.jpg",
+      "finishedAt": "2021-02-27",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=f1332d3071cc832ff1381c5"
+    },
+    {
+      "bookId": "918535",
+      "title": "飞行家（同名电影原著）",
+      "author": "双雪涛",
+      "cover": "https://cdn.weread.qq.com/weread/cover/43/YueWen_918535/t6_YueWen_918535.jpg",
+      "finishedAt": "2021-02-23",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=e1432cd05e0407e14d08888"
+    }
+  ]
+}

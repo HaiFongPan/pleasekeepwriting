@@ -1,0 +1,39 @@
+---
+interface Props {
+  title: string
+  cover: string
+  finishedAt: string | null
+  rating: number | null
+}
+
+const { title, cover, finishedAt, rating } = Astro.props
+const roundedRating = rating == null ? null : Math.round(rating)
+const stars = roundedRating == null
+  ? ''
+  : `${'★'.repeat(roundedRating)}${'☆'.repeat(5 - roundedRating)}`
+---
+
+<article class="group min-w-0 transition-transform duration-200 ease-out motion-reduce:transform-none lg:hover:-translate-y-1">
+  <div class="overflow-hidden border border-secondary/10 rounded-0.5 border-solid">
+    <img
+      class="block aspect-[3/4] w-full bg-secondary/5 object-cover"
+      src={cover}
+      alt={`《${title}》封面`}
+      loading="lazy"
+      decoding="async"
+      data-no-zoom
+    />
+  </div>
+
+  <div class="mt-3 text-3.25 c-secondary leading-1.55em">
+    <h3 class="line-clamp-2 min-h-3.1em c-primary font-medium cjk:tracking-0.02em">
+      <span class="highlight-hover after:bottom-0.15em">《{title}》</span>
+    </h3>
+    {finishedAt && <time class="mt-1 block font-time" datetime={finishedAt}>{finishedAt}</time>}
+    {rating != null && (
+      <p class="mt-0.25 tracking-0.08em">
+        <span role="img" aria-label={`${rating} / 5`}>{stars}</span>
+      </p>
+    )}
+  </div>
+</article>

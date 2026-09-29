@@ -1,0 +1,25 @@
+---
+import BookCard from '@/components/BookCard.astro'
+
+interface Book {
+  bookId: string
+  title: string
+  cover: string
+  finishedAt: string | null
+  rating: number | null
+  deepLink: string
+}
+
+interface Props {
+  books: Book[]
+}
+
+const { books } = Astro.props
+---
+
+<div>
+  <div class="uno-decorative-line" />
+  <div class="grid grid-cols-2 gap-x-5 gap-y-9 lg:grid-cols-4 min-[480px]:grid-cols-3 xl:grid-cols-5 lg:gap-x-6 lg:gap-y-11">
+    {books.map(book => <BookCard {...book} />)}
+  </div>
+</div>

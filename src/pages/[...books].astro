@@ -1,0 +1,35 @@
+---
+import BookWall from '@/components/BookWall.astro'
+import { defaultLocale, moreLocales } from '@/config'
+import booksData from '@/data/weread-books.json'
+import { ui } from '@/i18n/ui'
+import Layout from '@/layouts/Layout.astro'
+
+export async function getStaticPaths() {
+  type PathItem = {
+    params: { books: string }
+    props: { lang: string }
+  }
+
+  const paths: PathItem[] = [{
+    params: { books: 'books/' },
+    props: { lang: defaultLocale },
+  }]
+
+  moreLocales.forEach((lang: string) => {
+    paths.push({
+      params: { books: `${lang}/books/` },
+      props: { lang },
+    })
+  })
+
+  return paths
+}
+
+const { lang } = Astro.props
+const currentUI = ui[lang as keyof typeof ui] ?? ui[defaultLocale as keyof typeof ui]
+---
+
+<Layout postTitle={currentUI.books}>
+  <BookWall books={booksData.books} />
+</Layout>

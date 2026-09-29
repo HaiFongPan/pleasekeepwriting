@@ -22,6 +22,4 @@ abbrlink: ""
 
 感觉对自己的要求变低了，对 AI 的要求却很高，像极了厂里没用的小老板们，想压榨组员赶紧出活儿，又不想自己下场写代码（自己压根儿也不会）
 
-
-
 ![Is This The Life We Really Want?](https://images.bugnone.dev/is_this_the_life_we_really_want.png)

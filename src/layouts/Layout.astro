@@ -27,7 +27,7 @@ interface Props {
 }
 
 const { postTitle, postDescription, postSlug, supportedLangs = [] } = Astro.props
-const { isPost } = getPageInfo(Astro.url.pathname)
+const { isPost, isBooks } = getPageInfo(Astro.url.pathname)
 const fontStyle = themeConfig.global.fontStyle === 'serif' ? 'font-serif' : 'font-sans'
 const MarginBottom = isPost && themeConfig.comment?.enabled
   ? 'mb-10' // Post page with comment
@@ -44,9 +44,13 @@ const MarginBottom = isPost && themeConfig.comment?.enabled
   <Head {postTitle} {postDescription} {postSlug} />
   <body>
     <div
-      class="mx-auto max-w-205.848 min-h-vh w-full min-h-dvh"
+      class:list={[
+        'mx-auto min-h-vh w-full min-h-dvh',
+        isBooks
+          ? 'max-w-220 lg:mx-[max(5.75rem,calc(50vw-35rem))] lg:my-20 lg:max-w-[min(calc(75vw-16rem),55rem)] lg:min-h-full lg:p-0'
+          : 'max-w-205.848 lg:mx-[max(5.75rem,calc(50vw-34.25rem))] lg:my-20 lg:max-w-[min(calc(75vw-16rem),44rem)] lg:min-h-full lg:p-0',
+      ]}
       p="x-[min(7.25vw,3.731rem)] y-10"
-      lg="mx-[max(5.75rem,calc(50vw-34.25rem))] my-20 max-w-[min(calc(75vw-16rem),44rem)] min-h-full p-0"
     >
       <Header />
       <Navbar />
