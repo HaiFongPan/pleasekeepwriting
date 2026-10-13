@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-13T09:58:02.347Z",
+  "generatedAt": "2026-10-13T10:00:32.425Z",
   "books": [
     {
       "bookId": "26211887",
@@ -254,7 +254,7 @@
       "publishTime": "2021-09-10 00:00:00",
       "isbn": "9787552036107",
       "publicRating": 783,
-      "publicRatingCount": 9236
+      "publicRatingCount": 9237
     },
     {
       "bookId": "651366",
