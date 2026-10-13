@@ -42,7 +42,7 @@ html[data-theme-changing] [data-disable-theme-transition] {
 @media (max-width: 1535px) {
   #toc-container {
     opacity: 0;
-    animation: fadeInUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    animation: fadeInUp 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
     animation-delay: 0.1s;
   }
 }
@@ -50,32 +50,22 @@ html[data-theme-changing] [data-disable-theme-transition] {
 @media (min-width: 1024px) {
   #post-date {
     opacity: 0;
-    animation: fadeInUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    animation: fadeInUp 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
     animation-delay: 0.1s;
   }
 }
 
 #post-content > * {
   opacity: 0;
-  animation: fadeInUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  animation: fadeInUp 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-#post-content > *:nth-child(1) { animation-delay: 0.15s; }
-#post-content > *:nth-child(2) { animation-delay: 0.2s; }
-#post-content > *:nth-child(3) { animation-delay: 0.25s; }
-#post-content > *:nth-child(4) { animation-delay: 0.3s; }
-#post-content > *:nth-child(5) { animation-delay: 0.35s; }
-#post-content > *:nth-child(6) { animation-delay: 0.4s; }
-#post-content > *:nth-child(7) { animation-delay: 0.45s; }
-#post-content > *:nth-child(8) { animation-delay: 0.5s; }
-#post-content > *:nth-child(9) { animation-delay: 0.55s; }
-#post-content > *:nth-child(10) { animation-delay: 0.6s; }
-#post-content > *:nth-child(11) { animation-delay: 0.65s; }
-#post-content > *:nth-child(12) { animation-delay: 0.7s; }
-#post-content > *:nth-child(13) { animation-delay: 0.75s; }
-#post-content > *:nth-child(14) { animation-delay: 0.8s; }
-#post-content > *:nth-child(15) { animation-delay: 0.85s; }
-#post-content > *:nth-child(n+16) { animation-delay: 0.9s; }
+#post-content > *:nth-child(1) { animation-delay: 0.1s; }
+#post-content > *:nth-child(2) { animation-delay: 0.13s; }
+#post-content > *:nth-child(3) { animation-delay: 0.16s; }
+#post-content > *:nth-child(4) { animation-delay: 0.19s; }
+#post-content > *:nth-child(5) { animation-delay: 0.22s; }
+#post-content > *:nth-child(n+6) { animation-delay: 0.25s; }
 
 @media (max-width: 767px) {
   #post-content > *:nth-child(n+8) {
@@ -100,35 +90,26 @@ html[data-theme-changing] [data-disable-theme-transition] {
 @media (min-width: 1535px) {
   #toc-desktop-icon {
     opacity: 0;
-    animation: fadeInUpMini 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-    animation-delay: 0.175s;
+    animation: fadeInUpMini 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    animation-delay: 0.15s;
   }
 
   #toc-links-list > * {
     opacity: 0;
-    animation: fadeInUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    animation: fadeInUp 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
   }
 
 
-  #toc-links-list > *:nth-child(1) { animation-delay: 0.175s; }
-  #toc-links-list > *:nth-child(2) { animation-delay: 0.2s; }
-  #toc-links-list > *:nth-child(3) { animation-delay: 0.225s; }
-  #toc-links-list > *:nth-child(4) { animation-delay: 0.25s; }
-  #toc-links-list > *:nth-child(5) { animation-delay: 0.275s; }
-  #toc-links-list > *:nth-child(6) { animation-delay: 0.3s; }
-  #toc-links-list > *:nth-child(7) { animation-delay: 0.325s; }
-  #toc-links-list > *:nth-child(8) { animation-delay: 0.35s; }
-  #toc-links-list > *:nth-child(9) { animation-delay: 0.375s; }
-  #toc-links-list > *:nth-child(10) { animation-delay: 0.4s; }
-  #toc-links-list > *:nth-child(11) { animation-delay: 0.425s; }
-  #toc-links-list > *:nth-child(12) { animation-delay: 0.45s; }
-  #toc-links-list > *:nth-child(13) { animation-delay: 0.475s; }
-  #toc-links-list > *:nth-child(14) { animation-delay: 0.5s; }
-  #toc-links-list > *:nth-child(15) { animation-delay: 0.525s; }
-  #toc-links-list > *:nth-child(16) { animation-delay: 0.55s; }
-  #toc-links-list > *:nth-child(17) { animation-delay: 0.575s; }
-  #toc-links-list > *:nth-child(18) { animation-delay: 0.6s; }
-  #toc-links-list > *:nth-child(n+19) { animation-delay: 0.625s; }
+  #toc-links-list > *:nth-child(1) { animation-delay: 0.125s; }
+  #toc-links-list > *:nth-child(2) { animation-delay: 0.14s; }
+  #toc-links-list > *:nth-child(3) { animation-delay: 0.155s; }
+  #toc-links-list > *:nth-child(4) { animation-delay: 0.17s; }
+  #toc-links-list > *:nth-child(5) { animation-delay: 0.185s; }
+  #toc-links-list > *:nth-child(6) { animation-delay: 0.2s; }
+  #toc-links-list > *:nth-child(7) { animation-delay: 0.215s; }
+  #toc-links-list > *:nth-child(8) { animation-delay: 0.23s; }
+  #toc-links-list > *:nth-child(9) { animation-delay: 0.245s; }
+  #toc-links-list > *:nth-child(n+10) { animation-delay: 0.25s; }
 }
 
 /* Back Button Animation >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
@@ -146,8 +127,8 @@ html[data-theme-changing] [data-disable-theme-transition] {
 @media (min-width: 1024px) {
   #back-button {
     opacity: 0;
-    animation: fadeInLeft 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-    animation-delay: 0.2s;
+    animation: fadeInLeft 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    animation-delay: 0.15s;
   }
 }
 
