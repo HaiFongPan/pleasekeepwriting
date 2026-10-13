@@ -1,6 +1,23 @@
 {
-  "generatedAt": "2026-09-29T14:13:22.911Z",
+  "generatedAt": "2026-10-13T09:58:02.347Z",
   "books": [
+    {
+      "bookId": "26211887",
+      "title": "代码的未来",
+      "author": "松本行弘",
+      "translator": "周自恒",
+      "cover": "https://cdn.weread.qq.com/weread/cover/5/YueWen_26211887/t6_YueWen_26211887.jpg",
+      "finishedAt": "2026-09-29",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=66032530718ff62f6609721",
+      "intro": "本书是Ruby 之父松本行弘的又一力作。作者对云计算、大数据时代下的各种编程语言以及相关技术进行了剖析，并对编程语言的未来发展趋势做出预测，内容涉及Go、VoltDB、node.js、CoffeeScript、Dart、MongoDB、摩尔定律、编程语言、多核、NoSQL 等当今备受关注的话题。本书面向各层次程序设计人员和编程爱好者，也可供相关技术人员参考。",
+      "category": "计算机-数据库",
+      "publisher": "人民邮电出版社",
+      "publishTime": "2013-05-28 00:00:00",
+      "isbn": "9787115317513",
+      "publicRating": 782,
+      "publicRatingCount": 133
+    },
     {
       "bookId": "3300054143",
       "title": "史蒂夫·乔布斯传（典藏版）",
@@ -16,7 +33,7 @@
       "publishTime": "2023-04-01 00:00:00",
       "isbn": "9787521752236",
       "publicRating": 931,
-      "publicRatingCount": 4099
+      "publicRatingCount": 4157
     },
     {
       "bookId": "3300117751",
@@ -67,7 +84,7 @@
       "publishTime": "2021-09-01 00:00:00",
       "isbn": "9787521731583",
       "publicRating": 775,
-      "publicRatingCount": 9107
+      "publicRatingCount": 9128
     },
     {
       "bookId": "CB_CIK1J21JHFvi6sA6su2Tz4Wb",
@@ -101,7 +118,7 @@
       "publishTime": "2023-06-01 00:00:00",
       "isbn": "9787572610912",
       "publicRating": 921,
-      "publicRatingCount": 111269
+      "publicRatingCount": 111541
     },
     {
       "bookId": "909893",
@@ -118,7 +135,7 @@
       "publishTime": "2017-07-01 00:00:00",
       "isbn": "9787513943239",
       "publicRating": 684,
-      "publicRatingCount": 7203
+      "publicRatingCount": 7208
     },
     {
       "bookId": "3300076264",
@@ -186,7 +203,7 @@
       "publishTime": "2019-12-01 00:00:00",
       "isbn": "9787544779319",
       "publicRating": 767,
-      "publicRatingCount": 5283
+      "publicRatingCount": 5292
     },
     {
       "bookId": "32463124",
@@ -203,7 +220,7 @@
       "publishTime": "2020-07-01 00:00:00",
       "isbn": "9787121390616",
       "publicRating": 774,
-      "publicRatingCount": 1003
+      "publicRatingCount": 1004
     },
     {
       "bookId": "857863",
@@ -219,8 +236,8 @@
       "publisher": "河南文艺出版社",
       "publishTime": "2022-08-01 00:00:00",
       "isbn": "9787555913726",
-      "publicRating": 917,
-      "publicRatingCount": 68255
+      "publicRating": 916,
+      "publicRatingCount": 68511
     },
     {
       "bookId": "41598972",
@@ -236,8 +253,8 @@
       "publisher": "上海社会科学院出版社有限公司",
       "publishTime": "2021-09-10 00:00:00",
       "isbn": "9787552036107",
-      "publicRating": 782,
-      "publicRatingCount": 9060
+      "publicRating": 783,
+      "publicRatingCount": 9236
     },
     {
       "bookId": "651366",
@@ -254,7 +271,7 @@
       "publishTime": "2012-07-01 00:00:00",
       "isbn": "9787301174821",
       "publicRating": 856,
-      "publicRatingCount": 30703
+      "publicRatingCount": 30701
     },
     {
       "bookId": "3300053438",
@@ -270,8 +287,8 @@
       "publisher": "广西师范大学出版社",
       "publishTime": "2022-10-01 00:00:00",
       "isbn": "9787559852533",
-      "publicRating": 921,
-      "publicRatingCount": 23752
+      "publicRating": 920,
+      "publicRatingCount": 23843
     },
     {
       "bookId": "39136896",
@@ -287,8 +304,8 @@
       "publisher": "人民邮电出版社",
       "publishTime": "2021-06-01 00:00:00",
       "isbn": "9787115564672",
-      "publicRating": 733,
-      "publicRatingCount": 4679
+      "publicRating": 734,
+      "publicRatingCount": 4681
     },
     {
       "bookId": "3300018939",
@@ -305,7 +322,7 @@
       "publishTime": "2022-04-01 00:00:00",
       "isbn": "9787115578044",
       "publicRating": 862,
-      "publicRatingCount": 1406
+      "publicRatingCount": 1408
     },
     {
       "bookId": "CB_5TmEryEsN6MQ6cw6cK",
@@ -339,7 +356,7 @@
       "publishTime": "2022-07-01 00:00:00",
       "isbn": "9787547738207",
       "publicRating": 793,
-      "publicRatingCount": 3351
+      "publicRatingCount": 3372
     },
     {
       "bookId": "CB_6UTBcPBak4Bj6aN6YD",
@@ -373,7 +390,7 @@
       "publishTime": "2017-05-01 00:00:00",
       "isbn": "9787532774685",
       "publicRating": 860,
-      "publicRatingCount": 6309
+      "publicRatingCount": 6338
     },
     {
       "bookId": "42766048",
@@ -389,8 +406,8 @@
       "publisher": "中信出版集团",
       "publishTime": "2022-01-01 00:00:00",
       "isbn": "9787521736816",
-      "publicRating": 853,
-      "publicRatingCount": 8873
+      "publicRating": 852,
+      "publicRatingCount": 8931
     },
     {
       "bookId": "35433088",
@@ -407,7 +424,7 @@
       "publishTime": "2021-01-01 00:00:00",
       "isbn": "9787536093171",
       "publicRating": 676,
-      "publicRatingCount": 4065
+      "publicRatingCount": 4064
     },
     {
       "bookId": "CB_CMT96994O0zH6a76YD",
@@ -440,8 +457,8 @@
       "publisher": "中信出版集团",
       "publishTime": "2017-09-01 00:00:00",
       "isbn": "9787508679099",
-      "publicRating": 719,
-      "publicRatingCount": 7671
+      "publicRating": 718,
+      "publicRatingCount": 7674
     },
     {
       "bookId": "CB_Gm3BudBrC0v66a46YD",
@@ -492,7 +509,7 @@
       "publishTime": "2015-08-01 00:00:00",
       "isbn": "9787544755375",
       "publicRating": 802,
-      "publicRatingCount": 4007
+      "publicRatingCount": 4009
     },
     {
       "bookId": "40726681",
@@ -509,7 +526,7 @@
       "publishTime": "2021-09-01 00:00:00",
       "isbn": "9787201175133",
       "publicRating": 919,
-      "publicRatingCount": 24750
+      "publicRatingCount": 24948
     },
     {
       "bookId": "24953118",
@@ -543,7 +560,7 @@
       "publishTime": "2021-06-01 00:00:00",
       "isbn": "9787553522838",
       "publicRating": 918,
-      "publicRatingCount": 35548
+      "publicRatingCount": 35675
     },
     {
       "bookId": "729213",
@@ -577,7 +594,7 @@
       "publishTime": "2020-08-01 00:00:00",
       "isbn": "9787201161693",
       "publicRating": 894,
-      "publicRatingCount": 140143
+      "publicRatingCount": 140445
     },
     {
       "bookId": "25856501",
@@ -594,7 +611,7 @@
       "publishTime": "2018-06-01 00:00:00",
       "isbn": "9787532777631",
       "publicRating": 647,
-      "publicRatingCount": 7392
+      "publicRatingCount": 7394
     },
     {
       "bookId": "26859484",
@@ -611,7 +628,7 @@
       "publishTime": "2019-11-01 00:00:00",
       "isbn": "9787513927277",
       "publicRating": 760,
-      "publicRatingCount": 2831
+      "publicRatingCount": 2832
     },
     {
       "bookId": "3300003116",
@@ -627,8 +644,8 @@
       "publisher": "广东花城出版社有限公司",
       "publishTime": "2021-11-01 00:00:00",
       "isbn": "9787536094857",
-      "publicRating": 603,
-      "publicRatingCount": 1969
+      "publicRating": 604,
+      "publicRatingCount": 1977
     },
     {
       "bookId": "41355053",
@@ -645,7 +662,7 @@
       "publishTime": "2021-08-01 00:00:00",
       "isbn": "9787208172036",
       "publicRating": 895,
-      "publicRatingCount": 4138
+      "publicRatingCount": 4145
     },
     {
       "bookId": "24953405",
@@ -662,7 +679,7 @@
       "publishTime": "2012-04-01 00:00:00",
       "isbn": "9787544722278",
       "publicRating": 814,
-      "publicRatingCount": 5480
+      "publicRatingCount": 5495
     },
     {
       "bookId": "38493609",
@@ -695,8 +712,8 @@
       "publisher": "上海三联书店",
       "publishTime": "2019-05-01 00:00:00",
       "isbn": "9787542666468",
-      "publicRating": 805,
-      "publicRatingCount": 1490
+      "publicRating": 803,
+      "publicRatingCount": 1493
     },
     {
       "bookId": "24147392",
@@ -713,7 +730,7 @@
       "publishTime": "2011-08-01 00:00:00",
       "isbn": "9787532754687",
       "publicRating": 730,
-      "publicRatingCount": 3215
+      "publicRatingCount": 3224
     },
     {
       "bookId": "30180143",
@@ -747,7 +764,7 @@
       "publishTime": "2017-08-01 00:00:00",
       "isbn": "9787549599349",
       "publicRating": 687,
-      "publicRatingCount": 5585
+      "publicRatingCount": 5587
     }
   ]
 }

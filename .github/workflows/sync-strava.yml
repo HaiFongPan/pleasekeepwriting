@@ -18,8 +18,9 @@ on:
 permissions:
   contents: write
 
+# 与微信读书同步共用同一个并发组，避免两个任务同时推 main 冲突
 concurrency:
-  group: sync-strava
+  group: sync-data
   cancel-in-progress: false
 
 jobs:

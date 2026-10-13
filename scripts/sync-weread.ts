@@ -199,6 +199,16 @@ async function syncBook(token: string, book: ShelfBook): Promise<WereadBook> {
   }
 }
 
+/** 读取已有产物，用于判断数据是否真的变化、并复用旧时间戳 */
+async function readExisting(filePath: string): Promise<{ generatedAt?: string, books?: WereadBook[] } | null> {
+  try {
+    return JSON.parse(await fs.readFile(filePath, 'utf8')) as { generatedAt?: string, books?: WereadBook[] }
+  }
+  catch {
+    return null
+  }
+}
+
 async function writeJsonAtomically(filePath: string, contents: string) {
   const directory = path.dirname(filePath)
   const temporaryPath = path.join(directory, `.${path.basename(filePath)}.tmp`)
@@ -223,8 +233,11 @@ async function main() {
     return byFinishedAt || left.bookId.localeCompare(right.bookId)
   })
 
+  // 书目没变化时沿用旧时间戳，让定时同步在无变化时不产生提交
+  const previous = await readExisting(outputPath)
+  const unchanged = previous?.books != null && JSON.stringify(previous.books) === JSON.stringify(books)
   const output = {
-    generatedAt: new Date().toISOString(),
+    generatedAt: unchanged && previous?.generatedAt ? previous.generatedAt : new Date().toISOString(),
     books,
   }
   await writeJsonAtomically(outputPath, `${JSON.stringify(output, null, 2)}\n`)

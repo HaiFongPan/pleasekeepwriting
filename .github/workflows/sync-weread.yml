@@ -1,0 +1,57 @@
+name: 同步微信读书书架
+
+on:
+  schedule:
+    # 每天 21:20 UTC（= 次日 05:20 北京时间），比 Strava 同步早 20 分钟
+    - cron: '20 21 * * *'
+  workflow_dispatch:
+
+# 只需要写权限：跑完把自己的数据产物提交回仓库
+permissions:
+  contents: write
+
+# 与 Strava 同步共用同一个并发组，避免两个任务同时推 main 冲突
+concurrency:
+  group: sync-data
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      # 版本由 package.json 的 packageManager 字段决定，这里不要再指定 version
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: 安装依赖
+        run: pnpm install --frozen-lockfile
+
+      - name: 同步微信读书
+        # 凭据只在这一步可见，脚本只从环境变量读取，不写文件、不进日志
+        env:
+          WEREAD_API_KEY: ${{ secrets.WEREAD_API_KEY }}
+        run: pnpm sync-weread
+
+      - name: 提交数据变更
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/weread-books.json
+          if git diff --cached --quiet; then
+            echo '数据没有变化，跳过提交'
+            exit 0
+          fi
+          git commit -m "chore(books): 同步微信读书书架（$(date -u +%F)）"
+          git push
+
+      - name: 失败提示
+        if: failure()
+        run: |
+          echo "::error::微信读书同步失败。若日志提示凭据无效，请更新仓库 secret WEREAD_API_KEY（Settings → Secrets and variables → Actions）。"
