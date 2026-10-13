@@ -15,6 +15,10 @@ pnpm sync-weread
 
 兼容已有的 `WEREAD_TOKEN` 环境变量。命令会更新 `src/data/weread-books.json`，封面继续使用微信读书 CDN 地址，不会下载到仓库。
 
+定时同步：`.github/workflows/sync-weread.yml` 每天 21:20 UTC 跑一次，凭据用仓库 secret `WEREAD_API_KEY`。
+脚本只在**书目内容真的变化**时才写文件（实时评分人数 `publicRatingCount` 会持续 ±1，不算更新），
+所以没有更新时既不改文件也不产生提交。
+
 同步结果包含书籍简介、出版信息和微信读书评分，供 `/books/{bookId}/` 详情页使用。文章需要关联书籍时，在 frontmatter 中填写对应的微信读书 `bookId`：
 
 ```yaml

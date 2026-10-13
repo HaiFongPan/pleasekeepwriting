@@ -199,6 +199,24 @@ async function syncBook(token: string, book: ShelfBook): Promise<WereadBook> {
   }
 }
 
+/**
+ * 会持续抖动的字段：微信读书的实时评分人数每次请求都可能 ±1，
+ * 它不算"内容有更新"，否则定时任务会天天产生无意义的提交。
+ */
+const volatileFields = ['publicRatingCount'] as const
+
+/** 去掉易变字段后的指纹，用来判断书目是否真有变化 */
+function substantiveKey(books: WereadBook[]): string {
+  return JSON.stringify(books.map((book) => {
+    const copy: Record<string, unknown> = { ...book }
+    for (const field of volatileFields) {
+      delete copy[field]
+    }
+
+    return copy
+  }))
+}
+
 /** 读取已有产物，用于判断数据是否真的变化、并复用旧时间戳 */
 async function readExisting(filePath: string): Promise<{ generatedAt?: string, books?: WereadBook[] } | null> {
   try {
@@ -233,19 +251,24 @@ async function main() {
     return byFinishedAt || left.bookId.localeCompare(right.bookId)
   })
 
-  // 书目没变化时沿用旧时间戳，让定时同步在无变化时不产生提交
-  const previous = await readExisting(outputPath)
-  const unchanged = previous?.books != null && JSON.stringify(previous.books) === JSON.stringify(books)
-  const output = {
-    generatedAt: unchanged && previous?.generatedAt ? previous.generatedAt : new Date().toISOString(),
-    books,
-  }
-  await writeJsonAtomically(outputPath, `${JSON.stringify(output, null, 2)}\n`)
-
   const ratings = books.filter(book => book.rating != null).length
   const missingDates = books.filter(book => book.finishedAt == null).length
   console.log(`已同步 ${books.length} 本已读书目，其中 ${ratings} 本有评分，${missingDates} 本缺少完成时间。`)
-  console.log(`数据已写入 ${outputPath}。`)
+
+  // 只有书目内容真的变了才写文件：没有更新 -> 文件不变 -> 定时任务也不会产生提交
+  const previous = await readExisting(outputPath)
+  const unchanged = previous?.books != null && substantiveKey(previous.books) === substantiveKey(books)
+  if (unchanged) {
+    console.log(`与现有 ${outputPath} 相比没有更新，保留原文件（实时评分人数等易变字段不重写）。`)
+    return
+  }
+
+  const output = {
+    generatedAt: new Date().toISOString(),
+    books,
+  }
+  await writeJsonAtomically(outputPath, `${JSON.stringify(output, null, 2)}\n`)
+  console.log(`数据已更新并写入 ${outputPath}。`)
 }
 
 main().catch((error) => {
