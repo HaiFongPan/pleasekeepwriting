@@ -29,9 +29,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # 版本由 package.json 的 packageManager 字段决定，这里不要再指定 version，否则报 Multiple versions of pnpm specified
       - uses: pnpm/action-setup@v4
-        with:
-          version: 10
 
       - uses: actions/setup-node@v4
         with:
@@ -47,7 +46,7 @@ jobs:
           STRAVA_SYNC_LIMIT: ${{ inputs.limit || '250' }}
           # 非官方接口，主动放慢，默认每次请求间隔 400ms
           STRAVA_WEB_DELAY_MS: '400'
-        run: pnpm sync-strava ${{ inputs.full && '--full' || '' }}
+        run: pnpm sync-strava ${{ inputs.full == true && '--full' || '' }}
 
       - name: 提交数据变更
         run: |
