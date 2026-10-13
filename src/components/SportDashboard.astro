@@ -1,0 +1,346 @@
+---
+import type { SportActivity, SportKind } from '@/types/strava'
+import { buildSportIndex, sumYearTotals } from '@/utils/sport'
+
+interface Props {
+  activities: SportActivity[]
+}
+
+const { activities } = Astro.props
+const index = buildSportIndex(activities)
+const totals = sumYearTotals(index, index.years)
+
+/** 顶部只统计这三项，其余类型计入下面的总计 */
+const stats: Array<{ kind: SportKind, label: string }> = [
+  { kind: 'run', label: '跑步' },
+  { kind: 'hike', label: '徒步' },
+  { kind: 'ride', label: '骑行' },
+]
+
+function formatKm(meters: number): string {
+  return (meters / 1000).toLocaleString('zh-CN', { maximumFractionDigits: 1 })
+}
+
+function formatHours(minutes: number): string {
+  const hours = Math.floor(minutes / 60)
+  return `${hours.toLocaleString('zh-CN')}h${String(Math.round(minutes % 60)).padStart(2, '0')}m`
+}
+---
+
+<section class="mb-8" data-sport-dashboard>
+  {/* 年份筛选：与下方列表、活力图、统计联动 */}
+  <div class="flex flex-wrap items-center gap-x-2 gap-y-2">
+    <button
+      type="button"
+      data-sport-year=""
+      aria-pressed="true"
+      class="sport-year-chip"
+    >
+      全部
+    </button>
+    {index.years.map(year => (
+      <button
+        type="button"
+        data-sport-year={year}
+        aria-pressed="false"
+        class="sport-year-chip"
+      >
+        {year}
+      </button>
+    ))}
+  </div>
+
+  <div class="mt-5 overflow-x-auto" data-sport-heatmap />
+
+  <div class="mt-6 flex flex-wrap items-baseline gap-x-8 gap-y-3">
+    {stats.map(({ kind, label }) => (
+      <div class="flex items-baseline gap-1.5">
+        <span class="text-3.2 c-secondary/70">{label}</span>
+        <span class="text-5 c-primary tabular-nums" data-sport-stat={kind}>{formatKm(totals.byKind[kind] ?? 0)}</span>
+        <span class="text-3 c-secondary/70">km</span>
+      </div>
+    ))}
+  </div>
+
+  <p class="mt-2 text-3.2 c-secondary/60" data-sport-summary>
+    共 {totals.count} 次 · {formatKm(totals.distance)}km · {formatHours(totals.movingMinutes)}
+  </p>
+</section>
+
+<script is:inline define:vars={{ sportIndex: index, sportTotals: totals }}>
+  /**
+   * 活力图，GitHub 风格：
+   * - 选中具体年份：按天画 53×7 的网格
+   * - 选中"全部"：每年一行，行内按周聚合（一年 53 格）
+   * 格子随容器宽度等比铺满（与下方卡片列表同宽），容器过窄时整体横向滚动。
+   * 颜色是站点 highlight 黄的 4 档（--sport-heat-N），分档阈值按分位数算。
+   */
+  /** 一周 53 列时，容器窄于 53 列 × 11px 就横向滚动，保证格子不小于约 9px */
+  const minColumnRem = 0.6875
+  const dayMs = 24 * 60 * 60 * 1000
+
+  const pad = value => String(value).padStart(2, '0')
+  const dayKey = date => `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}-${pad(date.getUTCDate())}`
+
+  // 这段脚本在列表之前执行，卡片要等过滤时再查
+  const allCards = () => Array.from(document.querySelectorAll('[data-sport-card]'))
+  const allGroups = () => Array.from(document.querySelectorAll('[data-sport-year-group]'))
+
+  function formatKm(meters) {
+    return (meters / 1000).toLocaleString('zh-CN', { maximumFractionDigits: 1 })
+  }
+
+  function formatHours(minutes) {
+    return `${Math.floor(minutes / 60).toLocaleString('zh-CN')}h${pad(Math.round(minutes % 60))}m`
+  }
+
+  /** 按分位数分档，颜色分布不会全挤在一档 */
+  function thresholdsOf(values) {
+    const sorted = values.filter(value => value > 0).sort((left, right) => left - right)
+    if (sorted.length === 0) {
+      return [1, 2, 3, 4]
+    }
+
+    const pick = ratio => sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * ratio))]
+    return [pick(0.2), pick(0.45), pick(0.7), pick(0.88)]
+  }
+
+  function levelOf(value, thresholds) {
+    if (!value || value <= 0) {
+      return 0
+    }
+
+    if (value >= thresholds[3]) {
+      return 4
+    }
+
+    if (value >= thresholds[2]) {
+      return 3
+    }
+
+    if (value >= thresholds[1]) {
+      return 2
+    }
+
+    return 1
+  }
+
+  function createCell(level, title) {
+    const cell = document.createElement('i')
+    cell.className = 'sport-heat-cell aspect-square w-full rounded-[2px] bg-secondary/12'
+    if (level > 0) {
+      cell.style.background = `var(--sport-heat-${level})`
+    }
+
+    if (title) {
+      cell.title = title
+    }
+
+    return cell
+  }
+
+  function createText(text, className) {
+    const element = document.createElement('span')
+    element.className = className
+    element.textContent = text
+    return element
+  }
+
+  /** 该年第一个周一，作为网格左上角 */
+  function gridStart(year) {
+    const first = new Date(Date.UTC(year, 0, 1))
+    const weekday = (first.getUTCDay() + 6) % 7 // 0 = 周一
+    return new Date(Date.UTC(year, 0, 1 - weekday))
+  }
+
+  function weekCount(start, year) {
+    const end = new Date(Date.UTC(year, 11, 31))
+    return Math.ceil(((end - start) / dayMs + 1) / 7)
+  }
+
+  function minWidthOf(weeks) {
+    return `${(weeks * minColumnRem).toFixed(2)}rem`
+  }
+
+  function createGrid(columns) {
+    const grid = document.createElement('div')
+    grid.className = 'sport-heat-grid grid w-full gap-[2px]'
+    grid.style.gridTemplateColumns = columns
+    return grid
+  }
+
+  /** 单年视图：列 = 周，行 = 周一..周日，第一列放星期标签，第一行放月份标签 */
+  function renderDayGrid(year) {
+    const start = gridStart(year)
+    const weeks = weekCount(start, year)
+    const yearDays = Object.entries(sportIndex.days).filter(([key]) => key.startsWith(`${year}-`))
+    const thresholds = thresholdsOf(yearDays.map(([, value]) => value))
+
+    const grid = createGrid(`1.1rem repeat(${weeks}, minmax(0, 1fr))`)
+    grid.style.minWidth = `calc(1.1rem + ${minWidthOf(weeks)})`
+
+    let previousMonth = -1
+    for (let week = 0; week < weeks; week++) {
+      const monday = new Date(start.getTime() + week * 7 * dayMs)
+      if (monday.getUTCFullYear() === year && monday.getUTCMonth() !== previousMonth) {
+        previousMonth = monday.getUTCMonth()
+        const label = createText(`${monday.getUTCMonth() + 1}月`, 'sport-heat-month text-2.7 c-secondary/45')
+        label.style.gridColumn = String(week + 2)
+        label.style.gridRow = '1'
+        grid.append(label)
+      }
+    }
+
+    for (const day of [0, 2, 4]) {
+      const label = createText(['一', '三', '五'][day / 2], 'sport-heat-weekday text-2.7 c-secondary/45')
+      label.style.gridColumn = '1'
+      label.style.gridRow = String(day + 2)
+      grid.append(label)
+    }
+
+    for (let week = 0; week < weeks; week++) {
+      for (let day = 0; day < 7; day++) {
+        const date = new Date(start.getTime() + (week * 7 + day) * dayMs)
+        if (date.getUTCFullYear() !== year) {
+          continue
+        }
+
+        const key = dayKey(date)
+        const minutes = sportIndex.days[key] ?? 0
+        const cell = createCell(
+          levelOf(minutes, thresholds),
+          minutes > 0 ? `${key} · 运动 ${Math.round(minutes)} 分钟` : `${key} · 无活动`,
+        )
+        cell.style.gridColumn = String(week + 2)
+        cell.style.gridRow = String(day + 2)
+        grid.append(cell)
+      }
+    }
+
+    return grid
+  }
+
+  /** 全部视图：每年一行，按周聚合 */
+  function renderWeekRow(year) {
+    const start = gridStart(year)
+    const weeks = weekCount(start, year)
+    const weekly = []
+    for (let week = 0; week < weeks; week++) {
+      let minutes = 0
+      for (let day = 0; day < 7; day++) {
+        const date = new Date(start.getTime() + (week * 7 + day) * dayMs)
+        if (date.getUTCFullYear() === year) {
+          minutes += sportIndex.days[dayKey(date)] ?? 0
+        }
+      }
+
+      weekly.push(minutes)
+    }
+
+    const thresholds = thresholdsOf(weekly)
+    const row = document.createElement('div')
+    row.className = 'flex w-full items-center gap-2'
+    row.append(createText(String(year), 'w-9 shrink-0 text-3 c-secondary/70'))
+
+    const cells = createGrid(`repeat(${weeks}, minmax(0, 1fr))`)
+    cells.style.minWidth = minWidthOf(weeks)
+    for (let week = 0; week < weeks; week++) {
+      cells.append(createCell(
+        levelOf(weekly[week], thresholds),
+        `${year} 第 ${week + 1} 周 · 运动 ${Math.round(weekly[week])} 分钟`,
+      ))
+    }
+
+    row.append(cells)
+    return row
+  }
+
+  function renderHeatmap(year) {
+    const heatmap = document.querySelector('[data-sport-heatmap]')
+    if (!heatmap) {
+      return
+    }
+
+    heatmap.replaceChildren()
+    if (year != null) {
+      heatmap.append(renderDayGrid(year))
+      return
+    }
+
+    const rows = document.createElement('div')
+    rows.className = 'flex flex-col gap-1.5'
+    for (const target of sportIndex.years) {
+      rows.append(renderWeekRow(target))
+    }
+
+    heatmap.append(rows)
+  }
+
+  function renderSummary(year) {
+    const totals = year == null ? sportTotals : sportIndex.totals[String(year)]
+    if (!totals) {
+      return
+    }
+
+    const summary = document.querySelector('[data-sport-summary]')
+    if (summary) {
+      summary.textContent = `共 ${totals.count} 次 · ${formatKm(totals.distance)}km · ${formatHours(totals.movingMinutes)}`
+    }
+
+    for (const kind of ['run', 'hike', 'ride']) {
+      const target = document.querySelector(`[data-sport-stat="${kind}"]`)
+      if (target) {
+        target.textContent = formatKm(totals.byKind?.[kind] ?? 0)
+      }
+    }
+  }
+
+  function applyFilter(year) {
+    for (const card of allCards()) {
+      card.classList.toggle('hidden', year != null && Number(card.dataset.year) !== year)
+    }
+
+    for (const group of allGroups()) {
+      group.classList.toggle('hidden', group.querySelectorAll('[data-sport-card]:not(.hidden)').length === 0)
+    }
+
+    for (const chip of document.querySelectorAll('[data-sport-year]')) {
+      const value = chip.dataset.sportYear
+      chip.setAttribute('aria-pressed', String(value === (year == null ? '' : String(year))))
+    }
+
+    renderHeatmap(year)
+    renderSummary(year)
+
+    const hash = year == null ? '' : `#${year}`
+    if (location.hash !== hash) {
+      history.replaceState(null, '', `${location.pathname}${location.search}${hash}`)
+    }
+  }
+
+  /**
+   * 站点开了 ClientRouter：客户端导航只替换 body，脚本不会重跑，
+   * 所以每次初始化都重新查询 DOM 并重绑事件。
+   */
+  function initDashboard() {
+    for (const chip of document.querySelectorAll('[data-sport-year]')) {
+      chip.addEventListener('click', () => {
+        const value = chip.dataset.sportYear
+        applyFilter(value ? Number(value) : null)
+      })
+    }
+
+    const initial = Number(location.hash.replace('#', ''))
+    applyFilter(sportIndex.years.includes(initial) ? initial : null)
+  }
+
+  // 手动改地址栏 hash 时也跟着筛选（replaceState 不会触发 hashchange，不会自激）
+  function onHashChange() {
+    const value = Number(location.hash.replace('#', ''))
+    applyFilter(sportIndex.years.includes(value) ? value : null)
+  }
+
+  initDashboard()
+  document.addEventListener('astro:page-load', initDashboard)
+  window.addEventListener('hashchange', onHashChange)
+</script>

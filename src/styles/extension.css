@@ -172,3 +172,50 @@ pre.mermaid svg {
 .katex-display::-webkit-scrollbar {
   display: none;
 }
+/* Sport track gradient: 0 = 绿（慢/下坡）→ 7 = 黄（中）→ f = 红（快/上坡） */
+:root {
+  --sport-lv-0: #45b164;
+  --sport-lv-1: #5fb85b;
+  --sport-lv-2: #78be50;
+  --sport-lv-3: #90c442;
+  --sport-lv-4: #a8c830;
+  --sport-lv-5: #bfcc15;
+  --sport-lv-6: #d7cf00;
+  --sport-lv-7: #efd200;
+  --sport-lv-8: #f5bf00;
+  --sport-lv-9: #f9ac00;
+  --sport-lv-a: #fa9900;
+  --sport-lv-b: #f98600;
+  --sport-lv-c: #f67300;
+  --sport-lv-d: #f06100;
+  --sport-lv-e: #e84e1a;
+  --sport-lv-f: #de3d34;
+}
+
+/* Sport heatmap levels: 站点 highlight 黄的深浅，0 档为空格子 */
+:root {
+  --sport-heat-1: #f8f2c4;
+  --sport-heat-2: #f6e781;
+  --sport-heat-3: #efd827;
+  --sport-heat-4: #dcc000;
+}
+
+/* 运动页年份筛选 chip：选中态用站点 highlight 黄 */
+.sport-year-chip {
+  --at-apply: 'border border-secondary/12 rounded-full border-solid px-2.5 py-0.5 text-3.2 c-secondary transition-colors ease-out hover:(border-secondary/30 c-primary)';
+}
+.sport-year-chip[aria-pressed='true'] {
+  --at-apply: 'border-transparent bg-highlight c-primary font-medium';
+}
+
+/* 活力图：格子尺寸由 aspect-square + 1fr 网格自适应，空格子用 bg-secondary/12 */
+.sport-heat-month {
+  align-self: end;
+  justify-self: start;
+  white-space: nowrap;
+}
+.sport-heat-weekday {
+  align-self: center;
+  justify-self: center;
+  white-space: nowrap;
+}

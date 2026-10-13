@@ -1,13 +1,15 @@
 ---
+import { themeConfig } from '@/config'
 import { ui } from '@/i18n/ui'
 import { getPageInfo } from '@/utils/page'
 
-const { currentLang, isHome, isPost, isTag, isAbout, isBooks, getLocalizedPath } = getPageInfo(Astro.url.pathname)
+const { currentLang, isHome, isPost, isTag, isAbout, isBooks, isSport, getLocalizedPath } = getPageInfo(Astro.url.pathname)
 const currentUI = ui[currentLang as keyof typeof ui] ?? {}
 
 const isPostActive = isHome || isPost
 const isTagActive = isTag
 const isBooksActive = isBooks
+const isSportActive = isSport
 const isAboutActive = isAbout
 
 function getNavItemClass(isActive: boolean) {
@@ -32,6 +34,13 @@ const navItems = [
     label: currentUI.books,
     className: getNavItemClass(isBooksActive),
   },
+  ...(themeConfig.sport.enabled
+    ? [{
+        href: '/sport/',
+        label: currentUI.sport,
+        className: getNavItemClass(isSportActive),
+      }]
+    : []),
   {
     href: '/about/',
     label: currentUI.about,

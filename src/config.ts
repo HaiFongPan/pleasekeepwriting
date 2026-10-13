@@ -157,6 +157,42 @@ export const themeConfig: ThemeConfig = {
   },
   // SEO SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END
 
+  // SPORT SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START
+  sport: {
+    // show the sport page in the navbar
+    enabled: true, // true, false
+    // distance unit on cards
+    units: 'metric', // metric, imperial
+    // render at most this many activities, null for all
+    maxActivities: null, // number, null
+    // track shape rendering
+    track: {
+      // viewBox width/height, cards keep this aspect ratio
+      viewBox: [100, 62] as [number, number],
+      // padding inside the viewBox
+      padding: 6,
+      // privacy radius around start/end, in meters
+      trimStartMeters: 200,
+      // keep at least this fraction of the distance, shrinking the radius for short activities
+      minRetainRatio: 0.5,
+      // lower bound of the privacy radius, in meters
+      minTrimMeters: 50,
+      // simplification tolerance, in meters
+      simplifyTolerance: 5,
+      // max points kept per track
+      maxPoints: 200,
+    },
+    // exclude activities marked "Only Me"
+    excludePrivate: true,
+    // render map background tiles and city labels (not implemented yet)
+    showMap: false,
+    // render city/country text on cards
+    showLocationNames: false,
+    // how many activities one sync run may fetch (each costs 2 requests)
+    maxNewPerSync: 250,
+  },
+  // SPORT SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END
+
   // FOOTER SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START
   footer: {
     // social links

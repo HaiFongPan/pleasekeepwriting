@@ -1,0 +1,103 @@
+---
+import type { SportActivity } from '@/types/strava'
+import { themeConfig } from '@/config'
+import { formatCalories, formatDistance, formatDuration, formatShortDate, getLocalYear, getSportLabel, resolveMetricKind } from '@/utils/sport'
+
+interface Props {
+  activity: SportActivity
+  /** 轨迹文件地址，缺省表示这张卡片不出轨迹 */
+  trackSrc?: string
+}
+
+const { activity, trackSrc } = Astro.props
+const units = themeConfig.sport.units
+const label = getSportLabel(activity)
+const hasTrack = activity.track && Boolean(trackSrc)
+const [viewBoxWidth, viewBoxHeight] = themeConfig.sport.track.viewBox
+const endSize = 3.6
+/** 悬停上色指标，目前统一按速度 */
+const metricKind = hasTrack ? resolveMetricKind(activity.kind) : null
+---
+
+<article
+  class="group min-w-0"
+  data-sport-card
+  data-year={getLocalYear(activity.start)}
+  data-kind={activity.kind}
+  data-track-src={hasTrack ? trackSrc : undefined}
+  data-sport-label={label}
+>
+  <div class="relative aspect-[100/62] w-full">
+    {hasTrack
+      ? (
+        <svg
+          class="sport-track-svg absolute inset-0 h-full w-full c-secondary/45 opacity-0 transition-opacity duration-500"
+          viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
+          role="img"
+          aria-label={`${label}轨迹`}
+          data-sport-svg
+        >
+          <path
+            data-sport-path
+            class:list={[
+              'transition-opacity duration-300 motion-reduce:transition-none',
+              metricKind && 'group-hover:opacity-0',
+            ]}
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            vector-effect="non-scaling-stroke"
+          />
+          {/* 悬停时由脚本注入按速度/爬升分段的彩色路径 */}
+          <g
+            data-sport-paint
+            class="opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none"
+          />
+          <circle data-sport-start r="2.4" fill="currentColor" />
+          <rect
+            data-sport-end
+            width={endSize}
+            height={endSize}
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.2"
+          />
+        </svg>
+        )
+      : (
+        <div class="absolute inset-0 flex items-center justify-center px-2">
+          <span class="line-clamp-2 text-center text-3.6 c-secondary/60 cjk:tracking-0.02em" title={label}>{label}</span>
+        </div>
+        )}
+
+  </div>
+
+  <div class="mt-3 text-3.25 c-secondary leading-1.55em">
+    <div class="flex items-baseline justify-between gap-2">
+      {hasTrack
+        ? <h3 class="min-w-0 truncate c-primary font-medium cjk:tracking-0.02em" title={label}>{label}</h3>
+        : <span aria-hidden="true" />}
+      <time class="font-time" datetime={activity.date}>{formatShortDate(activity.start)}</time>
+    </div>
+
+    <dl class="mt-0.75 flex items-baseline gap-3 tabular-nums">
+      <div class="flex items-baseline gap-1">
+        <dt class="sr-only">距离</dt>
+        <dd>{activity.distance > 0 ? formatDistance(activity.distance, units) : '—'}</dd>
+      </div>
+      <div class="flex items-baseline gap-1">
+        <dt class="sr-only">时长</dt>
+        <dd>{formatDuration(activity.movingTime)}</dd>
+      </div>
+      <div class="flex items-baseline gap-1">
+        <dt class="sr-only">卡路里</dt>
+        <dd>
+          {formatCalories(activity.calories)}
+          {activity.calories != null && activity.calories > 0 && <span class="text-3">kcal</span>}
+        </dd>
+      </div>
+    </dl>
+  </div>
+</article>

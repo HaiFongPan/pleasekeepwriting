@@ -8,6 +8,7 @@ export const ui = {
     tags: 'Schlagwörter',
     books: 'Bücher',
     about: 'Über',
+    sport: 'Sport',
     toc: 'Inhaltsverzeichnis',
   },
   'en': {
@@ -19,6 +20,7 @@ export const ui = {
     tags: 'Tags',
     books: 'Books',
     about: 'About',
+    sport: 'Sport',
     toc: 'Table of Contents',
   },
   'es': {
@@ -30,6 +32,7 @@ export const ui = {
     tags: 'Etiquetas',
     books: 'Libros',
     about: 'Sobre',
+    sport: 'Deporte',
     toc: 'Índice',
   },
   'fr': {
@@ -41,6 +44,7 @@ export const ui = {
     tags: 'Étiquettes',
     books: 'Livres',
     about: 'À propos',
+    sport: 'Sport',
     toc: 'Table des matières',
   },
   'ja': {
@@ -52,6 +56,7 @@ export const ui = {
     tags: 'タグ',
     books: '読書',
     about: '概要',
+    sport: 'スポーツ',
     toc: '目次',
   },
   'ko': {
@@ -63,6 +68,7 @@ export const ui = {
     tags: '태그',
     books: '독서',
     about: '소개',
+    sport: '스포츠',
     toc: '목차',
   },
   'pl': {
@@ -74,6 +80,7 @@ export const ui = {
     tags: 'Tagi',
     books: 'Książki',
     about: 'O stronie',
+    sport: 'Sport',
     toc: 'Spis treści',
   },
   'pt': {
@@ -85,6 +92,7 @@ export const ui = {
     tags: 'Tags',
     books: 'Livros',
     about: 'Sobre',
+    sport: 'Esporte',
     toc: 'Sumário',
   },
   'ru': {
@@ -96,6 +104,7 @@ export const ui = {
     tags: 'Теги',
     books: 'Книги',
     about: 'О себе',
+    sport: 'Спорт',
     toc: 'Оглавление',
   },
   'zh': {
@@ -107,6 +116,7 @@ export const ui = {
     tags: '标签',
     books: '书架',
     about: '关于',
+    sport: '运动',
     toc: '目录',
   },
   'zh-tw': {
@@ -118,6 +128,7 @@ export const ui = {
     tags: '標籤',
     books: '書架',
     about: '關於',
+    sport: '運動',
     toc: '目錄',
   },
 }

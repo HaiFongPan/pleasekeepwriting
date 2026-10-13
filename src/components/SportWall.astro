@@ -1,0 +1,204 @@
+---
+import type { SportActivity } from '@/types/strava'
+import SportCard from '@/components/SportCard.astro'
+import { base } from '@/config'
+import { getLocalYear } from '@/utils/sport'
+
+interface Props {
+  activities: SportActivity[]
+}
+
+const { activities } = Astro.props
+const trackBase = `${base}/strava/tracks`
+
+// 按年份分组，保持时间倒序
+const groups = new Map<number, SportActivity[]>()
+for (const activity of activities) {
+  const year = getLocalYear(activity.start)
+  const bucket = groups.get(year)
+  if (bucket) {
+    bucket.push(activity)
+  }
+  else {
+    groups.set(year, [activity])
+  }
+}
+---
+
+<div data-sport-wall>
+  {[...groups.entries()].map(([year, yearActivities]) => (
+    <section class="mb-9" data-sport-year-group data-year={year}>
+      <div class="mb-4.5 flex items-center gap-3 lg:mb-6">
+        <span class="text-4.2 c-secondary font-time">{year}</span>
+        <span class="h-0.25 flex-1 bg-secondary/25" />
+      </div>
+
+      <div class="grid grid-cols-1 gap-x-5 gap-y-8 sm:grid-cols-2 xl:grid-cols-3">
+        {yearActivities.map(activity => (
+          <SportCard
+            activity={activity}
+            trackSrc={activity.track ? `${trackBase}/${activity.id}.json` : undefined}
+          />
+        ))}
+      </div>
+    </section>
+  ))}
+</div>
+
+<script>
+  interface SportTrack {
+    p: string
+    s: [number, number]
+    e: [number, number]
+    k?: 'speed' | 'grade'
+    q?: string
+  }
+
+  /** 轨迹数据落在 public 下，卡片进入视口时才拉取，避免首屏加载几百个文件 */
+  const loaded = new WeakMap<HTMLElement, SportTrack>()
+
+  function applyTrack(card: HTMLElement, track: SportTrack) {
+    const svg = card.querySelector<SVGSVGElement>('[data-sport-svg]')
+    const path = card.querySelector<SVGPathElement>('[data-sport-path]')
+    const start = card.querySelector<SVGCircleElement>('[data-sport-start]')
+    const end = card.querySelector<SVGRectElement>('[data-sport-end]')
+    if (!svg || !path || !start || !end) {
+      return
+    }
+
+    path.setAttribute('d', track.p)
+    start.setAttribute('cx', String(track.s[0]))
+    start.setAttribute('cy', String(track.s[1]))
+    end.setAttribute('x', String(track.e[0] - 1.8))
+    end.setAttribute('y', String(track.e[1] - 1.8))
+    svg.classList.remove('opacity-0')
+
+    // 没有上色数据时取消灰线淡出，否则悬停会让轨迹整个消失
+    if (!track.q || !track.k) {
+      path.classList.remove('group-hover:opacity-0')
+    }
+  }
+
+  function parsePath(path: string): Array<[number, number]> {
+    const points: Array<[number, number]> = []
+    for (const match of path.matchAll(/[ML](-?[\d.]+) (-?[\d.]+)/g)) {
+      points.push([Number(match[1]), Number(match[2])])
+    }
+
+    return points
+  }
+
+  /** 把连续同等级的段合成一条 path，最多 16 条 */
+  function buildPaintedPaths(track: SportTrack): string {
+    const levels = track.q as string
+    const points = parsePath(track.p)
+    const paths: string[] = []
+    let level = levels[0]
+    let data = `M${points[0][0]} ${points[0][1]}`
+
+    const close = () => {
+      paths.push(`<path d="${data}" fill="none" stroke="var(--sport-lv-${level})" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" />`)
+    }
+
+    for (let index = 0; index < levels.length && index + 1 < points.length; index++) {
+      if (levels[index] !== level) {
+        close()
+        level = levels[index]
+        data = `M${points[index][0]} ${points[index][1]}`
+      }
+
+      data += `L${points[index + 1][0]} ${points[index + 1][1]}`
+    }
+
+    close()
+    return paths.join('')
+  }
+
+  /** 悬停时才生成彩色分段，避免首屏为几百张卡片创建 DOM */
+  function paintCard(card: HTMLElement) {
+    const track = loaded.get(card)
+    const group = card.querySelector('[data-sport-paint]')
+    if (!track?.q || !track.k || !group || group.childElementCount > 0) {
+      return
+    }
+
+    group.innerHTML = buildPaintedPaths(track)
+  }
+
+  function fallbackToLabel(card: HTMLElement) {
+    const container = card.querySelector('.sport-track-svg')?.parentElement
+    const label = card.dataset.sportLabel
+    if (!container || !label) {
+      return
+    }
+
+    container.innerHTML = `<div class="absolute inset-0 flex items-center justify-center px-2"><span class="text-center text-3.6 c-secondary/60">${label}</span></div>`
+  }
+
+  async function loadTrack(card: HTMLElement) {
+    const src = card.dataset.trackSrc
+    if (!src) {
+      return
+    }
+
+    try {
+      const response = await fetch(src)
+      if (!response.ok) {
+        throw new Error(String(response.status))
+      }
+
+      const track = await response.json() as SportTrack
+      loaded.set(card, track)
+      applyTrack(card, track)
+    }
+    catch {
+      fallbackToLabel(card)
+    }
+  }
+
+  let observer: IntersectionObserver | null = null
+
+  /**
+   * 站点开了 ClientRouter：客户端导航只替换 body，同名模块脚本不会重新执行，
+   * 所以初始化必须是幂等函数，并同时挂在 astro:page-load 上（首次加载与每次导航都会派发）。
+   * 卡片上用 data-sport-wired 标记，避免同一次加载里重复绑定。
+   */
+  function initSportWall() {
+    observer?.disconnect()
+    observer = 'IntersectionObserver' in window
+      ? new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) {
+            continue
+          }
+
+          observer?.unobserve(entry.target)
+          void loadTrack(entry.target as HTMLElement)
+        }
+      }, { rootMargin: '300px 0px' })
+      : null
+
+    for (const card of Array.from(document.querySelectorAll<HTMLElement>('[data-track-src]'))) {
+      // 事件只绑一次；观察每次都要重做（上面刚 disconnect 过）
+      if (card.dataset.sportWired !== '1') {
+        card.dataset.sportWired = '1'
+        card.addEventListener('mouseenter', () => paintCard(card))
+        card.addEventListener('focusin', () => paintCard(card))
+      }
+
+      if (loaded.has(card)) {
+        continue
+      }
+
+      if (observer) {
+        observer.observe(card)
+      }
+      else {
+        void loadTrack(card)
+      }
+    }
+  }
+
+  initSportWall()
+  document.addEventListener('astro:page-load', initSportWall)
+</script>

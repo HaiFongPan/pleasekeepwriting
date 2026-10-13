@@ -1,0 +1,43 @@
+---
+import type { SportActivitiesData } from '@/types/strava'
+import SportDashboard from '@/components/SportDashboard.astro'
+import SportWall from '@/components/SportWall.astro'
+import { defaultLocale, moreLocales, themeConfig } from '@/config'
+import activitiesData from '@/data/strava/activities.json'
+import { ui } from '@/i18n/ui'
+import Layout from '@/layouts/Layout.astro'
+
+export async function getStaticPaths() {
+  type PathItem = {
+    params: { sport: string }
+    props: { lang: string }
+  }
+
+  const paths: PathItem[] = [{
+    params: { sport: 'sport/' },
+    props: { lang: defaultLocale },
+  }]
+
+  moreLocales.forEach((lang: string) => {
+    paths.push({
+      params: { sport: `${lang}/sport/` },
+      props: { lang },
+    })
+  })
+
+  return paths
+}
+
+const { lang } = Astro.props
+const currentUI = ui[lang as keyof typeof ui] ?? ui[defaultLocale as keyof typeof ui]
+const data = activitiesData as SportActivitiesData
+const maxActivities = themeConfig.sport.maxActivities
+const activities = maxActivities == null
+  ? data.activities
+  : data.activities.slice(0, maxActivities)
+---
+
+<Layout postTitle={currentUI.sport}>
+  <SportDashboard {activities} />
+  <SportWall {activities} />
+</Layout>

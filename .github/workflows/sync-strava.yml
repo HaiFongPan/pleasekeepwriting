@@ -1,0 +1,67 @@
+name: 同步 Strava 运动数据
+
+on:
+  schedule:
+    # 每天 21:40 UTC（= 次日 05:40 北京时间）
+    - cron: '40 21 * * *'
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: 本次最多处理多少条活动（每条 0-2 次请求）
+        required: false
+        default: '250'
+      full:
+        description: 全量扫描训练日志，并清理已删除的活动
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-strava
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: 安装依赖
+        run: pnpm install --frozen-lockfile
+
+      - name: 同步 Strava
+        env:
+          STRAVA_COOKIE_STRAVA4_SESSION: ${{ secrets.STRAVA_COOKIE_STRAVA4_SESSION }}
+          STRAVA_SYNC_LIMIT: ${{ inputs.limit || '250' }}
+          # 非官方接口，主动放慢，默认每次请求间隔 400ms
+          STRAVA_WEB_DELAY_MS: '400'
+        run: pnpm sync-strava ${{ inputs.full && '--full' || '' }}
+
+      - name: 提交数据变更
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/strava public/strava
+          if git diff --cached --quiet; then
+            echo '数据没有变化，跳过提交'
+            exit 0
+          fi
+          git commit -m "chore(sport): 同步 Strava 运动数据（$(date -u +%F)）"
+          git push
+
+      - name: 失败提示
+        if: failure()
+        run: |
+          echo "::error::Strava 同步失败。若日志里出现 cookie 失效或 302/401，请在浏览器重新获取 _strava4_session 并更新仓库 secret（Settings → Secrets and variables → Actions）。"

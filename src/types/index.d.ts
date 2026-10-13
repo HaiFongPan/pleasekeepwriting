@@ -76,6 +76,24 @@ export interface ThemeConfig {
     }
     apiflashKey?: string
   }
+  sport: {
+    enabled: boolean
+    units: 'metric' | 'imperial'
+    maxActivities: number | null
+    track: {
+      viewBox: [number, number]
+      padding: number
+      trimStartMeters: number
+      minRetainRatio: number
+      minTrimMeters: number
+      simplifyTolerance: number
+      maxPoints: number
+    }
+    excludePrivate: boolean
+    showMap: boolean
+    showLocationNames: boolean
+    maxNewPerSync: number
+  }
   footer: {
     links: {
       name: string
