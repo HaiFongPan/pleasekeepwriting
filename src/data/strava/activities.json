@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-13T09:32:46.020Z",
+  "generatedAt": "2026-10-14T13:21:43.906Z",
   "source": {
     "provider": "strava",
     "athleteId": null
@@ -20,13 +20,31 @@
     "showLocationNames": false
   },
   "summary": {
-    "activityCount": 282,
-    "trackCount": 256,
+    "activityCount": 283,
+    "trackCount": 257,
     "calorieMissing": 43,
     "firstActivityAt": "2022-08-27",
-    "lastActivityAt": "2026-10-12"
+    "lastActivityAt": "2026-10-14"
   },
   "activities": [
+    {
+      "id": 20578839193,
+      "sportType": "Run",
+      "displayType": "跑步",
+      "name": "Wednesday Afternoon Run",
+      "kind": "run",
+      "start": 1791995832,
+      "date": "2026-10-14",
+      "distance": 5015.96,
+      "movingTime": 2077,
+      "elapsedTime": 2254,
+      "calories": 343,
+      "caloriesSynced": true,
+      "elevation": 24.1504,
+      "hasGps": true,
+      "track": true,
+      "trackSynced": true
+    },
     {
       "id": 20562907475,
       "sportType": "Ride",
