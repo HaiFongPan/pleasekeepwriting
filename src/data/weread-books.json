@@ -1,6 +1,23 @@
 {
-  "generatedAt": "2026-10-13T10:00:32.425Z",
+  "generatedAt": "2026-10-14T00:18:50.416Z",
   "books": [
+    {
+      "bookId": "3300020163",
+      "title": "我的阿勒泰（中国版权金奖、“我的阿勒泰”同名电视剧）",
+      "author": "李娟",
+      "translator": null,
+      "cover": "https://cdn.weread.qq.com/weread/cover/31/cpplatform_fy7wyg2acrhxq1vu4yvs9y/t6_cpplatform_fy7wyg2acrhxq1vu4yvs9y1714307419.jpg",
+      "finishedAt": "2026-10-13",
+      "rating": null,
+      "deepLink": "https://weread.qq.com/book-detail?type=1&v=6e732140813ab6e60g013caf",
+      "intro": "偏远寂静的阿克哈拉村，缓慢而永恒的喀吾图，沙依横布拉克的夏牧场……“阿勒泰的精灵”李娟以细腻明亮的笔触全景式记录北疆边地美好闪光的时刻。全书分为两辑。第一辑记忆之中（2007-2009），记录了在喀吾图和阿克哈拉村细碎坚忍的生活画面；第二辑角落之中（2002-2006），原生态书写了李娟和母亲及高龄的外婆随牧民迁徙、流动的日常：开杂货铺，当小裁缝，帮往来的牧民车衣裙，去大山深处采野生木耳；春天沙依恒布拉克草原上鼓胀的帐篷，夏季牧场上喧嚣盛大的阿肯弹唱会，入冬后瓷实的迢迢雪路……戈壁、草原、森林、雪山、骏马和牧人，细腻明亮的文字展现了游牧民族在边地深远丰富的生存景观。",
+      "category": "精品小说-影视原著",
+      "publisher": "花城出版社",
+      "publishTime": "2021-08-01 00:00:00",
+      "isbn": "9787536094352",
+      "publicRating": 888,
+      "publicRatingCount": 36817
+    },
     {
       "bookId": "26211887",
       "title": "代码的未来",
@@ -33,7 +50,7 @@
       "publishTime": "2023-04-01 00:00:00",
       "isbn": "9787521752236",
       "publicRating": 931,
-      "publicRatingCount": 4157
+      "publicRatingCount": 4158
     },
     {
       "bookId": "3300117751",
@@ -84,7 +101,7 @@
       "publishTime": "2021-09-01 00:00:00",
       "isbn": "9787521731583",
       "publicRating": 775,
-      "publicRatingCount": 9128
+      "publicRatingCount": 9127
     },
     {
       "bookId": "CB_CIK1J21JHFvi6sA6su2Tz4Wb",
@@ -118,7 +135,7 @@
       "publishTime": "2023-06-01 00:00:00",
       "isbn": "9787572610912",
       "publicRating": 921,
-      "publicRatingCount": 111541
+      "publicRatingCount": 111550
     },
     {
       "bookId": "909893",
@@ -203,7 +220,7 @@
       "publishTime": "2019-12-01 00:00:00",
       "isbn": "9787544779319",
       "publicRating": 767,
-      "publicRatingCount": 5292
+      "publicRatingCount": 5294
     },
     {
       "bookId": "32463124",
@@ -237,7 +254,7 @@
       "publishTime": "2022-08-01 00:00:00",
       "isbn": "9787555913726",
       "publicRating": 916,
-      "publicRatingCount": 68511
+      "publicRatingCount": 68519
     },
     {
       "bookId": "41598972",
@@ -254,7 +271,7 @@
       "publishTime": "2021-09-10 00:00:00",
       "isbn": "9787552036107",
       "publicRating": 783,
-      "publicRatingCount": 9237
+      "publicRatingCount": 9241
     },
     {
       "bookId": "651366",
@@ -271,7 +288,7 @@
       "publishTime": "2012-07-01 00:00:00",
       "isbn": "9787301174821",
       "publicRating": 856,
-      "publicRatingCount": 30701
+      "publicRatingCount": 30702
     },
     {
       "bookId": "3300053438",
@@ -356,7 +373,7 @@
       "publishTime": "2022-07-01 00:00:00",
       "isbn": "9787547738207",
       "publicRating": 793,
-      "publicRatingCount": 3372
+      "publicRatingCount": 3373
     },
     {
       "bookId": "CB_6UTBcPBak4Bj6aN6YD",
@@ -390,7 +407,7 @@
       "publishTime": "2017-05-01 00:00:00",
       "isbn": "9787532774685",
       "publicRating": 860,
-      "publicRatingCount": 6338
+      "publicRatingCount": 6339
     },
     {
       "bookId": "42766048",
@@ -407,7 +424,7 @@
       "publishTime": "2022-01-01 00:00:00",
       "isbn": "9787521736816",
       "publicRating": 852,
-      "publicRatingCount": 8931
+      "publicRatingCount": 8934
     },
     {
       "bookId": "35433088",
@@ -423,8 +440,8 @@
       "publisher": "广东花城出版社",
       "publishTime": "2021-01-01 00:00:00",
       "isbn": "9787536093171",
-      "publicRating": 676,
-      "publicRatingCount": 4064
+      "publicRating": 677,
+      "publicRatingCount": 4063
     },
     {
       "bookId": "CB_CMT96994O0zH6a76YD",
@@ -458,7 +475,7 @@
       "publishTime": "2017-09-01 00:00:00",
       "isbn": "9787508679099",
       "publicRating": 718,
-      "publicRatingCount": 7674
+      "publicRatingCount": 7673
     },
     {
       "bookId": "CB_Gm3BudBrC0v66a46YD",
@@ -526,7 +543,7 @@
       "publishTime": "2021-09-01 00:00:00",
       "isbn": "9787201175133",
       "publicRating": 919,
-      "publicRatingCount": 24948
+      "publicRatingCount": 24956
     },
     {
       "bookId": "24953118",
@@ -560,7 +577,7 @@
       "publishTime": "2021-06-01 00:00:00",
       "isbn": "9787553522838",
       "publicRating": 918,
-      "publicRatingCount": 35675
+      "publicRatingCount": 35681
     },
     {
       "bookId": "729213",
@@ -594,7 +611,7 @@
       "publishTime": "2020-08-01 00:00:00",
       "isbn": "9787201161693",
       "publicRating": 894,
-      "publicRatingCount": 140445
+      "publicRatingCount": 140449
     },
     {
       "bookId": "25856501",
@@ -662,7 +679,7 @@
       "publishTime": "2021-08-01 00:00:00",
       "isbn": "9787208172036",
       "publicRating": 895,
-      "publicRatingCount": 4145
+      "publicRatingCount": 4146
     },
     {
       "bookId": "24953405",
@@ -764,7 +781,7 @@
       "publishTime": "2017-08-01 00:00:00",
       "isbn": "9787549599349",
       "publicRating": 687,
-      "publicRatingCount": 5587
+      "publicRatingCount": 5588
     }
   ]
 }
