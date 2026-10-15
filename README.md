@@ -25,6 +25,10 @@ pnpm sync-weread
 bookId: CB_3frFf5Ffj4Mq76875N1Im0O9
 ```
 
+## 手机上传运动文件
+
+新增独立的 [FIT 上传 Worker](workers/workout-upload/README.md)：WorkOutDoors → iOS 快捷指令 → Cloudflare Worker → 私有 R2。上传入口已部署，配置与手机验证步骤见该文档。目前仅归档原件，尚未替换下面的 Strava 页面数据同步。
+
 ## 同步 Strava 运动数据
 
 页面：`/sport/`

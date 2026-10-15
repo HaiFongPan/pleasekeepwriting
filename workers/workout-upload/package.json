@@ -1,0 +1,17 @@
+{
+  "name": "workout-upload",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "build": "cf build",
+    "deploy": "cf deploy"
+  },
+  "dependencies": {
+    "@garmin/fitsdk": "21.218.0"
+  },
+  "devDependencies": {
+    "cf": "1.0.0-beta.5",
+    "wrangler": "4.151.0"
+  }
+}
