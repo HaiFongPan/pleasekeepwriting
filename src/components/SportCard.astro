@@ -13,6 +13,8 @@ const { activity, trackSrc } = Astro.props
 const units = themeConfig.sport.units
 const label = getSportLabel(activity)
 const hasTrack = activity.track && Boolean(trackSrc)
+/** 手机上传只有设备计时口径，与 Strava movingTime 不是一回事 */
+const deviceTimer = activity.timeSource === 'device-timer'
 const [viewBoxWidth, viewBoxHeight] = themeConfig.sport.track.viewBox
 const endSize = 3.6
 /** 悬停上色指标，目前统一按速度 */
@@ -89,7 +91,9 @@ const metricKind = hasTrack ? resolveMetricKind(activity.kind) : null
       </div>
       <div class="flex items-baseline gap-1">
         <dt class="sr-only">时长</dt>
-        <dd>{formatDuration(activity.movingTime)}</dd>
+        <dd title={deviceTimer ? '设备计时时间（非 Strava 移动时间）' : undefined}>
+          {formatDuration(activity.movingTime)}{deviceTimer && <span class="sr-only">（设备计时）</span>}
+        </dd>
       </div>
       <div class="flex items-baseline gap-1">
         <dt class="sr-only">卡路里</dt>

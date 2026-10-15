@@ -57,9 +57,15 @@ export interface StravaAthlete {
 /** 运动分组，用于卡片文案与后续筛选 */
 export type SportKind = 'ride' | 'run' | 'hike' | 'walk' | 'swim' | 'other'
 
+/**
+ * 稳定来源 ID：历史 Strava 活动保留旧的数值 ID，手机 FIT 上传使用归档标识
+ * （64 位十六进制字符串，不截断成数字）。轨迹文件名 `${id}.json` 两种都适用。
+ */
+export type SportActivityId = number | string
+
 /** 活动指标索引：不含任何坐标 */
 export interface SportActivity {
-  id: number
+  id: SportActivityId
   /** Strava sport_type，例如 Ride / Hike */
   sportType: string
   /** Strava 返回的本地化类型名，例如 骑行 / 高强度间歇训练 */
@@ -92,6 +98,14 @@ export interface SportActivity {
   track: boolean
   /** 是否已尝试同步轨迹 */
   trackSynced: boolean
+  /**
+   * 时长口径：strava = Strava 的 moving_time；device-timer = 设备写入的
+   * total_timer_time。手机上传没有 Strava 的移动时间口径，必须显式标注，
+   * 不能把设备计时冒充成 Strava movingTime。历史数据缺省视为 strava。
+   */
+  timeSource?: 'strava' | 'device-timer'
+  /** 数据来源；缺省视为历史 Strava 归档 */
+  origin?: 'strava' | 'phone'
 }
 
 /** 轨迹渲染参数，变更后需要重建全部轨迹文件 */

@@ -20,7 +20,7 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
 import { themeConfig } from '../src/config'
-import { formatLocalDate, resolveMetricKind, resolveSportKind } from '../src/utils/sport'
+import { compareActivityIdsDesc, formatLocalDate, resolveMetricKind, resolveSportKind } from '../src/utils/sport'
 import { loadDotEnv } from './lib/env'
 import { computeGradeLevels, computeSpeedLevels } from './lib/strava-metrics'
 import { buildTrackFromPoints, defaultTrackOptions } from './lib/strava-track'
@@ -113,7 +113,7 @@ async function writeJsonAtomically(filePath: string, contents: string) {
 }
 
 function buildDataset(activities: SportActivity[], params: SportRenderParams, previous?: SportActivitiesData | null): SportActivitiesData {
-  const sorted = [...activities].sort((left, right) => right.start - left.start || right.id - left.id)
+  const sorted = [...activities].sort((left, right) => right.start - left.start || compareActivityIdsDesc(left.id, right.id))
   const withTrack = sorted.filter(activity => activity.track).length
   const missingCalories = sorted.filter(activity => activity.calories == null).length
 
@@ -176,7 +176,8 @@ async function main() {
 
   const existing = await readDataset()
   const paramsChanged = existing != null && !paramsEqual(existing.params, params)
-  const known = new Map<number, SportActivity>((existing?.activities ?? []).map(activity => [activity.id, activity]))
+  // 非数值 ID 属于手机上传等新来源，本流水线不处理，但重写数据集时要原样保留。
+  const known = new Map<SportActivity['id'], SportActivity>((existing?.activities ?? []).map(activity => [activity.id, activity]))
 
   console.log(`已有 ${known.size} 条数据${paramsChanged ? '；渲染参数已变化，将重建全部轨迹' : ''}`)
   console.log(`本次上限 ${options.limit} 条，最多扫 ${options.maxPages} 页训练日志${options.full ? '（全量）' : '（增量）'}\n`)
@@ -343,7 +344,8 @@ async function main() {
 
   if (options.full && scanComplete) {
     for (const id of [...known.keys()]) {
-      if (!scannedIds.has(id)) {
+      // 只清理本次扫描覆盖到的数值 Strava ID；字符串 ID（手机上传）与训练日志无关
+      if (typeof id === 'number' && !scannedIds.has(id)) {
         known.delete(id)
       }
     }

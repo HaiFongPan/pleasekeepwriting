@@ -179,6 +179,20 @@ export function formatLocalDate(start: number): string {
   return `${date.getUTCFullYear()}-${month}-${day}`
 }
 
+/**
+ * 活动 ID 倒序比较：数值 ID 按数值比，字符串 ID 按字典序比。
+ * 混排时结果保持稳定，且全数值输入与旧的 `right.id - left.id` 完全一致。
+ */
+export function compareActivityIdsDesc(left: SportActivity['id'], right: SportActivity['id']): number {
+  if (typeof left === 'number' && typeof right === 'number') {
+    return right - left
+  }
+
+  const leftText = String(left)
+  const rightText = String(right)
+  return leftText < rightText ? 1 : leftText > rightText ? -1 : 0
+}
+
 /** 本地年份，用于按年分组 */
 export function getLocalYear(start: number): number {
   return new Date(start * 1000).getUTCFullYear()
