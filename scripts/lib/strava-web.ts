@@ -199,7 +199,7 @@ export async function fetchStreams(activityId: number): Promise<{ latlng: Array<
 
 /**
  * 原始导出文件（FIT/GPX/TCX，可能被 gzip 包装），保留响应原字节。
- * 明确 404 返回 null；401/403 或登录页抛 StravaSessionExpiredError。
+ * 404 或导出跳回同一活动页表示未提供原件，返回 null；登录失败仍抛错。
  */
 export async function fetchOriginalFile(activityId: number): Promise<Uint8Array | null> {
   const response = await fetch(`${webBase}/activities/${activityId}/export_original`, {
@@ -212,6 +212,15 @@ export async function fetchOriginalFile(activityId: number): Promise<Uint8Array 
   }
 
   assertAuthenticated(response, `活动 ${activityId} 的原始文件`, '')
+  if (response.redirected) {
+    const destination = new URL(response.url)
+    if (destination.origin === webBase && destination.pathname === `/activities/${activityId}`) {
+      // Strava 对部分没有原件的旧活动会跳回详情页；这不等同于跳到登录页。
+      await response.body?.cancel()
+      await sleep(requestDelayMs)
+      return null
+    }
+  }
   const bytes = new Uint8Array(await response.arrayBuffer())
   assertNotLoginPage(response, bytes, `活动 ${activityId} 的原始文件`)
   await sleep(requestDelayMs)

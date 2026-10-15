@@ -432,7 +432,7 @@ async function archiveActivity(activity: ArchivedActivity, context: ActivityCont
   if (needOriginal) {
     const bytes = await withArchiveRetry(() => context.source.fetchOriginal(activityId), context.retry)
     if (bytes === null) {
-      original = { status: 'unavailable', reason: 'http-404' }
+      original = { status: 'unavailable', reason: 'export-unavailable' }
     }
     else if (bytes.length === 0) {
       throw new Error(`活动 ${activityId} 的原始文件为空。`)

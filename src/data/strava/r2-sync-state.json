@@ -1,0 +1,4357 @@
+{
+  "version": 1,
+  "parser": 1,
+  "renderer": 4,
+  "generatedAt": "2026-10-15T09:03:09.892Z",
+  "timezone": "Asia/Shanghai",
+  "archive": {
+    "key": "strava/v1/archive-index.json",
+    "etag": "1eb172f380db2f71c13fc4120390f42b",
+    "sha256": "5bbb3601f29289b0b797c5cb102b796e4cfadf092cadac0169cca6743dc04ede",
+    "version": 1,
+    "complete": true,
+    "total": 285,
+    "failed": 0,
+    "unavailableOriginals": 1
+  },
+  "manifests": {
+    "10107660713": {
+      "etag": "ae15c77b2e8f9aabbd5e97440bbc9c42",
+      "sha256": "bf35c31c58abf5c1bcc5467e928b6bffc347e1e0654be2386853fddf55a6e625",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "e872dbb3ada8319c44442e85612ddb5511765c9afc00dee1dd52fa5252888d93",
+        "key": "strava/v1/activities/10107660713/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/10107660713/streams.json",
+        "sha256": "db3caa206c6dea80e9ef18dfcb96a7d5a8ec4dc0a050e512646798ad9c0100c0"
+      }
+    },
+    "10107665430": {
+      "etag": "55426f1bb132d7590e84ed9ec0f62362",
+      "sha256": "50a9b1a2b367556a4685369eb11b49333dd48ccddbe877b4c3143daa7b162c1e",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "ca19dabeaf12b1aa620a6477d6eeaa2a17337df6a7434fbc16dcfa67d0e17a81",
+        "key": "strava/v1/activities/10107665430/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/10107665430/streams.json",
+        "sha256": "c43ace410a6d470e7965d9515ac1bc61028016b788cf427404331d317968189f"
+      }
+    },
+    "10107667864": {
+      "etag": "5974192bf6e270da907b5ec651593c66",
+      "sha256": "99ef2ea263da79fc56c0d3086755ceca7eda46b7a358bbe05fd1a6486c033860",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "22f8524e6b93a48e90a794d437b8a7ba0ef15f6590e621ded399f492361de8d8",
+        "key": "strava/v1/activities/10107667864/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/10107667864/streams.json",
+        "sha256": "0d225b0d7d842a9079512cf10725b0345125f930762899955ec9dd0e42ad6f4c"
+      }
+    },
+    "10153291838": {
+      "etag": "7d363828364afd6a5f1c064f7e4625a6",
+      "sha256": "37af5f4a499ed4794c51bcb23dd992821408ca88a510671951ed3a23bb4089ac",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "868e577117948c9b47619ddfa817bde033c67138465e1c0b38f07a910b49c6ed",
+        "key": "strava/v1/activities/10153291838/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/10153291838/streams.json",
+        "sha256": "c8f56e3895736d7dcfa63418d15ee87ce9400d1007225203efaf6f882b0edc79"
+      }
+    },
+    "10351298296": {
+      "etag": "d4ada63fc5332e6406a8a67b37c6f87b",
+      "sha256": "12ef0da3d173a4fa589a38766d9d827978491f0f1d90b8ef660783da0433d4ad",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "66b1b805296896a4c179f07397267ce63d765cad4d9809dbe36ab94c806f0886",
+        "key": "strava/v1/activities/10351298296/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/10351298296/streams.json",
+        "sha256": "13e1fde9fe71c3e4bea2f3261c0e019e28b0e68464a1ba23aa01df9a9a7db100"
+      }
+    },
+    "10975946177": {
+      "etag": "8a133efe0d9cf916876b500d67495a9e",
+      "sha256": "d5500c6d0c44aff26065ede0b1bc4c507b1abdc269d02160cb137c8bfb5761de",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "0f3072a1820f79d35bc2bf05436e29cd54670110db31445bc80a940836391af2",
+        "key": "strava/v1/activities/10975946177/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/10975946177/streams.json",
+        "sha256": "88e7f8b333b3567670a552b18747538f9325dc0d6c008c2f8c3e3ec7fd3f03c5"
+      }
+    },
+    "10975946846": {
+      "etag": "81f4b9339d52765779fb3f6b36da7e97",
+      "sha256": "26c3a59b723ad6e67ed39ee899bb1abe9ed408e8ca5bafba42da31a6b9c98225",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "003b617f9b5be2c3359bfd0ad659b161e035ae571ef481ae22d989fe79a6ca9b",
+        "key": "strava/v1/activities/10975946846/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/10975946846/streams.json",
+        "sha256": "4abf63da83194244055ac9575293b5344ffb684a5ea32cf44499ab71aeea83a1"
+      }
+    },
+    "11066213952": {
+      "etag": "d6906d8edcf1b073e00c36b66b007e13",
+      "sha256": "29ab215276b9385323f4ae31eeecded5ad93a09db18e2ac8e125143f2cc86331",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "1c257cba0d49324bf02043d3070bdc9f5b7e165fa6abcd53b209bb9e29761a03",
+        "key": "strava/v1/activities/11066213952/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11066213952/streams.json",
+        "sha256": "80f2be93a1aa8227ad6b99922c51ea35fe5054b1efb698bc5ea054dfcc933b73"
+      }
+    },
+    "11073298244": {
+      "etag": "3ac304ee41161b4f288f89250f9f20f5",
+      "sha256": "7492a318c1a69d40bbaec82821cc9a481b1506126f3a149e8c4114f291b6472c",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "e76f97e511cf74a54a4ac468fac70fc2d7876708be29e830fda05401bcb7338b",
+        "key": "strava/v1/activities/11073298244/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11073298244/streams.json",
+        "sha256": "341e2de3a4b7f7f9e59a0f6cb8a3c90ab25abb3f1c5bb1a8376546cc66f03c71"
+      }
+    },
+    "11141934245": {
+      "etag": "05eb95f9b20a3af0f5d36de99547cfdd",
+      "sha256": "85cdfda36058eab6fcf8f11a6f73e4595c3c1d20098eef0304671e8971247609",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "a491e9edaf03457cb4141bef187a67a79963fa0593eedb2fbaed05f67b9fc8db",
+        "key": "strava/v1/activities/11141934245/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11141934245/streams.json",
+        "sha256": "5971ea982c11b724175eaa1912ebd140927ee3d9416787057a5c33f7e8ed5cb3"
+      }
+    },
+    "11149671081": {
+      "etag": "296d68fc49c0e54ea28a9b7675d7d324",
+      "sha256": "7315eea8cce9c9a8a6ac93517102cb08f5f69477dc7e8725669416da9ac5a4b1",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "4498cc11cf8e4ce0d129d85a771041292c9d83c5a4772635428cb2068f1b853b",
+        "key": "strava/v1/activities/11149671081/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11149671081/streams.json",
+        "sha256": "f8b3bc22155ac9024ddde18e2bfc7dbb64d24271e4eef8227b964d0117a754c6"
+      }
+    },
+    "11149982239": {
+      "etag": "4c55acfe3c99755df52fb8c9021c651b",
+      "sha256": "127ef3488b3fa6174bb4865aa9cc3065a18b6ec725503aaaa13d39e52a429e87",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "757c2e26a3dc6a9e5757b1c84943699dc57c8e86b81b4518f18ed79309d6703a",
+        "key": "strava/v1/activities/11149982239/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11149982239/streams.json",
+        "sha256": "c14741172e1ef39b9841cc06c122cabe7bfedac1353cd5475116cd1bd78f706e"
+      }
+    },
+    "11178606972": {
+      "etag": "f98b9b8466e91170789a562207428ff1",
+      "sha256": "a483849180557b9bd6e0f8bb541e5f0dd793fddf8d881fba161ad694c54d6ae5",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "b21459626c56eb78481ba2135661cf034ff66c5f4bd9388727ed8606d69a1d16",
+        "key": "strava/v1/activities/11178606972/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11178606972/streams.json",
+        "sha256": "fb8e01886c0cf0a073337fa2f1c682cc1bf256dc7894ddac7bd4dcaf9ede0765"
+      }
+    },
+    "11187614869": {
+      "etag": "b03b973b152b6f3ca743937451159b50",
+      "sha256": "7faaf38c2784bffd4ffc81f35747063d0910102fd4ee60a587329102ee5769ca",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "4cccd8006590155e9abc7d3e2bed3954f88695e4967d4c8f17e17767808c23b7",
+        "key": "strava/v1/activities/11187614869/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11187614869/streams.json",
+        "sha256": "ebfc02bc88194f644681fb30939ad83bd233e64d4e5f49a2f73bbe1aac75ac26"
+      }
+    },
+    "11210037135": {
+      "etag": "a671ff351852b7a9c8eed242ad14fc47",
+      "sha256": "e52ff435ba3127599ab482b39bb93bdf16ad6a1d115b085a92d23181570f50d8",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "ff940b465f659e463077c8c8b3b97bbedaf86355a4b544008f76cbccfcebfcb3",
+        "key": "strava/v1/activities/11210037135/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11210037135/streams.json",
+        "sha256": "2ac2100dfa615fe3f61b843b10bfb40b7b2851d06a673e0bb9e9fb997af26e23"
+      }
+    },
+    "11246077850": {
+      "etag": "e75afe0bfb553a16c6745d0374b0523c",
+      "sha256": "6f0f11ae02f2c1ff398f5f97d418f9cc95be199c075559f22b7084cda364b8dc",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "9914a3e6417345b8eee624eacae4bbdb8b6a591f1172e44ab01d341b3e619fe6",
+        "key": "strava/v1/activities/11246077850/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11246077850/streams.json",
+        "sha256": "ab5eb2a88f111651d96e2731dcb8a240c7ddafad370417906e9aeaad4b47c015"
+      }
+    },
+    "11260098506": {
+      "etag": "901d513991ae37fae9531ed2605eb2da",
+      "sha256": "d6de32c55028454030fc99d8d4ae8db437f1b862bd2301d6d0165a264e89a73d",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "99fd0ee4f4fb308590604d4b9379fd4b35bacecec01e5553e5fa395d71a8ce9e",
+        "key": "strava/v1/activities/11260098506/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11260098506/streams.json",
+        "sha256": "8583438fbf78c4ae157866a604a42b3e4fe068d4d52725f29d6593615955dfcb"
+      }
+    },
+    "11291059557": {
+      "etag": "fec7c58f4cc3d57c4f865524b606842a",
+      "sha256": "656f316b05d848d4439fe3865dea35d7356d6e75fa01e189d5f282de2c145904",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "2f0522c3276c73e79dff4ec884b93f88408d0bda4b250eb51b0cd1289067ec53",
+        "key": "strava/v1/activities/11291059557/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11291059557/streams.json",
+        "sha256": "89274737327f7036831bb2684d176d7cd43d3392bd5f7543e942ec89ab53a923"
+      }
+    },
+    "11315332853": {
+      "etag": "d2c3b9652388e47c3226f0e2f63345b8",
+      "sha256": "5fbc6ae1a954dc246a58671a079c327c3e241f69dac4744517584c7fba108610",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "a146a3fdf2c30c0115d1f87636582b05cea4d16d04724b000aa2b4485f7d1307",
+        "key": "strava/v1/activities/11315332853/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11315332853/streams.json",
+        "sha256": "5963899e5b2c44d887a0d8c766f5b6529e90814838f435880673c2537bca3b56"
+      }
+    },
+    "11322476184": {
+      "etag": "2c675c4144546b53314efd3b0d87e5bd",
+      "sha256": "2c8aaeab7a673ac08584698810d7c5f5a5e1174fe7c28a1a5773dd22c9401893",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "960245c5821cabfc90e14e2aa161ec1bbd76c2972b10d824b5bf849673fcdc53",
+        "key": "strava/v1/activities/11322476184/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11322476184/streams.json",
+        "sha256": "4b6da2a989aebb1f5e46795ae3811a1767bd55726431da1b91ba2588edc81774"
+      }
+    },
+    "11400766022": {
+      "etag": "c30e7f06130554fd1602ae206b77b4ca",
+      "sha256": "be6a42c6d55d290090d2737d9ea62b6b0fc667d31090cf0e10315d91276bcddf",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "d0f0689dd3d547cf0a34c3312b22da627553a35d1f6f5619bf4645fcd3e47b04",
+        "key": "strava/v1/activities/11400766022/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11400766022/streams.json",
+        "sha256": "88508879c16d7bcd716923fa6a887983fc0b5be4b6c66622e1892bb77f7cba5b"
+      }
+    },
+    "11416779584": {
+      "etag": "0e62a76ac6d318efb008198e8ea7ae8c",
+      "sha256": "3d6584e22eaac4b7c6ad593304d630d89dd6d08eaec9c22afb891afe934f9f90",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "77e0d51325425a027c8fbbc72f015b90789b510637f8f9680769982062bc8af7",
+        "key": "strava/v1/activities/11416779584/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11416779584/streams.json",
+        "sha256": "470d54fbc141269790fdbbb74e4a50ecf3dc3020668ef965ab6bce7e02d2aee7"
+      }
+    },
+    "11436430836": {
+      "etag": "518b9513f16a70f215faa4ea6240918b",
+      "sha256": "ea0f3f5e9128b4d1b4ef03eec49b0daf5e009c3df210450cc277653f0577c37b",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "4a64051722db115c62e03b32340c14c50b354300d9c71b94b635e1c2ca3a7731",
+        "key": "strava/v1/activities/11436430836/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11436430836/streams.json",
+        "sha256": "0ade8d948ed4bd77fadefd441653d6c294ad899c0d9b0f15dbb20679045788f4"
+      }
+    },
+    "11479337024": {
+      "etag": "e133a9de9e0e67859a117bcf61c0900b",
+      "sha256": "7a85ff27e0d63db9cd61f6e56ab3d6b9dfa28649b85096340ebceebf7ad95a62",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "c28496f47debc5eb92ac563fee7f1d8d6fef93a6b5ef5c68cca7d90d51979857",
+        "key": "strava/v1/activities/11479337024/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11479337024/streams.json",
+        "sha256": "cb9a5da09469a6091e0abcf481694d61cd7de8591fef28aee14f270108ed638e"
+      }
+    },
+    "11556034389": {
+      "etag": "1ba5502e0b845e242739b9e9b3d45471",
+      "sha256": "8716aabc47eff0429079ece0868a0e5f7b69aacbbb9342a4eedb77199a0d7143",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "b2ce076f74071eb93bf35ed3e22a618020fe32f5c1f55767fb2f65859aff323e",
+        "key": "strava/v1/activities/11556034389/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11556034389/streams.json",
+        "sha256": "39201d39b02d22eb9c8c1c6a33bfbb881a60768ee6a16d91bbc74bae64f1ca7f"
+      }
+    },
+    "11838130657": {
+      "etag": "052a7d9264be80fbb3b8ee0a9fc2931c",
+      "sha256": "7fc3479e536d4129bf63481e56c7011cdaf83e74d099fda9f4db3f9d4f59fbb4",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "eaf4d3a2d60867e3d4a83a5b0b60e892256d3b5caa2735c91f2c1808f115f82a",
+        "key": "strava/v1/activities/11838130657/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11838130657/streams.json",
+        "sha256": "fdf99bc6b3215895d097a1150d26b0533a09a6b89c69509d0efc4fc231d9a4aa"
+      }
+    },
+    "11838130693": {
+      "etag": "c624af96f99deac9f4dc9ea92d02e3ec",
+      "sha256": "6a47f9b701f04f1fec345d3400af044b016a8f98cbc554cec6b873fb0dbe831b",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "320db039f989845879594da378e2ce6883ae7923dc7d86a5063fba1f38b3c878",
+        "key": "strava/v1/activities/11838130693/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11838130693/streams.json",
+        "sha256": "54c048e8d79ca1024a187090edc79cc75890324f3d0bf100de73f72a11db0700"
+      }
+    },
+    "11902200771": {
+      "etag": "4f4e3bef1384b0a7c264c2acf7c7b231",
+      "sha256": "d7558ae46e1b71bd6df7ff6f74e967724d23d5864f097ad1df27c970f5c2960d",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "3e346eb5153d9796645a453c98b0908609b57f65a2948b9e91845526356c111d",
+        "key": "strava/v1/activities/11902200771/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11902200771/streams.json",
+        "sha256": "fa9ca3020e23f6c3604a8cd31f9b83e6c19929b58ca4e4947c20bf7295275315"
+      }
+    },
+    "11920186664": {
+      "etag": "82d90e789efc9bd35319e0ab6a13815d",
+      "sha256": "955889570b7e9057c23033cb0c32848f9dcafa82ad52068bbbb1b74c64c8c134",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "f5c76612f028ddf1d472456a3b9db248c4a2736149c8cf9047346d8feeb545de",
+        "key": "strava/v1/activities/11920186664/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11920186664/streams.json",
+        "sha256": "b922015e22a602e510168510f396ab889248ac4fa79641c2a75ed0be53930f5c"
+      }
+    },
+    "11960024010": {
+      "etag": "dcc51863c7fdba4b0ce92b7b2f2912b6",
+      "sha256": "d44850c9f95a7ae02bb35f7a9558e27a39e32219074b79bde37737655c3087ae",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "de9387fe91e9cbeb711500b2ce34e902351164484c28728d425c84405616e56a",
+        "key": "strava/v1/activities/11960024010/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11960024010/streams.json",
+        "sha256": "ea619755362c3b1b87aeb27540a998be13c7d222433a5c0317a3c9915dfa47ca"
+      }
+    },
+    "11960738884": {
+      "etag": "53c4bd79c9fe7e30502c363d846dba26",
+      "sha256": "7708f260e8136ef4748e4b090f2366f4ecdb0e84374c699c53e5b5819d5f3e71",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "5a382be15fc4fadf81ac495b1a52d1aee41c38e4c03dd0fe08e3e8084d98bca3",
+        "key": "strava/v1/activities/11960738884/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/11960738884/streams.json",
+        "sha256": "ad972d6edea1a5c53fa25a3481e63a96dcf450c63f85404b8fb7ed14f94237b3"
+      }
+    },
+    "12002454525": {
+      "etag": "fcb92bc8a0696702764fab237db6a2f8",
+      "sha256": "6315547ffd58809dbc032d13ced921cb284d698bb8d93b5d149c53bc79d0295a",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "a43b0bfe1cdb7875a2b7021c4565fe0db4605318762124d9fd4395520d7c6210",
+        "key": "strava/v1/activities/12002454525/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12002454525/streams.json",
+        "sha256": "c054171951211cf2a5ad57c010eca7e65e53c7cbcd5c269ce50d25b4e6ab9fbd"
+      }
+    },
+    "12078177905": {
+      "etag": "2f584aeb20f6e4ccb735ef8da2cf885e",
+      "sha256": "cfc72649635601e669e5d9da24e2a4fb99e6bff372986c2d3922c7fa7211ae0f",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "76b0cedc79c5377e41799a7a678c63c2fb88c27a162200c8f6652649b6707d8f",
+        "key": "strava/v1/activities/12078177905/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12078177905/streams.json",
+        "sha256": "2c171ae2da76f0685a50d2045728e4f72c1edcfbf9202e1a496940bd269b7297"
+      }
+    },
+    "12175006008": {
+      "etag": "63f0b098d0d028a820a8a01f1ffb6220",
+      "sha256": "b1ea8476b42f0c35b61f813080c9d4565b1742c54a97d4d0749124289431f818",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "deeccf667a08ecf6a2e0730501b5c614fee37da467a526029e5c9399de8a6eb8",
+        "key": "strava/v1/activities/12175006008/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12175006008/streams.json",
+        "sha256": "5c04257fdb2e3212f8bf21568b31b5228dcf841b6780497eed886371555f6aab"
+      }
+    },
+    "12179494325": {
+      "etag": "d9906e870bbd7a62042c1188d88478df",
+      "sha256": "157ef55f935ae246850460e16312eb4f525b6962b194f78ad4b6ea4ab9861834",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "a0fa7a606548e9a7437147a3bb5422119cec08993ee1eeacc0bf79b6b91ed80f",
+        "key": "strava/v1/activities/12179494325/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12179494325/streams.json",
+        "sha256": "e9be3f0cf618e4ad1a10cb8017e4373297ad30f90dfa126b5a4e33b2c4f09ddf"
+      }
+    },
+    "12179494502": {
+      "etag": "687a45b8b041187f707a17fa5412ca11",
+      "sha256": "c6b6a7b06a9dbe4525f4d1540e4a8c55e52c6f0dad81ff6bcdad562c7ae0c9e0",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "d4b3d12b7f4e6d352b1d37b0573328e3d78be3fa99a669c1e030743b26f87609",
+        "key": "strava/v1/activities/12179494502/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12179494502/streams.json",
+        "sha256": "7472bd029e56fc97c59304ff375c02cb4d3fd05ce1f2d2cc6ed7e279f0739967"
+      }
+    },
+    "12179494507": {
+      "etag": "03462965aebdcb0dddf72509941583d9",
+      "sha256": "5cad14e1ed0e4479246a02327b480b888d64c1e62aedf7d6e70f9b6d6ee91e89",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "273652e682dbf8225ff654a40825429dc0224bd773eb157e0ad21e682a11ad01",
+        "key": "strava/v1/activities/12179494507/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12179494507/streams.json",
+        "sha256": "611a6b8fda7944bde8af13e71f0300b489a8791e4a8ed1096c29dfaec681b0b1"
+      }
+    },
+    "12179494579": {
+      "etag": "d0a32969fad62487a67c35aa34b10530",
+      "sha256": "fcbfcc6ab967c5924df1717e0fab5148b6231170bcf53a53904d2ca14cf90bd4",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "70d533fe68b829fb1ad8ed6768048c6da2e2b0f412791fc03ccd3388d12c7ff6",
+        "key": "strava/v1/activities/12179494579/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12179494579/streams.json",
+        "sha256": "68eab3eec6b7809a55984a42b8794ac092f47ca8f4a77924637e51f039184fb3"
+      }
+    },
+    "12179494596": {
+      "etag": "7e520bb4398579c0f0fb5e2ce6a953ea",
+      "sha256": "e32ae1d1f37527dee5e9d3cb50c89caa59ef4a11fded3977489a0bcecf2ba662",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "ac18927ea50f70ef469676aff77081989d9f875675322caa9f6a63e94fbf9aed",
+        "key": "strava/v1/activities/12179494596/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12179494596/streams.json",
+        "sha256": "ea623fe6cd74072ef0f5599c4289cf7ac90751046cd0778239b7d9ecac138efc"
+      }
+    },
+    "12319775178": {
+      "etag": "ba618c9bfa32268c2d74b6c8a8077570",
+      "sha256": "14997ddcbb439462a90cef928c3062df5005237783daa06b9df3a45c28ba9d49",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "f45131ee7909ba10ffb836f8dd46cea066977e3090e0cfe217b4867c631c01ff",
+        "key": "strava/v1/activities/12319775178/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12319775178/streams.json",
+        "sha256": "eadf432426b81f0cdcdd8d791cbc18394ab4dd89f3457f890a1c84ae756c4726"
+      }
+    },
+    "12341534262": {
+      "etag": "719e5c2abab20e8c13dc887fb40b728e",
+      "sha256": "e3d5fa23c730e5d0fd8347c4def5e8c1cb12e9531a06b1d1965e1f5c10c2bdfb",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "8808968a8fd070f4fb72c88412e1dd6d438a3e0993d4b29bbde1aef49dcdd48b",
+        "key": "strava/v1/activities/12341534262/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12341534262/streams.json",
+        "sha256": "b083dc3f45b16983b980a47a64b54be970ebc5ab383fbe4f245196ce8d9d3a04"
+      }
+    },
+    "12354318846": {
+      "etag": "6661190c3d102a645aaee6129d3a1f52",
+      "sha256": "b84035d07e7f07e0c20428547af8766d5a04a6c3e186a3870ac3e503e6f0a8f1",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "3c8f5530b92116f7eca9fd79d9305212b05e53c857800255e21fa2bc74acd591",
+        "key": "strava/v1/activities/12354318846/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12354318846/streams.json",
+        "sha256": "07b4ee926e71017b0772c548cc13f9e21b604ac0a994094ee0e0bb154649ada6"
+      }
+    },
+    "12594369974": {
+      "etag": "79665c771c5f87ead94b95be6c1f4860",
+      "sha256": "9a74ffa6bba15862342d8e88c3472fc614a8ae7c2ea27fa774bab02f367efd45",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "a458b8950f6519f614bdfacb7344b85d432bc31fd2e030b31e2434815fd331cd",
+        "key": "strava/v1/activities/12594369974/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12594369974/streams.json",
+        "sha256": "87ae1630aac9a9b4418fd23c4b0cf6990559e79c0ac487a1f539314a42018ae1"
+      }
+    },
+    "12614123532": {
+      "etag": "095e1a0d814e217222316d8b5e7519bf",
+      "sha256": "71fb5f95caebb3b2dabfaffb7fb527f9dd5de08dcc52c3371aed214336dda1db",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "b81d35bc5cb40daa1bf0d06665e9a56d79cb17273423526466cc4d8404d9039c",
+        "key": "strava/v1/activities/12614123532/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12614123532/streams.json",
+        "sha256": "947004ef287341816c6ef1dfc1a7b1dad0d586d363b7999d3337d01328c8e979"
+      }
+    },
+    "12614123563": {
+      "etag": "9490994da85cab0e60141b0ed49f41fc",
+      "sha256": "2a5c4bad36ed8e5a8033541ef9e3da0c3d8fe389ffd96322235a21cf86acdbbb",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "5732fe7e2301b2d3aa9180a1b52e51a1d75faccd4f930c66b8e02c44dac6a946",
+        "key": "strava/v1/activities/12614123563/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12614123563/streams.json",
+        "sha256": "5de730ce87b572df2b081743f3a0a2f8bd72229d24853e32016030d361c5dbfc"
+      }
+    },
+    "12642390446": {
+      "etag": "aae478d83e8c0470659fce633538add4",
+      "sha256": "79c3eb98de877c64d8ff0e1fb4aa868de4e9432bb06b0674c5c2d517f81a8942",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "70246d3f3adff60012033a677b19627e3d920368fc164f062b0cf0b2a2bb6093",
+        "key": "strava/v1/activities/12642390446/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12642390446/streams.json",
+        "sha256": "22b3b4d2b7ff6c4ae18f42dfa06256312537478c448ee5f33d58b1a0d969b740"
+      }
+    },
+    "12677696993": {
+      "etag": "c6ca568a6b1f0312b84dc9c414a4c17a",
+      "sha256": "61002f3858dfc7ae9fd828c4e0e5973607accecd26abe6a2d2ebdd7840099e68",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "53524e81616b173609fd7ef006ff375f223fc31cef9b70fc06f8f64bba18517c",
+        "key": "strava/v1/activities/12677696993/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12677696993/streams.json",
+        "sha256": "525ac48ddc610a437edd00edbf87e5242c0a34bc6379f7411ba7942d005cd17d"
+      }
+    },
+    "12693841282": {
+      "etag": "32d9d2b89821aaca8f176b4a30761a53",
+      "sha256": "9190ee164a342b52d43779b26fdac8fb1a86a0dacf0f4756f7c9cfa50352cf4c",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "63a692b5d1dbcb4a4ad352b6db5a91083f6dd6b2151f8685b17482442e72ac5f",
+        "key": "strava/v1/activities/12693841282/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12693841282/streams.json",
+        "sha256": "6eda117ed924490f178fc526f9f31c80fc2ebd6765449e21eb71aa79b965adb1"
+      }
+    },
+    "12698184255": {
+      "etag": "30d3c944babb3db97af0a8feaa0dc85d",
+      "sha256": "e618d8105f48ba95994ab79cc8e6945ab36dabdf8c4b662e072db3a9e4808925",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "b2640f2f950e46c0a547b2a08daaeeb9719ecdc7a674a0955a14dd179d43fa0a",
+        "key": "strava/v1/activities/12698184255/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12698184255/streams.json",
+        "sha256": "743242dd23ed9127ed1ba73a9df18fe673c6baa469db46f8a987ee08647061bf"
+      }
+    },
+    "12716699564": {
+      "etag": "29e3755cb913db776f2be99b5f67e471",
+      "sha256": "63af314f6664db73879c024c9d08b6e69c0de2621ff60ef7b9a523496a9e253e",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "9340c518d1917be0aa34bd87a042e7473935994937b941a98d4392830714a85f",
+        "key": "strava/v1/activities/12716699564/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12716699564/streams.json",
+        "sha256": "010ad9e4aac1950927ea854a7ed3a3e1d14dbe05ba0086503fb74992103ccbe6"
+      }
+    },
+    "12722339856": {
+      "etag": "0a97416d2a11ba8c5167eda0a4a8d336",
+      "sha256": "b9cb02084ee2ffb75a5466f8fcfd24709ebef615f8ebfdda2d61787028410813",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "9a3a33746ab069ab22a441fa04fa6e114d8687b9ddce4fb0d07ce50a85211aab",
+        "key": "strava/v1/activities/12722339856/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12722339856/streams.json",
+        "sha256": "aea6351a1eda8fce8ad25999d5d91daa80ceab3a0163c6848759547fac85886f"
+      }
+    },
+    "12740091152": {
+      "etag": "0e956a76517b23076560af653ef6e274",
+      "sha256": "8c9a40ce1dd98494cff5f0cb0235a48768868b62d804c622a4216b5d341a30cf",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "21e34666a1ff8909726f95e2fce5178efa02d72077513a0fdfa93a8ec529c73c",
+        "key": "strava/v1/activities/12740091152/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12740091152/streams.json",
+        "sha256": "fcd596d82e8f0d4e613e40a3098ddf2504c788d050420bdf9f530f783277c63f"
+      }
+    },
+    "12754931618": {
+      "etag": "20c478b4fceeb43320aaefe3529468b9",
+      "sha256": "7dc89fa2ba1496cc3ebb6189f7c296c574c44577a4934b335b2e0a7c1026e2b4",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "2c7d76d85e721b4632d0370dfab8f3a9f5e3c1629eac5552fb9dc205b60464fd",
+        "key": "strava/v1/activities/12754931618/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12754931618/streams.json",
+        "sha256": "80e82fa671a7edd99b929aa175ee6ed4dcb5c683d4df863dc4fd2528e8f289bc"
+      }
+    },
+    "12781675920": {
+      "etag": "6249665d05a7b47c2ab600feec97bc07",
+      "sha256": "b2d99f3e8227cd50076232a08e9f6ea66c424fa40e46b7676a91d4eb7ccb70b6",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "cf82cb0e173a3fce3a17c92ed36ca53ace87e9fa6c5eaa974eaceaa7d6323935",
+        "key": "strava/v1/activities/12781675920/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12781675920/streams.json",
+        "sha256": "cd3363b19e2512248fe9e8f620b5b84ac10d7f20d38edbf145a84f7a918b8ae1"
+      }
+    },
+    "12804461477": {
+      "etag": "477c88316a29c52728d9fa64b505234d",
+      "sha256": "18c0779ba27b38a2ec8e59ef9590e68e12c1e57e05050fe55dcc37af4db59d13",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "e39adc4bd003fe54914e482cc98c2c368e1362bb81e2e92a2a5fe1307077bfb9",
+        "key": "strava/v1/activities/12804461477/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12804461477/streams.json",
+        "sha256": "9f1a7d4dcee9fd4ab482eef13542de7751bf290d898cf4bcbd5abc61f91ecf99"
+      }
+    },
+    "12810861926": {
+      "etag": "9838a3aa8fae826d6105d10ae5308e5d",
+      "sha256": "eae36f49612ee6940202adb261606ddb5b6feb3f41b5e5ce8a4c0da081ccb09c",
+      "original": {
+        "status": "stored",
+        "format": "gpx",
+        "sha256": "2b9a85459cd3da31cd32d396ec18015f3bec3c1c5e330454928269a9af0a6ed1",
+        "key": "strava/v1/activities/12810861926/original.gpx"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12810861926/streams.json",
+        "sha256": "823580849a0798a8b6711fc2ea428cbdd5694ddf9cd92c0ec5f09422ed3606c5"
+      }
+    },
+    "12817540006": {
+      "etag": "b58be4f48c97618bfd4c15637f2b3ec7",
+      "sha256": "110e801267d01d7a738761612022f9025924e0482de83c77335b15492f798df2",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "ca331020f806737f3dd7d3947ba6d929351ba8a3f1a5aab65436cf1633346b9b",
+        "key": "strava/v1/activities/12817540006/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12817540006/streams.json",
+        "sha256": "7f0a2f3694f8d7347fa8646d4c8a007e9e605784352df5b756a2dea654737ffb"
+      }
+    },
+    "12824945086": {
+      "etag": "bb4e707914fe352b39cfb16e7c17ffbb",
+      "sha256": "a8a73c9ab1482011d78d3fe0f18dfe811b05c79a36a2190946fcaccb43d80619",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "9ef31daa1846ba295a90592b6222782c86aab22fd68d9508a672d14cc11114b9",
+        "key": "strava/v1/activities/12824945086/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12824945086/streams.json",
+        "sha256": "48160447da669f569753d61104588f01c3eb6cbcc81be0363a95ce967d3633c5"
+      }
+    },
+    "12844490787": {
+      "etag": "8872030da8955e54f2d882debc8b28e3",
+      "sha256": "35ddac7cd8b2d3525bb1944f45d93a36e1aefa40d0d449970ba73e93ca6c0d07",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "d1f7c1746936bc85966675a6b5a83bfb85c49048f40b1020b61da2140a3bc015",
+        "key": "strava/v1/activities/12844490787/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12844490787/streams.json",
+        "sha256": "e3f232f173f6ab9fddc7f2480c31c2eca59d5a1ac960607d4464a877c7bf2c4b"
+      }
+    },
+    "12859466713": {
+      "etag": "19b62cd6c75efd838be49199fc257264",
+      "sha256": "048f30da59c268f20f9e32bf64f1f2aa1b7a9759571047d254f1796928dd3bda",
+      "original": {
+        "status": "stored",
+        "format": "gpx",
+        "sha256": "1c30ce337a6e3b0da42e58312151070edd73f7cbbe261678cf2616c3bf79c24b",
+        "key": "strava/v1/activities/12859466713/original.gpx"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12859466713/streams.json",
+        "sha256": "c00426f851623f6b3c113c88a8b384cee304223557ee3b1c0083002a5bd7f0f0"
+      }
+    },
+    "12875386125": {
+      "etag": "916bf23ebb32ee5cb5af1e88b58bbe82",
+      "sha256": "e0e22ebf9e0e7f49621e5f1fa970cdc3abeaeb3e17bd307b1f1fdcc8742e0771",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "5acdce896af6e8b916608d40e2b732c7832b1b8b210b00f901b4ae735fa6edab",
+        "key": "strava/v1/activities/12875386125/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12875386125/streams.json",
+        "sha256": "8bd5f24209ab494ae9e7544aaac419bf755c2fd9b0e9dd1bc4c0b9d15cb49d17"
+      }
+    },
+    "12883306478": {
+      "etag": "3f9db8ec454aa64c1bae1cb9a5597abd",
+      "sha256": "0d5f24912874cd18ea63da9080d68f9fa2d1bf2fdd58fd1985470700fd605065",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "4a080eff15c61d687fb04645f93e203c48cf09123bdc865fdd14a7167416da77",
+        "key": "strava/v1/activities/12883306478/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12883306478/streams.json",
+        "sha256": "044b91bd1b3d32227b4c2e80da472853b3b54d9dd6a33fab6cbe6212e75e70a3"
+      }
+    },
+    "12909918349": {
+      "etag": "8927aa2536ee1132a04f1b22660570c8",
+      "sha256": "3d0de76c833ce5261fea022713bc629582a9ee42d0910c6af5becf41177bbf13",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "444c9ee7b4f7adb22234d81f0e2a89bf5023a795faae47d3ea303524a0feff37",
+        "key": "strava/v1/activities/12909918349/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12909918349/streams.json",
+        "sha256": "09e00d61621ba8b003fa9fdcaefe6e3ba96e37ff071bb8043de8d12b0662807b"
+      }
+    },
+    "12910930354": {
+      "etag": "7eeb1d9004179bcd7045a8c6b3ac10aa",
+      "sha256": "8b2d3ec740575065f974d4b2d4a0c4986400ce5dfa9413d336de315a02ac8d74",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "30bd61323878d3ad128888bbca5c83c2117d7363fb3f7a4314b74f5da5e43231",
+        "key": "strava/v1/activities/12910930354/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/12910930354/streams.json",
+        "sha256": "183bcbe76fd4b657ce37a288fbf711cec78f9351a337e43f61499d7d518a8efa"
+      }
+    },
+    "13139523486": {
+      "etag": "b9c8e77cafaa38e2c1592879670adce7",
+      "sha256": "c9f7b1e0ae06ad2a1c17b1cd2fd024b4efd113b966ef0dff125e1ec04601c07d",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "9a9e5f0283baf1e9947a6880b27ae643b260bb95ecfd8e7a3c46302578d20f1a",
+        "key": "strava/v1/activities/13139523486/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13139523486/streams.json",
+        "sha256": "e4353960cfefa7cb4ea3d284ae137b9247f56785afacf6168b4f6606979bb3e4"
+      }
+    },
+    "13146885628": {
+      "etag": "4de9516e20e1a6c87d870fe0419540ae",
+      "sha256": "8499511fcff0dd2ce2267aa3c5f519305b59dd2141852c66469b4363be4916fd",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "3e02fadab18feef5a5d89c6c9252713c11fc5ab8855a8df5ce2003864f3fbe11",
+        "key": "strava/v1/activities/13146885628/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13146885628/streams.json",
+        "sha256": "11053d48194055e094fcbff3917f287381ba02aabff14e96708d5d6b75bcde7e"
+      }
+    },
+    "13152842593": {
+      "etag": "f7cc7cf06fbeb898b7ed7c054e29b0d2",
+      "sha256": "921720e3acb320c3b978c1bdf2d558793edb0128e7eb8a2d511a8468bd14bc79",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "ef504a3fdc914b8106259d2c223a7c36097b03ef6c45c9dba78748f82c238d51",
+        "key": "strava/v1/activities/13152842593/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13152842593/streams.json",
+        "sha256": "a8f0b27eccc576e726e0eb323ba9ddea986862180da8a62fbcf8bb52841f96f0"
+      }
+    },
+    "13165623192": {
+      "etag": "85a3c919f74c8301189033e8f6bc1c0e",
+      "sha256": "3ce4375d8026503c45cec08db06114935a971222810e7fd4374c5450159de92a",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "ad79e18e78d183b69100520b854ecfa971f2f523c6b8d7e7f8439b23457fc862",
+        "key": "strava/v1/activities/13165623192/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13165623192/streams.json",
+        "sha256": "7b73d7e1e4a053638c630847990df45d77d863fbe20f79e64ed966ae1101cafa"
+      }
+    },
+    "13165770395": {
+      "etag": "6b2b1e453727acde7ba8ed2e8bfca16a",
+      "sha256": "4f72dd2fe9e1087d68ca36eaa720b91b2cecf8d9985beedc4b8a555453e0d794",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "82250e0080b26be18fc8b47e6ae4e2401d72bec639275dcd227f13dcbe607968",
+        "key": "strava/v1/activities/13165770395/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13165770395/streams.json",
+        "sha256": "bddb4427d51ee58e4d9c810b9f9a50662ce30dff5c1e89278a5e471a27dbf261"
+      }
+    },
+    "13172109696": {
+      "etag": "082aa5abb6c7d7fcfc64ccd1a1d474a3",
+      "sha256": "d2f0d10ef5181ee0efca00ea3538fb0a5766b739fb6839e7d6ffc79906baa130",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "41587169a4323606562bb50b80281c9ee1837dd5725cacc24a3ab59aa184ea84",
+        "key": "strava/v1/activities/13172109696/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13172109696/streams.json",
+        "sha256": "cff2fb5de8e72148ec8844c1ec01b8047d65eba70002e17035f572d90d1ae590"
+      }
+    },
+    "13178580510": {
+      "etag": "33ba68e12ed1548505690571fc7d5a28",
+      "sha256": "803c11f8e45f9c668a76835dde1e45889583d55d1ad899fde9aa87526ec35383",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "e9eff077b15446f75df53de6783cb17e6bfc36122783c5c20ac4db0068520f6c",
+        "key": "strava/v1/activities/13178580510/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13178580510/streams.json",
+        "sha256": "9c2e2cc8c095e7fa4c90a194317248c231bf965044bb728714630ca0044a02e5"
+      }
+    },
+    "13185179852": {
+      "etag": "efe4c156f2b05f8e96e3f0170cc367ba",
+      "sha256": "e311a2a345c5ad0d44852b931e76599ba0d6fcf76dc17ea90735197cc3bb292a",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "533bec4fe47c064f3aec429b0e64d8f5df866a4588066a3b7b9208460478ce20",
+        "key": "strava/v1/activities/13185179852/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13185179852/streams.json",
+        "sha256": "a41bd9512047dd12d9f4f8b80e54b6c8408425c2ac7d2bbbb48bed2dc70649b9"
+      }
+    },
+    "13220648505": {
+      "etag": "3be12517ea05475edcef2e7c74500217",
+      "sha256": "06ef17fd06c90352a8449deec3d259319ea565dd1f29051fa40ce6638c4d41c0",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "b8ae8fa489ea8dc29ca26305087ca54f14c57b4f02bbf7b1108aca2daba1b2c5",
+        "key": "strava/v1/activities/13220648505/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13220648505/streams.json",
+        "sha256": "1d554f181117f6966558a4fdd4d8938036313af8b425423c460bc762714f5e81"
+      }
+    },
+    "13228131962": {
+      "etag": "c10eb218a2feb9c67138075cd73fb61a",
+      "sha256": "20ea6a53e9373322f852a51a1c381680b3f74762a4905b4ae61c12bf2c77ddb8",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "ddd1c36581ebc14ecf6ca5dbd6f6488ff0127a7813fb7f8111fd05dcfa925a85",
+        "key": "strava/v1/activities/13228131962/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13228131962/streams.json",
+        "sha256": "f82cd54eab647a62e7015d0464cd039087c9b74fa9f94a40976fc788ec41cacb"
+      }
+    },
+    "13236012317": {
+      "etag": "81901dd76c400c701325dcaf01ec74d2",
+      "sha256": "3f873224bf91e79a3a0cf8c37350f2d7c51595715fc950940dd90d4e5a1a8496",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "dd3fcb399856cc46789023983f5678be08a4e850ee78ec9748a8c2afd1d40b10",
+        "key": "strava/v1/activities/13236012317/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13236012317/streams.json",
+        "sha256": "8edd5fbd30d40f0c5bdf33543df5c418ddcd2d66adc0c8437d765e3913a6bf5a"
+      }
+    },
+    "13243307385": {
+      "etag": "4d4efc3ae4e16186d2e71f6ed43a3c3a",
+      "sha256": "abe6f2032d11ee8144bc2204771f884e2b02f11c84265adb77b91f59cb344384",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "a8bb8d73729043431e9a3be951a30cfabc08a9fe974c4305b7f67a5c3caee335",
+        "key": "strava/v1/activities/13243307385/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13243307385/streams.json",
+        "sha256": "755e8b571bb9384a42a09a1d69b5c1596f6d6d54206f1408f4021fe8d3ffeeae"
+      }
+    },
+    "13260413520": {
+      "etag": "bdbdb33a4dd423f767897edcce2029a7",
+      "sha256": "a0028f04742fad7c3b54bd1cc66f31d47d173c6673b2af831abc194a205291ff",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "ead88e623a1379f2a86be1fdfb736e2bd81317b12c94fa9a6e2f6671ae824bcd",
+        "key": "strava/v1/activities/13260413520/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13260413520/streams.json",
+        "sha256": "02644f3343c6c31ff39b1425dd1adaddb7cf822183ba3b4cc8a6e9b30385348f"
+      }
+    },
+    "13260479565": {
+      "etag": "22ca7f5c3e562a134bcf9fa277e359a5",
+      "sha256": "bffae5110cb42c7f4ce56f3f3867cbdbcdce963a1cd71d615a002473fef18ffd",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "36d03134d171daafcbe1d041e0524b348daaafaa5038c0b943415c8844e4ca79",
+        "key": "strava/v1/activities/13260479565/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13260479565/streams.json",
+        "sha256": "69bba14d8b866367809148388a2c8f1ebaea6c5851463d95387fe3f86fcc6121"
+      }
+    },
+    "13271631229": {
+      "etag": "c07bad7d87a33c2aeba69e174302f943",
+      "sha256": "67e449c0a88b8bac24c7216d49f38bc791f88d9c89006ffa0a5358a05a6ea1ce",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "8fcdd8a2f65e9d90f8a3b3e5ee638a66aa9aa5823c9161f67a755a544bef4c96",
+        "key": "strava/v1/activities/13271631229/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13271631229/streams.json",
+        "sha256": "7bdf796c949b358ab0688071ea86a8baa48bd46f09f7ff01a667099db1b33e12"
+      }
+    },
+    "13281449959": {
+      "etag": "77e4349b7fb3502e42193fcb84416f70",
+      "sha256": "102e5db131a481900b33e555f777ac89a98d478dc2587b52487c374934da2c99",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "bca8f4ce2cb9439246ee86a6cba0778c962824537c4fc12920d37b893c6bf920",
+        "key": "strava/v1/activities/13281449959/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13281449959/streams.json",
+        "sha256": "19fc4fce898787e602d716e0e5d04bd9841afc90689fbe9ee518c25c8e2c58a9"
+      }
+    },
+    "13286916973": {
+      "etag": "c74c7b95a88af195460d00f4e0b9ef4c",
+      "sha256": "ab9b0b26051e4ac0f0dbeec550e8c5eaddc591991dcb949ae95f360f346954b9",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "623821a8175e35f2df81de76efc4ced489f8b5f114f68627caed43cd445b20b0",
+        "key": "strava/v1/activities/13286916973/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13286916973/streams.json",
+        "sha256": "c4d9ab7927557e4d26553a484331330e2ee7f8bba6b3416203eab20429f77674"
+      }
+    },
+    "13419986641": {
+      "etag": "25b0801c4693c749240ab8e662ab3ce7",
+      "sha256": "dc648b4b94f30d45131046002be8db499468822dfa57dcd6378c7d7efa011a90",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "28c9913d44d4ef3fe098dfe885400492719cf9e40ea61b5afe77768412befa42",
+        "key": "strava/v1/activities/13419986641/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13419986641/streams.json",
+        "sha256": "9e017e108098286159e92bc791f4fdb155b309840e079b141739fe39505f6663"
+      }
+    },
+    "13420038313": {
+      "etag": "6935b498ea300240201f2483cc326804",
+      "sha256": "2d7acbc84c447b59e1299fec58ca5566b13512b0a6e4a8d7b19fcec8a9be7cbc",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "a9de514d5b26871efdf5aca2805719943d304fc4b223892548bd2be8f115a283",
+        "key": "strava/v1/activities/13420038313/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13420038313/streams.json",
+        "sha256": "76dedb6b4b2a445e3870a58097445674ac15f941d95e1a7db2f013ab9470be35"
+      }
+    },
+    "13428861935": {
+      "etag": "ac9b8c89e4b51d166f1f6170d4ece56e",
+      "sha256": "fa270b3104c72fe016db3f5eada662d224e59fe22153db579ac1bc738bb35a39",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "f375fda7148409dc9ac670c3f63ffd39782a0a5a20eb1f956568bc6928d510b3",
+        "key": "strava/v1/activities/13428861935/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13428861935/streams.json",
+        "sha256": "adb6d138132b3abdd7d6dabd2ba3ecd1520158045473d4701a9d51bdee4682e8"
+      }
+    },
+    "13481565155": {
+      "etag": "bc76a894881477d9a5626ac4aa2ef129",
+      "sha256": "2345327e68fb2417b93f4fbe70625996afed62c03d1b01fc902ab4bc03efba99",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "8e310d02ea015ce2889baf37db49a3eacffc37eef0e18f92e09bd19892f63f4e",
+        "key": "strava/v1/activities/13481565155/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13481565155/streams.json",
+        "sha256": "51ab79f5d897e7d3904d03f7766dbd60fdc7872157eb82055258f5ecbdb5ac3c"
+      }
+    },
+    "13481668506": {
+      "etag": "41a55aacb5fa6bb684dea22dd1563f53",
+      "sha256": "6290959f5894663cb990252cd70fb114639abb7d6e8e49ab2bed4df845594cb6",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "e301073f6bdb0fc8fda26510f6f4426fbea9cdf8c9b0827dc4eeef43978e55bf",
+        "key": "strava/v1/activities/13481668506/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13481668506/streams.json",
+        "sha256": "df640205558943f654b7993a70bbaa08706676a77c8a8cc0886d1edd1399d5be"
+      }
+    },
+    "13525278477": {
+      "etag": "78bfa966e6bd728852809a76a5773e43",
+      "sha256": "44eb7913f757d8b90f7f86e0abd2cf1d20259fcbe5cfec1523730533c34e1efb",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "edbd4565e12a3acca112711e15f5b3153e3b555df366f00815e5ef2895639b75",
+        "key": "strava/v1/activities/13525278477/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13525278477/streams.json",
+        "sha256": "d2001c1292259d1bfd9e8a042ee59b24577699442741e4fe26fb37a811e9c229"
+      }
+    },
+    "13659902262": {
+      "etag": "67584de2c28177c3800c90bf6c411815",
+      "sha256": "56605ebd871d759f48f27dd06cb31cddb872f70281ebc01f794c2209b26e3b7c",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "75330e1ad1c5bf6e3e8317361ccae80b6435facf7a15f771304fe719d8ace7d3",
+        "key": "strava/v1/activities/13659902262/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13659902262/streams.json",
+        "sha256": "af18695a572a852839af327c4aff711ec5bfc9958c2ce6b88a509b8cbe0671cf"
+      }
+    },
+    "13660049461": {
+      "etag": "c3cecf2c3261d8407b40f203b4fdb031",
+      "sha256": "de232c3a3f1469ac3f34ef679c73a66ae55ce93f88868a7090297e21667e0f62",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "44760b3b61dda89534e8d6bb1c43037bb8a8ddda52444733bd155e5263700b44",
+        "key": "strava/v1/activities/13660049461/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13660049461/streams.json",
+        "sha256": "e121ecb017deccf022a203e49c666ee0d745e588f78765d45affe646437b9536"
+      }
+    },
+    "13715388144": {
+      "etag": "287a59b3853497ac178b479f8b06719b",
+      "sha256": "6b8a42ca058b336f934d2e52554b75e8b171a9238d0d08dd583a3d8433869e94",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "563cb3ad5844ae6df4d1dfde80d41cedc11506e517f522b629d08d16777ae41b",
+        "key": "strava/v1/activities/13715388144/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13715388144/streams.json",
+        "sha256": "0a6a8b4e8e2ee159108c6d0a06179b229df9c667a1c95fe0a5710dd2982e6436"
+      }
+    },
+    "13734260821": {
+      "etag": "f056e5290e61887ee41570e403572055",
+      "sha256": "980c41a9be83f950db91e05b1abc63bd8d8e0c67a032a55f1c78a6f2fb41ceec",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "de0b52702c32cca9f9aa790e213d0943246b648d42e3fa6f75aad91e4bf34b87",
+        "key": "strava/v1/activities/13734260821/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13734260821/streams.json",
+        "sha256": "a509368c4002bfaef6a900f431b41363a49c614db8048ed32f51556589e9249c"
+      }
+    },
+    "13759434185": {
+      "etag": "49ed930f7f79d81f4515eeb04969c067",
+      "sha256": "ae9a8f2ac890caf0b99000566bccdf91fec952183cd148b157c0b58e054fcbc4",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "7db3a4e9af0fe24cc899c477b94d8764c6a48d51f5b08d07b9ea741e364dd867",
+        "key": "strava/v1/activities/13759434185/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13759434185/streams.json",
+        "sha256": "a2c587a2eb2d121745006099b4cc5209f4d852514cc67e7bd5727388f14cb385"
+      }
+    },
+    "13795940042": {
+      "etag": "be6cc5252bb86a2c73a30c5397516c4c",
+      "sha256": "2e58b2c580b982076d9277779ffcabbc068221dca2ec67332a3703dd8f81e6d4",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "a59e876fd4f83ed52397fff613d9853eaa3ca4b0dad309be4a0e1d011575c632",
+        "key": "strava/v1/activities/13795940042/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13795940042/streams.json",
+        "sha256": "e1aa290ffb5e59f987cba2739a5f385fc196fdff9a19d9f4ed197464ded3a5eb"
+      }
+    },
+    "13820135940": {
+      "etag": "4252ffbef984b0eae30ff5ec4f2e8938",
+      "sha256": "d608821d9015d9f704a0d21e5ef6aedca2705681bff3a786314efd8c89d2a501",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "66bbc9a6af48beff6de1abb3a74973d740fcb23eb270d1c7b1bb44ace98d57a3",
+        "key": "strava/v1/activities/13820135940/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13820135940/streams.json",
+        "sha256": "db6a3bc3e8949a084b41b7d843000f554b28218ea6b63fc685dc328b0ea030f3"
+      }
+    },
+    "13839563779": {
+      "etag": "6ca0431cbda5bed462e1d6d3f4c10731",
+      "sha256": "d2c057c65b08ca89cf9552b7d93439cf4466c8fb8d8a8fa92032bd18663dd80c",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "92d74313a5766c739eaed6467f3206f8bffe9686c585e7551f127ae573f43469",
+        "key": "strava/v1/activities/13839563779/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13839563779/streams.json",
+        "sha256": "5fdc6c06eea35c68ad91a05be67dd7a811e6fa62ff9704f9aa6a1c76dc33e28e"
+      }
+    },
+    "13852298497": {
+      "etag": "33216ad539589b5dc39575217ae19a4d",
+      "sha256": "c93112eb8391ee1275456b11b84943a4b646eb3f7174c02fe2e624025e4ce9bd",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "0d9852f450e07e3c096377e2a3dafbc290161595ea45e276d7f0ebb635d9a2ad",
+        "key": "strava/v1/activities/13852298497/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13852298497/streams.json",
+        "sha256": "74c9f62519ad75dcf2439f43965e477038bf3daaa3bdebe41142b7cb5e8305e9"
+      }
+    },
+    "13852298498": {
+      "etag": "eae7011d0d3a22006172fbba15223f83",
+      "sha256": "c7bd51b5abd01204e6eef681a399c273853891f3032011a76f6be6fbf3b3e6e8",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "9bfa1b984b70e3998bec6112271b50aa2d1a01af4760a0cab1b2e5e3bdcaa45e",
+        "key": "strava/v1/activities/13852298498/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13852298498/streams.json",
+        "sha256": "2b37b13c200288b5d76bf666456d449ccbc6688dc98ec51faad3f739c3e84e99"
+      }
+    },
+    "13907025984": {
+      "etag": "24219bf2aa317582320b7c26d53e27e4",
+      "sha256": "d277fe3141725083581def35026d7596d3f57e906a7e278a6c33c67d299d066a",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "ce3ad8b6fe7581be4d3aea21505d760de21ddc788ddfc91f28c53e4709cbfc3d",
+        "key": "strava/v1/activities/13907025984/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13907025984/streams.json",
+        "sha256": "7dc17662591a7e11bc47b577ad9772be2b7d3f8902b211fcb202b4061a506921"
+      }
+    },
+    "13907346448": {
+      "etag": "41f040095d8419808f468be5b4af60e7",
+      "sha256": "4f797240c761ec3b442c69d76b19dad6bb668bcd4e1526924f44074854627981",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "49b1a8d134ef90adeefa7ccf9d4dc661d25b6a65f0791c81d75765d3f04ee1f4",
+        "key": "strava/v1/activities/13907346448/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13907346448/streams.json",
+        "sha256": "ac06cad12a8d72b04aca6e5b3ec1d3b98a01a741a376f87fa64a06fb525cccf7"
+      }
+    },
+    "13913193283": {
+      "etag": "1e1c32345f7a7a1efb57a5f58038a5a6",
+      "sha256": "657dba161b29809d38eb98ca5b9672308ef1487e6475d33ca9dfaeb2569e83dd",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "aefef1490f0cb96c386f46124292d35f057824181827eb2be3ef93d2ea3b8db9",
+        "key": "strava/v1/activities/13913193283/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13913193283/streams.json",
+        "sha256": "772f492e7d7ec3dc3dc7f9166c963b49466974e8cb5bb7050e0e2cf8e9c54cb5"
+      }
+    },
+    "13926457463": {
+      "etag": "3747b22b70c8e4fa1e71762056a12b99",
+      "sha256": "7103e1375de906d210d7daae990e6d9f5e4e7b7ff1b821778abc845a7c243ba8",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "d0303c1b5c5079a856ae0832651a8827f83c03183b9a93e25cd6c8502026347f",
+        "key": "strava/v1/activities/13926457463/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13926457463/streams.json",
+        "sha256": "8bfd65626c702521fefd49db0aff20f14ec15dd0d5fea339947724571e527d0b"
+      }
+    },
+    "13950715870": {
+      "etag": "caec6d2d09908da607c3c2fdf145465e",
+      "sha256": "2b1eb1277e591c23ef883cab9fbf055b107ba1c81349cf3ce63d31a760dde980",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "51e47323bf51e56d20aaa0e79cd0d1f9ea20f87c7b7a9d7cbe7c8dfda699e172",
+        "key": "strava/v1/activities/13950715870/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13950715870/streams.json",
+        "sha256": "ba1bacf292506d782a2477ab8971b6636eb056d54a4fc17d2e7edbb38e22a225"
+      }
+    },
+    "13959362880": {
+      "etag": "ff5c60ae8dbf779b592e06ab37ba256d",
+      "sha256": "ffaa9370e273513bf59c9103d58190a0bb2defc7a1892bc1a3d9e2b08b2e16a2",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "cdc3865790e25eaa8dccd916910c8bfd62bef2ed5c44806b70f816e1e691bbd4",
+        "key": "strava/v1/activities/13959362880/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13959362880/streams.json",
+        "sha256": "978118450de7c0490a12e36e8737e6ca02e8fd8569b7ad1d5847461d170a8525"
+      }
+    },
+    "13992087126": {
+      "etag": "6ca685e26340af2a8b3c9fe21aad76f0",
+      "sha256": "eafe4854026ff38957510f4794384a574a4bcf67afb07e7f9b57744ddcc1bf6a",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "86ebb2b747f99c38bdd16d6b22b0efbd762f0b0eec4e6106bf732e21f96414a0",
+        "key": "strava/v1/activities/13992087126/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13992087126/streams.json",
+        "sha256": "1bde2aed5f9f8c4d3650aeca9305dfaa577b3515b03e287e93513cb94b25b0aa"
+      }
+    },
+    "13992385177": {
+      "etag": "3646990029894a3b010ffe44a9f02686",
+      "sha256": "993317934d5dd22f5047394dab279b3ed7c7a42abdf0057f74f274d95dedc5fa",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "5ecd0fc510a9754ad7b8dfd1347cc5acb3321ba3001699dadcd29a222a62c89f",
+        "key": "strava/v1/activities/13992385177/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/13992385177/streams.json",
+        "sha256": "20eaa301c4cb98abbe86dd4b3845e8160bbec100bbdd50a3062de47b42336918"
+      }
+    },
+    "14047907087": {
+      "etag": "2caa4b01ff03a4a516c25b38fb5cdd26",
+      "sha256": "5a32e07fb307ab2917deb3f418f547b44e84aed84d9b4455aec98ab9e006c960",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "a221995d567b6991da2383f9a1c4da96481c431426e68b64d25f975c3cfd62d5",
+        "key": "strava/v1/activities/14047907087/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14047907087/streams.json",
+        "sha256": "e71375381877b3b58f3569b8eb2a40d87c6744a796171fd3f59cbdf7a9f83996"
+      }
+    },
+    "14106598166": {
+      "etag": "a15683cb95f0ff0c70d6a34b9f420e0a",
+      "sha256": "256ddd3e508544ab2f06fd283046743f2c8a1a325b238622d1792aba82df4b81",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "5c05cb6a632d1e55c001528179be9b2c0219541950e60aa445b1cd92b3c3cbf0",
+        "key": "strava/v1/activities/14106598166/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14106598166/streams.json",
+        "sha256": "8738e0cbbdf4850dbbc357ffb0b40e1ff3aef5a10eae6f43c7ed1fdeec2b1905"
+      }
+    },
+    "14126878645": {
+      "etag": "58e4edadfcc6b826d66d75612e9800ce",
+      "sha256": "3c4e7905a85ba39872a7059a8c39d92e667a3d7e3a8fa2df5f6600777207c907",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "943eabf14c2525eb26d900445ab29186aed65d8387ed474c731e44cccac086eb",
+        "key": "strava/v1/activities/14126878645/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14126878645/streams.json",
+        "sha256": "02a506d951c95a8f5ca3d8ad83519db690f3623a958d60b3f239f7d457dadd19"
+      }
+    },
+    "14164082862": {
+      "etag": "bf271f5dd08c8cb46af6cccab5fdfad3",
+      "sha256": "7a373f24cfc33d8e8d9c3ca17d7d69dd243679b51f32400cbb34ce030fa10102",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "c7ea4ad26fbf0f9638f21743494ba34a45cbfe899c0faf9e1cc14b1159c08d28",
+        "key": "strava/v1/activities/14164082862/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14164082862/streams.json",
+        "sha256": "39e56ef508e4a25cdc4178cd99edc6ae58687c409492bba276f8760520f19b9b"
+      }
+    },
+    "14262205043": {
+      "etag": "e4c7373a6166108ea4ff216fc16bd702",
+      "sha256": "c8a96f093d600fddf7eb606210f946696740c1d1b65e320b897dc6403e2b206f",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "f37857bada946fcda17d40b53b215e7a911b2e7a80413052dc40ceee53ae2d25",
+        "key": "strava/v1/activities/14262205043/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14262205043/streams.json",
+        "sha256": "522c1029a750ab8aa1e586fea14f331fbf3b1fd5f1f3077dd8a9771e92e24e98"
+      }
+    },
+    "14297347062": {
+      "etag": "9d421cb6274e4cc4a1846576f4e39f7e",
+      "sha256": "bd974fc4ba7574b2991cd99c8e0aa1b1e487e862fdfbdbe64e83266a623bb1fc",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "d1fe4fecdcd4ddb2cd59843cc75012a8df4123686130425cea6688ec09f5c252",
+        "key": "strava/v1/activities/14297347062/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14297347062/streams.json",
+        "sha256": "7d8187fe37d832826f9ddc54a741af64b77ae941765a804542d20811801a3895"
+      }
+    },
+    "14340409676": {
+      "etag": "d9a37050abff546d15e27c49c9d062c2",
+      "sha256": "f0b67e31772a32447db515228c9ed16b5a300102846ee21711fe681addb48555",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "c210319d6f0c133ff80b18288b0d4486daadde1bb9735830cc3832099c75080a",
+        "key": "strava/v1/activities/14340409676/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14340409676/streams.json",
+        "sha256": "0caadf61adffc4d74bb76e2f5bd9c5b2f69f85234f8e846b191e2d6d83d39ad8"
+      }
+    },
+    "14359738854": {
+      "etag": "86b34f8d26f5c7d2ce1eba8d2006a2b3",
+      "sha256": "e5dd8237f61eacd330d7484e0ece5bd6d4cc2cbc8a2e3a955d2cb51f2214ed60",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "9cff5ee603cad2a485bdb4a61fa8ac38aef75b2ceb114725605e17550071ab1a",
+        "key": "strava/v1/activities/14359738854/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14359738854/streams.json",
+        "sha256": "51d1b396688aca97983e750a3a16b756f2dca11343a044cc7405abfef3200582"
+      }
+    },
+    "14360073696": {
+      "etag": "e91bf893b0543716c9ccaccc1c89d933",
+      "sha256": "3555b76eb285bd7d0f3c93c2b058b69d52af129faa2701fefa77232d3c9336e5",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "97f4eebf3bf603f0381481b640ff2f3b0a0ae67b8bca7f9a0fa7c2a0362060a9",
+        "key": "strava/v1/activities/14360073696/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14360073696/streams.json",
+        "sha256": "cbaebe3b1e09ae30e3617889ed789f90d651a8c26a904fc3d25aea47c238fcfe"
+      }
+    },
+    "14385006849": {
+      "etag": "c1d9204e61dd817315f499951c367fcf",
+      "sha256": "acce94295e4bf2ce2a1651b35444e47b9aa088041abb98d5d2d579dc87860965",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "e07d408a8219fa210714cd68c7afb6891f5f4c3d0c27f642c152a1113214ea14",
+        "key": "strava/v1/activities/14385006849/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14385006849/streams.json",
+        "sha256": "2ba2bbc5403a0bd86fb92bb34dcc12c1fb5f8f86eb6f265c8d5871bdf7ec1bc4"
+      }
+    },
+    "14405251522": {
+      "etag": "eabdc59f1a4215b5a679546d71c8aa4b",
+      "sha256": "611a8308c4aa30b2bff722f473888c73cb2cda75309aa6fe5d7ee0c101b19a92",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "f9bb582a016b674dbd679aa3557ec3d564df51199aae03628e0d851e4553b895",
+        "key": "strava/v1/activities/14405251522/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14405251522/streams.json",
+        "sha256": "41f08203f7b220c2c72a2cc49c1090438605bd0d1c5c7e0bfc21baeffb48bde4"
+      }
+    },
+    "14456351883": {
+      "etag": "c8d264bbb7d496328dc8c0bd14906a6b",
+      "sha256": "fdee8f6ffb9d350c887c69c4f3ca9e2ae32eedc54de4d1098e8fc9656ad23b3e",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "a4bdb5997577fb451b9c67f33e8f54ea9bf8e3a89710e9072fda27545eac9495",
+        "key": "strava/v1/activities/14456351883/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14456351883/streams.json",
+        "sha256": "d7fb93b4728d03e8722b8783bff3ef96011d7052df7eafec733a9c43bf4f1796"
+      }
+    },
+    "14504509862": {
+      "etag": "57d38c1d388569bc3caee3d6ae57b3c6",
+      "sha256": "3996dc9713923d0d1a50d4dfddcc051ccf16399f63fb638c0a8c5bf3443f7c79",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "91c0cdd2b8e66022ace960258dd5920145c7d8e2d69313d0fc54e96086b97264",
+        "key": "strava/v1/activities/14504509862/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14504509862/streams.json",
+        "sha256": "196b7f34b3e1d4db1e765463cd47e0057de735465f332acbb3dd9901bacb630d"
+      }
+    },
+    "14509632840": {
+      "etag": "67710dfb43013e1c045970dfe65555b1",
+      "sha256": "6fd62aa1c294b12488e769eaeb34814292b6874475dffafa73b65311b3bf8ecf",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "e09e28ae2444cd4377e81f9e5eec2ac3174db08d2cc4bc585458ce4281e8db98",
+        "key": "strava/v1/activities/14509632840/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14509632840/streams.json",
+        "sha256": "d665751ff79214ad8cb55e6e2c007dec4371515467b671a107e430d7be9975e9"
+      }
+    },
+    "14556352018": {
+      "etag": "3b961c8dad2a36ac897ade98a895fb40",
+      "sha256": "741251bd03e4a49c3d171dac910700da2b6837e7bada2570717d71bda1d1cf71",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "8cd65f8f9d9c4356f048bb9993ddf8792a6db4f7e9a7dc5b79abba31e5a16777",
+        "key": "strava/v1/activities/14556352018/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14556352018/streams.json",
+        "sha256": "a962ebb78b314a38c928298857b7e3c0f8765229a997bc7c1ae756f466f0d5a3"
+      }
+    },
+    "14599771213": {
+      "etag": "9bbda4c3ce0346d80b839c20184c0546",
+      "sha256": "45a83b5afd8c604f8979c138743053f53c648dc9fcd9c049f9e6628dff2a7ffb",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "c0f607b87417af3eaa79ae7a20dbe83c251c35b0c66a0c651d0e41933b0df8a5",
+        "key": "strava/v1/activities/14599771213/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14599771213/streams.json",
+        "sha256": "d9b31b319941f893e50b9637fa685fd50196aba460683792ea076d8ff4a5f1ee"
+      }
+    },
+    "14621124536": {
+      "etag": "c827944d1ee7b12fdc8ed66a0b5d9dfe",
+      "sha256": "a325567f7a48e161216048b34d2839c58f16b728bb85d07dc513e18089b429e2",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "805577d9883ea17a18712c144f51f151cf2a8180fe25c3e8b57e456ad5be3b28",
+        "key": "strava/v1/activities/14621124536/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14621124536/streams.json",
+        "sha256": "931b3b961d872df63d3eaf0cf65259153177d40f6e9e6683c4aec7955ff8faa5"
+      }
+    },
+    "14641681616": {
+      "etag": "16dc629cd827a5a1c1ff9742d5f87a37",
+      "sha256": "1945e290ddd504726eb3c3aa6d4aa97cc5e54d98e85dc86f36effc72be42e9e3",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "3956a8d6308cf3e3653872fe20197fe60a809ca4876a1f04527bbe8e7b8a6824",
+        "key": "strava/v1/activities/14641681616/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14641681616/streams.json",
+        "sha256": "b1855a87490b7e7657154f6350900b88519491eed1e148a06805a2bd30872146"
+      }
+    },
+    "14683077760": {
+      "etag": "0632f9c00fdfd1dde377c397b5d53fd6",
+      "sha256": "4065e46bed8752ccf4697fedc6c5cbafea9349dbc7b4f5c4b9a174198b1e3ffb",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "06e93d31c2a921301926fe14dfcb0524e8bb37d9e2d5278d2a5870fcb73e1ddc",
+        "key": "strava/v1/activities/14683077760/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14683077760/streams.json",
+        "sha256": "0260c318642df4034ecf5a8ca6371bbb5d972cf16448da30cf526ad46641e217"
+      }
+    },
+    "14693848000": {
+      "etag": "07d3601c167307d66636b9c57ede6bcd",
+      "sha256": "0bd4f0b825c61f9638b85e7a88916fec8a05bae4ce65f0c367fa55de30f304c7",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "9ecf8ee5abca726209a9317ba5702c11a77747b6af5633174684fd43ba8e48b2",
+        "key": "strava/v1/activities/14693848000/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14693848000/streams.json",
+        "sha256": "b1a7a7b40f452eed4b17ab82a63f27a0f30023a7dba95d87972dbdd711b0c63e"
+      }
+    },
+    "14719305658": {
+      "etag": "5690e4cd731340daf5aeaeb7cc4572c4",
+      "sha256": "9811602692319c02f3d8f788c8f31d55d7e6be9884528eec5141c368cce201fe",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "2414c865e785be1c90de510523850fe285df7389da7534059e607e1d122e5f6a",
+        "key": "strava/v1/activities/14719305658/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14719305658/streams.json",
+        "sha256": "e2d764e72f764c6d40efe52543dcf8cdafb04190b1c50ec264862235dcc567a9"
+      }
+    },
+    "14744400317": {
+      "etag": "891a6a0bc7c7f7b117cc4057fedf8372",
+      "sha256": "aeb6ac988de06e62aae37bcf67e1157927d6bc4829b94ee351147dc54610aca6",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "95b5f2658ff2928000d7cf894b16dd44ca050ad08d5f91ccaa50a5c09121d777",
+        "key": "strava/v1/activities/14744400317/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14744400317/streams.json",
+        "sha256": "b1f1245ade3d808abd70f3b3156a96665852c13011e1ecda66710f8c025008c2"
+      }
+    },
+    "14776452314": {
+      "etag": "65c0d8c2de9e417030e775a28cce7f5c",
+      "sha256": "f34e2d9643c23a8777c64a442c4fca0a8a24ed235fce5cc5fe3f814d1fa43fb9",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "ad5f7b7269460ff25b15691165fdf653a2199e51bfd608798c387bd6204c77c3",
+        "key": "strava/v1/activities/14776452314/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14776452314/streams.json",
+        "sha256": "6451ab30d2cc521dc580f137718c622c904169c80e6bb81923170786913c8aa5"
+      }
+    },
+    "14799357291": {
+      "etag": "b928365b8efcdfe67a5f46c7b05486d4",
+      "sha256": "9853e40d95f01fba590c5f0a55ac321a6883a6767bcedb6efe7105a178676af1",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "24350f2cfda2e19c2b5a9fc63649ebc581a32d86183a8e4fc2d466eedc342d44",
+        "key": "strava/v1/activities/14799357291/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14799357291/streams.json",
+        "sha256": "f075bc95ce8b0bc370e3360edb502581bba4f313992f5e861b5ddaee01bbb5c2"
+      }
+    },
+    "14817186059": {
+      "etag": "54e02c4123b82bce7ad091928e31f7b9",
+      "sha256": "34b06705203e510bf11de1d1701b4b9b4d48ba0d97d81276872767b2815f8741",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "aea96bb87907507a8aa5547a391e4865bbdc75b7f7f80b20735d499ae1c91629",
+        "key": "strava/v1/activities/14817186059/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14817186059/streams.json",
+        "sha256": "a880c16412101b471c00251a40e0365dae6dd0ccdcaa4df2df0ae4fcb370167b"
+      }
+    },
+    "14838993534": {
+      "etag": "07e9226077fdc08340883d245a776d6d",
+      "sha256": "ddc43121583d788b8b741761cdd332878491b6c5503542f3c57665f816017ac4",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "d5a786926ffb6858302d71311daa38249a2aab7bfca52e2b480787e7c8b3a81e",
+        "key": "strava/v1/activities/14838993534/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14838993534/streams.json",
+        "sha256": "c77cd5352bd0ca5e9a4c1ad3cd96a93be7dfc79cb57d8c6498a0a46e263c904d"
+      }
+    },
+    "14900395462": {
+      "etag": "9023290cb00c7d554118cce433321079",
+      "sha256": "0faebf6ff9ea8280a1ba8760c545c897ceb2f6f30e269e5863a8db50b10ff94b",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "8d2c52e5a7199bc46d5b87aaa6cf34273cb656253eb03934f9f95772a9066e23",
+        "key": "strava/v1/activities/14900395462/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14900395462/streams.json",
+        "sha256": "379d4f04e88a1c41e28f6c5990169b28ccaa27f24c41474abf982fb873a69fb0"
+      }
+    },
+    "14911355244": {
+      "etag": "a0313495fe117ee1d59f7d99b8fb7fec",
+      "sha256": "3fb88aacf07ec4a061fa3d70515d219d08c11a96d373dcaaaa0f535b08090721",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "edd50dd5bf055a2df25dbe2c07e262913a902949b8bad140a577f7e2d7bc172b",
+        "key": "strava/v1/activities/14911355244/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14911355244/streams.json",
+        "sha256": "6644c23dcb1eba80ab8b4fd7e3b7e23a983921d1c425df7e2de156c89fc35c82"
+      }
+    },
+    "14952433074": {
+      "etag": "5554df0b12a92c6c46fd357ca578ac58",
+      "sha256": "6df1cf4f70cc70a0ab52008f4e70382c080a6c4a5bcd7c1ff86075a7ce2e502e",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "ca82b63e21b4af532088d76799c033e8fe66cb5fa33fc189ccc329dad4f1bc99",
+        "key": "strava/v1/activities/14952433074/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14952433074/streams.json",
+        "sha256": "fd42a790f10679593a519c46c8d51c50722a876edc5e359eae8e1491c66e97dc"
+      }
+    },
+    "14953042451": {
+      "etag": "19781f13fb41c32350e114ee12917595",
+      "sha256": "5e8f9194c17681cef112fbb25bb99a7c58f88c7ccf0abf153daf1288d80ccd21",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "d919a6502dc4eb16c5f8b33ef88a102be7582c8098fc0a124499277299374d9c",
+        "key": "strava/v1/activities/14953042451/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14953042451/streams.json",
+        "sha256": "aa93d3c46cef1630b45061d0e8bdb7ee2e6ec8b71815b64af41e085618632a56"
+      }
+    },
+    "14992190815": {
+      "etag": "146dda77cf8c92043c0826b82b25ffb8",
+      "sha256": "f34af458094e49b4e31c9c6c96e2e7580594cd7dbb9c3c136a29233196241137",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "deb127751d77fc0235682697c4c7f4059922fad98d229b6026ce698503a8f336",
+        "key": "strava/v1/activities/14992190815/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/14992190815/streams.json",
+        "sha256": "ee96ec6f5818f4c0d090a5a2acdd774db708316392f5dca272432c397c6d4fa9"
+      }
+    },
+    "15007516095": {
+      "etag": "6f6a4baf34e7c94f0c9ac4460dadafef",
+      "sha256": "ed325cfded8e3a9580618b0f3348b26f78ae7edfe6084b9c1fcb2297faa0b7e4",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "da677edaaffb25814426a1ebafd4d1e6b2042aeaac7b3e1708f102e196a6bedc",
+        "key": "strava/v1/activities/15007516095/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15007516095/streams.json",
+        "sha256": "6a4aa295008e2e919eef5d062de6b5f56532bd79529a7b6f79b5812047f7cce2"
+      }
+    },
+    "15015492765": {
+      "etag": "d1129a0a86be235599dc38c2dfbec110",
+      "sha256": "e8b77f5ebbd5df4ced11bc79f0fa39b10cc479c332b1edd0764c498b0179c585",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "43f04bde6677caaceb38298ce634cc3f90b87f23d86b7a1e7120b0c0b8824b67",
+        "key": "strava/v1/activities/15015492765/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15015492765/streams.json",
+        "sha256": "17a2e18d89f255b29a1fc742ce91e76c51725bc11c6af0d7face706d856862d8"
+      }
+    },
+    "15035186455": {
+      "etag": "3b7b95412665c3c5c5aa67c340bb5bc5",
+      "sha256": "2e6166b9e5b7c8fdc755a4ccf847f83870c3a393f05f6bebed87317222919f04",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "827ee80548faac3a06159474a3a36fd874f200dc31d1ede1bab539df2c30b776",
+        "key": "strava/v1/activities/15035186455/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15035186455/streams.json",
+        "sha256": "a70c4f7cbcaf0144c2c6f0cd3f4ff588026e7b2c40635aaddc30bed1c5e02088"
+      }
+    },
+    "15075150021": {
+      "etag": "a33b756bdc166070d2053ab8591d9c42",
+      "sha256": "f8592f30470565c6d91a84272a3996f3f2dccc060bda29cceb172dc04f533e17",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "de848a523f201b3d67ea506c0788e2b6b39bdd83f27d6215b52ad9ae3427e505",
+        "key": "strava/v1/activities/15075150021/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15075150021/streams.json",
+        "sha256": "d9db1d4e7b1c0c9d6b0fa24aedd5f5d9742cc134901267adab9f186a31315786"
+      }
+    },
+    "15075298017": {
+      "etag": "e4a3c1c924b40e9f3c6b4c2586a2ff4f",
+      "sha256": "37c750261ad332c7ef66c6cef5531d6d96f51d60d8defc62bbc442ffb33e2a7e",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "89fa41909e1c4f031b5cf6699061e60058fac1df38095f03d048181f9efb4bca",
+        "key": "strava/v1/activities/15075298017/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15075298017/streams.json",
+        "sha256": "85e7ddd33baa2335db2206fca2c34d7d8b0f456d2e05e710f3e8035feb713acf"
+      }
+    },
+    "15209726245": {
+      "etag": "207d0ed7b146f387564c2ee128cf7079",
+      "sha256": "d811e882e2f785aac59bc673891de936fed6359d7302c5b9da3093ddd07dcfca",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "c9e7e687981facbf5efd47c7bf90993f553b4abed54519608b743db7aa2aea4a",
+        "key": "strava/v1/activities/15209726245/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15209726245/streams.json",
+        "sha256": "faa0cf812aa07ae04264826af0d17549093e16a4452ef35bb09fea9c87725374"
+      }
+    },
+    "15220047242": {
+      "etag": "32e20db4bc476ded6123dd2ae30d5add",
+      "sha256": "dcbec7d6e48e7c5d57b0c15b3a5a17d00f7800fae2781974cbb3808ac2ff3b7d",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "e1800158dcfe50c7c63a9fd69d7cbaf5d7e5ee558a9214d8ecf75783daf555af",
+        "key": "strava/v1/activities/15220047242/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15220047242/streams.json",
+        "sha256": "92cd4373af956e503a958bfc6434930ac02f420e8ca67c7687688e16bbdf827c"
+      }
+    },
+    "15226014340": {
+      "etag": "10a964e1b95ff083081719f86947336f",
+      "sha256": "9d487cf8cd5c1d97f82625d1b360e0e994c9888079bfe8b9b88051d88d3bea14",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "a2b9c076331a94587c53351ec221773432590670c6562f94d9662139fb17a400",
+        "key": "strava/v1/activities/15226014340/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15226014340/streams.json",
+        "sha256": "04d1a0ad87f4959f1bc5507abef9692ecf71abf4245c2458cb062636b3d2dd17"
+      }
+    },
+    "15263356258": {
+      "etag": "04d1cc95f06d1514932cd2faca7f4c3a",
+      "sha256": "f8be631bad4b17216bef20c36f30b48b9b06863a96ef0f91f321ebdcc98a2ad6",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "3bde0a14b386b8f7f0a8302d9e44cbd954470a02e28b61001179498546fd54f5",
+        "key": "strava/v1/activities/15263356258/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15263356258/streams.json",
+        "sha256": "49d4b6471e377e71dff47ad332c5b78ccf36f2a3c36c624f94b3c0f36777b259"
+      }
+    },
+    "15274402370": {
+      "etag": "04f65c6019253dcebc35355c82ee4659",
+      "sha256": "9da4e1b2aad4153b6675c4bc94d175b636c31a8a48c9ff9da4de3ab61130d5b2",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "fc5ddfbcef64e036399379e116c265e775e628f6d64785144e5fe4148fb015a0",
+        "key": "strava/v1/activities/15274402370/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15274402370/streams.json",
+        "sha256": "bc00c73c460230ab010d1cb29aae26b4dfdc9f3a24d7e9b359e8878f36a351ba"
+      }
+    },
+    "15297840087": {
+      "etag": "4f491fa6379488181238a2fa00e2d2b5",
+      "sha256": "875dac653b9f73d2d33f94f793753cbcbc0466f2e4591f5276bd852dfdf1cac1",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "1e907079d954d4bf60a7bb7f04c8910c9bbdcc78b423c30517e169233b0187fe",
+        "key": "strava/v1/activities/15297840087/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15297840087/streams.json",
+        "sha256": "8490cc8c9446e55a715d3215310f114a47ffad07065ef5eea7b4c6b74192969a"
+      }
+    },
+    "15340956112": {
+      "etag": "8bf103ebc50bf04e35dc34f0db8c2f08",
+      "sha256": "ce889ad78002fab806e1eb9739707d515431a36db58c0f952c0d2ed4e51ce549",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "3f7ff073459c425d26eef2094233afb0e02d97bd82b8d3045ec1b370e42294a6",
+        "key": "strava/v1/activities/15340956112/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15340956112/streams.json",
+        "sha256": "8a58f792669e7a93e7701db8a76c91fcd45acc4b720a9bac05ae5d97f285a15d"
+      }
+    },
+    "15347111585": {
+      "etag": "c1855142a80fccb860202d82e178bb93",
+      "sha256": "2df3ba03cc7464b88872b0b08488c21f54033dc6d1dd94b50316ce8d8fdb7eb9",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "c50d3723a70d19f21897e5b126640dcbfbda37ebd45246ba7e50731f90de539f",
+        "key": "strava/v1/activities/15347111585/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15347111585/streams.json",
+        "sha256": "9ff4e4f1beb6c478a9c1acfa11230baae2ebe2b2b2bd775679f63390ae621c8c"
+      }
+    },
+    "15362132367": {
+      "etag": "6b2aac5cbd5bcba94aaf1b19c7f94928",
+      "sha256": "37e98ce84d208af00200b5878061518a7463a2c090aaa1ef47de6aca8cb1cc14",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "38ffffe7c6a539b6dd691448c207a1c01de5cfe816be4a250f0091442d595ac7",
+        "key": "strava/v1/activities/15362132367/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15362132367/streams.json",
+        "sha256": "573fbeb8a9ca93466f0773eca0c9dc4dd1570dce8b29db03793ccd36d2c83856"
+      }
+    },
+    "15365791877": {
+      "etag": "e12108a9844c53776d5a608c491f2f17",
+      "sha256": "1b47a2e23abfa04f3da9ee8a4e382c1603510f394826a2bf581d6b744b966d9f",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "e1a58644772e0a36f3ba384090f20805b7b51850a01209b760d531c8dd747c3b",
+        "key": "strava/v1/activities/15365791877/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15365791877/streams.json",
+        "sha256": "e625a1c98abc9a0a2b813c88b76accbf6b1ca9140e3d54792eaa7dd582510fca"
+      }
+    },
+    "15387765629": {
+      "etag": "3d2584060385b1c767f7cfab84265162",
+      "sha256": "58f1f3e3e31ef9e78187e684955343cf0a10c709a4ee6bb6ae0a78eaba239525",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "26d90bc3a8537be65db0dc996be3e921e3e53701f8d2507ce8170f0e24e843ac",
+        "key": "strava/v1/activities/15387765629/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15387765629/streams.json",
+        "sha256": "0d3c5ba6dce51f9fb2a17c4bbcd53b964689c09eafa6b71a9da282ef0e729f90"
+      }
+    },
+    "15410426467": {
+      "etag": "2fb238ba8f875b6a392474873365d5c3",
+      "sha256": "5e0dfeaf9244aadd329f30b5defaa24ddc5ec5d1e8d2e11c4e7d154faf113434",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "f1f0bc57c65844c18977753488a52422f9bed5b93f1526fb6a0e643209cf944b",
+        "key": "strava/v1/activities/15410426467/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15410426467/streams.json",
+        "sha256": "4a9a01830532914907dd4e2a281277b448bcc9d2fdd13efe152049fbb968014c"
+      }
+    },
+    "15416838674": {
+      "etag": "9b7c78cc7f8d7b44f6781ce9d4fedb33",
+      "sha256": "d2368ee94e5d6a9de1e4291015e45c77aabb01c9688cac0d655262fadeb5c1cf",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "ccf7829dbacf847c66ce703edd6da0fb41ead88f8af11aaf2dbae439d82a52f3",
+        "key": "strava/v1/activities/15416838674/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15416838674/streams.json",
+        "sha256": "551a5b5d3061accda931652fa993b18b7224639a7ac17e3b5f6e916b3fdf32df"
+      }
+    },
+    "15416953309": {
+      "etag": "b7b8bafdd8baa1bba00860fbb54220c2",
+      "sha256": "8ed7ec7dafb5b19bbe9150421aa8a82faa7f9217948655781e17eed63845bf37",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "8b7f8561fc0b8496471104175d43095872edb4179c6f0d8fb5c35236d36fe1fe",
+        "key": "strava/v1/activities/15416953309/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15416953309/streams.json",
+        "sha256": "463c1b4e5b6c1fc2d52993d6bf774b42bd4c464b8be69405110f9e42fca70ea5"
+      }
+    },
+    "15433146690": {
+      "etag": "409012646bc6737233f821ab38c1142b",
+      "sha256": "203aa3a0f0d167db1ee5671fa84138783dd804b37c448097372b84c0eb7c9203",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "64cd48e0e0719a578d13265c06455e91a5022ee534a2a957eda2259e2124ba52",
+        "key": "strava/v1/activities/15433146690/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15433146690/streams.json",
+        "sha256": "8ef1e32c088a42215ef84ce5fb16d8981fecd7d1227021839d5710e8ca44e306"
+      }
+    },
+    "15462354124": {
+      "etag": "6fd5c32584a73ac3a64e574f6a8b302b",
+      "sha256": "66607f4ddbb96d3c9363b21225f1f75e06358d4cbec7aa72c91b46788cd18536",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "d5aad53f0779044d860b07441e0e9bfa0cce14672079950fda3bae30da06352c",
+        "key": "strava/v1/activities/15462354124/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15462354124/streams.json",
+        "sha256": "9d2c69f98a53126837a2ff549377986fd78226b780c6d9929edb20c5a864fd56"
+      }
+    },
+    "15462432124": {
+      "etag": "3864fb177294ddf01fe4d2913fc70a28",
+      "sha256": "84c0ed4a8ac6796669d36738310dd9ccd658b66ab4b50cfe7e651527698c6060",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "5cbb005c1fd54b4127655d6cae8ac1aa2d37d553244791de15923426e458eb67",
+        "key": "strava/v1/activities/15462432124/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15462432124/streams.json",
+        "sha256": "88b16d183dc5870930521681c3870fc61de89bdceb607435831132edea658a62"
+      }
+    },
+    "15462495167": {
+      "etag": "0b8a8ad8cb50254bf811601d1b777071",
+      "sha256": "05270d7237dfa1af218ee6a32b075c3924a65df81d1f850b192af5aa44d96783",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "db9ebb0127ed2eee9d967525238640b7a7c2142df6c93df2d5fcde0112e303d2",
+        "key": "strava/v1/activities/15462495167/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15462495167/streams.json",
+        "sha256": "093c4200eeb02c73eabd662aac6053af8129a7d204bc0a34ab69667f531814a3"
+      }
+    },
+    "15489785843": {
+      "etag": "bb43939200d798f85666f335a2ea4484",
+      "sha256": "24d5d8cb896d72385c77e11bb678bace8955ceb489bae5f86a72f7808c546e89",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "719b971c7781e701449f714df3a5949a02cf730f8a19a19f8ac09a2dc7be5cbc",
+        "key": "strava/v1/activities/15489785843/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15489785843/streams.json",
+        "sha256": "60ef1e2d4c38eb3b885a4ed489029e3da1d32b0b36c19ea5309ab591ccddfc58"
+      }
+    },
+    "15512110927": {
+      "etag": "a1078945f498ee9e43b00536b7fafecb",
+      "sha256": "7a31168a67913a9b90b7b72aa3f8df410a23cef5e8bb4913d6f127b40745d573",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "76e3b0f4ec341faa3edc795586bc00e33b0ab972280e57f4b1215b3a4658a705",
+        "key": "strava/v1/activities/15512110927/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15512110927/streams.json",
+        "sha256": "1fe7c29c2a6b24ef7373ba0b6073ee80316d3204261eeb2a6fe50ad4b8bc93b1"
+      }
+    },
+    "15512603681": {
+      "etag": "bbe90cdfb567e15b71afaf2264a9c39f",
+      "sha256": "5aa658d06534fbe0c2faa2d4e6c6f781216ebcc82858bb22a4fe048e37c8e3e8",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "c4b0bc24b447417e23697ac3cdbe7105b6026c9ebfe0b7ae057fe4afb63bd894",
+        "key": "strava/v1/activities/15512603681/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15512603681/streams.json",
+        "sha256": "43dbaba0049d68db7a6c8fa64fd080189f664f58c84e6639c2cac63d18452dba"
+      }
+    },
+    "15535414888": {
+      "etag": "4fc7fce0269eb840e5571a72b7bc7058",
+      "sha256": "98fec8203e7abfb75a2a6c1cb82ce0267df3c322188e739ceb4f314f1c3593b5",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "e4d3bb63cb387878ee473638100baf7ab13e99e5b81b21a7daf79830462f6c30",
+        "key": "strava/v1/activities/15535414888/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15535414888/streams.json",
+        "sha256": "e2909d9dc8cb1f090756a5dbc57ab7b66d22b9014c53b4c596f687b701dd58f8"
+      }
+    },
+    "15536108910": {
+      "etag": "278a16086035dde541304a1d1bc3e8fc",
+      "sha256": "5213848aa5be99503dd9b1e2fe23c91c8d0a11b00933c1c958bc863960ed4a12",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "b152ffb8a1a0d225738a0bfbfb7912dad85e0fde793da19ea2dd8368b139b234",
+        "key": "strava/v1/activities/15536108910/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15536108910/streams.json",
+        "sha256": "6bfea7487d146fa41079af04d8c82133aa1743d9dd65c16224bae0b27d4fa477"
+      }
+    },
+    "15564438584": {
+      "etag": "b8fc902781b4d5ca18c5326eb5c8dd68",
+      "sha256": "3848ff59f075621dc26d183a3f94c09cb16ae88e6699b90f037986b2e490839a",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "fd9a48c0aeb27072ece368ed8f8e72c98b5ee36710cd504bcf4f300ee2ed3fcc",
+        "key": "strava/v1/activities/15564438584/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15564438584/streams.json",
+        "sha256": "42c55fd8c6a7cf50dbf5d7ef66868d2a86aa33bdcce24624751b0e2f57e8681c"
+      }
+    },
+    "15598665480": {
+      "etag": "85ac97f7ba111213ce81847339964f36",
+      "sha256": "b552dec1a4929b19a4a4d526e5f5f182fffd0bb55193a460fc547b9d950b3b61",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "f76f82dbd5961ecd7df7ddbea301d3c0bb901c1c129ce4ed9884f5cc17d35e79",
+        "key": "strava/v1/activities/15598665480/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15598665480/streams.json",
+        "sha256": "e678e364d0dbcd55c7541c8d72466f06602a650b450e2f0633e8fb27d42af509"
+      }
+    },
+    "15599813651": {
+      "etag": "004c19976597d7ba89e9443ba38ed97e",
+      "sha256": "96147012adf7769d092b8b5e98d4c7df29065b4d9943ad9963c831a18e65b118",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "7fa8f39fe9cbd972c732b24ee457e23b748f6ff417947712102066a6247debd4",
+        "key": "strava/v1/activities/15599813651/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15599813651/streams.json",
+        "sha256": "a3e4e4db404a3f151d3c1fa9ad1fcd1a273ef8e23bd66246e165f452447e8cd8"
+      }
+    },
+    "15601147705": {
+      "etag": "8cfc0e809d508da8b054dcfb8dfc56b5",
+      "sha256": "378f415a910ed836c93c6ae52f01f59d5262420a831f6fbd4ccc929bfb9b61fa",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "a192ba1d1ff5cc7682d3913f1604cfe748c0a981a2c8a593b202eff24f5ff7a7",
+        "key": "strava/v1/activities/15601147705/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15601147705/streams.json",
+        "sha256": "16e430b2666ce86b7b480dff865b09e4d2a0e7de5550e51c9d2be3416228e874"
+      }
+    },
+    "15618255875": {
+      "etag": "48956c71256d97bdb780c461f80fc1ba",
+      "sha256": "66613780ce4f0c7b1ab12eda497c3c1320c0662d953819cba572e3d3cd96c9f2",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "c31718efb7469dc7cb618ed7d4e0bc2765a51c826e57c54b95e263e8bc2e8176",
+        "key": "strava/v1/activities/15618255875/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15618255875/streams.json",
+        "sha256": "5add5056b4bc36060f599b0ce9383e74cbea84d6f995619d0890c548ed6f458b"
+      }
+    },
+    "15683183697": {
+      "etag": "7708eaff25b5dd3128cce0759d695bfd",
+      "sha256": "32f7ccb44e298e0a4a902ab24372a54e96fb9d852d7292c99e8a2998a41c5e1c",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "a8851e2a6d123ed8fa0162db34a18873fda0aa724390885967068f45d1b5e004",
+        "key": "strava/v1/activities/15683183697/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15683183697/streams.json",
+        "sha256": "4f373eb90acc96aad23634dee10a702cfe7b58040f0c9b9ae2f84039d358fadc"
+      }
+    },
+    "15716575495": {
+      "etag": "7f9215595417f8e2767a8409ec230f9f",
+      "sha256": "7c31d155e241ea9374b74f413ec4eb1905e8cc2b4578949c8ce8de2983a578de",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "ecaaa5e9021604eabd983f498c6adf9b68d13e4e8c7f9f818ea6341476e93477",
+        "key": "strava/v1/activities/15716575495/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15716575495/streams.json",
+        "sha256": "19d98860a87c910ae5ae2e4d463015f3b5e7214e880c7f58d2c5cb8e7cfb9a4c"
+      }
+    },
+    "15759250284": {
+      "etag": "17718202b922a899411361b056755364",
+      "sha256": "ebcb11a0cd386f63dd3ed8b94bb495538e52c263ec4f5197d0891bbed3fcaf89",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "2997344a0114d25b812bd0fdef685608ba8c7084bd2863c565c3a6cfb1e0f0c7",
+        "key": "strava/v1/activities/15759250284/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15759250284/streams.json",
+        "sha256": "cac3d86b9fd5ac1b9559311e2d1411186ca744632a03d1aa77bac384d37845de"
+      }
+    },
+    "15759714585": {
+      "etag": "52c8a4649a6b665b8b37ae1ecf222996",
+      "sha256": "0138268ddd5dc00c4c67708aba58c1b31f392ce3fc02adf1707a8ab0df693d6b",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "c80aa2cfd63f3b73303defcf8abab3e5737a55a8049576ddbfe416575410ab5e",
+        "key": "strava/v1/activities/15759714585/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15759714585/streams.json",
+        "sha256": "3c8d9eb2e6638d0f57b6a77bb04c24a62922e81cf58b4d12d3c2a89e78cf1125"
+      }
+    },
+    "15773569774": {
+      "etag": "8a036bfe8a070b16311ba280e187696b",
+      "sha256": "45b76a78d0205ae76d52eb3cd0b435ea89f756fb3dd23d10c57d218bb5bc0dca",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "9ab6192de9afdd3e19bd78790d4bfd343b8cd23bca89a704f3035ead5b92c813",
+        "key": "strava/v1/activities/15773569774/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15773569774/streams.json",
+        "sha256": "a229ff1013bdf0965b93bb3b696fefe2c5df17e9b79d74852210a438318a3737"
+      }
+    },
+    "15840555195": {
+      "etag": "0c39328e829711f5aaf5827f2c84fdf9",
+      "sha256": "6ceeac84b703e2ab73c55b55d45ef7d982ea7aa2de2891a2533574a57e29166b",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "14a8af44d926306d9bbd96b43ab507635f88ad431450d4a2fdfeac6ab8c4f79d",
+        "key": "strava/v1/activities/15840555195/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15840555195/streams.json",
+        "sha256": "a3b038d768defcc6ed9e33df65cfb50c2bc361d3f8519531b0da93925f2b7042"
+      }
+    },
+    "15840843432": {
+      "etag": "b8eba51c468301e680b42304d3260021",
+      "sha256": "144bca89b3b69bffcead2ad97aabee46b1bb20977175b938af12fb243be2b3fc",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "16091389a6419fa01cd783bbb16c300ac299367d1b5033e6256a4705d410f2ab",
+        "key": "strava/v1/activities/15840843432/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15840843432/streams.json",
+        "sha256": "b6ac416623bbef3536b58277580312ad74f0087c1da27177f6a6a3a7f9f3ed4f"
+      }
+    },
+    "15883052045": {
+      "etag": "0d1072fd2709dd23f2124053fde6e074",
+      "sha256": "ba792d370649b1a3fb60c9aeacb996aafea2f83102302d4cb23ede2172a3e18b",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "e64ca1062a7944c64c27a005f2ca2e50f0d15a79e531805d0339438384445bcb",
+        "key": "strava/v1/activities/15883052045/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15883052045/streams.json",
+        "sha256": "200c1e0ea5d697e2aa2819fe7744ac208477176c2939d922ae7960263cc7242c"
+      }
+    },
+    "15918844405": {
+      "etag": "ed72078f0c3d161246b45aeff4ab7471",
+      "sha256": "1908ba6a68d328b7bdaa9358ad285c3d9c6879ba296b9d9dba6e7bc4d3f8d2f9",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "d4709f73bc71b1812a2314f4cd816aa68fa99bda519100fd90d174bee0f44f84",
+        "key": "strava/v1/activities/15918844405/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15918844405/streams.json",
+        "sha256": "682ef086dd2f85f4673d66a744d708635984f9d6e4fbdc6c46924fafdcaa8320"
+      }
+    },
+    "15958434863": {
+      "etag": "01009e0b1beb056cdc65ece0bfd9f7cd",
+      "sha256": "09496ef6205c88c01257931022809fd57b76e11bce8251c8a4f0c320b578c629",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "1591b388223d4fff313b988747abaa3c9c58952d074608036f6840d124c53ce4",
+        "key": "strava/v1/activities/15958434863/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15958434863/streams.json",
+        "sha256": "89473fa377ee2c6b9bb23d44867699197a5f2152a4714b6a062ca71bd0cd2a5f"
+      }
+    },
+    "15973161398": {
+      "etag": "43e4e91a542d1ab8cf1173d8ab8593e6",
+      "sha256": "b64e3508411753f59230f1d4409f19888a37a5fa7c3f2f8a0bfe9e16b9b6ac30",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "2aabac8b371bca1c9e192e503250a3f231cd55db2bb758b743692df3fff83672",
+        "key": "strava/v1/activities/15973161398/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15973161398/streams.json",
+        "sha256": "7d1f5f387a7741b8a5f297ec3b4da8c1aae4f22bfc5af3f9255d70d00d959b75"
+      }
+    },
+    "15995052742": {
+      "etag": "cee9c7779132b8318058118cf4448204",
+      "sha256": "9fab28529fb615bcb1851bc5c3c6515ac39466b4c0c69f34a9c85e800c7c8ad3",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "0d52ad0b62267130338f44b8a54f8250fe0188547d5d35467a00ee80d681caa2",
+        "key": "strava/v1/activities/15995052742/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/15995052742/streams.json",
+        "sha256": "f2f40a86637ba6933812ea8d68d2cb6e111880b70ae2176f5c6ee8e2d406fb35"
+      }
+    },
+    "16037726069": {
+      "etag": "96f44741308c0ed9c94bc75db80c325c",
+      "sha256": "27dcd0f07abbfcb7612db3f5be6bcecbdba9d8e7fa48879dfb760ff44bf5ed00",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "68fec05d938d62c09a959efed3934409903d6ca4352422f5d1242b3238c2473d",
+        "key": "strava/v1/activities/16037726069/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16037726069/streams.json",
+        "sha256": "1681692238fed8ce4bbe1a5991962793a05f81b25bbe0b67528d9f2815e04de9"
+      }
+    },
+    "16112459984": {
+      "etag": "fccfeefbcdcfa80fb7177eb05949a1ba",
+      "sha256": "df502ca6eb46bc78c96425b5b205ab9effd091812ac2dfab8767b6eaaa7cb77c",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "a027466c3404a6ff9057e97dd92b0db02951aae0591f3a0bda96329887321198",
+        "key": "strava/v1/activities/16112459984/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16112459984/streams.json",
+        "sha256": "fae11573e1873025b30be2cc6a02d4bfc787c33b739dbb81ecf6b76c87c2ceb8"
+      }
+    },
+    "16124978636": {
+      "etag": "353985a777bf3ad17259238b7d3a453f",
+      "sha256": "e2c2d312ce69f9cbe30804ede2329daf534552bdfee2267e89e19cd3d49e7a92",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "5ad7e3192deaea44b37aea36f57650ef835fa1cc5f8f17d110ec04e466e3d762",
+        "key": "strava/v1/activities/16124978636/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16124978636/streams.json",
+        "sha256": "c47455b0900981b1c22f08ca7c6386e9d9ae8df258ca3b339997ccb7ff74d220"
+      }
+    },
+    "16167820008": {
+      "etag": "9b8017d6bd71f8672ac94b96dfde79e1",
+      "sha256": "9240f41fe5df662afa977e9a8cf1f30c41650bf4b749fd5e65eb1a2299366260",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "6535b4eedb3b64b2ceb806805badd9064f215797fe2ee9e15842a4e2889e1987",
+        "key": "strava/v1/activities/16167820008/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16167820008/streams.json",
+        "sha256": "ef5ee9221f830a6d71c6a73980d5796299befa0665c7134d367b6d3c9b76170d"
+      }
+    },
+    "16193990590": {
+      "etag": "4e6c6f09e62152d2824439592cd5c589",
+      "sha256": "d4436c9eb29316f929a0c3cf20d4a6271ffe3f23daef8e91aa8aed288eaac8da",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "664ae0e8226654423d37861acc43eac2d1085e6ff9ef4d895d8afde21c594502",
+        "key": "strava/v1/activities/16193990590/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16193990590/streams.json",
+        "sha256": "879b1baff90dfeca81d16e5eceba4341aae5d5198c221cc4f99018ce0ccd20a5"
+      }
+    },
+    "16198103689": {
+      "etag": "b509e763e33babedb27caca55c9b7788",
+      "sha256": "d5fb9cfc6e626370ace45f6259d693f2ebebc466ad20615dd03082079b20c7fc",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "7339c1efac2367eaec0c8d4e9514fa686a1e6adbe1f5b2ff44a70eb4b61a8ec1",
+        "key": "strava/v1/activities/16198103689/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16198103689/streams.json",
+        "sha256": "a694407173e625fbc552cbd511485f077128638536b84aa2583d64d2cdddd537"
+      }
+    },
+    "16198162254": {
+      "etag": "e4f60c2930c108d308b37eee8b6682ea",
+      "sha256": "2c984174fbd9a250ac7f5915381178883223641a54c07fe713413eebf9874abe",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "c546782ebd982193ec6571393913dd2248b461e156f138f86954a917d1c7e177",
+        "key": "strava/v1/activities/16198162254/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16198162254/streams.json",
+        "sha256": "dfe0118fab2f002630363e565907bab227920a8688e5c9ec59a9595e1bf52ed9"
+      }
+    },
+    "16207353939": {
+      "etag": "04e57c63a2edb7381592bfb9da4295ae",
+      "sha256": "3cb8a6657d89d995af7d4911abddd1d2d09bce57556b2f031edfdd564f32f7cf",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "e3b78dd3108760ec529f4bdf3b7793ba3f1dcf46bebbf6764e700405694db47e",
+        "key": "strava/v1/activities/16207353939/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16207353939/streams.json",
+        "sha256": "1453b1011a9ba1989c1b629dbba9dbdeaeaf84320a5d60b3cb40a300d2ecb978"
+      }
+    },
+    "16210302038": {
+      "etag": "936e7caeb1330627c756162a6a479ae3",
+      "sha256": "807229b3c09ffc8a4e578dfd736449dfe77dca7ef6dd889dd885346817c90c9b",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "8d67671b448957d6af8adf7e8b30fac58205d370a173d6d7a215a498d47c3821",
+        "key": "strava/v1/activities/16210302038/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16210302038/streams.json",
+        "sha256": "a43a8866e8a17048ee998b91ce3ac8b18bc84f2b37235edd35cb90ff33879e04"
+      }
+    },
+    "16219825934": {
+      "etag": "eea17c2565394f3342fd6328f820e600",
+      "sha256": "e82831df74f2eb402d110ac3cc7be0822e28f1dfce3298f10821f6af070cf89d",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "eb18ef8d784be1599cac607b596f9e5ef24c135d95d0537e565d84e1e16cc86d",
+        "key": "strava/v1/activities/16219825934/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16219825934/streams.json",
+        "sha256": "8c24916cf72d463857ce53f6b0e17bb62053e19ca47cc5c9e6cb2073155dbd03"
+      }
+    },
+    "16247444363": {
+      "etag": "a8333be41515160c124241029803ecb8",
+      "sha256": "5a947e1775964c5265032d186b416cb3af9b774391417861bfbe8f7e0802777f",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "57471943479a9db2973de8f002b17f32dcb57bf38be28c503f3429ae41a79c6b",
+        "key": "strava/v1/activities/16247444363/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16247444363/streams.json",
+        "sha256": "670621f61352511483b88f47bb2cc62e2daf0c6fae5cb4e10efb80c0aa3c0c81"
+      }
+    },
+    "16339436183": {
+      "etag": "4e3f89d6151acb4a8f8ca2db21bf7b78",
+      "sha256": "7aac642da3d28d91399f59844268ab324e808861d70df85f839df0661cbd84e3",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "e037d737fa674365c6e3679094c5fb3728cb15de3cd9caca1f62dce8184780f7",
+        "key": "strava/v1/activities/16339436183/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16339436183/streams.json",
+        "sha256": "9b4c433ac1f357b9d60e4c51e6a28f940dd1bd309baca8bdc64ce06e1a521a94"
+      }
+    },
+    "16431662315": {
+      "etag": "c4047c366e8951a49ebbcf2b67f71359",
+      "sha256": "166007dbeff8a3741d9514e3dc6a8d7941af28784e3f985cfd2c04834f14aae2",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "2d738d1a1c3565162a343ef43b396a6e61d5069e1df1317a0c4ec71638a90427",
+        "key": "strava/v1/activities/16431662315/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16431662315/streams.json",
+        "sha256": "d8865a4234fd11c806784e506bf4222636de08e501363aff0f30902f7e4d9466"
+      }
+    },
+    "16453671916": {
+      "etag": "b5b28d2048bd44d2a332b7963383f0e6",
+      "sha256": "84b0af903a4ecc523cce6fe2b107d9714a4f14e229a266c1c2e6f288f0219d5d",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "2efdc9c865d257c633ac480226488fa662b5b07366d366f5e6aaa256af3fb835",
+        "key": "strava/v1/activities/16453671916/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16453671916/streams.json",
+        "sha256": "090769a71cd9962098ef9b1525ce1fcb5c6254dbc46b5d3a9c7d32bbbf64fd4c"
+      }
+    },
+    "16470784593": {
+      "etag": "a1cbac637f47ab649ea0d40d02c1e282",
+      "sha256": "83cd7519f5a90fdd57b189ec0beef79607c97a578c3233b6e778268dea229989",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "c3b980fa2278746d3013dc52b9db3f97679f410e411f58ad0a2c235e59e9d9a5",
+        "key": "strava/v1/activities/16470784593/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16470784593/streams.json",
+        "sha256": "697d6094bd4bea74955191c69d346746c2cb3f3d1eb1a52e637237bd393fb4b0"
+      }
+    },
+    "16515241312": {
+      "etag": "09edb991d1220f86b44614b2085a2c1d",
+      "sha256": "12eb1f34a7ffaab520c761803df0ff793251ecaf2be05e1962d8be3af0ac8e6f",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "36ebf3ea07e2ea2abde9d8a974ccda3cc9b0b10a6d02004d13c6f301e5914a00",
+        "key": "strava/v1/activities/16515241312/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16515241312/streams.json",
+        "sha256": "dbf0aae0ed439ca344399d447b2fab75d26e4397884c58861d6f4ca5139da74e"
+      }
+    },
+    "16560038356": {
+      "etag": "4b648c52528c83fc7ea489ccbe68a45d",
+      "sha256": "26f0877d0604fd78ac38270e0e5175c9c28f5bac4f249b5c8a92f2e0b7477df6",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "85706e568824e59b6c04789d76adaa44f75965e50adf824e76dddff6f55f85c2",
+        "key": "strava/v1/activities/16560038356/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16560038356/streams.json",
+        "sha256": "bddd66fdc4111cad140dc1293ae2efd109bb97e1fec148213850428fe84944a3"
+      }
+    },
+    "16570094980": {
+      "etag": "613fc708492ab848c67961c7acdab148",
+      "sha256": "7156f1df82b7b33fc94901b1801a27153d623ebe3dfb76703c9339b67b706c47",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "fdc25a66ba75d87195d8a272cb70eaaa948a7bd17b21797fc13a920b6e4cb308",
+        "key": "strava/v1/activities/16570094980/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16570094980/streams.json",
+        "sha256": "6efc8f899a155cd274878400fe6dbd3a49d3f5358774586082c9dd93d7087a00"
+      }
+    },
+    "16589950217": {
+      "etag": "f3906a04f304c92af33412ce52087c70",
+      "sha256": "c246839071da4d2d0f9e64b5b04c958eb2d544a226f37f3ad6d596d3a10714d8",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "0d00ca692760eead56946493a59c206629b2656b9940093c0ea04bd307cae2bf",
+        "key": "strava/v1/activities/16589950217/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16589950217/streams.json",
+        "sha256": "c6954eaeafed1405e1be86f72da9a5c0749b951cc8e9a5b5e260d7e1e9531e40"
+      }
+    },
+    "16597005711": {
+      "etag": "8255977761c7d5a0205f5f16c9f7cbcf",
+      "sha256": "8570f5a5958d9ac616062458d4e1ed8f64d35cbed60a63fe060a1c5038319475",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "2a0a8099a2b4a57609a6785d6f5433b06ebf8100d855187aab4ac2f3cf6610af",
+        "key": "strava/v1/activities/16597005711/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16597005711/streams.json",
+        "sha256": "f11d81471844177857524476814dbdd1b7937aaf015c1fa19909579a08814308"
+      }
+    },
+    "16817973593": {
+      "etag": "477ab2c9d611e386ac54a07826fbf489",
+      "sha256": "c5fc6aeb218c825f0d4b6ae2b0db367c6ba8c144c4d97a472e1049a6319fd743",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "30db3a1ea8c071bf096adba35804dba60d67f34f43d9d1f8f192258ff9ef96d9",
+        "key": "strava/v1/activities/16817973593/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16817973593/streams.json",
+        "sha256": "7fae13eaeed814c93e72b5581b824360773f888dc2458b30bae42066cbb6cd8a"
+      }
+    },
+    "16861598453": {
+      "etag": "8a19ca12c5d6d8794075c4669c19a47c",
+      "sha256": "6e72b77e4c72e888b8ec58a6c32b587f9a28de945e5769b304f20aaa3410b85d",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "357f65aa28acc7aa0613f1f064fbd0b334271ed961d9c2fa160fa67433158fdd",
+        "key": "strava/v1/activities/16861598453/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16861598453/streams.json",
+        "sha256": "b326651991bcdf1dc059fe3cf9772c3312896bc976ad1665395fddc65bcc3479"
+      }
+    },
+    "16920630990": {
+      "etag": "15afe9c045832f0eba7729c664d20e2d",
+      "sha256": "2ef9570e145e0c717670fbd3aff43a23946b2cb621732bfe8aa0f7afa78d90e4",
+      "original": {
+        "status": "stored",
+        "format": "gpx",
+        "sha256": "d9d1099bf86420835c42229fce3eeb0e26dc670dd53aff3ae2ade305fa832cd0",
+        "key": "strava/v1/activities/16920630990/original.gpx"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16920630990/streams.json",
+        "sha256": "e88afffd2e5b27cf165e8e1e8df495a5ef483b80592ac631fbe936c0d3a9a1ef"
+      }
+    },
+    "16957193987": {
+      "etag": "d425485c92d480ceb303590cec8c6966",
+      "sha256": "eefb04e8651460706248a2bb77715b79f41649ec0134d48714016d33aaf0f4cd",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "6a6630e2c0cb0aaed8719ec41a05157ab1746229b692de70e6510cd33144dd76",
+        "key": "strava/v1/activities/16957193987/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16957193987/streams.json",
+        "sha256": "a4fc2e2805675a08e71312f9d0b525d8f9231ec6153b6696798fae6f899fb7e6"
+      }
+    },
+    "16999276680": {
+      "etag": "2f391d078e51d447ec15ad789eaffa98",
+      "sha256": "2b6fbf52fd62969c4517ce8049e1e10a1e266c074bbcf817380d286eb9eb49a6",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "982398a644753ef914c3f4bed1d3e54d0c90045d7fdadf3dbc7ad6faa04d60c2",
+        "key": "strava/v1/activities/16999276680/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/16999276680/streams.json",
+        "sha256": "bac824efebf9af32870cf6c1f80756f87eecf55dd5c0ea65254c4224f8b4e843"
+      }
+    },
+    "17079618068": {
+      "etag": "30aad918abc2efe9943e9dbdca2420a0",
+      "sha256": "5a79cf6a513c13d5ba0b57dbc0b8462eac2f08b42f8d48a6775e9755bffd7e64",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "d51ae4a6f3a5c8d607754af5ac428fdda21f066be17cb010324500b41eac09dd",
+        "key": "strava/v1/activities/17079618068/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/17079618068/streams.json",
+        "sha256": "4370aff8efee3939a7897730aa31be24778a45d20948b5706b25b248ab0701dc"
+      }
+    },
+    "17099530803": {
+      "etag": "599dff5ebe1091adf5253aa983bbd965",
+      "sha256": "8d11c7e0056917817d91a074c79e5bcb49532f946bc5eb485c10d055eaa5075f",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "a6ec33542cf5c04caca3985d1a199a5b3e7bb2d545fe4e6dd569a0d27f0b71ad",
+        "key": "strava/v1/activities/17099530803/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/17099530803/streams.json",
+        "sha256": "e90f718cd8906b556a255c419c179f65c8c487b3fc21e32f15712c5d93397f42"
+      }
+    },
+    "17168791945": {
+      "etag": "b822adf73c38b0213ce49468004bf8a5",
+      "sha256": "00d6971289e661236aa8078dbdeec4acab2072072c193039393eeb3500251abc",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "5c75759aa77a20eb4a3b27f51ec4b4eb8ac8f5075cc3ad4acd1d38075e2a97cb",
+        "key": "strava/v1/activities/17168791945/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/17168791945/streams.json",
+        "sha256": "a3a6e88190ec0053ac468f3d390218064603bb0cbfe3518774593a1867556dcb"
+      }
+    },
+    "17313677871": {
+      "etag": "f21ef3d26e8a76e70c122ff56e1e9fb3",
+      "sha256": "e808c2bedce6819b2cb2c2898dda7acd917bb5f9312c1f62652be123818b1e9b",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "8568e50933b1624b7e90b568b8f0867c60fdbe3d3396a5632bb75d06c7a21675",
+        "key": "strava/v1/activities/17313677871/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/17313677871/streams.json",
+        "sha256": "8c2e8aaf02e49773ceb27bec4b8c2ed4a52405296bfa628a96d851d6f47f5973"
+      }
+    },
+    "17313908981": {
+      "etag": "3a04d17c7af0ed6743c9a3fd5effbe72",
+      "sha256": "1b22a6562724a48c83dc72102c4aa513bac4d717f39e36dc8c3cd3611811c48b",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "61b76f4472aba46393bb8a3d04633d445bf98a03780c25fe027a453cdf8c16c1",
+        "key": "strava/v1/activities/17313908981/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/17313908981/streams.json",
+        "sha256": "a61f3fd81365c2810b17d57191472652d414713169f56f897cea0a1ae832a73d"
+      }
+    },
+    "17491972158": {
+      "etag": "0650504beba5bd8e801e87da987e55a8",
+      "sha256": "a33e81894f9b1efb85cc4fe63b8a76e5dd35cabf1b4874fe181b7e25abf2e3fc",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "5b841fd7e3cccf6c3c042bb50bb2bfd8f5214717854bea1c9fd3f64138dd5696",
+        "key": "strava/v1/activities/17491972158/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/17491972158/streams.json",
+        "sha256": "c85ba293766dc4e8a0a306072542ad69dc7359e7f3227f2dd971b1aa51d75800"
+      }
+    },
+    "17635103225": {
+      "etag": "7347ced15ee2a6e58d2f0ae87e0e8299",
+      "sha256": "62f727305c027a9af73fb3cfae958d647264e73f01ca41da567eb6b41dc921d4",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "c60ee0e746ab78a9462b77dc5888325e9f0743e6ebc804e0a3e6cce56ad86cb4",
+        "key": "strava/v1/activities/17635103225/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/17635103225/streams.json",
+        "sha256": "6c8361cea825c1490c8d36a5d6b49a86bebd2031db43d9b00d30f17a72750c5c"
+      }
+    },
+    "17713666208": {
+      "etag": "ab76a1684cdf69e9810c9280fba30ce6",
+      "sha256": "8b96c235c543d82a9535e8ba85a39cc3536d1337b3998c001c911adcf9048e8f",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "b34ef8415c77659fbf68f4f5c1634533b59d5442033370d1fd98c58d35c62a42",
+        "key": "strava/v1/activities/17713666208/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/17713666208/streams.json",
+        "sha256": "e506f7f6feca8ed4a3a75ba861eefeef34f5b3139cc8fce315fc0f35f5d8e552"
+      }
+    },
+    "18314878422": {
+      "etag": "0e88288c08ad13de637e02c4081a95fe",
+      "sha256": "a0d205c674cd6384bc5c6bb4cdbfd7959c4b324f94061f810a53361f010b805a",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "a976b3d5cf749fc5a6c043ceef0f916924c6a6fe4b0fc25a92a2fec5746452d5",
+        "key": "strava/v1/activities/18314878422/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/18314878422/streams.json",
+        "sha256": "f3a0a8f352865c2dd1e1daf990cd92bac5b81c44b680e79d27995b9a9bfc0ae2"
+      }
+    },
+    "18318597479": {
+      "etag": "e1973e5ea51c1665105eecb705835f67",
+      "sha256": "43dde5a0a380136d9863bad4039a9f5685723240fe892cfc37235d227e91a048",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "b8d0f4200ed634dd3926362e0b6b34b4bd84a27a5d812a2953cf88d74e5c18c3",
+        "key": "strava/v1/activities/18318597479/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/18318597479/streams.json",
+        "sha256": "75ea59fd9caabcb63e9a4e579d6ef116abc6509bc788eddfd0d3312a8387adfd"
+      }
+    },
+    "18325904205": {
+      "etag": "612d282f366254d04d95493183043d4f",
+      "sha256": "6178b46c18dc90a1da7cac9d0858530f832840e76f9cd8f3acfb3cd7bfcc4574",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "596766e7fd8070a905a1e6d5215ba88f24f4e738960563b9147391fc87a8eb2e",
+        "key": "strava/v1/activities/18325904205/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/18325904205/streams.json",
+        "sha256": "2c55bdd479a4374eacb07a9527b3551b3e32231e1b7453a98c8431a963f60674"
+      }
+    },
+    "18325904258": {
+      "etag": "5d1b7f92065edefc5a163830fea334cc",
+      "sha256": "32a5c282e08f73366c46f480b4c18d4c13a60a5477ebf47bc73e0af81a7d6093",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "320f255732b8fd8a990463329624a327de708dfee64e04bcb746f794e0ed66f6",
+        "key": "strava/v1/activities/18325904258/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/18325904258/streams.json",
+        "sha256": "8e10672522709722950c1780819bc45e0d77c8fa6a81ec1265f0000bda714561"
+      }
+    },
+    "18332053240": {
+      "etag": "754813610498cdff773ccb90a4b083d6",
+      "sha256": "013bf9ba1d0b0b453b9dfef673523ce19088ea6ac6cceb63650396f3d76709be",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "d6db2e6127689e408d8bbd7bbdfdd22c9e9e215e4805c53153462e98f03f1eb2",
+        "key": "strava/v1/activities/18332053240/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/18332053240/streams.json",
+        "sha256": "4fff5a8a893a2471b62efdeaceaf63e7631a5c3699f5fa5af53ec733a6e6f58b"
+      }
+    },
+    "18499327836": {
+      "etag": "9a7ebf23a64a38b33cc8dd43b2303d10",
+      "sha256": "ad470fbbddeb7239940af28f89d4bb2d9820664cb8100c615c818c26658105d7",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "313cc24b096175da34de23b8864d08bf215b97c6a143cd4e57c704a6d210f3d4",
+        "key": "strava/v1/activities/18499327836/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/18499327836/streams.json",
+        "sha256": "56536db02c1801630db359b546b97f0636d23964b4ede6198100c90ef8f8c716"
+      }
+    },
+    "18542648174": {
+      "etag": "194a8f837067734f452945ae57bd096b",
+      "sha256": "51b71a82889bd2f982c595a4cad65a35a173b2822a04f09f96146b13de15778c",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "2370c50c3eb1d143fb81eb2fc0d764c177c5ac9f7804999557c68a1321c7061e",
+        "key": "strava/v1/activities/18542648174/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/18542648174/streams.json",
+        "sha256": "16e87bf66840ee29dd7c8ea4837ed48275930ac8cfb3356b4fab7b1edade4c0e"
+      }
+    },
+    "18859825410": {
+      "etag": "dbf052e7b027e0fb21bc9b4bf1b483b2",
+      "sha256": "fd05430a16fa43579d3800c4daf1a179548bb67316b7b79664da2b5005bcf84c",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "51c1981fd811cc9b6e70685542b06ea65e710fea4b9e86445a069d7c59e4aa5f",
+        "key": "strava/v1/activities/18859825410/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/18859825410/streams.json",
+        "sha256": "41af6ab2b91f1bc40a0c52b49d6c47659d6dea1645eb70287d674b3b129eb790"
+      }
+    },
+    "18898299068": {
+      "etag": "4ca64d6d6bf3c6e3654b7cc917f0fb57",
+      "sha256": "f2441bc0f508aaffc7e879dd11a28fcf439f132ce9981644da54ba7529046008",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "1439e2c97615d6475c9de1152426bd73c511b40166cfbb259619840367babb15",
+        "key": "strava/v1/activities/18898299068/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/18898299068/streams.json",
+        "sha256": "1b56bf4bb477dbb4d6b733a51a87eb7bfcfb5c1fa2b079e3cd5e5695160673a1"
+      }
+    },
+    "18911282076": {
+      "etag": "580ec614f7ed50048b4dce2e5b1fc653",
+      "sha256": "4304e6ec6aa037f5134513b35a9432095f4eca1a3419d52757ffaa0b0750f24f",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "8ad50c043beb3259c7b43cb38592f4fa318cb8a4a9ae0e1999b863cf37069dc9",
+        "key": "strava/v1/activities/18911282076/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/18911282076/streams.json",
+        "sha256": "36791ab7f54e66b78fe83af4f0b3880e19a3e2ee29583bc5564b6fd9633e9050"
+      }
+    },
+    "19016377552": {
+      "etag": "54d65f568b5fb91dc5980f7fa527df6f",
+      "sha256": "87a127073059ce4aecdc7e128e60a710cfd0982d876367779d3befa1c9c8b2ab",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "923619dfb0d40675677b3d790a48162f5f7b232295adff95f6e991bb30e741b4",
+        "key": "strava/v1/activities/19016377552/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/19016377552/streams.json",
+        "sha256": "7e87979ba5496862a1febfc4115932bf16aceac83c3fe24e4a177ec52eadb108"
+      }
+    },
+    "19323556348": {
+      "etag": "140f987f02bbc718252355c524c26084",
+      "sha256": "f45d85ac0952bfaaad68eed94e410a3ed24985d4e35b7eb78c1f3f891de87951",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "1a5fdb786abd898b86145ebf91b512aa7dac2316bdea6ed61e33650933e27655",
+        "key": "strava/v1/activities/19323556348/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/19323556348/streams.json",
+        "sha256": "2bff53279baac54d3c79784ccabe08be35f84b3d35895525f7ade6804a0013bb"
+      }
+    },
+    "19582158809": {
+      "etag": "3d7c00c0a9ffe54d5112a3dbd4c80463",
+      "sha256": "751ab30496b5dd0ef9fa4623dc2946f937a4060064cc2e906d997322e5b9c97f",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "7435c1e326ec5624e48a202127442287ffd4b384db3328437c3b3a2b7c88ecb3",
+        "key": "strava/v1/activities/19582158809/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/19582158809/streams.json",
+        "sha256": "3ce34b5a84d1b5bc66925ff44815923a7b491c14e3bd8091b7760ba69cca0b9b"
+      }
+    },
+    "19639985919": {
+      "etag": "08206d48ff2b2224349e89f34ac6d120",
+      "sha256": "9c6dcd64d6818b1c6d0408ccf9da985c3899ef12e1c42ab27a52ac693b28456d",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "3c2ea77636883468888902efe7b2f9d01151145f967673d5748f1c0eb7ad1ad7",
+        "key": "strava/v1/activities/19639985919/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/19639985919/streams.json",
+        "sha256": "68895335c641f7f9c1880884c022e3ef15846a09132c5f69963bc5d91988b230"
+      }
+    },
+    "19639986201": {
+      "etag": "df4503c36cbb73f26f50a6afeca2501e",
+      "sha256": "8438ac14c8ee24f294c49c794ff9345db9282450357fc6e64f6c74a4af42caa8",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "824aaeb94c60f23565fbf23e4c04cb1cadfc0a46a41451acb363f2f61284209a",
+        "key": "strava/v1/activities/19639986201/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/19639986201/streams.json",
+        "sha256": "1d9da78d1f707c0af8e8bd496b66d4c959c938595cbf422f477f6cd94c52c5d6"
+      }
+    },
+    "19639986210": {
+      "etag": "4fbc5336e09036b8a94bfbf475096dc4",
+      "sha256": "879f4a041c47d7d5f9f3d61bb6aadc97a7818b0ed97bc05d689365e2169a380c",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "66384de9faaad33b80bf1b7e7e6c4d391657627a703155e2e06e7c562c400b36",
+        "key": "strava/v1/activities/19639986210/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/19639986210/streams.json",
+        "sha256": "d816ac2ed1da05b6d421209a75ddd9ab8408a44c6d2ee01a38b7abde9da3f1f4"
+      }
+    },
+    "19639986457": {
+      "etag": "a621fd14659ad29ed86418b0306f7ddc",
+      "sha256": "015838cd717a1a2edb15d5923599689fd1cd14cf7325c27c9d443a2711111c15",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "5e059488b2cba5b3120e80a485cce6c50640c3cc24a54fd72260eb37415c5539",
+        "key": "strava/v1/activities/19639986457/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/19639986457/streams.json",
+        "sha256": "e3e935faabc9b41891a04661a4fdf68dbf781d8cd7dd060bcc4743cdcd1fcbb7"
+      }
+    },
+    "19639986496": {
+      "etag": "221805dcc8417898bcd338e863ff1153",
+      "sha256": "b325c356d607016d39ac54c4dd225d28e3dfb36d9bcd4bcea5404ed4e2b6b49d",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "055b712de4ba5819cddb4083bc438eace9f326ddea69b79f01dbb26a5989a41c",
+        "key": "strava/v1/activities/19639986496/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/19639986496/streams.json",
+        "sha256": "56f68237310268f57be75f49e0164fc33e23a10497ba7a441435b6be8e932935"
+      }
+    },
+    "19639987034": {
+      "etag": "9aebc7e6a7c64989033397adce166f0e",
+      "sha256": "ddfd4c9342d9cebbaee8b2cade4b475f9865f22a594969de5bb6e98665af902f",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "ca84c248aec6a00db38fbca8750f796a6091a1d30aeb575ac18ccd23abdeeb4c",
+        "key": "strava/v1/activities/19639987034/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/19639987034/streams.json",
+        "sha256": "2cd93fd5e9430f500ab30d0101ef1702211637c2ebee60bfdf4ee5a3001b4067"
+      }
+    },
+    "19775518090": {
+      "etag": "d03c5760e02a0b7dec506508378f4b1f",
+      "sha256": "b9bb78e43e4bbd56c73f9ca3a32bd342cf7021ad0b97ed26adb58b6081da54a4",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "a583087ce7eb014dd433e8c5ed2fd7c27674264fcaf96f6860219749c2203b98",
+        "key": "strava/v1/activities/19775518090/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/19775518090/streams.json",
+        "sha256": "894c2977d1dae5c6b66ba32ba041f3e3d94dfaa566ece2db875705530f066ca9"
+      }
+    },
+    "19809556490": {
+      "etag": "9b9414f91a445c9d3cf9f38c8dd9e013",
+      "sha256": "f63be4a8c58002d0a3bae2f945d335da9a9d15c3e3d7912353333baf16cc7c2e",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "f76af76a46e5fc4be636546b4d297bf3072da6159127315758ed9d231991fead",
+        "key": "strava/v1/activities/19809556490/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/19809556490/streams.json",
+        "sha256": "86e3b141e8e8cd8b8622bf142a1dc3a49675450a3778134265d52f611969d923"
+      }
+    },
+    "19858565841": {
+      "etag": "cc633e74ec2450468283f9b176be1c11",
+      "sha256": "751522d9c2a515029e707e32b636288f695605ae98d291892330a8f8867a4a73",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "9812ba85f3cf976d0af8eecb1540b7983585c702e3ff7e2a85f68a23a2fdb9af",
+        "key": "strava/v1/activities/19858565841/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/19858565841/streams.json",
+        "sha256": "69d35d9db02e0769a6ee140bed3727bfb518fa3c909a354b5741439fbddf14fd"
+      }
+    },
+    "20137769734": {
+      "etag": "dffe29fb3c035ee51f0e6571fa15055f",
+      "sha256": "533239677ebc6cd80cfc4007923bc52c78076d430a7fdaae46e3f741ec8db7eb",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "fd27336a79a67eca7f1be3bef08d172ab0c8c1022e02d0bf7e24847c783c7553",
+        "key": "strava/v1/activities/20137769734/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/20137769734/streams.json",
+        "sha256": "675cb27daf473ee057736519ce6a937305f86ca47fa6ebbc9c5f847865e4b2ba"
+      }
+    },
+    "20138063584": {
+      "etag": "28963a6bb6e9b269c97c853f8e54c970",
+      "sha256": "13bf43f4877c5b59874b2aa79e57cd5e5c3d55ce8320951338a94943e41e0181",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "8f52bf8e6361239787ce0ab59fe1451c58e901513874fb8bfbd98d5b0e831bfe",
+        "key": "strava/v1/activities/20138063584/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/20138063584/streams.json",
+        "sha256": "585a015f8a194a941e1026e109e1c8771b5511a6657341ab0b498f274afa9d13"
+      }
+    },
+    "20208194864": {
+      "etag": "1103bc0658d496996ec723ed1706a5e1",
+      "sha256": "11d3a52073bcd8194e447185e03ba8ecf6f09e3ae15de8fb30a08d0f36c52871",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "b8a00d8e3a92cc5746489b25116bf42737da57a184afb37631a657a1b8a2bff5",
+        "key": "strava/v1/activities/20208194864/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/20208194864/streams.json",
+        "sha256": "7ca7b58a4593126f04d8867f9b8aa71baa5983249713903a8c71939c60e1b21b"
+      }
+    },
+    "20224567448": {
+      "etag": "4d6814c17a102c65059c41332a972afc",
+      "sha256": "9132d9352f63d13ccc8a239aac4341bffb8e0e0050e80081073300cec89cf484",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "b8add167a5fff26d04bf52d0fc2b00862da84f8c96820c017f756e4fb1510b32",
+        "key": "strava/v1/activities/20224567448/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/20224567448/streams.json",
+        "sha256": "30a3ee56698a233d572da46135a6f9448fa079e9297578580168ff89c7a7e4f6"
+      }
+    },
+    "20224567505": {
+      "etag": "65e9fb2a533777257fad3e6973bc1de7",
+      "sha256": "be7092ecdeeccf48b0939b972a912054b402a70898848d71abdc471d1a36f660",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "46cf344ce8748d50b888905582a9f902ac394dc217bbbb9ce9a5c16675b58187",
+        "key": "strava/v1/activities/20224567505/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/20224567505/streams.json",
+        "sha256": "d30457a892f845a45102a72d313f84f7b46cd3ac3c1ca64ee6c7236f54119282"
+      }
+    },
+    "20235063177": {
+      "etag": "70399f170f059da24503dffda94dd6e8",
+      "sha256": "b7c8216358f413c00113f825cc89009b581c6d1fbd92935c6fc15b378f2fc6b9",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "fd42238ffd3a5e4d28a1e1878319172c6e201d5b5b5ab707ee3d0f786ef3faf6",
+        "key": "strava/v1/activities/20235063177/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/20235063177/streams.json",
+        "sha256": "83b8000c63f13569088a2dd44e12ae6103b7a3cc7af1665169bc1f030cb3798e"
+      }
+    },
+    "20266551192": {
+      "etag": "d3e426b59897b69e66752737663f0ea4",
+      "sha256": "e10a71141cc6125e06e5ca76dbcba029fd722b75eb75ed1827021f88b46e12cc",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "4a91ce51bf3e26511802bcf58c6ca07b98f79d74ed7276571e9d11e3ae93cf19",
+        "key": "strava/v1/activities/20266551192/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/20266551192/streams.json",
+        "sha256": "ea405c9b49451b44e2688bae27c30c450a3432e4625b57b265707e5aa64da18d"
+      }
+    },
+    "20468374627": {
+      "etag": "673e059dab1ea1670c828f613c2f91f9",
+      "sha256": "00913ae972311cc61d6ea960fabcc5f11c4bee38890919319e87fbc33a79b8f2",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "9e185cfa998dbdcd733d6f16361ef8d19f6ae10cc8a63c081c40bbb6c9eafbdd",
+        "key": "strava/v1/activities/20468374627/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/20468374627/streams.json",
+        "sha256": "f09aeaefa6f0844d16b28169392bb78747148285cc345466d1db379d5d9b80d7"
+      }
+    },
+    "20538815104": {
+      "etag": "354297430e2fe1934ab4954934ffea90",
+      "sha256": "09568c5ee6a2a9315f8f8a7fb308eec60859c10c0110a346027463140c830283",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "2511288dea5d76e5b9ce7342a59150d28c1e043421239c78e790da5a7c84a624",
+        "key": "strava/v1/activities/20538815104/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/20538815104/streams.json",
+        "sha256": "b600c6de8b731e7f83975a0e215197d80b233a85392dab1cf066e99b7142623f"
+      }
+    },
+    "20538815108": {
+      "etag": "36edf6c7e4000e7bd5080eecf1d33e76",
+      "sha256": "b81b06daf9c3182fbc97b51a7dd27aaa4571ea8ae12bfcff4c08d5a8e565b4bb",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "1e1615a4ce355c249c9440a2b4fcf3be6096426ba9ae8209eb15e7dacb2cf0a4",
+        "key": "strava/v1/activities/20538815108/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/20538815108/streams.json",
+        "sha256": "f4f2d618b72034951c8dbf69232b75af76b98f879c3f7107a45f45af3ab0fc62"
+      }
+    },
+    "20562907475": {
+      "etag": "3258dc673d75b3978ae41d8653363d07",
+      "sha256": "98a90ee021e6e33c6ca8ae6c1aa8159f3ba44415e2cbddb2a9ab93f69c3ad353",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "30fbcba4a0e77c79eb0188f79195c9b6f3ab737a776504aef1e7a9e3804a2401",
+        "key": "strava/v1/activities/20562907475/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/20562907475/streams.json",
+        "sha256": "bcd56014257a5dbee44c7bb479b4eb4b02dd37430828c41e0a89300f9feec4ee"
+      }
+    },
+    "20578839193": {
+      "etag": "d17ec1a70f53a678b27b39fafd37dc3d",
+      "sha256": "b865a56a7746022521197683b4cead2ddaad6582bdc2229eb1246d3bfecf6cf0",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "31acf8f8e6fbbc8977c9b8bdf4a9c7ac5bae22a53911a46b9d085d0701f1b202",
+        "key": "strava/v1/activities/20578839193/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/20578839193/streams.json",
+        "sha256": "147899e152e47284d426e1cc39a38152967ba24718ae193ffb19a4ed1a7dbc43"
+      }
+    },
+    "20590816780": {
+      "etag": "2a9bf76d0a0f4cb9c3faeb54a679ebf7",
+      "sha256": "e3a70cf54a34c8d9a89040a857b92a24749c11c67b0c36af890b96a4c7687383",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "0993f534de22e69fd6b068f998ee62410137ffa1c8ed9d027520340ef8244bf6",
+        "key": "strava/v1/activities/20590816780/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/20590816780/streams.json",
+        "sha256": "1939796bd9365234bd95366bd4bc217ab6a83ad3b7a338baeeb7db98b132dd9e"
+      }
+    },
+    "7868185813": {
+      "etag": "d7d35dd5ef2ec2239cb870e5b507e42f",
+      "sha256": "97c145e59dbe84b34e4551e4ade13b2cf88fd1577cbfb10f2aba418103d0e6d0",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "6ced8f56af32388d2b04d6a5a906a4d68599180c61d57561244efa0c564a71ab",
+        "key": "strava/v1/activities/7868185813/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/7868185813/streams.json",
+        "sha256": "5b39f0795b8575b5d5b14a4b43894b0cfc4bca1da1ae59319ef734c25f4ba277"
+      }
+    },
+    "7868185937": {
+      "etag": "9a112474d13c1dde0896766c48b878f8",
+      "sha256": "435325744b4c78709f30586be7147ca5963682316b7459d5d8860de8107285af",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "497b606f90e03abbd4837639676e41c8db78bcd09539aefd0d1f3cb945af700a",
+        "key": "strava/v1/activities/7868185937/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/7868185937/streams.json",
+        "sha256": "23722dbe15cb354b5fe5b0de160d904c5c682a8e557d0ec954a8cb2336e24cb0"
+      }
+    },
+    "7868185979": {
+      "etag": "8f2a734068562e41c5afe4e68f4ce9a7",
+      "sha256": "a845fe5b2fa78c1f1196bbfa9b3f964c4253962619e03897c0993689a8717afc",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "565672d02c977274807469d4f9ab9873ef139fd96fbc9928ac8facb1de858bd4",
+        "key": "strava/v1/activities/7868185979/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/7868185979/streams.json",
+        "sha256": "0e943f5efa0030d379de1783d34eb6599471c8af7e3e706c7949adb7fabf595f"
+      }
+    },
+    "7868186019": {
+      "etag": "96198f58b56f2695a18af0f5822ebd78",
+      "sha256": "e26de6f039ec33558b59192b29b00d1f279b5684b782b32d7386a161d0435e34",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "eb6631b203f2d763c26cef9d6f2a5d17a334e7b96e1e3ae50b09e82928a83e85",
+        "key": "strava/v1/activities/7868186019/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/7868186019/streams.json",
+        "sha256": "012ab591ca28368417979067178c4986f41bc5c0e390dfb8c8354f82fc93476d"
+      }
+    },
+    "7868186054": {
+      "etag": "511e84b432237e17b5cde9cb5b9d8449",
+      "sha256": "5524305bd5e0501f935cbd616665d4016299854780b0f0a8203e6c932770a00b",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "47ef95c9302f0738bffa57f5505d4e36adaa0c64ee92a006f5508fffcf5b79ba",
+        "key": "strava/v1/activities/7868186054/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/7868186054/streams.json",
+        "sha256": "d68642b654231cda9d00c4361cda42a2ec45c7384fb73148d49b5b7b1929472a"
+      }
+    },
+    "7868186055": {
+      "etag": "7b04d96cd2fab75259ecd1f6a29b1eb8",
+      "sha256": "1977130262e20b392a362317a1b7b0189c5c475fa763bb7878d4aa731cb2051d",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "a286c0326b677a523086c6ad87e50f2dd83e12dd7ffb59c18b154c925e699197",
+        "key": "strava/v1/activities/7868186055/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/7868186055/streams.json",
+        "sha256": "1ea772abefc1ba7dcc144e36c32d23da3dfaeacd8ba28633e6a334ed5c5f9844"
+      }
+    },
+    "7868186089": {
+      "etag": "36ee0adff0145314b5bdf6f4ba5923c8",
+      "sha256": "f02f3a48e7e9fbd80ece36f14684d86553c029f9716de7d88267a9fee8856a2d",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "2f262084a3e0e226af5aeb5e57ed198d4e8ba757727848cedd11c711e7117f0c",
+        "key": "strava/v1/activities/7868186089/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/7868186089/streams.json",
+        "sha256": "ca4d1322a0c8b30209c59cd8af960678e43c35618958466b3fdf5b107061de98"
+      }
+    },
+    "7868186093": {
+      "etag": "b7972227b7d80cdf4b293e14b2362a1e",
+      "sha256": "db883559c8cef13e486a82bc644593a66e6092ca2625206fb021730c7fb6f691",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "7ed36f858e9e998e4f4206233a649d0a45c53dd732914f0105ac2166c3bec28a",
+        "key": "strava/v1/activities/7868186093/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/7868186093/streams.json",
+        "sha256": "f5c720a4c9d18739d4a9c021c0355705c7ca463c4e6e4491c7edfff1e23fe26e"
+      }
+    },
+    "7868186131": {
+      "etag": "72803bc98cc4fa1d0c71e077f5fc32db",
+      "sha256": "bee5a046b652d33bb96d90ec76938be4af21422af2e7fdeef7dc44f298341f8a",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "d3fc3453368dc53a611533e8dc1209ab76c143b18a793dc6ee3cacedf7dfae49",
+        "key": "strava/v1/activities/7868186131/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/7868186131/streams.json",
+        "sha256": "9948161bda3e563b8dd309e20facd1929d3364830b2a59dd24c83aed73791f9c"
+      }
+    },
+    "7868186156": {
+      "etag": "49a432f1e08f6f4e8a0f69fb11a02f29",
+      "sha256": "eff8dfdf1a8336e0dd3b89070a9d143e6018e7df59db5e74c0b50552743a7ee8",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "edab2afef1527680b2c869bfe89901694e80def61ec4e9a7f1c012cbea4372c0",
+        "key": "strava/v1/activities/7868186156/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/7868186156/streams.json",
+        "sha256": "a45ff86154fa5522fac0443ddeee2256a471c34189295feca66e149bb9b3ba2a"
+      }
+    },
+    "7868186179": {
+      "etag": "cdc6cfb74e244a07b9fe1b5fcc4a5248",
+      "sha256": "8514f968b1a0c01569e9cfac36699168499cbdc6d63b5ff6c3dcd0eba7ad4e01",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "fe3e8fae47f5e5dfe2c7f7d0a723be3ad93d789b105813ac692c55a6c83e952b",
+        "key": "strava/v1/activities/7868186179/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/7868186179/streams.json",
+        "sha256": "ff07bc91363b74d28d1a98049b7763f5baf1d94d11b79e36dc71cc5eae83a2ad"
+      }
+    },
+    "7868186182": {
+      "etag": "5a19d8111d2f00103c5bb62e20ecb7b1",
+      "sha256": "a1690c2f5f3cbff1c48b28b6559e8ac33f3e805163f1667fe64911a2b334469c",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "338b62d7554d9fff6c3f4f27e432868d25fc924d38c065837944ad4055cda3f6",
+        "key": "strava/v1/activities/7868186182/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/7868186182/streams.json",
+        "sha256": "1ab3f412adf45c95493e30fc9cb49bdb2e139f26d59394ddf410a3612155581f"
+      }
+    },
+    "9555262310": {
+      "etag": "a05d0c51cb21c8ca74a4517a0a41a388",
+      "sha256": "4e36acc3993b844ed157b892dfec24c3bd9d275deb3f3adeb2f395e8e83ccc28",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "9e11e583b90b14285720be8a1d693bceea9132ca6345a6d1e4c1b335c7cdf24e",
+        "key": "strava/v1/activities/9555262310/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9555262310/streams.json",
+        "sha256": "f36cb8740756c0046c34a35a633b3008f220b06ffc4fa8b4dffb8e7863ad3428"
+      }
+    },
+    "9555262452": {
+      "etag": "5d72193e6914025a9d2453c3f5adac9b",
+      "sha256": "460787cf96599fe10c9c92e2654d655ca3fb77e89aeed70d0abe43b0ca01935d",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "a8801b5ae5c97f54d80c476ea6501771f83c4f52530fa61ba7daf5f13497addb",
+        "key": "strava/v1/activities/9555262452/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9555262452/streams.json",
+        "sha256": "3070099c23a03378ff3054d0ad201577e4d84018a693dc80b87107af8dd98110"
+      }
+    },
+    "9555263558": {
+      "etag": "41fd48749d30aa5acc2f9135445ca1e3",
+      "sha256": "5ecceda7bdae172c2e811e83299a85226feef42543c32dc30e345c25753d4dda",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "13eb295081253ba50e5c071c92d89cf6f403e7a4b523812a6575213346e24adc",
+        "key": "strava/v1/activities/9555263558/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9555263558/streams.json",
+        "sha256": "c5184bb16a90d1f3b9d8f484f827bfed3092e67e2d7057d13f9ca2a0333630ed"
+      }
+    },
+    "9555697928": {
+      "etag": "1e4e880168e03ac95689a943d5484c5b",
+      "sha256": "7add162766d72f4070406383448be52a27e39c786fd9f4d74f59f56d7bdae980",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "81583888b3b9a9a1cc3feee930f6e63f91b9d75dd6e2aac32ccb8c55d128912e",
+        "key": "strava/v1/activities/9555697928/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9555697928/streams.json",
+        "sha256": "9aa4ed7eb3128ff98852452c3bd81d2cc9fd76bcba74f21dbf83ff7a192ec522"
+      }
+    },
+    "9555890163": {
+      "etag": "2b4d1f97887abe984db61668a6be047e",
+      "sha256": "326f5ef99898f9e73eb196fd60c93b15fdf4b6323b7d16604815fd05270e595c",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "3ea87dfce6f240cbafd97a0ab8b413b4822030fcb035403134a94351dd8b94bb",
+        "key": "strava/v1/activities/9555890163/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9555890163/streams.json",
+        "sha256": "f6cd12ba853ed7231927f73d4002c68802340b4571825571f5099e316b4c8552"
+      }
+    },
+    "9606962346": {
+      "etag": "28de3816c9598e0f9ceee9fd7b0c7ba2",
+      "sha256": "cdb329d71fb6f79b4adb15628fd2bb90cf2dbe812029703ef2e66c8713783a9f",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "f81ac8c395c8104eb35b9c16ef5500bb4681dec2371032baecacd47df1cee00c",
+        "key": "strava/v1/activities/9606962346/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9606962346/streams.json",
+        "sha256": "3ad194c82ff05cc7bcfec8f27e75fc0461868a6b261cc00bba8ded6fe2c74d90"
+      }
+    },
+    "9606962506": {
+      "etag": "af7b931319b4bc68dae1cb15c1c6a3a1",
+      "sha256": "9c5795f5d7323769606b07a4f74de152f2a4fd24d6b6e1863eface211c2b10e2",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "532baf95a7ccb12ff49b9a30a8fd65f7683f66d8cc4d081bcae2f5759fb938bc",
+        "key": "strava/v1/activities/9606962506/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9606962506/streams.json",
+        "sha256": "7268e955f224c1aa8edc78c7fde44983378fde9a9370a1855368de6119735632"
+      }
+    },
+    "9613381205": {
+      "etag": "1161e5fac8c2b4354f9cc220136350c3",
+      "sha256": "fbac17ced446bf31241c160e36ce87783e7b2b2f6b1a3896bcd51cd07c9cb311",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "8545cdb6607ab0e7f59bf512b677ecc2077d7c8729c87f504101ffd06c3938ce",
+        "key": "strava/v1/activities/9613381205/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9613381205/streams.json",
+        "sha256": "0a1ef48e01d2fbd32042ba0201159f5b76027e39d1465b5b7e3fcb901ffb12a3"
+      }
+    },
+    "9629384991": {
+      "etag": "45f46b38d51c16c0c6ffb51f9fc525cf",
+      "sha256": "218434d5f9f7bcff07a492545cda46c54e8fe951ed7ce333d5337a7f8484f6bb",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "8f7a1a69ba7f6a04f7488b1135921f40b3e049b2f1325043b9e7d02ef7f90343",
+        "key": "strava/v1/activities/9629384991/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9629384991/streams.json",
+        "sha256": "65993f5d62ee761d595fc9935c50641dd19013f73a7b6a68c915362829c80861"
+      }
+    },
+    "9635812145": {
+      "etag": "59e2ca4c63ae591c8a24fa3ea0801876",
+      "sha256": "4954caa753d1aa13d397dca743bfe8a77e5b4be17f894909e0f9ae7e8f550595",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "047f5d095a2f6201be0baaf847ffa7958c6307f1362b98bbe422f8abf643d84c",
+        "key": "strava/v1/activities/9635812145/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9635812145/streams.json",
+        "sha256": "4e854ed26007627261e26c9b81e5e8f38e23ddfdd495de78932a697f27635481"
+      }
+    },
+    "9645799825": {
+      "etag": "f5c02a17779bf5c0a5a42c762ae20d63",
+      "sha256": "ebc0fb7bf177675817e2323dce85fa4fd37169c6efde56c4446910f81dc4f885",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "68034410a4fbba2a2751a1ea1a35bc7d18513ef1e9b3a956737e78e2a0211556",
+        "key": "strava/v1/activities/9645799825/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9645799825/streams.json",
+        "sha256": "b407bacf9b747d4c2067ec742efa2f6cde7155fd3a563267883cdb262ef24ca0"
+      }
+    },
+    "9659554818": {
+      "etag": "2205ef0eb05cc7c731b5f68f0ad86c81",
+      "sha256": "a344502af352da5ebee3737bb43cc011baed28953ccfa6392af29d30403948c6",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "acbc5d21f8e850d473bde2d683af6a660522256831a466cea917ec557b9bbc00",
+        "key": "strava/v1/activities/9659554818/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9659554818/streams.json",
+        "sha256": "ff8666e632f48c2d2d6d600e8ebaddf3bb237d31a7b171887424e4336ce72b67"
+      }
+    },
+    "9666647118": {
+      "etag": "9183f400392ee252d75c998577eece0e",
+      "sha256": "a28f1d4094bc68c006c8421c5a77fc0c6db509e675d0529ba39a871a2785e3c6",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "da2b38d40538084427dfeeac3b76638282b00283080408db279f177a09bec876",
+        "key": "strava/v1/activities/9666647118/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9666647118/streams.json",
+        "sha256": "58a865659c37ae2ef64ecfdf1bb36571c1c2d048eea081064c3dfff28483f2e0"
+      }
+    },
+    "9674846627": {
+      "etag": "152b1950b564d46cd9d6ff5550cd2c02",
+      "sha256": "852b32cd74dc51ddc0902ebe552b2f7961e4f7cecc70da14ad5277084f708de8",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "55a114b9e849e376d62fb79ecb5b4666752874feed9f9e85a5930a687d3d40cd",
+        "key": "strava/v1/activities/9674846627/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9674846627/streams.json",
+        "sha256": "301730d20a49806eb2f25b479d3e17704a50368764f0e372ab65730e9536880e"
+      }
+    },
+    "9692001234": {
+      "etag": "a07a8b7234ba32544a41785fdca457ed",
+      "sha256": "80b5c15a43195dd64944ba8b8760b69bcb2dc312c78ba449f1c2f0983eb854c8",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "1eafeecad5d7fd8f25027f75ed153abce9172f8b8c12fb543eea291c473b4257",
+        "key": "strava/v1/activities/9692001234/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9692001234/streams.json",
+        "sha256": "ee1c2c02c3731abc3871208551dcda9bae609b76c88488d2dd33860130fa16ca"
+      }
+    },
+    "9692043021": {
+      "etag": "0730def124bb08222243344e29e133cf",
+      "sha256": "c49b403ed3ac33785f504ee3fff151e240b4feafef2ca7eef8906f6f63f9459c",
+      "original": {
+        "status": "unavailable"
+      },
+      "streams": {
+        "status": "unavailable"
+      }
+    },
+    "9742148120": {
+      "etag": "bcecc612ddbbb5b503656672d7d46f8b",
+      "sha256": "e70f41801beb0d30f919b2e8a056841c52464e147363864aa794cbde4ccdfc99",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "8804ca2a3528f31fce7c8b6f1e021f5804e5e134319fca38fc52448a26ca2afd",
+        "key": "strava/v1/activities/9742148120/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9742148120/streams.json",
+        "sha256": "8301fae381fd1e66cea431ad425d557b53a380fdfbae506a4130e3da055942f5"
+      }
+    },
+    "9759361219": {
+      "etag": "5ea0c5ee62bca1241d28ef1a164e328f",
+      "sha256": "90ed16adb6ebb80955dd58c837f2a9c048ba94df197e29871427e937eb366abb",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "c632fbc08e2969bc122c9442bdb86d03c21b7cae78874b6f1bf1246209acb9e6",
+        "key": "strava/v1/activities/9759361219/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9759361219/streams.json",
+        "sha256": "fe5572b399621b01cf4cead8ecf23c6c4e5f530d0098ae2089c6664752d0d4da"
+      }
+    },
+    "9802130368": {
+      "etag": "29e4726be69ea4ff700278f54367c269",
+      "sha256": "362fb2eb75214e756f62a25a05bdb79243e9ffe6d09a79cbb5b294601de5f5f5",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "ad030f2459292f92535546e8ccd3dbe184d4afbdd9aa4f44e88b20d8adff2ac5",
+        "key": "strava/v1/activities/9802130368/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9802130368/streams.json",
+        "sha256": "353e756174d406deef7494a1159167aba965150bb61fd1a9c157a7a49b4091be"
+      }
+    },
+    "9834728590": {
+      "etag": "fe24d18e7645bc79e57522affc3831e2",
+      "sha256": "2c6cd470456eb5d97e619bf8f6029ea76dd1fa09f75a2ba984b1ac4b09923fed",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "c3ded81248db996d6b87f94492165674e9f5eb23053dfd6fbeadb55e5d5147ef",
+        "key": "strava/v1/activities/9834728590/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9834728590/streams.json",
+        "sha256": "4e7d3dd1f3662122565a333c4def91fb6c51e69f196ebf9efe8c81e77d64d931"
+      }
+    },
+    "9879771227": {
+      "etag": "75c540696e556ab8bf55f36e1fd7b3e7",
+      "sha256": "c19640262d884008c03080ef754dd353d1709e0929d7d605f1887c3fe24a68c5",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "2890cd5e1b1536f3cb9d0edc6632cfd04b20c5e12664cdace382b8a1c6aa0969",
+        "key": "strava/v1/activities/9879771227/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9879771227/streams.json",
+        "sha256": "7e2c7b95a494f57a8ae07cdc016dc0eb504e0bba3a54d154e067dac4e222791b"
+      }
+    },
+    "9912070348": {
+      "etag": "a112ced247ea48ceca236e09d15cc9ab",
+      "sha256": "fc726338761314ad74c97240ab8f30f4a97c4337ecbc65fa82ee5198138e8c37",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "67a3ea8c3629221c40288265f96d374ed6e54b25919e1ed7a0cb6cc3254fb896",
+        "key": "strava/v1/activities/9912070348/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9912070348/streams.json",
+        "sha256": "9bf6699f7b9c84b6dd00ca2133032ebd8166a1c12cdde17869f8f0767a0362b1"
+      }
+    },
+    "9912180513": {
+      "etag": "5b37bd98f7839a9cf6236af7a911e4cd",
+      "sha256": "46a6349730d379c1c1b223aef128b93577e11e6dda32d1ef8c4621c19951afb4",
+      "original": {
+        "status": "stored",
+        "format": "fit",
+        "sha256": "bc15b500f219c03270614ad0bf54b6abce941cee64cfbcdb5188f016165e9fbf",
+        "key": "strava/v1/activities/9912180513/original.fit"
+      },
+      "streams": {
+        "status": "stored",
+        "key": "strava/v1/activities/9912180513/streams.json",
+        "sha256": "8dd94ea949179c570d1c1f60ce07b8ef978430c3afab7e376657b84f355278ef"
+      }
+    }
+  },
+  "historyFitIdentities": {
+    "20138063584": {
+      "sourceSha256": "8f52bf8e6361239787ce0ab59fe1451c58e901513874fb8bfbd98d5b0e831bfe",
+      "activityId": "2a240e73a084353e01573d0c76be4808133785d3810676e63443f0ce30f39412",
+      "sha256": "8f52bf8e6361239787ce0ab59fe1451c58e901513874fb8bfbd98d5b0e831bfe",
+      "wod": {
+        "signature": "18b3f67cd13feab79b6ac7f49c637f367bd945200c1feae71746515a15966346",
+        "fileIdManufacturer": "strava",
+        "fileIdProductName": "WorkOutDoors",
+        "fileIdType": "activity",
+        "creatorManufacturer": "strava",
+        "hasSession": true,
+        "recordCount": 2615,
+        "distanceCount": 2615,
+        "distanceSumRaw": 162589347
+      }
+    },
+    "20590816780": {
+      "sourceSha256": "0993f534de22e69fd6b068f998ee62410137ffa1c8ed9d027520340ef8244bf6",
+      "activityId": "8f0e1db61b9073e46b6fef98133d3c014784e19ace33900fee2f6f93d0512fab",
+      "sha256": "0993f534de22e69fd6b068f998ee62410137ffa1c8ed9d027520340ef8244bf6",
+      "wod": {
+        "signature": "d203a43aa5b3dc17cfd0cd677b0f349453e737965c9d9dfe194dc985dcb67390",
+        "fileIdManufacturer": "strava",
+        "fileIdProductName": "WorkOutDoors",
+        "fileIdType": "activity",
+        "creatorManufacturer": "strava",
+        "hasSession": true,
+        "recordCount": 1507,
+        "distanceCount": 1507,
+        "distanceSumRaw": 531654641
+      }
+    }
+  },
+  "phones": {
+    "1e61bd72d23575db6d21c20ad0c4bc36258fbd85aea63ff6151e16875c03818e": {
+      "etag": "6e8a28f72dfbb9506118b207dbe6ce1c",
+      "sha256": "c07d08fe8db3f0bc8cf97884ad9e4f3e1e7b7eb60c6aceb5656787f213678df2",
+      "dedupMode": "workoutdoors-content",
+      "wod": {
+        "signature": "18b3f67cd13feab79b6ac7f49c637f367bd945200c1feae71746515a15966346",
+        "fileIdManufacturer": "development",
+        "fileIdProductName": "WorkOutDoors",
+        "fileIdType": "activity",
+        "creatorManufacturer": "development",
+        "hasSession": true,
+        "recordCount": 2615,
+        "distanceCount": 2615,
+        "distanceSumRaw": 162589932
+      },
+      "start": 1789211149,
+      "distance": 1467.98,
+      "kind": "walk",
+      "hasGps": true,
+      "suppressedBy": 20138063584
+    },
+    "a751dada2f268d8395ac25f923cbbf50f1b86e2ef239832ed2f648d5a82adfaf": {
+      "etag": "990163798893146929f8786514819d0a",
+      "sha256": "9208ee8c6a56ea13691d7ffd28f0a1fdf4ec546b5638763c870c42a03e99dbc5",
+      "dedupMode": "workoutdoors-content",
+      "wod": {
+        "signature": "d203a43aa5b3dc17cfd0cd677b0f349453e737965c9d9dfe194dc985dcb67390",
+        "fileIdManufacturer": "development",
+        "fileIdProductName": "WorkOutDoors",
+        "fileIdType": "activity",
+        "creatorManufacturer": "development",
+        "hasSession": true,
+        "recordCount": 1507,
+        "distanceCount": 1507,
+        "distanceSumRaw": 531654377
+      },
+      "start": 1792064731,
+      "distance": 6681.24,
+      "kind": "ride",
+      "hasGps": true,
+      "suppressedBy": 20590816780
+    }
+  },
+  "totals": {
+    "historyPublic": 284,
+    "historyPrivate": 1,
+    "phone": 2
+  }
+}

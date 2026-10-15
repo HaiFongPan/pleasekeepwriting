@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-14T13:21:43.906Z",
+  "generatedAt": "2026-10-15T09:03:09.888Z",
   "source": {
     "provider": "strava",
     "athleteId": null
@@ -20,13 +20,31 @@
     "showLocationNames": false
   },
   "summary": {
-    "activityCount": 283,
-    "trackCount": 257,
+    "activityCount": 284,
+    "trackCount": 258,
     "calorieMissing": 43,
     "firstActivityAt": "2022-08-27",
-    "lastActivityAt": "2026-10-14"
+    "lastActivityAt": "2026-10-15"
   },
   "activities": [
+    {
+      "id": 20590816780,
+      "sportType": "Ride",
+      "displayType": "骑行",
+      "name": "Thursday Morning Cycle",
+      "kind": "ride",
+      "start": 1792064731,
+      "date": "2026-10-15",
+      "distance": 6681.2,
+      "movingTime": 1483,
+      "elapsedTime": 2671,
+      "calories": 151,
+      "caloriesSynced": true,
+      "elevation": 35.8478,
+      "hasGps": true,
+      "track": true,
+      "trackSynced": true
+    },
     {
       "id": 20578839193,
       "sportType": "Run",
@@ -319,6 +337,7 @@
       "id": 19582158809,
       "sportType": "HighIntensityIntervalTraining",
       "displayType": "高强度间歇训练",
+      "name": "Thursday Night HIIT",
       "kind": "other",
       "start": 1785446839,
       "date": "2026-07-30",
@@ -330,13 +349,13 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Thursday Night HIIT"
+      "trackSynced": false
     },
     {
       "id": 19639987034,
       "sportType": "HighIntensityIntervalTraining",
       "displayType": "高强度间歇训练",
+      "name": "Tuesday Night HIIT",
       "kind": "other",
       "start": 1785273839,
       "date": "2026-07-28",
@@ -348,13 +367,13 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Tuesday Night HIIT"
+      "trackSynced": false
     },
     {
       "id": 19639986457,
       "sportType": "HighIntensityIntervalTraining",
       "displayType": "高强度间歇训练",
+      "name": "Thursday Night HIIT",
       "kind": "other",
       "start": 1784843611,
       "date": "2026-07-23",
@@ -366,8 +385,7 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Thursday Night HIIT"
+      "trackSynced": false
     },
     {
       "id": 19323556348,
@@ -391,6 +409,7 @@
       "id": 19016377552,
       "sportType": "WeightTraining",
       "displayType": "举重训练",
+      "name": "Sunday Evening Strength Training",
       "kind": "other",
       "start": 1782066581,
       "date": "2026-06-21",
@@ -402,8 +421,7 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Sunday Evening Strength Training"
+      "trackSynced": false
     },
     {
       "id": 19639986496,
@@ -697,6 +715,7 @@
       "id": 17313908981,
       "sportType": "Workout",
       "displayType": "锻炼",
+      "name": "Saturday Afternoon HIIT",
       "kind": "other",
       "start": 1770482918,
       "date": "2026-02-07",
@@ -708,8 +727,7 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Saturday Afternoon HIIT"
+      "trackSynced": false
     },
     {
       "id": 17313677871,
@@ -1219,6 +1237,7 @@
       "id": 16037726069,
       "sportType": "Workout",
       "displayType": "锻炼",
+      "name": "Sunday Afternoon HIIT",
       "kind": "other",
       "start": 1759678336,
       "date": "2025-10-05",
@@ -1230,8 +1249,7 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Sunday Afternoon HIIT"
+      "trackSynced": false
     },
     {
       "id": 15995052742,
@@ -1327,6 +1345,7 @@
       "id": 15840843432,
       "sportType": "Workout",
       "displayType": "锻炼",
+      "name": "Wednesday Evening HIIT",
       "kind": "other",
       "start": 1758133635,
       "date": "2025-09-17",
@@ -1338,8 +1357,7 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Wednesday Evening HIIT"
+      "trackSynced": false
     },
     {
       "id": 15840555195,
@@ -1561,6 +1579,7 @@
       "id": 15535414888,
       "sportType": "WeightTraining",
       "displayType": "举重训练",
+      "name": "Tuesday Night Strength Training",
       "kind": "other",
       "start": 1755639664,
       "date": "2025-08-19",
@@ -1572,8 +1591,7 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Tuesday Night Strength Training"
+      "trackSynced": false
     },
     {
       "id": 15512603681,
@@ -1597,6 +1615,7 @@
       "id": 15512110927,
       "sportType": "WeightTraining",
       "displayType": "举重训练",
+      "name": "Sunday Night Strength Training",
       "kind": "other",
       "start": 1755465666,
       "date": "2025-08-17",
@@ -1608,8 +1627,7 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Sunday Night Strength Training"
+      "trackSynced": false
     },
     {
       "id": 15489785843,
@@ -1633,6 +1651,7 @@
       "id": 15462495167,
       "sportType": "WeightTraining",
       "displayType": "举重训练",
+      "name": "Friday Morning Strength Training",
       "kind": "other",
       "start": 1755250259,
       "date": "2025-08-15",
@@ -1644,13 +1663,13 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Friday Morning Strength Training"
+      "trackSynced": false
     },
     {
       "id": 15462432124,
       "sportType": "WeightTraining",
       "displayType": "举重训练",
+      "name": "Friday Morning Strength Training",
       "kind": "other",
       "start": 1755249868,
       "date": "2025-08-15",
@@ -1662,13 +1681,13 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Friday Morning Strength Training"
+      "trackSynced": false
     },
     {
       "id": 15462354124,
       "sportType": "Run",
       "displayType": "跑步",
+      "name": "Friday Morning Indoor Run",
       "kind": "run",
       "start": 1755247584,
       "date": "2025-08-15",
@@ -1680,8 +1699,7 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Friday Morning Indoor Run"
+      "trackSynced": false
     },
     {
       "id": 15433146690,
@@ -1705,6 +1723,7 @@
       "id": 15416953309,
       "sportType": "WeightTraining",
       "displayType": "举重训练",
+      "name": "Monday Morning Strength Training",
       "kind": "other",
       "start": 1754911991,
       "date": "2025-08-11",
@@ -1716,13 +1735,13 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Monday Morning Strength Training"
+      "trackSynced": false
     },
     {
       "id": 15416838674,
       "sportType": "Workout",
       "displayType": "锻炼",
+      "name": "Monday Morning Other Indoor",
       "kind": "other",
       "start": 1754911350,
       "date": "2025-08-11",
@@ -1734,8 +1753,7 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Monday Morning Other Indoor"
+      "trackSynced": false
     },
     {
       "id": 15410426467,
@@ -1777,6 +1795,7 @@
       "id": 15365791877,
       "sportType": "Run",
       "displayType": "跑步",
+      "name": "Wednesday Evening Indoor Run",
       "kind": "run",
       "start": 1754501019,
       "date": "2025-08-06",
@@ -1788,13 +1807,13 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Wednesday Evening Indoor Run"
+      "trackSynced": false
     },
     {
       "id": 15362132367,
       "sportType": "Elliptical",
       "displayType": "椭圆机",
+      "name": "Wednesday Afternoon Elliptical",
       "kind": "other",
       "start": 1754499102,
       "date": "2025-08-06",
@@ -1806,13 +1825,13 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Wednesday Afternoon Elliptical"
+      "trackSynced": false
     },
     {
       "id": 15347111585,
       "sportType": "Run",
       "displayType": "跑步",
+      "name": "Tuesday Morning Indoor Run",
       "kind": "run",
       "start": 1754382939,
       "date": "2025-08-05",
@@ -1824,8 +1843,7 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Tuesday Morning Indoor Run"
+      "trackSynced": false
     },
     {
       "id": 15340956112,
@@ -1957,6 +1975,7 @@
       "id": 15075298017,
       "sportType": "Run",
       "displayType": "跑步",
+      "name": "Friday Afternoon Indoor Run",
       "kind": "run",
       "start": 1752236191,
       "date": "2025-07-11",
@@ -1968,8 +1987,7 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Friday Afternoon Indoor Run"
+      "trackSynced": false
     },
     {
       "id": 15075150021,
@@ -4351,6 +4369,7 @@
       "id": 11149982239,
       "sportType": "Walk",
       "displayType": "健走",
+      "name": "Lunch Walk",
       "kind": "walk",
       "start": 1710851550,
       "date": "2024-03-19",
@@ -4362,8 +4381,7 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Lunch Walk"
+      "trackSynced": false
     },
     {
       "id": 10975946177,
@@ -4657,6 +4675,7 @@
       "id": 9692043021,
       "sportType": "Ride",
       "displayType": "骑行",
+      "name": "骑行",
       "kind": "ride",
       "start": 1692395400,
       "date": "2023-08-18",
@@ -4668,8 +4687,7 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "骑行"
+      "trackSynced": false
     },
     {
       "id": 9666647118,
@@ -4819,6 +4837,7 @@
       "id": 9555890163,
       "sportType": "Workout",
       "displayType": "锻炼",
+      "name": "Night Workout",
       "kind": "other",
       "start": 1690839735,
       "date": "2023-07-31",
@@ -4830,8 +4849,7 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Night Workout"
+      "trackSynced": false
     },
     {
       "id": 9555697928,
@@ -4927,6 +4945,7 @@
       "id": 7868185937,
       "sportType": "Walk",
       "displayType": "健走",
+      "name": "Lunch Walk",
       "kind": "walk",
       "start": 1663758963,
       "date": "2022-09-21",
@@ -4938,13 +4957,13 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Lunch Walk"
+      "trackSynced": false
     },
     {
       "id": 7868185979,
       "sportType": "Walk",
       "displayType": "健走",
+      "name": "Morning Walk",
       "kind": "walk",
       "start": 1662626597,
       "date": "2022-09-08",
@@ -4956,13 +4975,13 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Morning Walk"
+      "trackSynced": false
     },
     {
       "id": 7868186019,
       "sportType": "Walk",
       "displayType": "健走",
+      "name": "Morning Walk",
       "kind": "walk",
       "start": 1662533639,
       "date": "2022-09-07",
@@ -4974,8 +4993,7 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Morning Walk"
+      "trackSynced": false
     },
     {
       "id": 7868186054,
@@ -5107,6 +5125,7 @@
       "id": 7868186182,
       "sportType": "Walk",
       "displayType": "健走",
+      "name": "Lunch Walk",
       "kind": "walk",
       "start": 1661601388,
       "date": "2022-08-27",
@@ -5118,8 +5137,7 @@
       "elevation": 0,
       "hasGps": false,
       "track": false,
-      "trackSynced": false,
-      "name": "Lunch Walk"
+      "trackSynced": false
     }
   ]
 }

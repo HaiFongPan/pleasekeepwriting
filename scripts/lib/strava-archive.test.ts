@@ -317,7 +317,7 @@ test('原件明确 404 记 unavailable，不阻断 complete', async () => {
 
   const manifest = parseJson<StoredManifest>(objectAt(storage, 'strava/v1/activities/2/manifest.json'))
   assert.equal(manifest.original.status, 'unavailable')
-  assert.equal(manifest.original.reason, 'http-404')
+  assert.equal(manifest.original.reason, 'export-unavailable')
   assert.equal(manifest.streams.status, 'stored')
   assert.equal(summary.originalUnavailable, 1)
   assert.equal(summary.failedIds.length, 0)
