@@ -169,8 +169,8 @@ export function parseJsonBytes(bytes: Uint8Array, what: string): unknown {
 
 /**
  * 是否属于可公开消费的历史活动。
- * private=true 或 visibility 里带 only/private/followers 的一律排除；
- * 缺字段时按私密处理，绝不因为字段缺失而公开。
+ * 沿用原站点的 private=false 筛选（包括 followers_only）；Only Me 不公开。
+ * 缺 private 字段时按私密处理，绝不因为字段缺失而公开。
  */
 export function isPublicArchivedActivity(activity: ArchivedActivity): boolean {
   if (activity.private) {
@@ -178,7 +178,7 @@ export function isPublicArchivedActivity(activity: ArchivedActivity): boolean {
   }
 
   const visibility = activity.visibility?.trim().toLowerCase() ?? ''
-  return !visibility.includes('only') && !visibility.includes('private') && !visibility.includes('followers')
+  return !visibility.startsWith('only') && !visibility.includes('private')
 }
 
 function parseArchivedActivity(value: unknown): ArchivedActivity {

@@ -90,7 +90,7 @@ export function zonedWallClockEpoch(date: Date, timeZone: string): number {
     throw new PhoneFitError(`无法在时区 ${timeZone} 下解析运动开始时间`)
   }
 
-  return Date.UTC(year, month - 1, day, hour, minute, second)
+  return Date.UTC(year, month - 1, day, hour, minute, second) / 1000
 }
 
 export interface FitSessionSummary {

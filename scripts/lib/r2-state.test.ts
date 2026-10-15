@@ -41,14 +41,12 @@ test('状态解析：合法结构往返，内容比较忽略 generatedAt', () =>
 
 test('状态解析：版本不符或手机条目缺字段时返回 null，触发全量重建', () => {
   assert.equal(parseSyncState({ ...validState(), version: 2 }), null)
-  const broken = validState()
-  broken.phones = { ['a'.repeat(64)]: { etag: 'p1', sha256: 'ps1', dedupMode: 'file', wod: null } }
+  const broken = { ...validState(), phones: { ['a'.repeat(64)]: { etag: 'p1', sha256: 'ps1', dedupMode: 'file', wod: null } } }
   assert.equal(parseSyncState(broken), null)
   assert.equal(parseSyncState(null), null)
 })
 
 test('状态解析：无 session 的手机对象可以只有 skipped 标记', () => {
-  const value = validState()
-  value.phones = { ['b'.repeat(64)]: { etag: 'p2', sha256: 'ps2', dedupMode: 'file', wod: null, skipped: 'no-session' } }
+  const value = { ...validState(), phones: { ['b'.repeat(64)]: { etag: 'p2', sha256: 'ps2', dedupMode: 'file', wod: null, skipped: 'no-session' } } }
   assert.ok(parseSyncState(value))
 })

@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { Buffer } from 'node:buffer'
 // eslint-disable-next-line test/no-import-node-test
 import test from 'node:test'
 import { gzipSync } from 'node:zlib'
@@ -49,12 +50,12 @@ test('manifest 私密字段缺失时按私密处理（fail closed）', () => {
   assert.equal(isPublicArchivedActivity(parsed.activity), false)
 })
 
-test('公开判定：private / Only Me / followers 都不公开', () => {
+test('公开判定：沿用旧站点 followers 范围，private / Only Me 排除', () => {
   const base = parseManifest(manifestValue()).activity
   assert.equal(isPublicArchivedActivity(base), true)
   assert.equal(isPublicArchivedActivity({ ...base, private: true }), false)
   assert.equal(isPublicArchivedActivity({ ...base, visibility: 'Only Me' }), false)
-  assert.equal(isPublicArchivedActivity({ ...base, visibility: 'followers_only' }), false)
+  assert.equal(isPublicArchivedActivity({ ...base, visibility: 'followers_only' }), true)
   assert.equal(isPublicArchivedActivity({ ...base, visibility: null }), true)
 })
 
@@ -123,6 +124,6 @@ test('对象字节解析：gzip JSON 也能读取，坏数据报错不泄露内�
   assert.throws(() => parseJsonBytes(new Uint8Array([1, 2, 3]), 'streams'), /streams 不是合法 JSON/)
 
   const fit = createSyntheticFit()
-  assert.equal(maybeGunzip(bytes).length, gzipSync(Buffer.from(JSON.stringify(value))).byteLength)
+  assert.equal(maybeGunzip(bytes).length, Buffer.byteLength(JSON.stringify(value)))
   assert.equal(maybeGunzip(fit), fit)
 })

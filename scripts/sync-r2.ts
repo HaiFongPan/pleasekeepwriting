@@ -19,7 +19,7 @@
 
 import type { SportActivitiesData, SportActivity, SportKind, SportRenderParams } from '../src/types/strava'
 import type { ArchivedActivity, ArchivedStreamsData, ArchiveIndex } from './lib/r2-archive'
-import type { R2ObjectInfo, R2Reader } from './lib/r2-client'
+import type { R2Object, R2ObjectInfo, R2Reader } from './lib/r2-client'
 import type { HistoryDedupCandidate, HistoryFitIdentity, PhoneDedupRef, PhoneDedupResult } from './lib/r2-dedup'
 import type { FitTrackPoint, PhoneFitData } from './lib/r2-fit'
 import type { SyncState, SyncStateHistoryFitEntry, SyncStateManifestEntry, SyncStatePhoneEntry } from './lib/r2-state'
@@ -131,6 +131,13 @@ function trackOptionsFromParams(params: SportRenderParams): TrackBuildOptions {
   }
 }
 
+function verifiedBytes(bytes: Uint8Array, expected: string | undefined): Uint8Array {
+  if (!expected || sha256Hex(bytes) !== expected) {
+    throw new SyncIntegrityError('归档对象 SHA-256 校验失败')
+  }
+  return bytes
+}
+
 function sha256Hex(bytes: Uint8Array): string {
   return createHash('sha256').update(bytes).digest('hex')
 }
@@ -203,8 +210,8 @@ function summarizeOriginal(original: { status: 'stored' | 'unavailable', key?: s
   return { status: original.status, format: original.format, sha256: original.sha256, key: original.key }
 }
 
-function summarizeStreams(streams: { status: 'stored' | 'unavailable', key?: string }): SyncStateManifestEntry['streams'] {
-  return { status: streams.status, key: streams.key }
+function summarizeStreams(streams: { status: 'stored' | 'unavailable', key?: string, sha256?: string }): SyncStateManifestEntry['streams'] {
+  return { status: streams.status, key: streams.key, sha256: streams.sha256 }
 }
 
 function buildHistoryTrack(streams: ArchivedStreamsData, kind: SportKind, options: TrackBuildOptions) {
@@ -311,7 +318,8 @@ async function main() {
   }
 
   const existing = await readDataset(inputRoot)
-  const previousState = await readState(inputRoot)
+  const loadedState = await readState(inputRoot)
+  const previousState = loadedState?.parser === parserVersion ? loadedState : null
   console.log(`站点已有 ${existing?.activities.length ?? 0} 条活动；状态文件${previousState ? '已读取' : '不存在，将逐条重建'}`)
   console.log(`展示时区 ${timezone}${options.full ? '；--full 忽略增量状态' : ''}\n`)
 
@@ -361,10 +369,24 @@ async function main() {
     }
   }
 
+  // 只并发读取新增或变更的 manifest；R2 读取无需沿用 Strava 的请求间隔。
+  const manifestObjects = new Map<string, R2Object | null>()
+  const pendingManifests = manifestInfos.filter(info => options.full
+    || previousState?.manifests[String(info.id)]?.etag !== info.etag).slice(0, options.limit)
+  let manifestCursor = 0
+  await Promise.all(Array.from({ length: Math.min(8, pendingManifests.length) }, async () => {
+    while (manifestCursor < pendingManifests.length) {
+      const info = pendingManifests[manifestCursor++]
+      manifestObjects.set(info.key, await reader.get(info.key))
+    }
+  }))
+
   // ---- 历史归档 ----
   const previousById = new Map<string, SportActivity>((existing?.activities ?? []).map(activity => [activityIdKey(activity.id), activity]))
   const paramsChanged = existing != null && JSON.stringify(existing.params) !== JSON.stringify(params)
-  const rendererChanged = paramsChanged || previousState == null || previousState.renderer !== rendererVersion
+  const rendererChanged = options.full || paramsChanged
+    || (loadedState != null && previousState == null)
+    || (previousState != null && previousState.renderer !== rendererVersion)
 
   const manifestIds = new Set<number>()
   const privateIds = new Set<number>()
@@ -387,11 +409,12 @@ async function main() {
     const previous = previousById.get(activityIdKey(info.id))
     const cached = options.full ? undefined : previousState?.manifests[String(info.id)]
     const cacheUsable = cached != null && cached.etag === info.etag && previous != null
+    const sourceChanged = options.full || (previousState != null && !cacheUsable)
     const trackExists = previous?.track === true
       ? await fileExists(path.join(inputRoot, tracksDir, `${info.id}.json`))
       : false
-    const wantTrack = previous != null && previous.hasGps && (rendererChanged || previous.trackSynced !== true || !trackExists)
-    const wantCalories = previous == null || previous.caloriesSynced !== true
+    const wantTrack = (previous?.hasGps ?? true) && (rendererChanged || previous == null || previous.trackSynced !== true || (previous.track && !trackExists))
+    const wantCalories = options.full || previous == null || previous.caloriesSynced !== true
 
     if (cacheUsable && !wantTrack && !wantCalories) {
       publicHistory.push({ ...previous })
@@ -421,7 +444,7 @@ async function main() {
       active = cached
     }
     else {
-      const object = await reader.get(info.key)
+      const object = manifestObjects.has(info.key) ? manifestObjects.get(info.key) : await reader.get(info.key)
       if (!object) {
         throw new SyncIntegrityError(`归档 manifest 对象缺失（清单第 ${manifestIndex + 1} 条）`)
       }
@@ -450,14 +473,14 @@ async function main() {
       ? historyActivityFromManifest(source, previous)
       : { ...previous } as SportActivity
 
-    if (wantTrack) {
+    if ((wantTrack || sourceChanged) && record.hasGps) {
       if (active.streams.status === 'stored' && active.streams.key) {
         const object = await reader.get(active.streams.key)
         if (!object) {
           throw new SyncIntegrityError('归档 streams 对象缺失')
         }
 
-        const streams = parseStreamsObject(parseJsonBytes(object.bytes, 'streams'))
+        const streams = parseStreamsObject(parseJsonBytes(verifiedBytes(object.bytes, active.streams.sha256), 'streams'))
         const outcome = buildHistoryTrack(streams, record.kind, trackOptions)
         if (outcome.kind === 'track') {
           pendingTracks.set(`${info.id}.json`, JSON.stringify(outcome.file))
@@ -491,7 +514,7 @@ async function main() {
           throw new SyncIntegrityError('归档原件对象缺失')
         }
 
-        const summary = readFitSummary(object.bytes)
+        const summary = readFitSummary(verifiedBytes(object.bytes, active.original.sha256))
         if (calories == null && summary?.totalCalories != null) {
           calories = summary.totalCalories
           caloriesFilled++
@@ -514,7 +537,7 @@ async function main() {
   }
 
   // ---- 手机 FIT 上传 ----
-  const historyCandidates: HistoryDedupCandidate[] = publicHistory.map((record) => {
+  const historyCandidates: HistoryDedupCandidate[] = publicHistory.filter(record => nextManifests[String(record.id)] != null).map((record) => {
     const entry = nextManifests[String(record.id)]
     return {
       id: record.id as number,
@@ -535,7 +558,7 @@ async function main() {
   const resolveHistoryIdentity = async (candidate: HistoryDedupCandidate): Promise<HistoryFitIdentity> => {
     const sourceSha = candidate.original.sha256 ?? ''
     const cached = historyIdentities[String(candidate.id)]
-    if (cached && cached.sourceSha256 === sourceSha) {
+    if (!options.full && cached && cached.sourceSha256 === sourceSha) {
       return cached
     }
 
@@ -546,7 +569,7 @@ async function main() {
         throw new SyncIntegrityError('历史原件对象缺失')
       }
 
-      const bytes = maybeGunzip(object.bytes)
+      const bytes = maybeGunzip(verifiedBytes(object.bytes, candidate.original.sha256))
       entry.wod = computeWodSignature(bytes)
       try {
         const identity = identifyFitFile(bytes)
@@ -572,7 +595,7 @@ async function main() {
       throw new SyncIntegrityError('历史原件对象缺失')
     }
 
-    return maybeGunzip(object.bytes)
+    return maybeGunzip(verifiedBytes(object.bytes, candidate.original.sha256))
   }
 
   const phoneObjects: Array<{ info: R2ObjectInfo, id: string }> = []
@@ -695,7 +718,15 @@ async function main() {
 
     const candidates = findHistoryCandidates(ref, historyCandidates)
     let decision: PhoneDedupResult = { matched: false }
-    if (candidates.length > 0) {
+    const previousMatch = cachedUsable && cached.suppressedBy != null
+      ? candidates.find(candidate => candidate.id === cached.suppressedBy
+        && candidate.original.sha256 != null
+        && candidate.original.sha256 === previousState?.manifests[String(candidate.id)]?.original.sha256)
+      : undefined
+    if (previousMatch) {
+      decision = { matched: true, historyId: previousMatch.id, mode: 'identity' }
+    }
+    else if (candidates.length > 0) {
       decision = await decidePhoneDedup(ref, candidates, {
         historyIdentity: resolveHistoryIdentity,
         historyBytes: loadHistoryFitBytes,
@@ -722,8 +753,8 @@ async function main() {
     const trackExists = previous?.track === true
       ? await fileExists(path.join(inputRoot, tracksDir, `${id}.json`))
       : false
-    const trackWork = hasGps && (rendererChanged || previous == null || previous.trackSynced !== true || !trackExists)
-    const recordWork = previous == null || trackWork
+    const trackWork = hasGps && (rendererChanged || previous == null || previous.trackSynced !== true || (previous.track && !trackExists))
+    const recordWork = !cachedUsable || previous == null || trackWork
 
     let record: SportActivity
     if (recordWork) {
@@ -841,12 +872,25 @@ async function main() {
     }
   }
 
+  if (outRoot !== inputRoot) {
+    for (const name of keepTracks) {
+      if (pendingTracks.has(name))
+        continue
+      const content = await readText(path.join(inputRoot, tracksDir, name))
+      if (content == null)
+        throw new SyncIntegrityError('需要沿用的轨迹文件缺失')
+      await writeFileIfChanged(path.join(outRoot, tracksDir, name), content)
+    }
+  }
+
   const datasetChanged = await writeFileIfChanged(path.join(outRoot, datasetPath), `${JSON.stringify(merged.data, null, 2)}\n`)
   const tracksRemoved = completeRun ? await pruneTracks(outRoot, keepTracks) : 0
 
   let stateWritten = false
-  if (previousState == null || !stateContentEquals(nextState, previousState)) {
-    nextState.generatedAt = new Date().toISOString()
+  if (previousState == null || !stateContentEquals(nextState, previousState) || outRoot !== inputRoot) {
+    if (previousState == null || !stateContentEquals(nextState, previousState)) {
+      nextState.generatedAt = new Date().toISOString()
+    }
     stateWritten = await writeFileIfChanged(path.join(outRoot, syncStatePath), `${JSON.stringify(nextState, null, 2)}\n`)
   }
 

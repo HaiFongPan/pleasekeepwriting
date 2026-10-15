@@ -39,7 +39,7 @@ test('手机 FIT：session 单位、口径与展示时区换算正确', () => {
   const start = zonedWallClockEpoch(fit.session.start, 'Asia/Shanghai')
   assert.equal(new Date(fit.session.start.toISOString()).getTime(), shanghaiStart.getTime())
   // 上海 09:00 的墙上时间读作 UTC 09:00，与 Strava start_date_local_raw 同口径
-  assert.equal(start, Date.UTC(2026, 9, 14, 9, 0, 0))
+  assert.equal(start, Date.UTC(2026, 9, 14, 9, 0, 0) / 1000)
   assert.equal(formatLocalDate(start), '2026-10-14')
 })
 
@@ -70,9 +70,9 @@ test('手机 FIT：距离流缺失时按坐标累计球面距离', () => {
   const bytes = createSyntheticFit({
     start: shanghaiStart,
     points: [
-      { lat: 31.2304, lng: 121.4737, distanceMeters: 0 },
-      { lat: 31.2314, lng: 121.4747, distanceMeters: 0 },
-      { lat: 31.2324, lng: 121.4757, distanceMeters: 0 },
+      { lat: 31.2304, lng: 121.4737 },
+      { lat: 31.2314, lng: 121.4747 },
+      { lat: 31.2324, lng: 121.4757 },
     ],
   })
 
@@ -108,7 +108,7 @@ test('展示时区可配置，默认 Asia/Shanghai', () => {
   assert.equal(resolveDisplayTimeZone({}), 'Asia/Shanghai')
   assert.equal(resolveDisplayTimeZone({ R2_SYNC_TIMEZONE: 'UTC' }), 'UTC')
   const start = zonedWallClockEpoch(new Date('2026-10-14T01:00:00Z'), 'UTC')
-  assert.equal(start, Date.UTC(2026, 9, 14, 1, 0, 0))
+  assert.equal(start, Date.UTC(2026, 9, 14, 1, 0, 0) / 1000)
   assert.throws(() => zonedWallClockEpoch(new Date(), 'Not/AZone'), /无效的展示时区/)
 })
 

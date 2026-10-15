@@ -2,6 +2,7 @@ import type { SportActivitiesData, SportActivity, SportRenderParams } from '../.
 import assert from 'node:assert/strict'
 // eslint-disable-next-line test/no-import-node-test
 import test from 'node:test'
+import { formatLocalDate } from '../../src/utils/sport'
 import { historyActivityFromManifest, mergeDataset, phoneActivityFromFit } from './r2-dataset'
 
 const params: SportRenderParams = {
@@ -25,7 +26,7 @@ function history(id: number, start: number, distance = 5000): SportActivity {
     name: null,
     kind: 'run',
     start,
-    date: '2026-10-14',
+    date: formatLocalDate(start),
     distance,
     movingTime: 2077,
     elapsedTime: 2254,

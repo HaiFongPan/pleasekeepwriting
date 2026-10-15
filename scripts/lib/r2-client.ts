@@ -55,7 +55,7 @@ export function readR2Config(env: NodeJS.ProcessEnv = process.env): R2Config {
 function requireEnv(env: NodeJS.ProcessEnv, name: string): string {
   const value = env[name]?.trim()
   if (!value) {
-    throw new Error(`缺少环境变量 ${name}（R2 只读凭据，见 docs/strava-r2-sync.md）`)
+    throw new Error(`缺少环境变量 ${name}（需要 R2 只读凭据）`)
   }
 
   return value
@@ -90,6 +90,7 @@ export function createR2Reader(config: R2Config): R2Reader {
   const client: S3Client = new S3Client({
     region: 'auto',
     endpoint: config.endpoint,
+    forcePathStyle: true,
     credentials: {
       accessKeyId: config.accessKeyId,
       secretAccessKey: config.secretAccessKey,

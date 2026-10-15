@@ -20,6 +20,7 @@ export interface SyncStateOriginalEntry {
 
 export interface SyncStateStreamsEntry {
   status: 'stored' | 'unavailable'
+  sha256?: string
   key?: string
 }
 

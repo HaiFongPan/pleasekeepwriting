@@ -1,6 +1,6 @@
 # 手机上传运动 FIT
 
-独立 Cloudflare Worker，直接通过 R2 binding 写入私有 `workout-archive`。手机不需要连接 Tailscale，也不持有 R2 S3 密钥。当前只归档文件，不触发站点发布或正式 Actions 增量处理。
+独立 Cloudflare Worker，直接通过 R2 binding 写入私有 `workout-archive`。手机不需要连接 Tailscale，也不持有 R2 S3 密钥。上传后由仓库的 R2 同步 Action 增量生成站点指标和脱敏轨迹；手机上传自动展示已经由所有者授权，原始文件始终私有。
 
 ## iPhone 快捷指令
 
@@ -37,9 +37,9 @@
 
 - 仅 `POST /v1/workouts`；不提供下载、列举、删除或自选对象路径。
 - 仅接受原始 FIT 字节，最大 10 MiB，请求体接收总时限 30 秒。拒绝 multipart 和压缩编码。
-- 使用 Garmin SDK 检查 FIT 文件头、长度与 CRC，并解析消息生成运动内容标识。当前不生成页面指标，业务指标口径仍留给后续导入流程。
+- 使用 Garmin SDK 检查 FIT 文件头、长度与 CRC，并解析消息生成运动内容标识。Worker 不生成页面指标，业务指标由仓库 `scripts/sync-r2.ts` 解析。
 - 新文件按 `activities/v1/<activityId>.fit` 存储，条件写入保证同一运动内容只归档最先成功写入的一份原件。
-- 对象元信息固定 `publication=private`；后续消费者必须遵守这一状态，不能自动把全部原件发布到站点。
+- 对象元信息固定 `publication=private`，原件禁止直接发布。当前站点经所有者授权消费手机专用 `activities/v1/` 前缀，只发布指标及按站点配置处理的轨迹。
 - 手机凭据为 256 位随机上传令牌，存于 Cloudflare secret binding。Worker 通过 R2 binding 工作，不使用 S3 密钥。
 - 来源 IP 限流配置为每分钟 30 次；通过鉴权的上传限流为每分钟 10 次。Cloudflare Rate Limiting 按数据中心执行且存在传播延迟，属于尽力限流，不是严格全局次数/存储预算。实测经过一个短请求突发后才观察到 429。
 - 没有独立的全局每日存储配额。上传令牌泄漏后应立即轮换；私有归档仍需要监控用量，R2 写入 binding 不构成不可删除备份。
@@ -77,9 +77,17 @@
 
 调整 SDK 或规范化规则必须升级身份规则版本，并制定迁移；不能悄悄改变 v1。回滚到旧 Worker 会恢复 raw 写入，需要再次回填这些新原件。
 
+## R2 增量同步
+
+仓库根目录运行 `pnpm sync-r2`；`--out-dir /tmp/workout-preview` 可先验证输出，`--full` 忽略缓存并重新校验。读取 `R2_ENDPOINT`、`R2_BUCKET`、`R2_READ_ACCESS_KEY_ID`、`R2_READ_SECRET_ACCESS_KEY`，Action 使用同名 Secrets。状态与展示数据一起提交；未变化对象只列举，不重复解析或产生提交。
+
+Strava 历史位于 `strava/v1/`，正式同步要求归档索引完整。筛选沿用原站点的 `private=false`（包括 followers_only），Only Me 只归档；不因归档缺失就删除旧记录。手机与历史优先按完整内容标识去重；Strava 改写的 WorkOutDoors 文件还需全部消息和采样一致，仅容许已确认的导出头变化及累计距离采样不超过 1 米的重编码误差，圈段与活动汇总必须完全一致。
+
+手机时长使用设备计时并在界面标注，默认以 Asia/Shanghai 显示日期。`raw/sha256/` 备份不参与同步。原件、完整数据流和私密活动元信息不写入公开仓库。
+
 ## 开发与部署
 
-独立依赖和锁文件，不改变 Astro 应用依赖。在本目录执行：
+Worker 使用独立依赖和锁文件；站点解析器也固定使用相同 Garmin SDK 版本。在本目录执行：
 
 ```bash
 pnpm install --frozen-lockfile

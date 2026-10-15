@@ -6,9 +6,9 @@
  *      activityId / sha256 相同即同一活动（WorkOutDoors 重导出也能归一到一起）。
  *   2. Strava 改写核验：Strava 会把 WorkOutDoors 原件改头后再提供下载
  *      （FILE_ID.manufacturer=development→strava、补 product、creator 的
- *      manufacturer 一并改写），并在 11 条 record 的 distance 上加 24 个原始
- *      单位（0.24m），其余消息与字段完全一致，普通 identity 会退回 file 模式。
- *      对这种来源，仅在「强候选 + 逐条 distance 差 ≤ 0.25m + 其他消息与字段
+ *      manufacturer 一并改写），累计距离采样也可能出现亚米级重编码误差；
+ *      两份真实样本最大差分别为 0.24m、0.9m，其余消息与字段完全一致。
+ *      对这种来源，仅在「强候选 + 逐条 distance 差 ≤ 1m + 其他消息与字段
  *      全相同」时才判定同一活动。绝不按时间、距离大概相等静默合并。
  *
  * 隐私：本模块只处理已在内存中的字节与摘要；不打印内容，不写日志。
@@ -20,8 +20,8 @@ import { createHash } from 'node:crypto'
 import { Decoder, Profile, Stream } from '@garmin/fitsdk'
 import { canonicalValue } from '../../workers/workout-upload/src/identity.mjs'
 
-/** distance 在 FIT 里的原始单位是 1/100 米，0.25m = 25 */
-const maxDistanceDeltaRaw = 25
+/** distance 在 FIT 里的原始单位是 1/100 米，1m = 100 */
+const maxDistanceDeltaRaw = 100
 /** 候选预筛：开始时间差上限（秒） */
 export const candidateStartToleranceSeconds = 120
 
@@ -39,8 +39,8 @@ const decodeOptions = {
 /** Strava 改写允许变化的 FILE_ID 字段 */
 const fileIdRewrittenFields = new Set(['manufacturer', 'product', 'productName', 'timeCreated', 'serialNumber'])
 /** Strava 改写允许变化的 creator device_info 字段 */
-const creatorRewrittenFields = new Set(['manufacturer', 'product', 'productName', 'serialNumber', 'timestamp'])
-/** record 的 distance 单独做 0.25m 容差核验，不参与其他字段的严格比较 */
+const creatorRewrittenFields = new Set(['manufacturer', 'serialNumber', 'timestamp'])
+/** record 的 distance 单独做 1m 容差核验，不参与其他字段的严格比较 */
 const recordDistanceField = 'distance'
 
 function omitFields(message: Record<string, unknown>, dropped: Set<string>): Record<string, unknown> {
@@ -209,7 +209,7 @@ function isWorkOutDoorsSide(signature: Pick<WodFileSignature, 'fileIdManufacture
 
 /**
  * 强候选：一侧是手机里的 WOD 原件，另一侧是 Strava 改写后的 WOD 下载件。
- * 两侧的归一化消息流必须完全一致，distance 总和差值只能来自逐条 ≤0.25m 的改写。
+ * 两侧的归一化消息流必须完全一致，distance 总和差值只能来自逐条 ≤1m 的改写。
  */
 export function isStravaRewrittenWodCandidate(phone: WodFileSignature, history: WodFileSignature): boolean {
   if (!isWorkOutDoorsSide(phone, 'development') || !isWorkOutDoorsSide(history, 'strava')) {
@@ -224,7 +224,7 @@ export function isStravaRewrittenWodCandidate(phone: WodFileSignature, history: 
 
 /**
  * 严格核验：两条 FIT 的消息数量、顺序、除允许改写外的字段必须逐条一致，
- * 且每条 record 的 distance 差不超过 0.25m。任一不满足即判定不同活动。
+ * 且每条 record 的 distance 差不超过 1m。任一不满足即判定不同活动。
  */
 export function verifyStravaRewrittenWod(phoneBytes: Uint8Array, historyBytes: Uint8Array): boolean {
   const phone = decodeWod(phoneBytes)

@@ -15,7 +15,7 @@
     "sync-weread": "tsx scripts/sync-weread.ts",
     "sync-strava": "tsx scripts/sync-strava.ts",
     "sync-r2": "tsx scripts/sync-r2.ts",
-    "test": "tsx --test scripts/lib/r2-*.test.ts",
+    "test": "tsx --test scripts/lib/*.test.ts",
     "strava-auth": "tsx scripts/strava-auth.ts",
     "strava-validate": "tsx scripts/strava-validate.ts",
     "strava-web-probe": "tsx scripts/strava-web-probe.ts",

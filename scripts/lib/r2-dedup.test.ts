@@ -34,7 +34,7 @@ function createStravaRewrittenWod(points = wodPoints({ 1: 0.24, 3: 0.24, 5: 0.24
   })
 }
 
-test('Strava 改写的 WOD：除允许改写外全相同 + 逐条 distance ≤0.25m 才判定同一活动', () => {
+test('Strava 改写的 WOD：除允许改写外全相同 + 逐条 distance ≤1m 才判定同一活动', () => {
   const phone = computeWodSignature(createPhoneWod())
   const strava = computeWodSignature(createStravaRewrittenWod())
   assert.ok(phone)
@@ -50,14 +50,19 @@ test('Strava 改写的 WOD：除允许改写外全相同 + 逐条 distance ≤0.
   assert.equal(verifyStravaRewrittenWod(createStravaRewrittenWod(), createPhoneWod()), false)
 })
 
+test('Strava 改写核验：亚米级累计距离误差不产生重复记录', () => {
+  const changed = createStravaRewrittenWod(wodPoints({ 1: -0.9, 3: -0.45, 5: 0.01 }))
+  assert.equal(verifyStravaRewrittenWod(createPhoneWod(), changed), true)
+})
+
 test('Strava 改写核验：其他 record 字段不同即拒绝', () => {
   const changed = createStravaRewrittenWod(wodPoints({ 1: 0.24 }, { 2: 999 }))
   assert.notEqual(computeWodSignature(createPhoneWod())?.signature, computeWodSignature(changed)?.signature)
   assert.equal(verifyStravaRewrittenWod(createPhoneWod(), changed), false)
 })
 
-test('Strava 改写核验：单条 distance 超过 0.25m 即拒绝，不静默合并', () => {
-  const changed = createStravaRewrittenWod(wodPoints({ 1: 0.26 }))
+test('Strava 改写核验：单条 distance 超过 1m 即拒绝，不静默合并', () => {
+  const changed = createStravaRewrittenWod(wodPoints({ 1: 1.01 }))
   const phone = computeWodSignature(createPhoneWod())
   const strava = computeWodSignature(changed)
   assert.ok(phone)

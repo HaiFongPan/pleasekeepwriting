@@ -16,7 +16,7 @@ export function toSemicircles(degrees: number): number {
 export interface SyntheticFitPoint {
   lat: number
   lng: number
-  distanceMeters: number
+  distanceMeters?: number
   altitudeMeters?: number
 }
 
@@ -87,7 +87,7 @@ export function createSyntheticFit(options: SyntheticFitOptions = {}): Uint8Arra
       timestamp: new Date(start.getTime() + index * 1000),
       positionLat: toSemicircles(point.lat),
       positionLong: toSemicircles(point.lng),
-      distance: point.distanceMeters,
+      ...(point.distanceMeters != null ? { distance: point.distanceMeters } : {}),
       ...(point.altitudeMeters != null ? { altitude: point.altitudeMeters } : {}),
     })
   })
