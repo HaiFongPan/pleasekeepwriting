@@ -14,6 +14,9 @@
  *
  * 注意：cookie 权限等同于账号登录态，请求保持低频；接口随时可能变更，
  * 变更时只需改本文件。
+ *
+ * 归档链路额外复用本模块的登录态请求：fetchOriginalFile 保留原始字节、
+ * fetchAllStreams 返回 key_by_type 的完整响应，两者都把明确 404 与授权失败区分开。
  */
 
 import type { FitSummary } from './fit'
@@ -32,6 +35,22 @@ export class StravaSessionExpiredError extends Error {
     super(message)
     this.name = 'StravaSessionExpiredError'
   }
+}
+
+/** 带 HTTP 状态码的请求失败，调用方据此决定是否低频重试 */
+export class StravaRequestError extends Error {
+  readonly status: number
+
+  constructor(message: string, status: number) {
+    super(message)
+    this.name = 'StravaRequestError'
+    this.status = status
+  }
+}
+
+/** 429 与 5xx 是暂时性失败，值得低频重试；401/403 是登录态问题，重试没有意义 */
+export function isRetryableStravaError(error: unknown): boolean {
+  return error instanceof StravaRequestError && (error.status === 429 || error.status >= 500)
 }
 
 /** 训练日志接口返回的单条活动 */
@@ -116,7 +135,19 @@ function assertAuthenticated(response: Response, what: string, bodyStart: string
   }
 
   if (!response.ok) {
-    throw new Error(`${what} 请求失败（HTTP ${response.status}）。`)
+    throw new StravaRequestError(`${what} 请求失败（HTTP ${response.status}）。`, response.status)
+  }
+}
+
+/**
+ * cookie 失效时 Strava 可能返回 200 的 HTML 登录页。
+ * 原始文件不会是 HTML，遇到就把会话问题抛出来，避免把登录页当成原件归档。
+ */
+function assertNotLoginPage(response: Response, bytes: Uint8Array, what: string) {
+  const contentType = response.headers.get('content-type') ?? ''
+  const head = new TextDecoder().decode(bytes.slice(0, 64)).trimStart().toLowerCase()
+  if (contentType.includes('text/html') || head.startsWith('<!doctype html') || head.startsWith('<html')) {
+    throw new StravaSessionExpiredError(`${what}返回了 HTML（可能被重定向到登录页）。cookie 已失效，请重新获取。`)
   }
 }
 
@@ -167,22 +198,68 @@ export async function fetchStreams(activityId: number): Promise<{ latlng: Array<
 }
 
 /**
- * 原始文件（FIT）里的汇总。
- * 不是 FIT（例如 GPX 上传）时只有轨迹，没有卡路里，返回 null。
+ * 原始导出文件（FIT/GPX/TCX，可能被 gzip 包装），保留响应原字节。
+ * 明确 404 返回 null；401/403 或登录页抛 StravaSessionExpiredError。
  */
-export async function fetchOriginalFitSummary(activityId: number): Promise<{ summary: FitSummary | null, bytes: number }> {
+export async function fetchOriginalFile(activityId: number): Promise<Uint8Array | null> {
   const response = await fetch(`${webBase}/activities/${activityId}/export_original`, {
     headers: webHeaders({ Accept: 'application/octet-stream' }),
   })
 
   if (response.status === 404) {
     await sleep(requestDelayMs)
+    return null
+  }
+
+  assertAuthenticated(response, `活动 ${activityId} 的原始文件`, '')
+  const bytes = new Uint8Array(await response.arrayBuffer())
+  assertNotLoginPage(response, bytes, `活动 ${activityId} 的原始文件`)
+  await sleep(requestDelayMs)
+
+  return bytes
+}
+
+/**
+ * 原始文件（FIT）里的汇总。
+ * 不是 FIT（例如 GPX 上传）时只有轨迹，没有卡路里，返回 null。
+ */
+export async function fetchOriginalFitSummary(activityId: number): Promise<{ summary: FitSummary | null, bytes: number }> {
+  const bytes = await fetchOriginalFile(activityId)
+  if (bytes === null) {
     return { summary: null, bytes: 0 }
   }
 
-  const buffer = new Uint8Array(await response.arrayBuffer())
-  assertAuthenticated(response, `活动 ${activityId} 的原始文件`, '')
-  await sleep(requestDelayMs)
+  return { summary: readFitSummary(bytes), bytes: bytes.length }
+}
 
-  return { summary: readFitSummary(buffer), bytes: buffer.length }
+/** 归档要尽量覆盖的 streams 类型，Strava 只返回活动实际存在的那些 */
+const archiveStreamKeys = 'time,distance,latlng,altitude,velocity_smooth,heartrate,cadence,watts,temp,moving,grade_smooth'
+
+/**
+ * streams 的完整 key_by_type 响应，交给调用方原样备份。
+ * 明确 404（活动没有 streams）返回 null；其余错误照常抛出。
+ */
+export async function fetchAllStreams(activityId: number): Promise<Record<string, unknown> | null> {
+  const response = await fetch(`${webBase}/api/v3/activities/${activityId}/streams?keys=${archiveStreamKeys}&key_by_type=true`, {
+    headers: webHeaders(),
+  })
+  const text = await response.text()
+
+  if (response.status === 404) {
+    await sleep(requestDelayMs)
+    return null
+  }
+
+  assertAuthenticated(response, `活动 ${activityId} 的 streams`, text.slice(0, 400))
+
+  let payload: Record<string, unknown>
+  try {
+    payload = JSON.parse(text) as Record<string, unknown>
+  }
+  catch {
+    throw new Error(`活动 ${activityId} 的 streams 返回的不是 JSON。`)
+  }
+
+  await sleep(requestDelayMs)
+  return payload
 }
