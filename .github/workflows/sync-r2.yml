@@ -1,7 +1,10 @@
 name: 同步 R2 运动归档
 
-# 暂只支持手动触发；等归档与导入验收完成后，再由父流程决定是否加 schedule。
+# 归档完整性与 GitHub 实跑验收通过后，接替原 Strava 定时同步。
 on:
+  schedule:
+    # 每天 21:40 UTC（次日 05:40 北京时间）
+    - cron: '40 21 * * *'
   workflow_dispatch:
     inputs:
       full:

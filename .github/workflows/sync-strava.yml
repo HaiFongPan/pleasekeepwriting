@@ -1,9 +1,7 @@
 name: 同步 Strava 运动数据
 
+# 已由 sync-r2.yml 接替，GitHub 中同时停用；保留手动入口便于必要时回退。
 on:
-  schedule:
-    # 每天 21:40 UTC（= 次日 05:40 北京时间）
-    - cron: '40 21 * * *'
   workflow_dispatch:
     inputs:
       limit:
