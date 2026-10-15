@@ -122,6 +122,8 @@ export interface ArchiveRunOptions {
   limit: number | null
   /** 复用已有对象时重新拉取对象并比对 manifest 里的 sha256，不一致就重新归档（默认只按 listing 大小核对） */
   verify?: boolean
+  /** 预览模式：照常拉 Strava、算格式与 sha，但不写原件/流/manifest/索引 */
+  dryRun?: boolean
 }
 
 export interface ArchiveRunSummary {
@@ -144,6 +146,8 @@ export interface ArchiveRunSummary {
   limited: boolean
   indexWritten: boolean
   complete: boolean
+  /** 仅预览、未写任何对象 */
+  dryRun: boolean
 }
 
 export interface ArchiveDependencies {
@@ -365,6 +369,8 @@ interface ActivityContext {
   retry: RetryPolicy
   knownObjects: Map<string, number>
   verify: boolean
+  dryRun: boolean
+  log: (line: string) => void
 }
 
 async function archiveActivity(activity: ArchivedActivity, context: ActivityContext): Promise<ActivityOutcome> {
@@ -421,6 +427,8 @@ async function archiveActivity(activity: ArchivedActivity, context: ActivityCont
   const needStreams = streams === null
   outcome.didWork = needOriginal || needStreams
 
+  let previewStreamNames: string[] = []
+
   if (needOriginal) {
     const bytes = await withArchiveRetry(() => context.source.fetchOriginal(activityId), context.retry)
     if (bytes === null) {
@@ -432,8 +440,12 @@ async function archiveActivity(activity: ArchivedActivity, context: ActivityCont
     else {
       const { format, compression } = detectOriginalFormat(bytes)
       const key = originalKeyFor(activityId, format)
-      await context.storage.put(key, bytes, 'application/octet-stream')
-      original = { status: 'stored', key, sha256: sha256Hex(bytes), bytes: bytes.length, format, compression }
+      const sha256 = sha256Hex(bytes)
+      if (!context.dryRun) {
+        await context.storage.put(key, bytes, 'application/octet-stream')
+      }
+
+      original = { status: 'stored', key, sha256, bytes: bytes.length, format, compression }
       outcome.originalStored = true
     }
   }
@@ -444,6 +456,9 @@ async function archiveActivity(activity: ArchivedActivity, context: ActivityCont
       streams = { status: 'unavailable', reason: 'http-404' }
     }
     else {
+      previewStreamNames = Object.entries(payload)
+        .filter(([, stream]) => stream !== null && typeof stream === 'object' && Array.isArray((stream as { data?: unknown }).data))
+        .map(([name]) => name)
       const file = buildStreamsFile(payload)
       if (file === null) {
         streams = { status: 'unavailable', reason: 'no-streams' }
@@ -451,8 +466,12 @@ async function archiveActivity(activity: ArchivedActivity, context: ActivityCont
       else {
         const bytes = new TextEncoder().encode(JSON.stringify(file))
         const key = streamsKeyFor(activityId)
-        await context.storage.put(key, bytes, 'application/json')
-        streams = { status: 'stored', key, sha256: sha256Hex(bytes) }
+        const sha256 = sha256Hex(bytes)
+        if (!context.dryRun) {
+          await context.storage.put(key, bytes, 'application/json')
+        }
+
+        streams = { status: 'stored', key, sha256 }
         outcome.streamsStored = true
       }
     }
@@ -477,9 +496,20 @@ async function archiveActivity(activity: ArchivedActivity, context: ActivityCont
   // 原件与 streams 都有结论后才发布 manifest；刷新元信息时凭字符串比较避免无意义写入
   const manifest: ArchiveManifest = { version: archiveVersion, activity, original: original as ArchiveOriginal, streams: streams as ArchiveStreams }
   const serialized = JSON.stringify(manifest)
-  if (serialized !== existingSerialized) {
+  if (!context.dryRun && serialized !== existingSerialized) {
     await context.storage.put(manifestKey, new TextEncoder().encode(serialized), 'application/json')
     outcome.manifestWritten = true
+  }
+
+  // 预览模式只报 id/格式/大小/sha 前缀，不输出运动名称或地点
+  if (context.dryRun && original && streams) {
+    const originalNote = original.status === 'stored'
+      ? `${original.format}${original.compression === 'gzip' ? '(gzip)' : ''} ${original.bytes}B sha256:${original.sha256.slice(0, 12)}`
+      : `unavailable(${original.reason})`
+    const streamsNote = streams.status === 'stored'
+      ? `${previewStreamNames.join(',') || 'none'} sha256:${streams.sha256.slice(0, 12)}`
+      : `unavailable(${streams.reason})`
+    context.log(`  预览 #${activityId}：原件 ${originalNote}；流 ${streamsNote}`)
   }
 
   return outcome
@@ -530,6 +560,7 @@ export async function archiveStrava(dependencies: ArchiveDependencies, options: 
     limited: false,
     indexWritten: false,
     complete: false,
+    dryRun: options.dryRun ?? false,
   }
 
   const seen = new Set<number>()
@@ -565,7 +596,7 @@ export async function archiveStrava(dependencies: ArchiveDependencies, options: 
       summary.processed++
 
       try {
-        const outcome = await archiveActivity(activity, { source, storage, retry, knownObjects, verify: options.verify ?? false })
+        const outcome = await archiveActivity(activity, { source, storage, retry, knownObjects, verify: options.verify ?? false, dryRun: summary.dryRun, log })
         summary.originalStored += outcome.originalStored ? 1 : 0
         summary.originalUnavailable += outcome.originalUnavailable ? 1 : 0
         summary.originalReused += outcome.originalReused ? 1 : 0
@@ -627,7 +658,11 @@ export async function archiveStrava(dependencies: ArchiveDependencies, options: 
   summary.scanComplete = seen.size >= declaredTotal
   summary.failedIds = [...failed].sort((left, right) => left - right)
 
-  if (summary.scanComplete) {
+  if (summary.dryRun) {
+    summary.complete = false
+    log('dry-run：未写入任何对象，也未更新索引')
+  }
+  else if (summary.scanComplete) {
     const activityIds = [...seen].sort((left, right) => left - right)
     const unresolved = activityIds.filter(id => !publishedManifests.has(id) && !existingManifestIds.has(id))
     summary.complete = unresolved.length === 0 && summary.failedIds.length === 0

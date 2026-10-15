@@ -547,6 +547,44 @@ test('--verify 重新校验 sha 并修复被破坏的对象', async () => {
   assert.deepEqual(repairedFile.latlng, [[31.2, 121.4], [31.21, 121.41], [31.22, 121.42]])
 })
 
+test('--dry-run 只预览：不写对象、不写索引，日志不泄露名称', async () => {
+  const fake = createFakeSource([pageOf([activity(1), activity(2)], 2)], originalMap([1, 2]), streamsMap([1, 2]))
+  const storage = createMemoryStorage({}, () => true) // 任何写入都会失败
+  const logs: string[] = []
+
+  const summary = await archiveStrava(
+    { source: fake.source, storage, retry: testRetry, log: line => logs.push(line) },
+    { limit: 2, dryRun: true },
+  )
+
+  assert.equal(summary.dryRun, true)
+  assert.equal(summary.limited, true)
+  assert.equal(summary.indexWritten, false)
+  assert.equal(summary.complete, false)
+  assert.deepEqual(summary.failedIds, [])
+  assert.equal(summary.originalStored, 2)
+  assert.equal(summary.streamsStored, 2)
+  assert.equal(storage.objects.size, 0)
+
+  const output = logs.join('\n')
+  assert.match(output, /预览 #1：原件 fit /)
+  assert.match(output, /heartrate/)
+  assert.ok(!output.includes('活动1') && !output.includes('活动2'))
+  assert.ok(!output.includes('fixture-city'))
+})
+
+test('--dry-run 扫完也不写索引', async () => {
+  const fake = createFakeSource([pageOf([activity(1)], 1)], originalMap([1]), streamsMap([1]))
+  const storage = createMemoryStorage({}, () => true)
+
+  const summary = await archiveStrava({ source: fake.source, storage, retry: testRetry }, { limit: null, dryRun: true })
+
+  assert.equal(summary.scanComplete, true)
+  assert.equal(summary.indexWritten, false)
+  assert.equal(summary.complete, false)
+  assert.equal(storage.objects.size, 0)
+})
+
 test('对象写入失败时不发布 manifest 且不标完整', async () => {
   const fake = createFakeSource([pageOf([activity(1)], 1)], originalMap([1]), streamsMap([1]))
   const storage = createMemoryStorage({}, key => key.includes('/original.'))

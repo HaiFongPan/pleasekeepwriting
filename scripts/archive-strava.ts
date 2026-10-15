@@ -1,15 +1,18 @@
 /**
  * 把 Strava 历史全量归档到私有 R2（共享协议 v1）。
  *
- * 用法（仓库根目录）：
- *   R2_CONFIG_FILE=~/.config/workout-r2.env pnpm exec tsx scripts/archive-strava.ts
- *   R2_CONFIG_FILE=~/.config/workout-r2.env pnpm exec tsx scripts/archive-strava.ts --limit 5
- *   R2_CONFIG_FILE=~/.config/workout-r2.env pnpm exec tsx scripts/archive-strava.ts --verify
+ * 用法（仓库根目录；本机需要代理时带上 NODE_USE_ENV_PROXY=1）：
+ *   NODE_USE_ENV_PROXY=1 pnpm exec tsx scripts/archive-strava.ts --dry-run --limit 3
+ *   NODE_USE_ENV_PROXY=1 R2_CONFIG_FILE=~/.config/workout-r2.env pnpm exec tsx scripts/archive-strava.ts --limit 5
+ *   NODE_USE_ENV_PROXY=1 R2_CONFIG_FILE=~/.config/workout-r2.env pnpm exec tsx scripts/archive-strava.ts
+ *   NODE_USE_ENV_PROXY=1 R2_CONFIG_FILE=~/.config/workout-r2.env pnpm exec tsx scripts/archive-strava.ts --verify
  *
  * 凭据：
  *   - Strava：.env 或环境变量里的 STRAVA_COOKIE_STRAVA4_SESSION（浏览器登录态）；
  *   - R2：R2_ENDPOINT / R2_BUCKET / R2_UPLOAD_ACCESS_KEY_ID / R2_UPLOAD_SECRET_ACCESS_KEY，
  *     或 R2_CONFIG_FILE 指向的本机配置文件（dotenv 或 JSON，逐个变量填充）。
+ *   --dry-run 不读也不写 R2，只需 Strava cookie，适合小批验证链路。
+ *   请求间隔默认 400ms，可用 STRAVA_WEB_DELAY_MS 调大。
  *
  * 行为：
  *   - 逐页拉完训练日志（含私密活动），每条写 manifest + 原件 + 完整 streams；
@@ -17,12 +20,13 @@
  *   - 明确 404 记 unavailable；401/403/429 直接中止整轮；5xx 低频重试后仍失败计入 failedIds；
  *   - 只有整轮扫描完整、全部活动都有 manifest 且无失败时才把索引标 complete；
  *   - --limit N 只做 N 次真实归档（刷新元信息不计入），属于部分执行，不会更新索引；
- *   - --verify 复用已有对象前重新读回并按 manifest 的 sha256 逐字节校验。
+ *   - --verify 复用已有对象前重新读回并按 manifest 的 sha256 逐字节校验；
+ *   - --dry-run 照常拉 Strava、算格式与 sha，但不写任何对象，逐条打印安全预览。
  *
  * 终端只输出数量、状态与活动编号，不输出运动名称、地点或凭据。
  */
 
-import type { ArchiveRunSummary } from './lib/strava-archive'
+import type { ArchiveRunSummary, ArchiveStorage } from './lib/strava-archive'
 import process from 'node:process'
 import { loadDotEnv } from './lib/env'
 import { archiveIndexKey, archiveStrava } from './lib/strava-archive'
@@ -32,10 +36,11 @@ import { fetchAllStreams, fetchOriginalFile, fetchTrainingActivities, requireCoo
 interface CliOptions {
   limit: number | null
   verify: boolean
+  dryRun: boolean
 }
 
 function parseArgs(argv: string[]): CliOptions {
-  const options: CliOptions = { limit: null, verify: argv.includes('--verify') }
+  const options: CliOptions = { limit: null, verify: argv.includes('--verify'), dryRun: argv.includes('--dry-run') }
   const index = argv.indexOf('--limit')
   if (index < 0) {
     return options
@@ -51,6 +56,21 @@ function parseArgs(argv: string[]): CliOptions {
   return options
 }
 
+/** dry-run 的只读存储：允许 list/get，任何写入都直接报错，防止预览模式误写 R2 */
+function createPreviewStorage(): ArchiveStorage & { dispose?: () => void } {
+  return {
+    async put(key) {
+      throw new Error(`dry-run 不应写入对象：${key}`)
+    },
+    async get() {
+      return null
+    },
+    async list() {
+      return []
+    },
+  }
+}
+
 async function main() {
   const options = parseArgs(process.argv.slice(2))
   loadDotEnv()
@@ -61,7 +81,10 @@ async function main() {
   }
 
   requireCookie()
-  const storage = await createR2ArchiveStorage(r2ConfigFromEnv())
+  // --dry-run 不连接 R2，也不需要 R2 凭据
+  const storage: ArchiveStorage & { dispose?: () => void } = options.dryRun
+    ? createPreviewStorage()
+    : await createR2ArchiveStorage(r2ConfigFromEnv())
 
   let summary: ArchiveRunSummary
   try {
@@ -76,11 +99,11 @@ async function main() {
     }, options)
   }
   finally {
-    storage.dispose()
+    storage.dispose?.()
   }
 
   console.log('\n归档结果：')
-  console.log(`  模式：${options.verify ? '--verify（复用对象前逐字节校验 sha256）' : '默认'}`)
+  console.log(`  模式：${options.dryRun ? '--dry-run（预览，不写 R2）' : options.verify ? '--verify（复用对象前逐字节校验 sha256）' : '默认'}`)
   console.log(`  训练日志：扫描 ${summary.pages} 页，发现 ${summary.discovered} 条（接口声明 ${summary.total} 条）${summary.scanComplete ? '' : '，未扫完'}`)
   console.log(`  本次处理 ${summary.processed} 条${summary.limited ? `（--limit ${options.limit}）` : ''}，仅刷新元信息 ${summary.refreshed} 条`)
   console.log(`  原件：新写 ${summary.originalStored}，不可用 ${summary.originalUnavailable}，复用 ${summary.originalReused}`)
@@ -96,10 +119,10 @@ async function main() {
     console.log(`  索引已更新：${archiveIndexKey}（total=${summary.discovered} complete=${summary.complete}）`)
   }
   else {
-    console.log('  未更新索引（部分执行或未扫完，留待下一轮）')
+    console.log(`  未更新索引（${options.dryRun ? 'dry-run' : '部分执行或未扫完'}，留待下一轮）`)
   }
 
-  if (!summary.scanComplete || summary.failedIds.length > 0) {
+  if (summary.failedIds.length > 0 || (!options.dryRun && !summary.scanComplete)) {
     process.exitCode = 1
   }
 }
