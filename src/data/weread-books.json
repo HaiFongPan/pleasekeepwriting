@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-16T23:36:07.186Z",
+  "generatedAt": "2026-10-17T23:08:30.359Z",
   "books": [
     {
       "bookId": "3300020163",
@@ -16,7 +16,7 @@
       "publishTime": "2021-08-01 00:00:00",
       "isbn": "9787536094352",
       "publicRating": 888,
-      "publicRatingCount": 36850
+      "publicRatingCount": 36857
     },
     {
       "bookId": "26211887",
@@ -50,7 +50,7 @@
       "publishTime": "2023-04-01 00:00:00",
       "isbn": "9787521752236",
       "publicRating": 931,
-      "publicRatingCount": 4171
+      "publicRatingCount": 4173
     },
     {
       "bookId": "3300117751",
@@ -67,7 +67,7 @@
       "publishTime": "2024-10-20 00:00:00",
       "isbn": "9787559489357",
       "publicRating": 815,
-      "publicRatingCount": 2385
+      "publicRatingCount": 2386
     },
     {
       "bookId": "CB_3frFf5Ffj4Mq76875N1Im0O9",
@@ -101,7 +101,7 @@
       "publishTime": "2021-09-01 00:00:00",
       "isbn": "9787521731583",
       "publicRating": 775,
-      "publicRatingCount": 9131
+      "publicRatingCount": 9133
     },
     {
       "bookId": "CB_CIK1J21JHFvi6sA6su2Tz4Wb",
@@ -135,7 +135,7 @@
       "publishTime": "2023-06-01 00:00:00",
       "isbn": "9787572610912",
       "publicRating": 921,
-      "publicRatingCount": 111618
+      "publicRatingCount": 111628
     },
     {
       "bookId": "909893",
@@ -152,7 +152,7 @@
       "publishTime": "2017-07-01 00:00:00",
       "isbn": "9787513943239",
       "publicRating": 684,
-      "publicRatingCount": 7211
+      "publicRatingCount": 7212
     },
     {
       "bookId": "3300076264",
@@ -220,7 +220,7 @@
       "publishTime": "2019-12-01 00:00:00",
       "isbn": "9787544779319",
       "publicRating": 767,
-      "publicRatingCount": 5295
+      "publicRatingCount": 5296
     },
     {
       "bookId": "32463124",
@@ -254,7 +254,7 @@
       "publishTime": "2022-08-01 00:00:00",
       "isbn": "9787555913726",
       "publicRating": 916,
-      "publicRatingCount": 68585
+      "publicRatingCount": 68607
     },
     {
       "bookId": "41598972",
@@ -271,7 +271,7 @@
       "publishTime": "2021-09-10 00:00:00",
       "isbn": "9787552036107",
       "publicRating": 782,
-      "publicRatingCount": 9265
+      "publicRatingCount": 9269
     },
     {
       "bookId": "651366",
@@ -305,7 +305,7 @@
       "publishTime": "2022-10-01 00:00:00",
       "isbn": "9787559852533",
       "publicRating": 920,
-      "publicRatingCount": 23852
+      "publicRatingCount": 23853
     },
     {
       "bookId": "39136896",
@@ -321,8 +321,8 @@
       "publisher": "人民邮电出版社",
       "publishTime": "2021-06-01 00:00:00",
       "isbn": "9787115564672",
-      "publicRating": 734,
-      "publicRatingCount": 4681
+      "publicRating": 733,
+      "publicRatingCount": 4682
     },
     {
       "bookId": "3300018939",
@@ -339,7 +339,7 @@
       "publishTime": "2022-04-01 00:00:00",
       "isbn": "9787115578044",
       "publicRating": 862,
-      "publicRatingCount": 1407
+      "publicRatingCount": 1406
     },
     {
       "bookId": "CB_5TmEryEsN6MQ6cw6cK",
@@ -373,7 +373,7 @@
       "publishTime": "2022-07-01 00:00:00",
       "isbn": "9787547738207",
       "publicRating": 792,
-      "publicRatingCount": 3375
+      "publicRatingCount": 3376
     },
     {
       "bookId": "CB_6UTBcPBak4Bj6aN6YD",
@@ -407,7 +407,7 @@
       "publishTime": "2017-05-01 00:00:00",
       "isbn": "9787532774685",
       "publicRating": 860,
-      "publicRatingCount": 6343
+      "publicRatingCount": 6346
     },
     {
       "bookId": "42766048",
@@ -526,7 +526,7 @@
       "publishTime": "2015-08-01 00:00:00",
       "isbn": "9787544755375",
       "publicRating": 802,
-      "publicRatingCount": 4009
+      "publicRatingCount": 4010
     },
     {
       "bookId": "40726681",
@@ -543,7 +543,7 @@
       "publishTime": "2021-09-01 00:00:00",
       "isbn": "9787201175133",
       "publicRating": 918,
-      "publicRatingCount": 25000
+      "publicRatingCount": 25017
     },
     {
       "bookId": "24953118",
@@ -577,7 +577,7 @@
       "publishTime": "2021-06-01 00:00:00",
       "isbn": "9787553522838",
       "publicRating": 918,
-      "publicRatingCount": 35712
+      "publicRatingCount": 35718
     },
     {
       "bookId": "729213",
@@ -611,7 +611,7 @@
       "publishTime": "2020-08-01 00:00:00",
       "isbn": "9787201161693",
       "publicRating": 894,
-      "publicRatingCount": 140526
+      "publicRatingCount": 140532
     },
     {
       "bookId": "25856501",
@@ -628,7 +628,7 @@
       "publishTime": "2018-06-01 00:00:00",
       "isbn": "9787532777631",
       "publicRating": 647,
-      "publicRatingCount": 7394
+      "publicRatingCount": 7395
     },
     {
       "bookId": "26859484",
@@ -679,7 +679,7 @@
       "publishTime": "2021-08-01 00:00:00",
       "isbn": "9787208172036",
       "publicRating": 895,
-      "publicRatingCount": 4148
+      "publicRatingCount": 4150
     },
     {
       "bookId": "24953405",
@@ -696,7 +696,7 @@
       "publishTime": "2012-04-01 00:00:00",
       "isbn": "9787544722278",
       "publicRating": 814,
-      "publicRatingCount": 5497
+      "publicRatingCount": 5500
     },
     {
       "bookId": "38493609",
@@ -730,7 +730,7 @@
       "publishTime": "2019-05-01 00:00:00",
       "isbn": "9787542666468",
       "publicRating": 803,
-      "publicRatingCount": 1494
+      "publicRatingCount": 1493
     },
     {
       "bookId": "24147392",
