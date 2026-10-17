@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T09:03:09.888Z",
+  "generatedAt": "2026-10-17T23:22:21.853Z",
   "source": {
     "provider": "strava",
     "athleteId": null
@@ -20,13 +20,33 @@
     "showLocationNames": false
   },
   "summary": {
-    "activityCount": 284,
-    "trackCount": 258,
+    "activityCount": 285,
+    "trackCount": 259,
     "calorieMissing": 43,
     "firstActivityAt": "2022-08-27",
-    "lastActivityAt": "2026-10-15"
+    "lastActivityAt": "2026-10-17"
   },
   "activities": [
+    {
+      "id": "893fff4002063fa64a3abc8cf227755c13a676026bcdff612d4acaa35883886c",
+      "sportType": "Ride",
+      "displayType": "骑行",
+      "name": null,
+      "kind": "ride",
+      "start": 1792235484,
+      "date": "2026-10-17",
+      "distance": 52221.96,
+      "movingTime": 9836.241,
+      "elapsedTime": 15805.246,
+      "calories": 1224,
+      "caloriesSynced": true,
+      "elevation": null,
+      "hasGps": true,
+      "track": true,
+      "trackSynced": true,
+      "timeSource": "device-timer",
+      "origin": "phone"
+    },
     {
       "id": 20590816780,
       "sportType": "Ride",
