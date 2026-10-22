@@ -50,6 +50,14 @@ export interface TrackRender {
   kind: 'track'
   file: SportTrackFile
   stats: TrackStats
+  frame: TrackFrame
+}
+
+/** 轨迹的取景：保留区间（原始点下标，含两端）与经纬度到 viewBox 的投影，详情曲线据此对齐路线 */
+export interface TrackFrame {
+  from: number
+  to: number
+  project: (point: TrackPoint) => [number, number]
 }
 
 export interface TrackNone {
@@ -351,7 +359,7 @@ export function fitToViewBox(
   points: Array<[number, number]>,
   viewBox: [number, number],
   padding: number,
-): { path: string, points: Array<[number, number]>, kept: number[], start: [number, number], end: [number, number] } | null {
+): { path: string, points: Array<[number, number]>, kept: number[], start: [number, number], end: [number, number], project: (point: [number, number]) => [number, number] } | null {
   if (points.length < 2) {
     return null
   }
@@ -382,12 +390,13 @@ export function fitToViewBox(
 
   const centerX = (minX + maxX) / 2
   const centerY = (minY + maxY) / 2
-  const mapped = points.map(([x, y]) => {
+  const project = ([x, y]: [number, number]): [number, number] => {
     const svgX = width / 2 + (x - centerX) * scale
     // 屏幕坐标 y 轴向下，需要翻转
     const svgY = height / 2 - (y - centerY) * scale
-    return [Math.round(svgX * 10) / 10, Math.round(svgY * 10) / 10] as [number, number]
-  })
+    return [Math.round(svgX * 10) / 10, Math.round(svgY * 10) / 10]
+  }
+  const mapped = points.map(project)
 
   const deduped: Array<[number, number]> = []
   const kept: number[] = []
@@ -416,6 +425,7 @@ export function fitToViewBox(
     kept,
     start: deduped[0],
     end: deduped[deduped.length - 1],
+    project,
   }
 }
 /** 完整流水线：encoded polyline -> 可直接发布的轨迹文件 */
@@ -503,5 +513,11 @@ export function buildTrackFromPoints(
     file.c = [Number(center.lng.toFixed(4)), Number(center.lat.toFixed(4))]
   }
 
-  return { kind: 'track', file, stats }
+  const frame: TrackFrame = {
+    from: retainedStart,
+    to: retainedStart + trimmed.points.length - 1,
+    project: point => fitted.project(projectMercator(point)),
+  }
+
+  return { kind: 'track', file, stats, frame }
 }

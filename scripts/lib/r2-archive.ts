@@ -390,3 +390,51 @@ export function parseStreamsObject(value: unknown): ArchivedStreamsData {
     altitude: numberArrayOrNull(raw.altitude, 'streams.altitude'),
   }
 }
+
+/** streams.json 里 raw（Strava key_by_type 原响应）中详情曲线要用的通道 */
+export interface ArchivedStreamChannels {
+  velocity: Array<number | null> | null
+  heartrate: Array<number | null> | null
+  cadence: Array<number | null> | null
+  watts: Array<number | null> | null
+  moving: boolean[] | null
+}
+
+function rawStreamData(raw: Record<string, unknown>, key: string): unknown[] | null {
+  const stream = raw[key]
+  if (stream && typeof stream === 'object' && Array.isArray((stream as { data?: unknown }).data)) {
+    return (stream as { data: unknown[] }).data
+  }
+
+  return null
+}
+
+/**
+ * 读取 raw 里的可选通道。它们只用于详情曲线，形状不对就当缺失，
+ * 不像 latlng/time 那样报错中断导入。
+ */
+export function parseStreamChannels(value: unknown): ArchivedStreamChannels {
+  const empty: ArchivedStreamChannels = { velocity: null, heartrate: null, cadence: null, watts: null, moving: null }
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) {
+    return empty
+  }
+
+  const raw = (value as Record<string, unknown>).raw
+  if (typeof raw !== 'object' || raw === null || Array.isArray(raw)) {
+    return empty
+  }
+
+  const numbers = (key: string) => {
+    const data = rawStreamData(raw as Record<string, unknown>, key)
+    return data ? data.map(item => (isFiniteNumber(item) ? item : null)) : null
+  }
+  const moving = rawStreamData(raw as Record<string, unknown>, 'moving')
+
+  return {
+    velocity: numbers('velocity_smooth'),
+    heartrate: numbers('heartrate'),
+    cadence: numbers('cadence'),
+    watts: numbers('watts'),
+    moving: moving && moving.every(item => typeof item === 'boolean') ? moving as boolean[] : null,
+  }
+}

@@ -182,6 +182,8 @@ export const themeConfig: ThemeConfig = {
       // max points kept per track
       maxPoints: 200,
     },
+    // max heart rate for zone bands in the detail dialog, in bpm
+    maxHeartRate: 200,
     // exclude activities marked "Only Me"
     excludePrivate: true,
     // render map background tiles and city labels (not implemented yet)

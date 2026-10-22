@@ -21,9 +21,9 @@ import type { SportActivitiesData, SportActivity, SportKind, SportRenderParams }
 import type { ArchivedActivity, ArchivedStreamsData, ArchiveIndex } from './lib/r2-archive'
 import type { R2Object, R2ObjectInfo, R2Reader } from './lib/r2-client'
 import type { HistoryDedupCandidate, HistoryFitIdentity, PhoneDedupRef, PhoneDedupResult } from './lib/r2-dedup'
-import type { FitTrackPoint, PhoneFitData } from './lib/r2-fit'
+import type { FitSamples, FitTrackPoint, PhoneFitData } from './lib/r2-fit'
 import type { SyncState, SyncStateHistoryFitEntry, SyncStateManifestEntry, SyncStatePhoneEntry } from './lib/r2-state'
-import type { TrackBuildOptions } from './lib/strava-track'
+import type { TrackBuildOptions, TrackFrame } from './lib/strava-track'
 import { createHash } from 'node:crypto'
 import fs from 'node:fs/promises'
 import path from 'node:path'
@@ -32,17 +32,19 @@ import { themeConfig } from '../src/config'
 import { resolveMetricKind } from '../src/utils/sport'
 import { loadDotEnv } from './lib/env'
 import { readFitSummary } from './lib/fit'
-import { activityIdFromManifestKey, archiveActivitiesPrefix, archiveIndexKey, checkArchiveReadiness, isPublicArchivedActivity, maybeGunzip, parseArchiveIndex, parseJsonBytes, parseManifest, parseStreamsObject } from './lib/r2-archive'
+import { activityIdFromManifestKey, archiveActivitiesPrefix, archiveIndexKey, checkArchiveReadiness, isPublicArchivedActivity, maybeGunzip, parseArchiveIndex, parseJsonBytes, parseManifest, parseStreamChannels, parseStreamsObject } from './lib/r2-archive'
 import { createR2Reader, readR2Config } from './lib/r2-client'
 import { activityIdKey, historyActivityFromManifest, mergeDataset, phoneActivityFromFit } from './lib/r2-dataset'
 import { computeWodSignature, decidePhoneDedup, findHistoryCandidates } from './lib/r2-dedup'
 import { identifyFitFile, readPhoneFit, resolveDisplayTimeZone, zonedWallClockEpoch } from './lib/r2-fit'
 import { parseSyncState, stateContentEquals, syncStatePath } from './lib/r2-state'
+import { buildDetailFile } from './lib/sport-detail'
 import { computeGradeLevels, computeSpeedLevels } from './lib/strava-metrics'
 import { buildTrackFromPoints, defaultTrackOptions } from './lib/strava-track'
 
 const datasetPath = 'src/data/strava/activities.json'
 const tracksDir = 'public/strava/tracks'
+const detailsDir = 'public/strava/details'
 const phonePrefix = 'activities/v1/'
 const phoneKeyPattern = /^activities\/v1\/([0-9a-f]{64})\.fit$/
 /** 解析器版本，改手机 FIT 解析口径时递增 */
@@ -238,9 +240,41 @@ function buildPhoneTrack(points: FitTrackPoint[], options: TrackBuildOptions) {
   return buildTrackFromPoints(trackPoints, options, metric)
 }
 
-/** 清理输出目录里不再被数据集引用的轨迹文件 */
-async function pruneTracks(root: string, keep: Set<string>): Promise<number> {
-  const directory = path.join(root, tracksDir)
+/** 历史 streams -> 详情曲线；frame 来自同一份 latlng 的轨迹，下标天然对齐 */
+function buildHistoryDetail(streams: ArchivedStreamsData, raw: unknown, kind: SportKind, frame: TrackFrame | null) {
+  if (!streams.time) {
+    return null
+  }
+
+  const channels = parseStreamChannels(raw)
+  return buildDetailFile({
+    time: streams.time,
+    distance: streams.distance,
+    altitude: streams.altitude,
+    velocity: channels.velocity,
+    heartrate: channels.heartrate,
+    cadence: channels.cadence,
+    watts: channels.watts,
+    moving: channels.moving,
+    latlng: streams.latlng.length === streams.time.length ? streams.latlng.map(([lat, lng]) => ({ lat, lng })) : null,
+  }, { kind, frame })
+}
+
+/** 手机 FIT -> 详情曲线；轨迹按 GPS 点编号，这里换算成全部 record 的编号 */
+function buildPhoneDetail(samples: FitSamples, kind: SportKind, frame: TrackFrame | null) {
+  let sampleFrame: TrackFrame | null = null
+  if (frame) {
+    const from = samples.pointIndex.findIndex(index => index >= frame.from)
+    const to = samples.pointIndex.findLastIndex(index => index >= 0 && index <= frame.to)
+    sampleFrame = from >= 0 && to >= from ? { from, to, project: frame.project } : null
+  }
+
+  return buildDetailFile(samples, { kind, frame: sampleFrame })
+}
+
+/** 清理输出目录里不再被数据集引用的轨迹 / 详情文件 */
+async function pruneOutputs(root: string, dir: string, keep: Set<string>): Promise<number> {
+  const directory = path.join(root, dir)
   let entries: string[] = []
 
   try {
@@ -393,6 +427,7 @@ async function main() {
   const publicHistory: SportActivity[] = []
   const nextManifests: Record<string, SyncStateManifestEntry> = {}
   const pendingTracks = new Map<string, string>()
+  const pendingDetails = new Map<string, string>()
   let budget = options.limit
   let completeRun = true
   let historyAdded = 0
@@ -401,6 +436,7 @@ async function main() {
   let historyReused = 0
   let tracksBuilt = 0
   let tracksReused = 0
+  let detailsBuilt = 0
   let caloriesFilled = 0
 
   for (let manifestIndex = 0; manifestIndex < manifestInfos.length; manifestIndex++) {
@@ -415,8 +451,12 @@ async function main() {
       : false
     const wantTrack = (previous?.hasGps ?? true) && (rendererChanged || previous == null || previous.trackSynced !== true || (previous.track && !trackExists))
     const wantCalories = options.full || previous == null || previous.caloriesSynced !== true
+    const detailExists = previous?.detail === true
+      ? await fileExists(path.join(inputRoot, detailsDir, `${info.id}.json`))
+      : false
+    const wantDetail = rendererChanged || previous?.detail == null || (previous.detail && !detailExists)
 
-    if (cacheUsable && !wantTrack && !wantCalories) {
+    if (cacheUsable && !wantTrack && !wantCalories && !wantDetail) {
       publicHistory.push({ ...previous })
       nextManifests[String(info.id)] = cached
       historyReused++
@@ -473,29 +513,48 @@ async function main() {
       ? historyActivityFromManifest(source, previous)
       : { ...previous } as SportActivity
 
-    if ((wantTrack || sourceChanged) && record.hasGps) {
+    // 详情曲线要和轨迹用同一个取景，所以需要详情时连轨迹一起重算（内容不变不会落盘）
+    const trackWork = (wantTrack || sourceChanged || wantDetail) && record.hasGps
+    if (trackWork || wantDetail || sourceChanged) {
       if (active.streams.status === 'stored' && active.streams.key) {
         const object = await reader.get(active.streams.key)
         if (!object) {
           throw new SyncIntegrityError('归档 streams 对象缺失')
         }
 
-        const streams = parseStreamsObject(parseJsonBytes(verifiedBytes(object.bytes, active.streams.sha256), 'streams'))
-        const outcome = buildHistoryTrack(streams, record.kind, trackOptions)
-        if (outcome.kind === 'track') {
-          pendingTracks.set(`${info.id}.json`, JSON.stringify(outcome.file))
-          record.track = true
-          tracksBuilt++
-        }
-        else {
-          record.track = false
+        const rawStreams = parseJsonBytes(verifiedBytes(object.bytes, active.streams.sha256), 'streams')
+        const streams = parseStreamsObject(rawStreams)
+        let frame: TrackFrame | null = null
+        if (trackWork) {
+          const outcome = buildHistoryTrack(streams, record.kind, trackOptions)
+          if (outcome.kind === 'track') {
+            pendingTracks.set(`${info.id}.json`, JSON.stringify(outcome.file))
+            record.track = true
+            frame = outcome.frame
+            tracksBuilt++
+          }
+          else {
+            record.track = false
+          }
+
+          record.trackSynced = true
         }
 
-        record.trackSynced = true
+        const detail = buildHistoryDetail(streams, rawStreams, record.kind, frame)
+        if (detail) {
+          pendingDetails.set(`${info.id}.json`, JSON.stringify(detail))
+          detailsBuilt++
+        }
+
+        record.detail = detail != null
       }
       else {
-        record.track = false
-        record.trackSynced = true
+        if (trackWork) {
+          record.track = false
+          record.trackSynced = true
+        }
+
+        record.detail = false
       }
     }
     else {
@@ -753,8 +812,12 @@ async function main() {
     const trackExists = previous?.track === true
       ? await fileExists(path.join(inputRoot, tracksDir, `${id}.json`))
       : false
+    const detailExists = previous?.detail === true
+      ? await fileExists(path.join(inputRoot, detailsDir, `${id}.json`))
+      : false
+    const detailWork = rendererChanged || previous?.detail == null || (previous.detail && !detailExists)
     const trackWork = hasGps && (rendererChanged || previous == null || previous.trackSynced !== true || (previous.track && !trackExists))
-    const recordWork = !cachedUsable || previous == null || trackWork
+    const recordWork = !cachedUsable || previous == null || trackWork || detailWork
 
     let record: SportActivity
     if (recordWork) {
@@ -765,13 +828,21 @@ async function main() {
       }
 
       let track = false
+      let frame: TrackFrame | null = null
       if (hasGps) {
         const outcome = buildPhoneTrack(fit.points, trackOptions)
         if (outcome.kind === 'track') {
           pendingTracks.set(`${id}.json`, JSON.stringify(outcome.file))
           track = true
+          frame = outcome.frame
           phoneTracks++
         }
+      }
+
+      const detail = buildPhoneDetail(fit.samples, session.kind, frame)
+      if (detail) {
+        pendingDetails.set(`${id}.json`, JSON.stringify(detail))
+        detailsBuilt++
       }
 
       record = phoneActivityFromFit({
@@ -789,6 +860,7 @@ async function main() {
         track,
         trackSynced: true,
       }, previous)
+      record.detail = detail != null
     }
     else {
       record = { ...previous } as SportActivity
@@ -837,6 +909,7 @@ async function main() {
     phoneIds,
   })
   const keepTracks = new Set(merged.data.activities.filter(activity => activity.track).map(activity => `${activity.id}.json`))
+  const keepDetails = new Set(merged.data.activities.filter(activity => activity.detail).map(activity => `${activity.id}.json`))
 
   const nextState: SyncState = {
     version: 1,
@@ -872,6 +945,13 @@ async function main() {
     }
   }
 
+  let detailsWritten = 0
+  for (const [name, contents] of pendingDetails) {
+    if (await writeFileIfChanged(path.join(outRoot, detailsDir, name), `${contents}\n`)) {
+      detailsWritten++
+    }
+  }
+
   if (outRoot !== inputRoot) {
     for (const name of keepTracks) {
       if (pendingTracks.has(name))
@@ -881,10 +961,20 @@ async function main() {
         throw new SyncIntegrityError('需要沿用的轨迹文件缺失')
       await writeFileIfChanged(path.join(outRoot, tracksDir, name), content)
     }
+
+    for (const name of keepDetails) {
+      if (pendingDetails.has(name))
+        continue
+      const content = await readText(path.join(inputRoot, detailsDir, name))
+      if (content == null)
+        throw new SyncIntegrityError('需要沿用的详情文件缺失')
+      await writeFileIfChanged(path.join(outRoot, detailsDir, name), content)
+    }
   }
 
   const datasetChanged = await writeFileIfChanged(path.join(outRoot, datasetPath), `${JSON.stringify(merged.data, null, 2)}\n`)
-  const tracksRemoved = completeRun ? await pruneTracks(outRoot, keepTracks) : 0
+  const tracksRemoved = completeRun ? await pruneOutputs(outRoot, tracksDir, keepTracks) : 0
+  const detailsRemoved = completeRun ? await pruneOutputs(outRoot, detailsDir, keepDetails) : 0
 
   let stateWritten = false
   if (previousState == null || !stateContentEquals(nextState, previousState) || outRoot !== inputRoot) {
@@ -901,6 +991,7 @@ async function main() {
   console.log(`  历史：新增 ${historyAdded}，更新 ${historyUpdated}，未变复用 ${historyReused}，归档缺失保留 ${merged.warnings.missingHistoryIds.length}，私密移除 ${merged.warnings.removedPrivateIds.length}`)
   console.log(`  手机：新增 ${phoneAdded}，更新 ${phoneUpdated}，未变复用 ${phoneReused}，与历史同活动抑制 ${phoneSuppressed}，无 session 跳过 ${phoneSkipped}，其他对象跳过 ${phoneObjectsSkipped}`)
   console.log(`  轨迹：重建 ${tracksBuilt + phoneTracks}（历史 ${tracksBuilt} / 手机 ${phoneTracks}），沿用 ${tracksReused}，写入 ${tracksWritten}，清理 ${tracksRemoved}`)
+  console.log(`  详情曲线：生成 ${detailsBuilt}，写入 ${detailsWritten}，清理 ${detailsRemoved}`)
   console.log(`  卡路里：从原件补全 ${caloriesFilled} 条`)
   console.log(`  数据集：${data.summary.activityCount} 条活动、${data.summary.trackCount} 条轨迹、缺卡路里 ${data.summary.calorieMissing}`)
   console.log(`  文件：${datasetChanged ? 'activities.json 已更新' : 'activities.json 无变化'}，${stateWritten ? '状态已更新' : '状态无变化'}${completeRun ? '' : '（本次未完整处理，已跳过轨迹清理）'}`)

@@ -125,6 +125,21 @@ export interface PhoneFitData {
   session: FitSessionSummary | null
   points: FitTrackPoint[]
   hasGps: boolean
+  /** 全部带时间戳的 record（含无 GPS 的室内训练），给详情曲线用 */
+  samples: FitSamples
+}
+
+/** 与 record 一一对齐的通道；pointIndex 指向 points 里的同一条记录，没有坐标时为 -1 */
+export interface FitSamples {
+  time: number[]
+  distance: Array<number | null>
+  altitude: Array<number | null>
+  velocity: Array<number | null>
+  heartrate: Array<number | null>
+  cadence: Array<number | null>
+  watts: Array<number | null>
+  latlng: Array<{ lat: number, lng: number } | null>
+  pointIndex: number[]
 }
 
 const fitSportTypes: Record<string, string> = {
@@ -271,6 +286,42 @@ export function parseFitTrack(messages: { recordMesgs?: RecordMesg[] }): { point
   return { points, hasGps: true }
 }
 
+/**
+ * 从全部 record 提取详情曲线通道。坐标判定与 parseFitTrack 一致，
+ * 因此有坐标的 record 按顺序就是 points，pointIndex 据此对齐。
+ */
+export function parseFitSamples(messages: { recordMesgs?: RecordMesg[] }): FitSamples {
+  const samples: FitSamples = { time: [], distance: [], altitude: [], velocity: [], heartrate: [], cadence: [], watts: [], latlng: [], pointIndex: [] }
+  let firstMs: number | null = null
+  let points = 0
+
+  for (const record of messages.recordMesgs ?? []) {
+    const timestamp = toDate(record.timestamp)
+    if (!timestamp) {
+      continue
+    }
+
+    firstMs ??= timestamp.getTime()
+    const lat = positionToDegrees(record.positionLat)
+    const lng = positionToDegrees(record.positionLong)
+    const hasPosition = lat != null && lng != null
+    const cadence = finiteOrNull(record.cadence)
+    const fractional = finiteOrNull(record.fractionalCadence)
+
+    samples.time.push((timestamp.getTime() - firstMs) / 1000)
+    samples.distance.push(finiteOrNull(record.distance))
+    samples.altitude.push(finiteOrNull(record.enhancedAltitude) ?? finiteOrNull(record.altitude))
+    samples.velocity.push(finiteOrNull(record.enhancedSpeed) ?? finiteOrNull(record.speed))
+    samples.heartrate.push(finiteOrNull(record.heartRate))
+    samples.cadence.push(cadence == null ? null : cadence + (fractional ?? 0))
+    samples.watts.push(finiteOrNull(record.power))
+    samples.latlng.push(hasPosition ? { lat, lng } : null)
+    samples.pointIndex.push(hasPosition ? points++ : -1)
+  }
+
+  return samples
+}
+
 function pickSession(messages: { sessionMesgs?: SessionMesg[] }): SessionMesg | null {
   for (const session of messages.sessionMesgs ?? []) {
     if (toDate(session.startTime)) {
@@ -315,5 +366,6 @@ export function readPhoneFit(bytes: Uint8Array): PhoneFitData {
     session: session ? summarizeSession(session, bytes) : null,
     points: track.points,
     hasGps: track.hasGps,
+    samples: parseFitSamples(messages),
   }
 }

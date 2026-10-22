@@ -37,6 +37,7 @@ export function historyActivityFromManifest(activity: ArchivedActivity, previous
     hasGps: activity.has_latlng,
     track: previous?.track ?? false,
     trackSynced: previous?.trackSynced ?? false,
+    ...(previous?.detail != null ? { detail: previous.detail } : {}),
   }
 }
 
@@ -79,6 +80,7 @@ export function phoneActivityFromFit(input: PhoneActivityInput, previous?: Sport
     trackSynced: input.trackSynced,
     timeSource: 'device-timer',
     origin: 'phone',
+    ...(previous?.detail != null ? { detail: previous.detail } : {}),
   }
 }
 

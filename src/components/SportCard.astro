@@ -22,13 +22,21 @@ const metricKind = hasTrack ? resolveMetricKind(activity.kind) : null
 ---
 
 <article
-  class="group min-w-0"
+  class="group relative min-w-0"
   data-sport-card
   data-year={getLocalYear(activity.start)}
   data-kind={activity.kind}
   data-track-src={hasTrack ? trackSrc : undefined}
   data-sport-label={label}
 >
+  {/* 整张卡片可点，打开详情弹窗；按钮铺满卡片但透明，不影响悬停上色 */}
+  <button
+    type="button"
+    class="absolute inset-0 z-1 cursor-pointer appearance-none border-0 rounded-0.5 bg-transparent p-0 focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-4"
+    data-sport-open={String(activity.id)}
+    aria-haspopup="dialog"
+    aria-label={`查看${label}详情`}
+  />
   <div class="relative aspect-[100/62] w-full">
     {hasTrack
       ? (

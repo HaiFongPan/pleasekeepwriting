@@ -1,0 +1,1067 @@
+---
+import type { SportActivity } from '@/types/strava'
+import { base, themeConfig } from '@/config'
+import { getSportLabel, isDefaultActivityName, sportKindLabels } from '@/utils/sport'
+
+interface Props {
+  activities: SportActivity[]
+}
+
+const { activities } = Astro.props
+
+/**
+ * 弹窗需要的最小字段。刻意不带 start：页面只透露到"哪一天"，不透露几点。
+ */
+const items = activities.map(activity => ({
+  id: String(activity.id),
+  kind: activity.kind,
+  kindLabel: sportKindLabels[activity.kind] || activity.displayType || activity.sportType,
+  title: isDefaultActivityName(activity.name, activity.sportType, activity.displayType)
+    ? (sportKindLabels[activity.kind] || activity.displayType || activity.sportType)
+    : (activity.name as string).trim(),
+  label: getSportLabel(activity),
+  date: activity.date,
+  distance: activity.distance,
+  movingTime: activity.movingTime,
+  calories: activity.calories,
+  elevation: activity.elevation,
+  track: activity.track,
+  detail: activity.detail === true,
+  deviceTimer: activity.timeSource === 'device-timer',
+}))
+
+const config = {
+  maxHeartRate: themeConfig.sport.maxHeartRate,
+  trackBase: `${base}/strava/tracks`,
+  detailBase: `${base}/strava/details`,
+  siteName: themeConfig.site.title,
+  siteHost: new URL(themeConfig.site.url).host,
+}
+---
+
+<dialog class="sport-detail" data-sport-detail aria-labelledby="sport-detail-title">
+  <div class="sd-sheet" data-sd-sheet tabindex="-1" autofocus>
+    <header class="sd-head" data-sd-head>
+      <span class="sd-grab" aria-hidden="true" />
+      <div class="min-w-0 flex-1">
+        <p class="sd-kind" data-sd-kind />
+        <h2 id="sport-detail-title" class="sd-title" data-sd-title />
+        <time class="sd-date font-time" data-sd-date />
+      </div>
+      <button type="button" class="sd-icon" data-sd-share aria-label="生成分享图片" title="生成分享图片">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 11.5V2.5M5.5 5.5L9 2l3.5 3.5M4 8.5H3.5v7h11v-7H14" />
+        </svg>
+      </button>
+      <button type="button" class="sd-icon" data-sd-close aria-label="关闭">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+          <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" />
+        </svg>
+      </button>
+    </header>
+
+    <div class="sd-body" data-sd-body />
+
+    <footer class="sd-foot">
+      <span class="sd-hint"><kbd>←</kbd> <kbd>→</kbd> 切换 · <kbd>Esc</kbd> 关闭</span>
+      <span class="sd-toast" data-sd-toast role="status" aria-live="polite" />
+      <span class="flex gap-1">
+        <button type="button" class="sd-icon" data-sd-prev aria-label="上一个活动">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.5L5.5 8l4.5 4.5" /></svg>
+        </button>
+        <button type="button" class="sd-icon" data-sd-next aria-label="下一个活动">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5L10.5 8 6 12.5" /></svg>
+        </button>
+      </span>
+    </footer>
+  </div>
+</dialog>
+
+<script is:inline type="application/json" data-sport-detail-data set:html={JSON.stringify({ items, config })} />
+
+<script>
+  import type { SportDetailFile, SportKind } from '@/types/strava'
+  import { formatDuration } from '@/utils/sport'
+
+  interface Item {
+    id: string
+    kind: SportKind
+    kindLabel: string
+    title: string
+    label: string
+    date: string
+    distance: number
+    movingTime: number
+    calories: number | null
+    elevation: number | null
+    track: boolean
+    detail: boolean
+    deviceTimer: boolean
+  }
+
+  interface Config {
+    maxHeartRate: number
+    trackBase: string
+    detailBase: string
+    siteName: string
+    siteHost: string
+  }
+
+  interface Track {
+    p: string
+    s: [number, number]
+    e: [number, number]
+    q?: string
+  }
+
+  type Series = Array<number | null>
+
+  /** 每种运动只突出它最关心的指标：骑行看速度和爬升，跑步看配速和心率，徒步看海拔 */
+  const layouts: Record<string, { stats: string[], charts: string[], tall?: string, splits?: boolean }> = {
+    ride: { stats: ['distance', 'moving', 'speed', 'gain', 'kcal', 'hr'], charts: ['alt', 'speed', 'hr', 'w'] },
+    run: { stats: ['distance', 'moving', 'pace', 'hr', 'kcal', 'cad'], charts: ['pace', 'hr', 'alt', 'cad'], splits: true },
+    hike: { stats: ['distance', 'gain', 'moving', 'top', 'kcal', 'hr'], charts: ['alt', 'speed', 'hr'], tall: 'alt' },
+    walk: { stats: ['distance', 'moving', 'pace', 'gain', 'kcal', 'hr'], charts: ['alt', 'pace', 'hr'] },
+    swim: { stats: ['distance', 'moving', 'kcal', 'hr'], charts: ['hr'] },
+    other: { stats: ['moving', 'kcal', 'hr', 'hrmax'], charts: ['hr'] },
+  }
+
+  const zoneNames = ['恢复', '燃脂', '有氧', '乳酸阈', '无氧']
+  const zoneLevels = [0, 4, 7, 11, 15]
+  const hexDigits = '0123456789abcdef'
+  const lvVar = (level: number) => `var(--sport-lv-${hexDigits[Math.max(0, Math.min(15, Math.round(level)))]})`
+
+  let items: Item[] = []
+  let config: Config
+  const byId = new Map<string, Item>()
+  const trackCache = new Map<string, Promise<Track | null>>()
+  const detailCache = new Map<string, Promise<SportDetailFile | null>>()
+
+  /* ---------- 数据 ---------- */
+
+  function fetchJson<T>(cache: Map<string, Promise<T | null>>, url: string): Promise<T | null> {
+    let pending = cache.get(url)
+    if (!pending) {
+      pending = fetch(url).then(response => (response.ok ? response.json() as Promise<T> : null)).catch(() => null)
+      cache.set(url, pending)
+    }
+
+    return pending
+  }
+
+  const loadTrack = (item: Item) => item.track ? fetchJson<Track>(trackCache, `${config.trackBase}/${item.id}.json`) : Promise.resolve(null)
+  const loadDetail = (item: Item) => item.detail ? fetchJson<SportDetailFile>(detailCache, `${config.detailBase}/${item.id}.json`) : Promise.resolve(null)
+
+  /* ---------- 计算 ---------- */
+
+  const finite = (value: number | null | undefined): value is number => typeof value === 'number' && Number.isFinite(value)
+  const pad = (value: number) => String(value).padStart(2, '0')
+  const formatPace = (secondsPerKm: number) => `${Math.floor(secondsPerKm / 60)}'${pad(Math.round(secondsPerKm % 60))}"`
+
+  /** 按移动时间加权的均值，抽样点在停下的路段权重为 0 */
+  function weightedMean(values: Series | undefined, t: number[]): number | null {
+    if (!values) {
+      return null
+    }
+
+    let sum = 0
+    let weight = 0
+    for (let index = 0; index < values.length; index++) {
+      const value = values[index]
+      const dt = t[index] - (index > 0 ? t[index - 1] : 0)
+      if (finite(value) && dt > 0) {
+        sum += value * dt
+        weight += dt
+      }
+    }
+
+    return weight > 0 ? sum / weight : null
+  }
+
+  function maxOf(values: Series | undefined): number | null {
+    const valid = (values ?? []).filter(finite)
+    return valid.length > 0 ? Math.max(...valid) : null
+  }
+
+  function quantile(sorted: number[], ratio: number): number {
+    if (sorted.length === 0) {
+      return 0
+    }
+
+    const position = (sorted.length - 1) * ratio
+    const low = Math.floor(position)
+    const high = Math.ceil(position)
+    return sorted[low] + (sorted[high] - sorted[low]) * (position - low)
+  }
+
+  /** 速度分级，口径与卡片轨迹一致：10%/90% 分位映射到绿/红 */
+  function speedLevels(speed: Series): number[] {
+    const sorted = speed.filter((value): value is number => finite(value) && value > 0).sort((left, right) => left - right)
+    const low = quantile(sorted, 0.1)
+    const range = quantile(sorted, 0.9) - low
+    return speed.map(value => (finite(value) && range > 0.3 ? Math.max(0, Math.min(15, (value - low) / range * 15)) : 7))
+  }
+
+  function hrZones(detail: SportDetailFile): number[] | null {
+    if (!detail.hr) {
+      return null
+    }
+
+    const bounds = [0.6, 0.7, 0.8, 0.9].map(ratio => ratio * config.maxHeartRate)
+    const seconds = [0, 0, 0, 0, 0]
+    for (let index = 0; index < detail.hr.length; index++) {
+      const value = detail.hr[index]
+      const dt = detail.t[index] - (index > 0 ? detail.t[index - 1] : 0)
+      if (!finite(value) || dt <= 0) {
+        continue
+      }
+
+      const zone = bounds.findIndex(bound => value < bound)
+      seconds[zone < 0 ? 4 : zone] += dt
+    }
+
+    return seconds.some(value => value > 0) ? seconds : null
+  }
+
+  /** 每公里用时：按抽样点线性插值出整公里处的移动时间 */
+  function kmSplits(detail: SportDetailFile): Array<{ km: number, pace: number, hr: number | null, partial: boolean }> {
+    const d = detail.d
+    if (!d || d[d.length - 1] < 1000) {
+      return []
+    }
+
+    const timeAt = (meters: number) => {
+      const index = d.findIndex(value => value >= meters)
+      if (index <= 0) {
+        return index === 0 ? detail.t[0] * meters / Math.max(1, d[0]) : detail.t[detail.t.length - 1]
+      }
+
+      const ratio = (meters - d[index - 1]) / Math.max(1, d[index] - d[index - 1])
+      return detail.t[index - 1] + ratio * (detail.t[index] - detail.t[index - 1])
+    }
+
+    const total = d[d.length - 1]
+    const result = []
+    for (let km = 1; (km - 1) * 1000 < total; km++) {
+      const end = Math.min(km * 1000, total)
+      const length = end - (km - 1) * 1000
+      if (length < 200) {
+        break
+      }
+
+      const hr = detail.hr?.filter((_, index) => d[index] > (km - 1) * 1000 && d[index] <= end) ?? []
+      const valid = hr.filter(finite)
+      result.push({
+        km,
+        pace: (timeAt(end) - timeAt((km - 1) * 1000)) / length * 1000,
+        hr: valid.length > 0 ? valid.reduce((sum, value) => sum + value, 0) / valid.length : null,
+        partial: length < 990,
+      })
+    }
+
+    return result
+  }
+
+  /* ---------- 指标 ---------- */
+
+  function statValues(item: Item, detail: SportDetailFile | null): Record<string, [string, string, string]> {
+    const avgHr = detail ? weightedMean(detail.hr, detail.t) : null
+    const maxHr = detail ? maxOf(detail.hr) : null
+    const cad = detail ? weightedMean(detail.cad, detail.t) : null
+    const top = detail ? maxOf(detail.alt) : null
+    const km = item.distance / 1000
+    const dash = '—'
+    return {
+      distance: ['距离', item.distance > 0 ? km.toFixed(2) : dash, item.distance > 0 ? 'km' : ''],
+      moving: [item.deviceTimer ? '用时' : '移动时间', formatDuration(item.movingTime), ''],
+      speed: ['均速', item.movingTime > 0 && km > 0 ? (km / item.movingTime * 3600).toFixed(1) : dash, 'km/h'],
+      pace: ['均配速', km > 0 ? formatPace(item.movingTime / km) : dash, '/km'],
+      gain: ['累计爬升', item.elevation != null ? String(Math.round(item.elevation)) : dash, 'm'],
+      top: ['最高海拔', top != null ? String(Math.round(top)) : dash, 'm'],
+      kcal: ['卡路里', item.calories ? String(Math.round(item.calories)) : dash, item.calories ? 'kcal' : ''],
+      hr: ['平均心率', avgHr != null ? String(Math.round(avgHr)) : dash, avgHr != null ? 'bpm' : ''],
+      hrmax: ['最大心率', maxHr != null ? String(Math.round(maxHr)) : dash, maxHr != null ? 'bpm' : ''],
+      cad: ['平均步频', cad != null ? String(Math.round(cad)) : dash, cad != null ? 'spm' : ''],
+    }
+  }
+
+  interface ChartDef {
+    key: string
+    label: string
+    unit: string
+    y: Series
+    format: (value: number) => string
+    style: 'area' | 'gradient' | 'line' | 'dots'
+    invert?: boolean
+    zones?: boolean
+  }
+
+  function chartDefs(item: Item, detail: SportDetailFile): ChartDef[] {
+    const layout = layouts[item.kind] ?? layouts.other
+    const defs: Record<string, ChartDef | null> = {
+      alt: detail.alt ? { key: 'alt', label: '海拔', unit: 'm', y: detail.alt, format: value => String(Math.round(value)), style: 'area' } : null,
+      speed: detail.spd ? { key: 'speed', label: '速度', unit: 'km/h', y: detail.spd.map(value => (finite(value) ? value * 3.6 : null)), format: value => value.toFixed(1), style: 'gradient' } : null,
+      // 走走停停时配速会飙到几十分钟，低于 0.5 m/s 的点不画
+      pace: detail.spd ? { key: 'pace', label: '配速', unit: '/km', y: detail.spd.map(value => (finite(value) && value >= 0.5 ? 1000 / value : null)), format: formatPace, style: 'gradient', invert: true } : null,
+      hr: detail.hr ? { key: 'hr', label: '心率', unit: 'bpm', y: detail.hr, format: value => String(Math.round(value)), style: 'line', zones: true } : null,
+      cad: detail.cad ? { key: 'cad', label: item.kind === 'ride' ? '踏频' : '步频', unit: item.kind === 'ride' ? 'rpm' : 'spm', y: detail.cad, format: value => String(Math.round(value)), style: 'dots' } : null,
+      w: detail.w ? { key: 'w', label: '功率', unit: 'W', y: detail.w, format: value => String(Math.round(value)), style: 'line' } : null,
+    }
+
+    return layout.charts.map(key => defs[key]).filter((def): def is ChartDef => def != null)
+  }
+
+  /* ---------- 渲染 ---------- */
+
+  const escapeHtml = (value: string) => value.replace(/[&<>"']/g, char => `&#${char.charCodeAt(0)};`)
+
+  function routeHtml(item: Item, track: Track | null): string {
+    // 没有轨迹就不占位，指标独占整行
+    if (!track) {
+      return item.track ? '<p class="sd-noroute">轨迹加载失败</p>' : ''
+    }
+
+    return `<div>
+      <div class="sd-route">
+        <svg viewBox="0 0 100 62" role="img" aria-label="${escapeHtml(item.label)}路线，按速度着色" data-sd-route>
+          <g fill="none" stroke-linecap="round" stroke-linejoin="round">${track.q ? paintedPaths(track) : `<path d="${track.p}" stroke="currentColor" stroke-width="2.2" vector-effect="non-scaling-stroke" />`}</g>
+          <circle cx="${track.s[0]}" cy="${track.s[1]}" r="1.7" class="sd-route-mark" vector-effect="non-scaling-stroke" />
+          <rect x="${track.e[0] - 1.5}" y="${track.e[1] - 1.5}" width="3" height="3" class="sd-route-mark" vector-effect="non-scaling-stroke" />
+          <g data-sd-route-dot visibility="hidden"><circle r="3.6" class="sd-route-halo" /><circle r="1.6" class="sd-route-dot" vector-effect="non-scaling-stroke" /></g>
+        </svg>
+      </div>
+      <p class="sd-legend"><span>慢</span><i aria-hidden="true"></i><span>快</span><span class="ml-auto">● 起点 □ 终点，已隐去起终点附近路段</span></p>
+    </div>`
+  }
+
+  function parsePath(path: string): Array<[number, number]> {
+    return [...path.matchAll(/[ML](-?[\d.]+) (-?[\d.]+)/g)].map(match => [Number(match[1]), Number(match[2])])
+  }
+
+  /** 与卡片悬停同一套分段着色：连续同等级的段合成一条 path */
+  function paintedPaths(track: Track): string {
+    const levels = track.q as string
+    const points = parsePath(track.p)
+    const paths: string[] = []
+    let level = levels[0]
+    let data = `M${points[0][0]} ${points[0][1]}`
+    const close = () => paths.push(`<path d="${data}" stroke="var(--sport-lv-${level})" stroke-width="2.4" vector-effect="non-scaling-stroke" />`)
+    for (let index = 0; index < levels.length && index + 1 < points.length; index++) {
+      if (levels[index] !== level) {
+        close()
+        level = levels[index]
+        data = `M${points[index][0]} ${points[index][1]}`
+      }
+
+      data += `L${points[index + 1][0]} ${points[index + 1][1]}`
+    }
+
+    close()
+    return paths.join('')
+  }
+
+  function statsHtml(item: Item, detail: SportDetailFile | null): string {
+    const values = statValues(item, detail)
+    const keys = (layouts[item.kind] ?? layouts.other).stats
+    return `<dl class="sd-stats${keys.length === 4 ? ' sd-stats-4' : ''}">${keys.map((key, index) => {
+      const [label, value, unit] = values[key]
+      return `<div class="sd-stat${index === 0 ? ' sd-stat-lead' : ''}"><dt>${label}</dt><dd>${value}${unit ? `<small>${unit}</small>` : ''}</dd></div>`
+    }).join('')}</dl>`
+  }
+
+  function zonesHtml(detail: SportDetailFile): string {
+    const zones = hrZones(detail)
+    if (!zones) {
+      return ''
+    }
+
+    const total = zones.reduce((sum, value) => sum + value, 0)
+    const top = Math.max(...zones)
+    const bounds = [0.5, 0.6, 0.7, 0.8, 0.9].map(ratio => Math.round(ratio * config.maxHeartRate))
+    return `<section class="sd-section"><h3>心率区间<span>按最大心率 ${config.maxHeartRate} bpm</span></h3><div class="sd-zones">${zones.map((seconds, index) => `
+      <div class="sd-zone">
+        <span class="sd-zone-name">Z${index + 1}</span>
+        <span class="sd-muted"><span class="sd-zone-label">${zoneNames[index]} </span>${index === 0 ? `&lt;${bounds[1]}` : index === 4 ? `${bounds[4]}+` : `${bounds[index]}–${bounds[index + 1]}`}</span>
+        <span class="sd-bar"><i style="width:${top > 0 ? seconds / top * 100 : 0}%;background:${lvVar(zoneLevels[index])}"></i></span>
+        <span class="sd-zone-value">${formatDuration(seconds)}<small>${Math.round(seconds / total * 100)}%</small></span>
+      </div>`).join('')}</div></section>`
+  }
+
+  function splitsHtml(detail: SportDetailFile): string {
+    const splits = kmSplits(detail)
+    if (splits.length < 2) {
+      return ''
+    }
+
+    const paces = splits.map(split => split.pace)
+    const best = Math.min(...paces)
+    const worst = Math.max(...paces)
+    return `<section class="sd-section"><h3>每公里配速<span>高亮为最快一公里</span></h3><div class="sd-splits">${splits.map((split) => {
+      const ratio = (worst - split.pace) / ((worst - best) || 1)
+      return `<div class="sd-split${split.pace === best ? ' sd-split-best' : ''}">
+        <span class="sd-muted">${split.partial ? '末段' : split.km}</span>
+        <span class="sd-split-pace">${formatPace(split.pace)}</span>
+        <span class="sd-bar"><i style="width:${40 + ratio * 60}%;background:${lvVar(ratio * 15)}"></i></span>
+        <span class="sd-muted text-right">${split.hr != null ? `${Math.round(split.hr)}<small> bpm</small>` : ''}</span>
+      </div>`
+    }).join('')}</div></section>`
+  }
+
+  /* ---------- 曲线与联动 ---------- */
+
+  interface ChartHandle {
+    show: (index: number | null) => void
+  }
+
+  let currentId: string | null = null
+  let handles: ChartHandle[] = []
+  let currentDetail: SportDetailFile | null = null
+  let chartObserver: ResizeObserver | null = null
+
+  function axisLabel(detail: SportDetailFile, index: number): string {
+    return detail.axis === 'distance' && detail.d
+      ? `${(detail.d[index] / 1000).toFixed(2)} km · ${formatDuration(detail.t[index])}`
+      : formatDuration(detail.t[index])
+  }
+
+  function chartSvg(def: ChartDef, detail: SportDetailFile, levels: number[], width: number, height: number) {
+    const left = 34
+    const right = 6
+    const top = 6
+    const bottom = 18
+    const xs = detail.axis === 'distance' && detail.d ? detail.d : detail.t
+    const xMax = xs[xs.length - 1] || 1
+    const valid = def.y.filter(finite)
+    let low = Math.min(...valid)
+    let high = Math.max(...valid)
+    const margin = (high - low) * 0.12 || 1
+    low -= margin
+    high += margin
+    if (def.style === 'area') {
+      low -= margin * 2
+    }
+
+    const px = (index: number) => left + xs[index] / xMax * (width - left - right)
+    const py = (value: number) => {
+      const ratio = (value - low) / (high - low)
+      return top + (def.invert ? ratio : 1 - ratio) * (height - top - bottom)
+    }
+
+    // 刻度只标数据真实的最低、最高值，不标留白里的数
+    let grid = [Math.min(...valid), Math.max(...valid)].map((value) => {
+      return `<line x1="${left}" x2="${width - right}" y1="${py(value)}" y2="${py(value)}" class="sd-grid" /><text x="${left - 6}" y="${py(value) + 3}" text-anchor="end">${def.format(value)}</text>`
+    }).join('')
+
+    // 心率图画出区间分界的虚线，颜色与下方区间条一致
+    if (def.zones) {
+      [0.6, 0.7, 0.8, 0.9].forEach((ratio, index) => {
+        const value = ratio * config.maxHeartRate
+        if (value > low && value < high) {
+          grid += `<line x1="${left}" x2="${width - right}" y1="${py(value)}" y2="${py(value)}" stroke="${lvVar(zoneLevels[index + 1])}" stroke-dasharray="2 3" opacity=".6" />`
+        }
+      })
+    }
+
+    // null 处断开折线
+    let line = ''
+    let pen = false
+    def.y.forEach((value, index) => {
+      if (!finite(value)) {
+        pen = false
+        return
+      }
+
+      line += `${pen ? 'L' : 'M'}${px(index).toFixed(1)} ${py(value).toFixed(1)}`
+      pen = true
+    })
+
+    let body = ''
+    if (def.style === 'area') {
+      const first = def.y.findIndex(finite)
+      const last = def.y.length - 1 - [...def.y].reverse().findIndex(finite)
+      body = `<path d="${line}L${px(last).toFixed(1)} ${height - bottom}L${px(first).toFixed(1)} ${height - bottom}Z" class="sd-area" /><path d="${line}" class="sd-area-line" />`
+    }
+    else if (def.style === 'dots') {
+      body = def.y.map((value, index) => (finite(value) ? `<circle cx="${px(index).toFixed(1)}" cy="${py(value).toFixed(1)}" r="1.3" class="sd-dot" />` : '')).join('')
+    }
+    else if (def.style === 'gradient') {
+      for (let index = 1; index < def.y.length; index++) {
+        const from = def.y[index - 1]
+        const to = def.y[index]
+        if (finite(from) && finite(to)) {
+          body += `<path d="M${px(index - 1).toFixed(1)} ${py(from).toFixed(1)}L${px(index).toFixed(1)} ${py(to).toFixed(1)}" stroke="${lvVar(levels[index])}" stroke-width="1.6" stroke-linecap="round" />`
+        }
+      }
+    }
+    else {
+      body = `<path d="${line}" class="${def.zones ? 'sd-hr-line' : 'sd-plain-line'}" />`
+    }
+
+    const ticks = [0, 0.25, 0.5, 0.75, 1].map((ratio) => {
+      const x = left + ratio * (width - left - right)
+      const value = ratio * xMax
+      const text = detail.axis === 'distance'
+        ? `${(value / 1000).toFixed(value < 10000 ? 1 : 0)}${ratio === 1 ? ' km' : ''}`
+        : formatDuration(value)
+      return `<text x="${x}" y="${height - 4}" text-anchor="${ratio === 0 ? 'start' : ratio === 1 ? 'end' : 'middle'}">${text}</text>`
+    }).join('')
+
+    return {
+      html: `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" aria-hidden="true">${grid}${body}${ticks}<line class="sd-cursor" y1="${top}" y2="${height - bottom}" visibility="hidden" /><circle class="sd-cursor-dot" r="3" visibility="hidden" /></svg>`,
+      px,
+      py,
+      left,
+      right,
+      xs,
+    }
+  }
+
+  function renderCharts(item: Item, detail: SportDetailFile) {
+    const host = document.querySelector<HTMLElement>('[data-sd-charts]')
+    if (!host) {
+      return
+    }
+
+    const defs = chartDefs(item, detail)
+    const layout = layouts[item.kind] ?? layouts.other
+    const levels = detail.spd ? speedLevels(detail.spd) : []
+    const width = Math.max(240, Math.floor(host.clientWidth))
+    handles = []
+    host.innerHTML = defs.map(def => `<div class="sd-chart"><div class="sd-chart-label"><b>${def.label}</b><output></output></div></div>`).join('')
+
+    host.querySelectorAll<HTMLElement>('.sd-chart').forEach((element, chartIndex) => {
+      const def = defs[chartIndex]
+      const chart = chartSvg(def, detail, levels, width, layout.tall === def.key ? 150 : 92)
+      element.insertAdjacentHTML('beforeend', chart.html)
+      const svg = element.querySelector('svg') as SVGSVGElement
+      const cursor = svg.querySelector('.sd-cursor') as SVGLineElement
+      const dot = svg.querySelector('.sd-cursor-dot') as SVGCircleElement
+      const output = element.querySelector('output') as HTMLOutputElement
+      const average = def.key === 'pace'
+        ? (item.distance > 0 ? item.movingTime / (item.distance / 1000) : null)
+        : def.key === 'speed'
+          ? (item.movingTime > 0 ? item.distance / item.movingTime * 3.6 : null)
+          : weightedMean(def.y, detail.t)
+      const rest = () => {
+        output.innerHTML = average != null ? `${def.format(average)}<small>${def.unit} · 平均</small>` : ''
+      }
+
+      rest()
+      handles.push({
+        show(index) {
+          const value = index == null ? null : def.y[index]
+          if (index == null || !finite(value)) {
+            cursor.setAttribute('visibility', 'hidden')
+            dot.setAttribute('visibility', 'hidden')
+            if (index == null) {
+              rest()
+            }
+            else {
+              output.innerHTML = `—<small>${axisLabel(detail, index)}</small>`
+            }
+
+            return
+          }
+
+          const x = chart.px(index)
+          cursor.setAttribute('x1', String(x))
+          cursor.setAttribute('x2', String(x))
+          cursor.setAttribute('visibility', 'visible')
+          dot.setAttribute('cx', String(x))
+          dot.setAttribute('cy', String(chart.py(value)))
+          dot.setAttribute('visibility', 'visible')
+          output.innerHTML = `${def.format(value)}<small>${def.unit} · ${axisLabel(detail, index)}</small>`
+        },
+      })
+
+      const pick = (event: PointerEvent) => {
+        const rect = svg.getBoundingClientRect()
+        const ratio = Math.max(0, Math.min(1, (event.clientX - rect.left - chart.left) / (rect.width - chart.left - chart.right)))
+        const target = ratio * chart.xs[chart.xs.length - 1]
+        const index = chart.xs.findIndex(value => value >= target)
+        setCursor(index < 0 ? chart.xs.length - 1 : index)
+      }
+
+      svg.addEventListener('pointermove', pick)
+      svg.addEventListener('pointerdown', pick)
+      svg.addEventListener('pointerleave', () => setCursor(null))
+      svg.addEventListener('pointercancel', () => setCursor(null))
+    })
+  }
+
+  function setCursor(index: number | null) {
+    for (const handle of handles) {
+      handle.show(index)
+    }
+
+    const dot = document.querySelector('[data-sd-route-dot]')
+    const point = index == null ? null : currentDetail?.xy?.[index]
+    if (!dot) {
+      return
+    }
+
+    if (point) {
+      dot.setAttribute('transform', `translate(${point[0]} ${point[1]})`)
+      dot.setAttribute('visibility', 'visible')
+    }
+    else {
+      dot.setAttribute('visibility', 'hidden')
+    }
+  }
+
+  /** 在路线上滑动：找最近的抽样点，反向驱动曲线 */
+  function wireRoute() {
+    const svg = document.querySelector<SVGSVGElement>('[data-sd-route]')
+    const xy = currentDetail?.xy
+    if (!svg || !xy) {
+      return
+    }
+
+    const pick = (event: PointerEvent) => {
+      const rect = svg.getBoundingClientRect()
+      const scale = Math.min(rect.width / 100, rect.height / 62)
+      const x = (event.clientX - rect.left - (rect.width - 100 * scale) / 2) / scale
+      const y = (event.clientY - rect.top - (rect.height - 62 * scale) / 2) / scale
+      let best = -1
+      let bestDistance = Number.POSITIVE_INFINITY
+      xy.forEach((point, index) => {
+        if (!point) {
+          return
+        }
+
+        const distance = (point[0] - x) ** 2 + (point[1] - y) ** 2
+        if (distance < bestDistance) {
+          bestDistance = distance
+          best = index
+        }
+      })
+      setCursor(bestDistance < 40 ? best : null)
+    }
+
+    svg.addEventListener('pointermove', pick)
+    svg.addEventListener('pointerdown', pick)
+    svg.addEventListener('pointerleave', () => setCursor(null))
+  }
+
+  /* ---------- 分享图片 ---------- */
+
+  let shareFile: { id: string, file: File } | null = null
+
+  function cssColor(element: Element, name: string, fallback: string): string {
+    return getComputedStyle(element).getPropertyValue(name).trim() || fallback
+  }
+
+  /**
+   * 竖版 4:5 分享图，Canvas 直接绘制（不截 DOM），字体与配色取自当前主题。
+   * 只写日期，不写时刻。
+   */
+  async function renderShareImage(item: Item, track: Track | null, detail: SportDetailFile | null): Promise<File | null> {
+    const dialog = document.querySelector('[data-sport-detail]') as HTMLElement
+    const width = 1080
+    const height = 1350
+    const canvas = document.createElement('canvas')
+    canvas.width = width
+    canvas.height = height
+    const context = canvas.getContext('2d')
+    if (!context) {
+      return null
+    }
+
+    const primary = cssColor(dialog, '--sd-primary', '#333')
+    const secondary = cssColor(dialog, '--sd-secondary', '#666')
+    const background = cssColor(dialog, '--sd-bg', '#f4f4f5')
+    const faint = cssColor(dialog, '--sd-faint', 'rgba(100,100,100,.1)')
+    const level = (value: number) => cssColor(document.documentElement, `--sport-lv-${hexDigits[Math.max(0, Math.min(15, Math.round(value)))]}`, '#efd200')
+    const sans = getComputedStyle(document.body).fontFamily
+    try {
+      await document.fonts.load('64px Snell-Bold')
+    }
+    catch {}
+
+    const pad = 88
+    context.fillStyle = background
+    context.fillRect(0, 0, width, height)
+
+    context.textBaseline = 'alphabetic'
+    if (item.kindLabel !== item.title) {
+      context.fillStyle = secondary
+      context.font = `500 30px ${sans}`
+      context.fillText(item.kindLabel, pad, 140)
+    }
+
+    context.fillStyle = primary
+    context.font = `600 64px ${sans}`
+    context.fillText(item.title.length > 14 ? `${item.title.slice(0, 13)}…` : item.title, pad, 220)
+    context.fillStyle = secondary
+    context.font = `56px Snell-Bold, ${sans}`
+    context.textAlign = 'right'
+    context.fillText(item.date, width - pad, 220)
+    context.textAlign = 'left'
+
+    // 路线：保持 100:62 比例，按高度限制缩放后水平居中
+    const routeTop = 270
+    const routeHeight = 500
+    const scale = Math.min((width - pad * 2) / 100, routeHeight / 62)
+    const routeWidth = 100 * scale
+    const routeLeft = (width - routeWidth) / 2
+    if (track) {
+      const points = parsePath(track.p)
+      context.lineCap = 'round'
+      context.lineJoin = 'round'
+      context.lineWidth = 9
+      for (let index = 0; index + 1 < points.length; index++) {
+        context.strokeStyle = track.q ? level(Number.parseInt(track.q[index] ?? '7', 16)) : primary
+        context.beginPath()
+        context.moveTo(routeLeft + points[index][0] * scale, routeTop + points[index][1] * scale)
+        context.lineTo(routeLeft + points[index + 1][0] * scale, routeTop + points[index + 1][1] * scale)
+        context.stroke()
+      }
+
+      context.lineWidth = 5
+      context.strokeStyle = primary
+      context.fillStyle = background
+      context.beginPath()
+      context.arc(routeLeft + track.s[0] * scale, routeTop + track.s[1] * scale, 12, 0, Math.PI * 2)
+      context.fill()
+      context.stroke()
+      context.fillRect(routeLeft + track.e[0] * scale - 11, routeTop + track.e[1] * scale - 11, 22, 22)
+      context.strokeRect(routeLeft + track.e[0] * scale - 11, routeTop + track.e[1] * scale - 11, 22, 22)
+    }
+
+    // 曲线：有海拔画海拔，否则画心率；没有路线时它就是主视觉
+    const drawCurve = (series: Series, top: number, curveHeight: number, stroke: string) => {
+      if (!detail) {
+        return
+      }
+
+      const xs = detail.axis === 'distance' && detail.d ? detail.d : detail.t
+      const valid = series.filter(finite)
+      const low = Math.min(...valid)
+      const high = Math.max(...valid)
+      const xAt = (index: number) => pad + xs[index] / (xs[xs.length - 1] || 1) * (width - pad * 2)
+      const yAt = (value: number) => top + curveHeight - (value - low) / ((high - low) || 1) * curveHeight
+      context.beginPath()
+      let started = false
+      series.forEach((value, index) => {
+        if (!finite(value)) {
+          return
+        }
+
+        if (started) {
+          context.lineTo(xAt(index), yAt(value))
+        }
+        else {
+          context.moveTo(xAt(index), yAt(value))
+          started = true
+        }
+      })
+      context.lineWidth = 3
+      context.strokeStyle = stroke
+      context.lineJoin = 'round'
+      context.stroke()
+      context.lineTo(width - pad, top + curveHeight)
+      context.lineTo(pad, top + curveHeight)
+      context.closePath()
+      context.fillStyle = faint
+      context.fill()
+    }
+
+    const series = detail?.alt ?? detail?.hr ?? null
+    const seriesStroke = detail?.alt ? secondary : level(15)
+    if (!track && series) {
+      drawCurve(series, routeTop + 60, routeHeight - 120, seriesStroke)
+    }
+
+    // 指标：两行三列
+    const values = statValues(item, detail)
+    const keys = (layouts[item.kind] ?? layouts.other).stats.slice(0, 6)
+    const statsTop = routeTop + routeHeight + 80
+    // 4 个指标排 2×2，避免第二行只剩一个
+    const columns = keys.length === 4 ? 2 : 3
+    const columnWidth = (width - pad * 2) / columns
+    keys.forEach((key, index) => {
+      const [label, value, unit] = values[key]
+      const x = pad + (index % columns) * columnWidth
+      const y = statsTop + Math.floor(index / columns) * 150
+      context.fillStyle = secondary
+      context.font = `28px ${sans}`
+      context.fillText(label, x, y)
+      context.fillStyle = primary
+      context.font = `500 60px ${sans}`
+      context.fillText(value, x, y + 70)
+      const valueWidth = context.measureText(value).width
+      context.fillStyle = secondary
+      context.font = `26px ${sans}`
+      context.fillText(unit, x + valueWidth + 8, y + 70)
+    })
+
+    if (track && series) {
+      drawCurve(series, height - 230, 90, seriesStroke)
+    }
+
+    context.fillStyle = secondary
+    context.font = `26px ${sans}`
+    context.fillText(config.siteName, pad, height - 60)
+    context.textAlign = 'right'
+    context.fillText(config.siteHost, width - pad, height - 60)
+
+    const blob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve, 'image/png'))
+    return blob ? new File([blob], `sport-${item.date}-${item.id.slice(0, 8)}.png`, { type: 'image/png' }) : null
+  }
+
+  function toast(message: string) {
+    const element = document.querySelector<HTMLElement>('[data-sd-toast]')
+    if (!element) {
+      return
+    }
+
+    element.textContent = message
+    window.setTimeout(() => {
+      if (element.textContent === message) {
+        element.textContent = ''
+      }
+    }, 2400)
+  }
+
+  /**
+   * iOS Safari 要求 navigator.share 在点击的同步调用栈里发起，
+   * 所以图片在打开弹窗时就预先生成好，点击时直接分享。
+   */
+  async function share() {
+    const item = byId.get(currentId ?? '')
+    if (!item) {
+      return
+    }
+
+    const ready = shareFile?.id === item.id ? shareFile.file : null
+    if (ready && navigator.canShare?.({ files: [ready] })) {
+      try {
+        await navigator.share({ files: [ready], title: item.label })
+      }
+      catch (error) {
+        if ((error as Error).name !== 'AbortError') {
+          download(ready)
+        }
+      }
+
+      return
+    }
+
+    const file = ready ?? await renderShareImage(item, await loadTrack(item), await loadDetail(item))
+    if (file) {
+      download(file)
+    }
+  }
+
+  function download(file: File) {
+    const url = URL.createObjectURL(file)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = file.name
+    document.body.append(link)
+    link.click()
+    link.remove()
+    window.setTimeout(() => URL.revokeObjectURL(url), 10000)
+    toast('图片已保存')
+  }
+
+  /* ---------- 打开 / 切换 / 关闭 ---------- */
+
+  function visibleIds(): string[] {
+    return Array.from(document.querySelectorAll<HTMLElement>('[data-sport-card]:not(.hidden) [data-sport-open]'))
+      .map(button => button.dataset.sportOpen as string)
+  }
+
+  async function open(id: string) {
+    const item = byId.get(id)
+    const dialog = document.querySelector<HTMLDialogElement>('[data-sport-detail]')
+    const body = document.querySelector<HTMLElement>('[data-sd-body]')
+    if (!item || !dialog || !body) {
+      return
+    }
+
+    currentId = id
+    currentDetail = null
+    handles = []
+    shareFile = null
+    // 默认名的标题就是类型名，类型行不再重复
+    const kind = dialog.querySelector('[data-sd-kind]') as HTMLElement
+    kind.textContent = item.kindLabel
+    kind.hidden = item.kindLabel === item.title
+    ;(dialog.querySelector('[data-sd-title]') as HTMLElement).textContent = item.title
+    const date = dialog.querySelector('[data-sd-date]') as HTMLTimeElement
+    date.textContent = item.date
+    date.dateTime = item.date
+
+    const ids = visibleIds()
+    const position = ids.indexOf(id)
+    ;(dialog.querySelector('[data-sd-prev]') as HTMLButtonElement).disabled = position <= 0
+    ;(dialog.querySelector('[data-sd-next]') as HTMLButtonElement).disabled = position < 0 || position >= ids.length - 1
+
+    if (!dialog.open) {
+      dialog.showModal()
+      document.documentElement.classList.add('sport-detail-open')
+    }
+
+    body.scrollTop = 0
+    body.innerHTML = `<div class="sd-hero${item.track ? '' : ' sd-hero-solo'}">${item.track ? '<div class="sd-route sd-loading"></div>' : ''}${statsHtml(item, null)}</div>${item.detail ? '<div class="sd-section sd-loading sd-loading-charts"></div>' : ''}`
+
+    const [track, detail] = await Promise.all([loadTrack(item), loadDetail(item)])
+    if (currentId !== id) {
+      return
+    }
+
+    currentDetail = detail
+    const layout = layouts[item.kind] ?? layouts.other
+    body.innerHTML = `
+      <div class="sd-hero${item.track ? '' : ' sd-hero-solo'}">${routeHtml(item, track)}${statsHtml(item, detail)}</div>
+      ${detail
+        ? `<section class="sd-section"><h3>${detail.axis === 'distance' ? '沿途' : '过程'}<span>${detail.axis === 'distance' ? '横轴为距离，滑动查看任一点' : '横轴为移动时间'}</span></h3><div class="sd-charts" data-sd-charts></div></section>
+           ${layout.splits ? splitsHtml(detail) : ''}${zonesHtml(detail)}`
+        : ''}`
+
+    if (detail) {
+      renderCharts(item, detail)
+      chartObserver?.disconnect()
+      const host = body.querySelector('[data-sd-charts]')
+      let lastWidth = (host as HTMLElement | null)?.clientWidth ?? 0
+      chartObserver = new ResizeObserver(() => {
+        const width = (host as HTMLElement | null)?.clientWidth ?? 0
+        // iPad 旋转、窗口缩放时按新宽度重画，宽度没变不重画
+        if (width > 0 && width !== lastWidth && currentId === id) {
+          lastWidth = width
+          renderCharts(item, detail)
+        }
+      })
+      if (host) {
+        chartObserver.observe(host)
+      }
+    }
+
+    wireRoute()
+    // 空闲时预生成分享图，保证点击分享时能同步调起系统分享面板
+    const prepare = () => renderShareImage(item, track, detail).then((file) => {
+      if (file && currentId === id) {
+        shareFile = { id, file }
+      }
+    })
+    // iOS Safari 没有 requestIdleCallback
+    if (typeof window.requestIdleCallback === 'function') {
+      window.requestIdleCallback(() => void prepare(), { timeout: 1500 })
+    }
+    else {
+      setTimeout(() => void prepare(), 300)
+    }
+  }
+
+  function step(offset: number) {
+    const ids = visibleIds()
+    const next = ids[ids.indexOf(currentId ?? '') + offset]
+    if (next) {
+      void open(next)
+    }
+  }
+
+  function onClose() {
+    currentId = null
+    currentDetail = null
+    chartObserver?.disconnect()
+    document.documentElement.classList.remove('sport-detail-open')
+  }
+
+  /** 手机底部抽屉：按住标题栏下拉超过 90px 关闭 */
+  function wireSwipe(dialog: HTMLDialogElement) {
+    const head = dialog.querySelector<HTMLElement>('[data-sd-head]')
+    const sheet = dialog.querySelector<HTMLElement>('[data-sd-sheet]')
+    if (!head || !sheet) {
+      return
+    }
+
+    let startY: number | null = null
+    let delta = 0
+    head.addEventListener('pointerdown', (event) => {
+      if (event.pointerType !== 'touch' || (event.target as Element).closest('button') || window.innerWidth >= 640) {
+        return
+      }
+
+      startY = event.clientY
+      delta = 0
+      head.setPointerCapture(event.pointerId)
+    })
+    head.addEventListener('pointermove', (event) => {
+      if (startY == null) {
+        return
+      }
+
+      delta = Math.max(0, event.clientY - startY)
+      sheet.style.transform = `translateY(${delta}px)`
+    })
+    const end = () => {
+      if (startY == null) {
+        return
+      }
+
+      startY = null
+      sheet.style.transform = ''
+      if (delta > 90) {
+        dialog.close()
+      }
+    }
+    head.addEventListener('pointerup', end)
+    head.addEventListener('pointercancel', end)
+  }
+
+  /**
+   * 站点开了 ClientRouter：导航只替换 body，模块脚本不会重跑，
+   * 所以初始化挂在 astro:page-load 上并保持幂等。
+   */
+  function initSportDetail() {
+    const dataElement = document.querySelector('[data-sport-detail-data]')
+    const dialog = document.querySelector<HTMLDialogElement>('[data-sport-detail]')
+    if (!dataElement || !dialog || dialog.dataset.wired === '1') {
+      return
+    }
+
+    dialog.dataset.wired = '1'
+    const data = JSON.parse(dataElement.textContent || '{}') as { items: Item[], config: Config }
+    items = data.items
+    config = data.config
+    byId.clear()
+    for (const item of items) {
+      byId.set(item.id, item)
+    }
+
+    document.querySelector('[data-sport-wall]')?.addEventListener('click', (event) => {
+      const button = (event.target as Element).closest<HTMLElement>('[data-sport-open]')
+      if (button?.dataset.sportOpen) {
+        void open(button.dataset.sportOpen)
+      }
+    })
+
+    dialog.querySelector('[data-sd-close]')?.addEventListener('click', () => dialog.close())
+    dialog.querySelector('[data-sd-prev]')?.addEventListener('click', () => step(-1))
+    dialog.querySelector('[data-sd-next]')?.addEventListener('click', () => step(1))
+    dialog.querySelector('[data-sd-share]')?.addEventListener('click', () => void share())
+    dialog.addEventListener('close', onClose)
+    // 点遮罩关闭：点击落在 dialog 自身（而非内部内容）时
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) {
+        dialog.close()
+      }
+    })
+    dialog.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') {
+        step(-1)
+      }
+      else if (event.key === 'ArrowRight') {
+        step(1)
+      }
+    })
+    wireSwipe(dialog)
+  }
+
+  initSportDetail()
+  document.addEventListener('astro:page-load', initSportDetail)
+  // 离开页面时解除滚动锁
+  document.addEventListener('astro:before-swap', () => document.documentElement.classList.remove('sport-detail-open'))
+</script>

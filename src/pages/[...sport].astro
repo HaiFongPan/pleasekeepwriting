@@ -1,6 +1,7 @@
 ---
 import type { SportActivitiesData } from '@/types/strava'
 import SportDashboard from '@/components/SportDashboard.astro'
+import SportDetail from '@/components/SportDetail.astro'
 import SportWall from '@/components/SportWall.astro'
 import { defaultLocale, moreLocales, themeConfig } from '@/config'
 import activitiesData from '@/data/strava/activities.json'
@@ -40,4 +41,5 @@ const activities = maxActivities == null
 <Layout postTitle={currentUI.sport}>
   <SportDashboard {activities} />
   <SportWall {activities} />
+  <SportDetail {activities} />
 </Layout>
