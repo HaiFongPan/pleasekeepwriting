@@ -150,7 +150,33 @@ const config = {
   }
 
   const loadTrack = (item: Item) => item.track ? fetchJson<Track>(trackCache, `${config.trackBase}/${item.id}.json`) : Promise.resolve(null)
-  const loadDetail = (item: Item) => item.detail ? fetchJson<SportDetailFile>(detailCache, `${config.detailBase}/${item.id}.json`) : Promise.resolve(null)
+  async function loadDetail(item: Item): Promise<SportDetailFile | null> {
+    if (!item.detail) {
+      return null
+    }
+
+    const detail = await fetchJson<SportDetailFile>(detailCache, `${config.detailBase}/${item.id}.json`)
+    return detail && alignMovingTime(detail, item)
+  }
+
+  /**
+   * 抽样文件按速度判停，和 Strava 的移动时间口径不同（普遍偏短几个百分点，走走停停的健走能差一半）。
+   * 按官方移动时间等比缩放时间轴：曲线形状不变，分段配速与顶部均配速对得上。
+   */
+  function alignMovingTime(detail: SportDetailFile, item: Item): SportDetailFile {
+    const end = detail.t[detail.t.length - 1]
+    if (!(end > 0) || item.movingTime <= 0 || Math.abs(item.movingTime / end - 1) < 0.005) {
+      return detail
+    }
+
+    const ratio = item.movingTime / end
+    return {
+      ...detail,
+      t: detail.t.map(value => Math.round(value * ratio)),
+      // 速度跟着时间缩放，否则速度曲线的均值和顶部均速对不上
+      spd: detail.spd?.map(value => (value == null ? null : Math.round(value / ratio * 100) / 100)),
+    }
+  }
 
   /* ---------- 计算 ---------- */
 
