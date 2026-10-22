@@ -2,7 +2,7 @@
   "version": 1,
   "parser": 1,
   "renderer": 4,
-  "generatedAt": "2026-10-19T09:39:49.844Z",
+  "generatedAt": "2026-10-22T00:09:42.273Z",
   "timezone": "Asia/Shanghai",
   "archive": {
     "key": "strava/v1/archive-index.json",
@@ -4391,11 +4391,33 @@
       "kind": "ride",
       "hasGps": true,
       "suppressedBy": 20590816780
+    },
+    "b2d57d7bad76e61b88dac9622f703df6eb7819a607313c64d61efab146c66574": {
+      "etag": "4343056c40a61173b85d04634aabae27",
+      "sha256": "0602e11de05330dc3eeba7504483ae97232a6c831904daa8f015dfb35fdae99e",
+      "dedupMode": "workoutdoors-content",
+      "wod": {
+        "signature": "9937560bfab6ec3f8631bd54cd8bc28cbcabd4a64b02e727b43686686f8ab87a",
+        "fileIdManufacturer": "development",
+        "fileIdProductName": "WorkOutDoors",
+        "fileIdType": "activity",
+        "creatorManufacturer": "development",
+        "hasSession": true,
+        "recordCount": 2238,
+        "distanceCount": 2238,
+        "distanceSumRaw": 582614615
+      },
+      "start": 1792599107,
+      "distance": 5155.43,
+      "kind": "run",
+      "hasGps": true,
+      "track": true,
+      "trackSynced": true
     }
   },
   "totals": {
     "historyPublic": 284,
     "historyPrivate": 1,
-    "phone": 4
+    "phone": 5
   }
 }

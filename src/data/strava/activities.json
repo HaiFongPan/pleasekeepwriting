@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T09:39:49.838Z",
+  "generatedAt": "2026-10-22T00:09:42.214Z",
   "source": {
     "provider": "strava",
     "athleteId": null
@@ -20,13 +20,33 @@
     "showLocationNames": false
   },
   "summary": {
-    "activityCount": 286,
-    "trackCount": 260,
+    "activityCount": 287,
+    "trackCount": 261,
     "calorieMissing": 43,
     "firstActivityAt": "2022-08-27",
-    "lastActivityAt": "2026-10-19"
+    "lastActivityAt": "2026-10-21"
   },
   "activities": [
+    {
+      "id": "b2d57d7bad76e61b88dac9622f703df6eb7819a607313c64d61efab146c66574",
+      "sportType": "Run",
+      "displayType": "跑步",
+      "name": null,
+      "kind": "run",
+      "start": 1792599107,
+      "date": "2026-10-21",
+      "distance": 5155.43,
+      "movingTime": 2256.71,
+      "elapsedTime": 2310.583,
+      "calories": 360,
+      "caloriesSynced": true,
+      "elevation": null,
+      "hasGps": true,
+      "track": true,
+      "trackSynced": true,
+      "timeSource": "device-timer",
+      "origin": "phone"
+    },
     {
       "id": "40f56e4661cd50a2fc5e4f46a75523cbe40afa580f5b974caae0662ca621a3cc",
       "sportType": "Run",
