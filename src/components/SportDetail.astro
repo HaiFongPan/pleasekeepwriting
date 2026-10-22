@@ -23,6 +23,7 @@ const items = activities.map(activity => ({
   date: activity.date,
   distance: activity.distance,
   movingTime: activity.movingTime,
+  elapsedTime: activity.elapsedTime,
   calories: activity.calories,
   elevation: activity.elevation,
   track: activity.track,
@@ -31,7 +32,6 @@ const items = activities.map(activity => ({
 }))
 
 const config = {
-  maxHeartRate: themeConfig.sport.maxHeartRate,
   trackBase: `${base}/strava/tracks`,
   detailBase: `${base}/strava/details`,
   siteName: themeConfig.site.title,
@@ -92,6 +92,7 @@ const config = {
     date: string
     distance: number
     movingTime: number
+    elapsedTime: number
     calories: number | null
     elevation: number | null
     track: boolean
@@ -100,7 +101,6 @@ const config = {
   }
 
   interface Config {
-    maxHeartRate: number
     trackBase: string
     detailBase: string
     siteName: string
@@ -116,18 +116,19 @@ const config = {
 
   type Series = Array<number | null>
 
-  /** 每种运动只突出它最关心的指标：骑行看速度和爬升，跑步看配速和心率，徒步看海拔 */
-  const layouts: Record<string, { stats: string[], charts: string[], tall?: string, splits?: boolean }> = {
-    ride: { stats: ['distance', 'moving', 'speed', 'gain', 'kcal', 'hr'], charts: ['alt', 'speed', 'hr', 'w'] },
-    run: { stats: ['distance', 'moving', 'pace', 'hr', 'kcal', 'cad'], charts: ['pace', 'hr', 'alt', 'cad'], splits: true },
-    hike: { stats: ['distance', 'gain', 'moving', 'top', 'kcal', 'hr'], charts: ['alt', 'speed', 'hr'], tall: 'alt' },
-    walk: { stats: ['distance', 'moving', 'pace', 'gain', 'kcal', 'hr'], charts: ['alt', 'pace', 'hr'] },
-    swim: { stats: ['distance', 'moving', 'kcal', 'hr'], charts: ['hr'] },
-    other: { stats: ['moving', 'kcal', 'hr', 'hrmax'], charts: ['hr'] },
+  /**
+   * 每种运动只突出它最关心的指标：骑行看速度，跑步看配速和步频，徒步看爬升和总用时。
+   * 心率、海拔属于隐私，页面与数据文件都不出现。
+   */
+  const layouts: Record<string, { stats: string[], charts: string[], splits?: boolean }> = {
+    ride: { stats: ['distance', 'moving', 'speed', 'gain', 'kcal', 'elapsed'], charts: ['speed', 'cad'] },
+    run: { stats: ['distance', 'moving', 'pace', 'gain', 'kcal', 'cad'], charts: ['pace', 'cad'], splits: true },
+    hike: { stats: ['distance', 'gain', 'moving', 'elapsed', 'speed', 'kcal'], charts: ['speed'] },
+    walk: { stats: ['distance', 'moving', 'pace', 'gain', 'kcal', 'elapsed'], charts: ['pace'] },
+    swim: { stats: ['distance', 'moving', 'elapsed', 'kcal'], charts: [] },
+    other: { stats: ['moving', 'elapsed', 'kcal'], charts: ['cad'] },
   }
 
-  const zoneNames = ['恢复', '燃脂', '有氧', '乳酸阈', '无氧']
-  const zoneLevels = [0, 4, 7, 11, 15]
   const hexDigits = '0123456789abcdef'
   const lvVar = (level: number) => `var(--sport-lv-${hexDigits[Math.max(0, Math.min(15, Math.round(level)))]})`
 
@@ -156,7 +157,36 @@ const config = {
     }
 
     const detail = await fetchJson<SportDetailFile>(detailCache, `${config.detailBase}/${item.id}.json`)
-    return detail && alignMovingTime(detail, item)
+    if (!detail) {
+      return null
+    }
+
+    const aligned = alignMovingTime(detail, item)
+    return { ...aligned, spd: aligned.spd && smoothSeries(aligned.spd, 3) }
+  }
+
+  /**
+   * 居中滑动平均，跳过 null。抽样点约 30 米一个，GPS 抖动会让速度/配速曲线像锯齿，
+   * 只用于展示；分段配速走的是时间轴，不受影响。
+   */
+  function smoothSeries(values: Series, radius: number): Series {
+    return values.map((value, index) => {
+      if (value == null) {
+        return null
+      }
+
+      let sum = 0
+      let count = 0
+      for (let offset = -radius; offset <= radius; offset++) {
+        const neighbor = values[index + offset]
+        if (neighbor != null) {
+          sum += neighbor
+          count++
+        }
+      }
+
+      return sum / count
+    })
   }
 
   /**
@@ -204,11 +234,6 @@ const config = {
     return weight > 0 ? sum / weight : null
   }
 
-  function maxOf(values: Series | undefined): number | null {
-    const valid = (values ?? []).filter(finite)
-    return valid.length > 0 ? Math.max(...valid) : null
-  }
-
   function quantile(sorted: number[], ratio: number): number {
     if (sorted.length === 0) {
       return 0
@@ -228,29 +253,8 @@ const config = {
     return speed.map(value => (finite(value) && range > 0.3 ? Math.max(0, Math.min(15, (value - low) / range * 15)) : 7))
   }
 
-  function hrZones(detail: SportDetailFile): number[] | null {
-    if (!detail.hr) {
-      return null
-    }
-
-    const bounds = [0.6, 0.7, 0.8, 0.9].map(ratio => ratio * config.maxHeartRate)
-    const seconds = [0, 0, 0, 0, 0]
-    for (let index = 0; index < detail.hr.length; index++) {
-      const value = detail.hr[index]
-      const dt = detail.t[index] - (index > 0 ? detail.t[index - 1] : 0)
-      if (!finite(value) || dt <= 0) {
-        continue
-      }
-
-      const zone = bounds.findIndex(bound => value < bound)
-      seconds[zone < 0 ? 4 : zone] += dt
-    }
-
-    return seconds.some(value => value > 0) ? seconds : null
-  }
-
   /** 每公里用时：按抽样点线性插值出整公里处的移动时间 */
-  function kmSplits(detail: SportDetailFile): Array<{ km: number, pace: number, hr: number | null, partial: boolean }> {
+  function kmSplits(detail: SportDetailFile): Array<{ km: number, pace: number, partial: boolean }> {
     const d = detail.d
     if (!d || d[d.length - 1] < 1000) {
       return []
@@ -275,12 +279,9 @@ const config = {
         break
       }
 
-      const hr = detail.hr?.filter((_, index) => d[index] > (km - 1) * 1000 && d[index] <= end) ?? []
-      const valid = hr.filter(finite)
       result.push({
         km,
         pace: (timeAt(end) - timeAt((km - 1) * 1000)) / length * 1000,
-        hr: valid.length > 0 ? valid.reduce((sum, value) => sum + value, 0) / valid.length : null,
         partial: length < 990,
       })
     }
@@ -291,10 +292,8 @@ const config = {
   /* ---------- 指标 ---------- */
 
   function statValues(item: Item, detail: SportDetailFile | null): Record<string, [string, string, string]> {
-    const avgHr = detail ? weightedMean(detail.hr, detail.t) : null
-    const maxHr = detail ? maxOf(detail.hr) : null
     const cad = detail ? weightedMean(detail.cad, detail.t) : null
-    const top = detail ? maxOf(detail.alt) : null
+    const ride = item.kind === 'ride'
     const km = item.distance / 1000
     const dash = '—'
     return {
@@ -302,12 +301,10 @@ const config = {
       moving: [item.deviceTimer ? '用时' : '移动时间', formatDuration(item.movingTime), ''],
       speed: ['均速', item.movingTime > 0 && km > 0 ? (km / item.movingTime * 3600).toFixed(1) : dash, 'km/h'],
       pace: ['均配速', km > 0 ? formatPace(item.movingTime / km) : dash, '/km'],
+      elapsed: ['总用时', item.elapsedTime > 0 ? formatDuration(item.elapsedTime) : dash, ''],
       gain: ['累计爬升', item.elevation != null ? String(Math.round(item.elevation)) : dash, 'm'],
-      top: ['最高海拔', top != null ? String(Math.round(top)) : dash, 'm'],
       kcal: ['卡路里', item.calories ? String(Math.round(item.calories)) : dash, item.calories ? 'kcal' : ''],
-      hr: ['平均心率', avgHr != null ? String(Math.round(avgHr)) : dash, avgHr != null ? 'bpm' : ''],
-      hrmax: ['最大心率', maxHr != null ? String(Math.round(maxHr)) : dash, maxHr != null ? 'bpm' : ''],
-      cad: ['平均步频', cad != null ? String(Math.round(cad)) : dash, cad != null ? 'spm' : ''],
+      cad: [ride ? '平均踏频' : '平均步频', cad != null ? String(Math.round(cad)) : dash, cad != null ? (ride ? 'rpm' : 'spm') : ''],
     }
   }
 
@@ -317,21 +314,17 @@ const config = {
     unit: string
     y: Series
     format: (value: number) => string
-    style: 'area' | 'gradient' | 'line' | 'dots'
+    style: 'gradient' | 'dots'
     invert?: boolean
-    zones?: boolean
   }
 
   function chartDefs(item: Item, detail: SportDetailFile): ChartDef[] {
     const layout = layouts[item.kind] ?? layouts.other
     const defs: Record<string, ChartDef | null> = {
-      alt: detail.alt ? { key: 'alt', label: '海拔', unit: 'm', y: detail.alt, format: value => String(Math.round(value)), style: 'area' } : null,
       speed: detail.spd ? { key: 'speed', label: '速度', unit: 'km/h', y: detail.spd.map(value => (finite(value) ? value * 3.6 : null)), format: value => value.toFixed(1), style: 'gradient' } : null,
       // 走走停停时配速会飙到几十分钟，低于 0.5 m/s 的点不画
       pace: detail.spd ? { key: 'pace', label: '配速', unit: '/km', y: detail.spd.map(value => (finite(value) && value >= 0.5 ? 1000 / value : null)), format: formatPace, style: 'gradient', invert: true } : null,
-      hr: detail.hr ? { key: 'hr', label: '心率', unit: 'bpm', y: detail.hr, format: value => String(Math.round(value)), style: 'line', zones: true } : null,
       cad: detail.cad ? { key: 'cad', label: item.kind === 'ride' ? '踏频' : '步频', unit: item.kind === 'ride' ? 'rpm' : 'spm', y: detail.cad, format: value => String(Math.round(value)), style: 'dots' } : null,
-      w: detail.w ? { key: 'w', label: '功率', unit: 'W', y: detail.w, format: value => String(Math.round(value)), style: 'line' } : null,
     }
 
     return layout.charts.map(key => defs[key]).filter((def): def is ChartDef => def != null)
@@ -386,31 +379,19 @@ const config = {
     return paths.join('')
   }
 
+  /** 总用时与移动时间几乎一样时（室内训练、一路没停）不重复显示 */
+  function statKeys(item: Item): string[] {
+    const keys = (layouts[item.kind] ?? layouts.other).stats
+    return Math.abs(item.elapsedTime - item.movingTime) < 60 ? keys.filter(key => key !== 'elapsed') : keys
+  }
+
   function statsHtml(item: Item, detail: SportDetailFile | null): string {
     const values = statValues(item, detail)
-    const keys = (layouts[item.kind] ?? layouts.other).stats
-    return `<dl class="sd-stats${keys.length === 4 ? ' sd-stats-4' : ''}">${keys.map((key, index) => {
+    const keys = statKeys(item)
+    return `<dl class="sd-stats${keys.length < 6 ? ` sd-stats-${keys.length}` : ''}">${keys.map((key, index) => {
       const [label, value, unit] = values[key]
       return `<div class="sd-stat${index === 0 ? ' sd-stat-lead' : ''}"><dt>${label}</dt><dd>${value}${unit ? `<small>${unit}</small>` : ''}</dd></div>`
     }).join('')}</dl>`
-  }
-
-  function zonesHtml(detail: SportDetailFile): string {
-    const zones = hrZones(detail)
-    if (!zones) {
-      return ''
-    }
-
-    const total = zones.reduce((sum, value) => sum + value, 0)
-    const top = Math.max(...zones)
-    const bounds = [0.5, 0.6, 0.7, 0.8, 0.9].map(ratio => Math.round(ratio * config.maxHeartRate))
-    return `<section class="sd-section"><h3>心率区间<span>按最大心率 ${config.maxHeartRate} bpm</span></h3><div class="sd-zones">${zones.map((seconds, index) => `
-      <div class="sd-zone">
-        <span class="sd-zone-name">Z${index + 1}</span>
-        <span class="sd-muted"><span class="sd-zone-label">${zoneNames[index]} </span>${index === 0 ? `&lt;${bounds[1]}` : index === 4 ? `${bounds[4]}+` : `${bounds[index]}–${bounds[index + 1]}`}</span>
-        <span class="sd-bar"><i style="width:${top > 0 ? seconds / top * 100 : 0}%;background:${lvVar(zoneLevels[index])}"></i></span>
-        <span class="sd-zone-value">${formatDuration(seconds)}<small>${Math.round(seconds / total * 100)}%</small></span>
-      </div>`).join('')}</div></section>`
   }
 
   function splitsHtml(detail: SportDetailFile): string {
@@ -428,7 +409,6 @@ const config = {
         <span class="sd-muted">${split.partial ? '末段' : split.km}</span>
         <span class="sd-split-pace">${formatPace(split.pace)}</span>
         <span class="sd-bar"><i style="width:${40 + ratio * 60}%;background:${lvVar(ratio * 15)}"></i></span>
-        <span class="sd-muted text-right">${split.hr != null ? `${Math.round(split.hr)}<small> bpm</small>` : ''}</span>
       </div>`
     }).join('')}</div></section>`
   }
@@ -463,9 +443,6 @@ const config = {
     const margin = (high - low) * 0.12 || 1
     low -= margin
     high += margin
-    if (def.style === 'area') {
-      low -= margin * 2
-    }
 
     const px = (index: number) => left + xs[index] / xMax * (width - left - right)
     const py = (value: number) => {
@@ -474,43 +451,16 @@ const config = {
     }
 
     // 刻度只标数据真实的最低、最高值，不标留白里的数
-    let grid = [Math.min(...valid), Math.max(...valid)].map((value) => {
+    const grid = [Math.min(...valid), Math.max(...valid)].map((value) => {
       return `<line x1="${left}" x2="${width - right}" y1="${py(value)}" y2="${py(value)}" class="sd-grid" /><text x="${left - 6}" y="${py(value) + 3}" text-anchor="end">${def.format(value)}</text>`
     }).join('')
 
-    // 心率图画出区间分界的虚线，颜色与下方区间条一致
-    if (def.zones) {
-      [0.6, 0.7, 0.8, 0.9].forEach((ratio, index) => {
-        const value = ratio * config.maxHeartRate
-        if (value > low && value < high) {
-          grid += `<line x1="${left}" x2="${width - right}" y1="${py(value)}" y2="${py(value)}" stroke="${lvVar(zoneLevels[index + 1])}" stroke-dasharray="2 3" opacity=".6" />`
-        }
-      })
-    }
-
-    // null 处断开折线
-    let line = ''
-    let pen = false
-    def.y.forEach((value, index) => {
-      if (!finite(value)) {
-        pen = false
-        return
-      }
-
-      line += `${pen ? 'L' : 'M'}${px(index).toFixed(1)} ${py(value).toFixed(1)}`
-      pen = true
-    })
-
+    // 速度/配速按与路线同一套色阶逐段着色，null 处自然断开；步频画散点
     let body = ''
-    if (def.style === 'area') {
-      const first = def.y.findIndex(finite)
-      const last = def.y.length - 1 - [...def.y].reverse().findIndex(finite)
-      body = `<path d="${line}L${px(last).toFixed(1)} ${height - bottom}L${px(first).toFixed(1)} ${height - bottom}Z" class="sd-area" /><path d="${line}" class="sd-area-line" />`
-    }
-    else if (def.style === 'dots') {
+    if (def.style === 'dots') {
       body = def.y.map((value, index) => (finite(value) ? `<circle cx="${px(index).toFixed(1)}" cy="${py(value).toFixed(1)}" r="1.3" class="sd-dot" />` : '')).join('')
     }
-    else if (def.style === 'gradient') {
+    else {
       for (let index = 1; index < def.y.length; index++) {
         const from = def.y[index - 1]
         const to = def.y[index]
@@ -518,9 +468,6 @@ const config = {
           body += `<path d="M${px(index - 1).toFixed(1)} ${py(from).toFixed(1)}L${px(index).toFixed(1)} ${py(to).toFixed(1)}" stroke="${lvVar(levels[index])}" stroke-width="1.6" stroke-linecap="round" />`
         }
       }
-    }
-    else {
-      body = `<path d="${line}" class="${def.zones ? 'sd-hr-line' : 'sd-plain-line'}" />`
     }
 
     const ticks = [0, 0.25, 0.5, 0.75, 1].map((ratio) => {
@@ -549,7 +496,6 @@ const config = {
     }
 
     const defs = chartDefs(item, detail)
-    const layout = layouts[item.kind] ?? layouts.other
     const levels = detail.spd ? speedLevels(detail.spd) : []
     const width = Math.max(240, Math.floor(host.clientWidth))
     handles = []
@@ -557,7 +503,8 @@ const config = {
 
     host.querySelectorAll<HTMLElement>('.sd-chart').forEach((element, chartIndex) => {
       const def = defs[chartIndex]
-      const chart = chartSvg(def, detail, levels, width, layout.tall === def.key ? 150 : 92)
+      // 第一张是这项运动的主曲线，画高一些
+      const chart = chartSvg(def, detail, levels, width, chartIndex === 0 ? 132 : 92)
       element.insertAdjacentHTML('beforeend', chart.html)
       const svg = element.querySelector('svg') as SVGSVGElement
       const cursor = svg.querySelector('.sd-cursor') as SVGLineElement
@@ -754,12 +701,8 @@ const config = {
       context.strokeRect(routeLeft + track.e[0] * scale - 11, routeTop + track.e[1] * scale - 11, 22, 22)
     }
 
-    // 曲线：有海拔画海拔，否则画心率；没有路线时它就是主视觉
-    const drawCurve = (series: Series, top: number, curveHeight: number, stroke: string) => {
-      if (!detail) {
-        return
-      }
-
+    // 底部速度曲线，只有轨迹活动才画
+    const drawCurve = (series: Series, detail: SportDetailFile, top: number, curveHeight: number) => {
       const xs = detail.axis === 'distance' && detail.d ? detail.d : detail.t
       const valid = series.filter(finite)
       const low = Math.min(...valid)
@@ -782,7 +725,7 @@ const config = {
         }
       })
       context.lineWidth = 3
-      context.strokeStyle = stroke
+      context.strokeStyle = secondary
       context.lineJoin = 'round'
       context.stroke()
       context.lineTo(width - pad, top + curveHeight)
@@ -792,18 +735,12 @@ const config = {
       context.fill()
     }
 
-    const series = detail?.alt ?? detail?.hr ?? null
-    const seriesStroke = detail?.alt ? secondary : level(15)
-    if (!track && series) {
-      drawCurve(series, routeTop + 60, routeHeight - 120, seriesStroke)
-    }
-
-    // 指标：两行三列
+    // 指标：两行三列；没有路线时直接顶上去
     const values = statValues(item, detail)
-    const keys = (layouts[item.kind] ?? layouts.other).stats.slice(0, 6)
-    const statsTop = routeTop + routeHeight + 80
-    // 4 个指标排 2×2，避免第二行只剩一个
-    const columns = keys.length === 4 ? 2 : 3
+    const keys = statKeys(item).slice(0, 6)
+    const statsTop = track ? routeTop + routeHeight + 80 : routeTop + 60
+    // 2 个、4 个指标排两列，避免第二行只剩一个
+    const columns = keys.length === 4 || keys.length === 2 ? 2 : 3
     const columnWidth = (width - pad * 2) / columns
     keys.forEach((key, index) => {
       const [label, value, unit] = values[key]
@@ -821,8 +758,8 @@ const config = {
       context.fillText(unit, x + valueWidth + 8, y + 70)
     })
 
-    if (track && series) {
-      drawCurve(series, height - 230, 90, seriesStroke)
+    if (track && detail?.spd) {
+      drawCurve(detail.spd, detail, height - 230, 90)
     }
 
     context.fillStyle = secondary
@@ -939,14 +876,16 @@ const config = {
 
     currentDetail = detail
     const layout = layouts[item.kind] ?? layouts.other
+    // 这项运动没有可画的曲线（游泳、室内训练等）时不留空区块
+    const hasCharts = detail != null && chartDefs(item, detail).length > 0
     body.innerHTML = `
       <div class="sd-hero${item.track ? '' : ' sd-hero-solo'}">${routeHtml(item, track)}${statsHtml(item, detail)}</div>
-      ${detail
-        ? `<section class="sd-section"><h3>${detail.axis === 'distance' ? '沿途' : '过程'}<span>${detail.axis === 'distance' ? '横轴为距离，滑动查看任一点' : '横轴为移动时间'}</span></h3><div class="sd-charts" data-sd-charts></div></section>
-           ${layout.splits ? splitsHtml(detail) : ''}${zonesHtml(detail)}`
-        : ''}`
+      ${detail && hasCharts
+        ? `<section class="sd-section"><h3>${detail.axis === 'distance' ? '沿途' : '过程'}<span>${detail.axis === 'distance' ? '横轴为距离，滑动查看任一点' : '横轴为移动时间'}</span></h3><div class="sd-charts" data-sd-charts></div></section>`
+        : ''}
+      ${detail && layout.splits ? splitsHtml(detail) : ''}`
 
-    if (detail) {
+    if (detail && hasCharts) {
       renderCharts(item, detail)
       chartObserver?.disconnect()
       const host = body.querySelector('[data-sd-charts]')

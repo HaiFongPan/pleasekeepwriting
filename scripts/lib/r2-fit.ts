@@ -133,11 +133,8 @@ export interface PhoneFitData {
 export interface FitSamples {
   time: number[]
   distance: Array<number | null>
-  altitude: Array<number | null>
   velocity: Array<number | null>
-  heartrate: Array<number | null>
   cadence: Array<number | null>
-  watts: Array<number | null>
   latlng: Array<{ lat: number, lng: number } | null>
   pointIndex: number[]
 }
@@ -291,7 +288,7 @@ export function parseFitTrack(messages: { recordMesgs?: RecordMesg[] }): { point
  * 因此有坐标的 record 按顺序就是 points，pointIndex 据此对齐。
  */
 export function parseFitSamples(messages: { recordMesgs?: RecordMesg[] }): FitSamples {
-  const samples: FitSamples = { time: [], distance: [], altitude: [], velocity: [], heartrate: [], cadence: [], watts: [], latlng: [], pointIndex: [] }
+  const samples: FitSamples = { time: [], distance: [], velocity: [], cadence: [], latlng: [], pointIndex: [] }
   let firstMs: number | null = null
   let points = 0
 
@@ -310,11 +307,8 @@ export function parseFitSamples(messages: { recordMesgs?: RecordMesg[] }): FitSa
 
     samples.time.push((timestamp.getTime() - firstMs) / 1000)
     samples.distance.push(finiteOrNull(record.distance))
-    samples.altitude.push(finiteOrNull(record.enhancedAltitude) ?? finiteOrNull(record.altitude))
     samples.velocity.push(finiteOrNull(record.enhancedSpeed) ?? finiteOrNull(record.speed))
-    samples.heartrate.push(finiteOrNull(record.heartRate))
     samples.cadence.push(cadence == null ? null : cadence + (fractional ?? 0))
-    samples.watts.push(finiteOrNull(record.power))
     samples.latlng.push(hasPosition ? { lat, lng } : null)
     samples.pointIndex.push(hasPosition ? points++ : -1)
   }

@@ -163,29 +163,24 @@ export interface SportTrackFile {
 }
 
 /**
- * 单条活动的详情曲线：按横轴等距抽样（约 300 点），给弹窗画海拔/速度/心率。
+ * 单条活动的详情曲线：按横轴等距抽样（约 300 点），给弹窗画速度/配速与步频。
  *
- * 隐私：没有经纬度、没有开始时刻。t 是从开始算起的移动秒数；
- * xy 是与轨迹文件同一 viewBox 的坐标，隐私圈内的点为 null。
+ * 隐私：只有速度与步频/踏频。没有经纬度、开始时刻、心率、海拔和功率；
+ * t 是从开始算起的移动秒数，xy 是与轨迹文件同一 viewBox 的坐标，隐私圈内的点为 null。
  */
 export interface SportDetailFile {
-  v: 1
+  /** 2：去掉心率、海拔、功率 */
+  v: 2
   /** 横轴：有距离流时按距离，否则（HIIT 等室内训练）按时间 */
   axis: 'distance' | 'time'
   /** 累计距离，米；仅 distance 轴 */
   d?: number[]
   /** 累计移动时间，秒 */
   t: number[]
-  /** 海拔，米 */
-  alt?: Array<number | null>
   /** 速度，米/秒 */
   spd?: Array<number | null>
-  /** 心率，bpm */
-  hr?: Array<number | null>
   /** 踏频（rpm）或步频（spm，跑步/徒步已换算成双脚） */
   cad?: Array<number | null>
-  /** 功率，瓦 */
-  w?: Array<number | null>
   /** 路线上的位置，viewBox 坐标 */
   xy?: Array<[number, number] | null>
 }

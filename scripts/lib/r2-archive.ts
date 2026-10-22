@@ -394,9 +394,7 @@ export function parseStreamsObject(value: unknown): ArchivedStreamsData {
 /** streams.json 里 raw（Strava key_by_type 原响应）中详情曲线要用的通道 */
 export interface ArchivedStreamChannels {
   velocity: Array<number | null> | null
-  heartrate: Array<number | null> | null
   cadence: Array<number | null> | null
-  watts: Array<number | null> | null
   moving: boolean[] | null
 }
 
@@ -414,7 +412,7 @@ function rawStreamData(raw: Record<string, unknown>, key: string): unknown[] | n
  * 不像 latlng/time 那样报错中断导入。
  */
 export function parseStreamChannels(value: unknown): ArchivedStreamChannels {
-  const empty: ArchivedStreamChannels = { velocity: null, heartrate: null, cadence: null, watts: null, moving: null }
+  const empty: ArchivedStreamChannels = { velocity: null, cadence: null, moving: null }
   if (typeof value !== 'object' || value === null || Array.isArray(value)) {
     return empty
   }
@@ -432,9 +430,7 @@ export function parseStreamChannels(value: unknown): ArchivedStreamChannels {
 
   return {
     velocity: numbers('velocity_smooth'),
-    heartrate: numbers('heartrate'),
     cadence: numbers('cadence'),
-    watts: numbers('watts'),
     moving: moving && moving.every(item => typeof item === 'boolean') ? moving as boolean[] : null,
   }
 }

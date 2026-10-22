@@ -1,8 +1,8 @@
 /**
  * 详情曲线流水线：把原始 streams / FIT record 抽样成弹窗用的小文件。
  *
- * 隐私要点：输出没有经纬度和开始时刻。时间只保留"从开始算起的移动秒数"，
- * 路线位置复用轨迹的取景投影，落在隐私圈里的点写 null。
+ * 隐私要点：只发布速度与步频/踏频。不输出经纬度、开始时刻、心率、海拔和功率；
+ * 时间只保留"从开始算起的移动秒数"，路线位置复用轨迹的取景投影，落在隐私圈里的点写 null。
  */
 
 import type { SportDetailFile, SportKind } from '../../src/types/strava'
@@ -14,13 +14,10 @@ export interface DetailStreams {
   time: number[]
   /** 米，累计距离 */
   distance?: Array<number | null> | null
-  altitude?: Array<number | null> | null
   /** 米/秒 */
   velocity?: Array<number | null> | null
-  heartrate?: Array<number | null> | null
   /** 设备原值：骑行 rpm，跑步/步行是单脚步频 */
   cadence?: Array<number | null> | null
-  watts?: Array<number | null> | null
   /** Strava 的 moving 流；缺失时按速度判定 */
   moving?: boolean[] | null
   latlng?: Array<TrackPoint | null> | null
@@ -138,22 +135,16 @@ export function buildDetailFile(streams: DetailStreams, options: DetailBuildOpti
   }
 
   const samples = Math.max(2, Math.min(options.samples ?? defaultSamples, length))
-  const altitude = aligned(streams.altitude, length)
   const velocity = aligned(streams.velocity, length)
-  const heartrate = aligned(streams.heartrate, length)
   const cadence = aligned(streams.cadence, length)
-  const watts = aligned(streams.watts, length)
   const latlng = aligned(streams.latlng, length)
   const frame = options.frame && latlng ? options.frame : null
   const factor = cadenceFactor(options.kind)
 
   const d: number[] = []
   const t: number[] = []
-  const alt: Array<number | null> = []
   const spd: Array<number | null> = []
-  const hr: Array<number | null> = []
   const cad: Array<number | null> = []
-  const w: Array<number | null> = []
   const xy: Array<[number, number] | null> = []
 
   // 每个抽样点代表横轴上等宽的一段，取段内均值；段末的累计值作为该点的位置
@@ -172,10 +163,7 @@ export function buildDetailFile(streams: DetailStreams, options: DetailBuildOpti
 
     d.push(axis === 'distance' ? Math.round((distance as number[])[to]) : 0)
     t.push(Math.round(moving[to]))
-    alt.push(nullableRound(bucketMean(altitude, from, to), 1))
-    hr.push(nullableRound(bucketMean(heartrate, from, to), 0))
     cad.push(nullableRound(scale(bucketMean(cadence, from, to), factor), 0))
-    w.push(nullableRound(bucketMean(watts, from, to), 0))
 
     // 速度：段内移动距离 / 移动时间，比设备的瞬时速度更稳；没有距离时退回速度流
     const segmentTime = moving[to] - moving[previousEnd]
@@ -191,16 +179,24 @@ export function buildDetailFile(streams: DetailStreams, options: DetailBuildOpti
     from = Math.min(length - 1, to + 1)
   }
 
-  const file: SportDetailFile = { v: 1, axis, t }
+  const speed = axis === 'distance' ? keepChannel(spd) : undefined
+  const cadenceChannel = keepChannel(cad)
+  // 室内训练没有速度也没有步频时，没有可画的曲线，不生成文件
+  if (!speed && !cadenceChannel) {
+    return null
+  }
+
+  const file: SportDetailFile = { v: 2, axis, t }
   if (axis === 'distance') {
     file.d = d
   }
 
-  const channels = { alt: keepChannel(alt), spd: axis === 'distance' ? keepChannel(spd) : undefined, hr: keepChannel(hr), cad: keepChannel(cad), w: keepChannel(w) }
-  for (const [key, values] of Object.entries(channels)) {
-    if (values) {
-      file[key as 'alt' | 'spd' | 'hr' | 'cad' | 'w'] = values
-    }
+  if (speed) {
+    file.spd = speed
+  }
+
+  if (cadenceChannel) {
+    file.cad = cadenceChannel
   }
 
   if (frame && xy.some(point => point != null)) {

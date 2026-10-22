@@ -21,22 +21,34 @@ test('详情曲线：有距离时按距离等距抽样，段内取均值', () =>
   const file = buildDetailFile({
     time,
     distance,
-    heartrate: time.map((_, index) => 120 + index * 0.5),
-    altitude: time.map(() => 10),
+    cadence: time.map((_, index) => 80 + index * 0.1),
   }, { kind: 'ride', samples: 10 })
 
   assert.ok(file)
+  assert.equal(file.v, 2)
   assert.equal(file.axis, 'distance')
   assert.equal(file.d?.length, 10)
   assert.equal(file.d?.[9], 3000)
   assert.equal(file.t[9], 1000)
   // 匀速 3 m/s
   assert.ok(file.spd?.every(value => value === 3))
-  assert.ok(file.alt?.every(value => value === 10))
-  // 心率单调递增，均值也应单调
-  const hr = file.hr as number[]
-  assert.ok(hr.every((value, index) => index === 0 || value >= hr[index - 1]))
+  // 踏频单调递增，段内均值也应单调
+  const cad = file.cad as number[]
+  assert.ok(cad.every((value, index) => index === 0 || value >= cad[index - 1]))
   assert.equal(file.xy, undefined)
+})
+
+test('详情曲线：只发布速度与步频，不输出心率、海拔、功率', () => {
+  const { time, distance } = line(50)
+  const file = buildDetailFile({
+    time,
+    distance,
+    cadence: time.map(() => 85),
+    ...{ heartrate: time.map(() => 150), altitude: time.map(() => 10), watts: time.map(() => 200) },
+  }, { kind: 'run', samples: 10 })
+
+  assert.ok(file)
+  assert.deepEqual(Object.keys(file).sort(), ['axis', 'cad', 'd', 'spd', 't', 'v'])
 })
 
 test('详情曲线：停下的时间不计入移动时间，也不拉低速度', () => {
@@ -49,12 +61,12 @@ test('详情曲线：停下的时间不计入移动时间，也不拉低速度',
   assert.ok(file.spd?.every(value => value === 3))
 })
 
-test('详情曲线：没有距离（HIIT）按移动时间抽样，不输出速度', () => {
+test('详情曲线：没有距离（室内训练）按移动时间抽样，不输出速度', () => {
   const time = Array.from({ length: 60 }, (_, index) => index * 5)
   const file = buildDetailFile({
     time,
     distance: time.map(() => 3),
-    heartrate: time.map(() => 150),
+    cadence: time.map(() => 70),
   }, { kind: 'other', samples: 12 })
 
   assert.ok(file)
@@ -62,7 +74,12 @@ test('详情曲线：没有距离（HIIT）按移动时间抽样，不输出速�
   assert.equal(file.d, undefined)
   assert.equal(file.spd, undefined)
   assert.equal(file.t[11], 295)
-  assert.ok(file.hr?.every(value => value === 150))
+  assert.ok(file.cad?.every(value => value === 70))
+})
+
+test('详情曲线：既没有速度也没有步频时不生成', () => {
+  const time = Array.from({ length: 60 }, (_, index) => index * 5)
+  assert.equal(buildDetailFile({ time, distance: time.map(() => 3) }, { kind: 'other' }), null)
 })
 
 test('详情曲线：隐私圈外的点才有路线坐标，圈内为 null', () => {
@@ -78,16 +95,15 @@ test('详情曲线：隐私圈外的点才有路线坐标，圈内为 null', () 
 
 test('详情曲线：跑步步频换算成双脚，覆盖率太低的通道丢弃', () => {
   const { time, distance } = line(50)
-  const file = buildDetailFile({
+  const run = buildDetailFile({ time, distance, cadence: time.map(() => 85) }, { kind: 'run', samples: 10 })
+  assert.ok(run?.cad?.every(value => value === 170))
+
+  const sparse = buildDetailFile({
     time,
     distance,
-    cadence: time.map(() => 85),
-    heartrate: time.map((_, index) => (index < 5 ? 140 : null)),
+    cadence: time.map((_, index) => (index < 5 ? 85 : null)),
   }, { kind: 'run', samples: 10 })
-
-  assert.ok(file)
-  assert.ok(file.cad?.every(value => value === 170))
-  assert.equal(file.hr, undefined)
+  assert.equal(sparse?.cad, undefined)
 })
 
 test('详情曲线：点太少或时间流异常时不生成', () => {

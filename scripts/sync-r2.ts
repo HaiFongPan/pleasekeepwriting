@@ -49,8 +49,8 @@ const phonePrefix = 'activities/v1/'
 const phoneKeyPattern = /^activities\/v1\/([0-9a-f]{64})\.fit$/
 /** 解析器版本，改手机 FIT 解析口径时递增 */
 const parserVersion = 1
-/** 渲染器版本，与旧同步脚本一致，改轨迹算法时递增 */
-const rendererVersion = 4
+/** 渲染器版本，改轨迹算法或详情文件格式时递增（5：详情去掉心率、海拔、功率） */
+const rendererVersion = 5
 const dryRunRoot = path.join('node_modules', '.cache', 'strava-r2-dry-run')
 
 class SyncIntegrityError extends Error {
@@ -250,11 +250,8 @@ function buildHistoryDetail(streams: ArchivedStreamsData, raw: unknown, kind: Sp
   return buildDetailFile({
     time: streams.time,
     distance: streams.distance,
-    altitude: streams.altitude,
     velocity: channels.velocity,
-    heartrate: channels.heartrate,
     cadence: channels.cadence,
-    watts: channels.watts,
     moving: channels.moving,
     latlng: streams.latlng.length === streams.time.length ? streams.latlng.map(([lat, lng]) => ({ lat, lng })) : null,
   }, { kind, frame })

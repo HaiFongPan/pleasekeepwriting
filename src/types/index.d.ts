@@ -89,7 +89,6 @@ export interface ThemeConfig {
       simplifyTolerance: number
       maxPoints: number
     }
-    maxHeartRate: number
     excludePrivate: boolean
     showMap: boolean
     showLocationNames: boolean
