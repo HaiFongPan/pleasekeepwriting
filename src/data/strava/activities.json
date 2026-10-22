@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-10-22T09:15:38.348Z",
+  "generatedAt": "2026-10-22T09:39:37.516Z",
   "source": {
     "provider": "strava",
     "athleteId": null
   },
   "params": {
-    "renderer": 4,
+    "renderer": 5,
     "viewBox": [
       100,
       62
@@ -470,7 +470,7 @@
       "hasGps": false,
       "track": false,
       "trackSynced": false,
-      "detail": true
+      "detail": false
     },
     {
       "id": 19639986457,
@@ -489,7 +489,7 @@
       "hasGps": false,
       "track": false,
       "trackSynced": false,
-      "detail": true
+      "detail": false
     },
     {
       "id": 19323556348,
@@ -527,7 +527,7 @@
       "hasGps": false,
       "track": false,
       "trackSynced": false,
-      "detail": true
+      "detail": false
     },
     {
       "id": 19639986496,
@@ -850,7 +850,7 @@
       "hasGps": false,
       "track": false,
       "trackSynced": false,
-      "detail": true
+      "detail": false
     },
     {
       "id": 17313677871,
@@ -1401,7 +1401,7 @@
       "hasGps": false,
       "track": false,
       "trackSynced": false,
-      "detail": true
+      "detail": false
     },
     {
       "id": 15995052742,
@@ -1515,7 +1515,7 @@
       "hasGps": false,
       "track": false,
       "trackSynced": false,
-      "detail": true
+      "detail": false
     },
     {
       "id": 15840555195,
@@ -1762,7 +1762,7 @@
       "hasGps": false,
       "track": false,
       "trackSynced": false,
-      "detail": true
+      "detail": false
     },
     {
       "id": 15512603681,
@@ -1838,7 +1838,7 @@
       "hasGps": false,
       "track": false,
       "trackSynced": false,
-      "detail": true
+      "detail": false
     },
     {
       "id": 15462432124,
@@ -1857,7 +1857,7 @@
       "hasGps": false,
       "track": false,
       "trackSynced": false,
-      "detail": true
+      "detail": false
     },
     {
       "id": 15462354124,
@@ -1914,7 +1914,7 @@
       "hasGps": false,
       "track": false,
       "trackSynced": false,
-      "detail": true
+      "detail": false
     },
     {
       "id": 15416838674,
@@ -1933,7 +1933,7 @@
       "hasGps": false,
       "track": false,
       "trackSynced": false,
-      "detail": true
+      "detail": false
     },
     {
       "id": 15410426467,
@@ -4878,7 +4878,7 @@
       "hasGps": true,
       "track": true,
       "trackSynced": true,
-      "detail": true
+      "detail": false
     },
     {
       "id": 9879771227,
@@ -4973,7 +4973,7 @@
       "hasGps": true,
       "track": true,
       "trackSynced": true,
-      "detail": true
+      "detail": false
     },
     {
       "id": 9692001234,
@@ -5201,7 +5201,7 @@
       "hasGps": false,
       "track": false,
       "trackSynced": false,
-      "detail": true
+      "detail": false
     },
     {
       "id": 9555697928,
