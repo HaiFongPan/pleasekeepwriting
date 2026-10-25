@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-22T09:39:37.516Z",
+  "generatedAt": "2026-10-25T23:30:45.628Z",
   "source": {
     "provider": "strava",
     "athleteId": null
@@ -20,13 +20,34 @@
     "showLocationNames": false
   },
   "summary": {
-    "activityCount": 288,
-    "trackCount": 262,
+    "activityCount": 289,
+    "trackCount": 263,
     "calorieMissing": 43,
     "firstActivityAt": "2022-08-27",
-    "lastActivityAt": "2026-10-22"
+    "lastActivityAt": "2026-10-25"
   },
   "activities": [
+    {
+      "id": "b4046c841f1d226491531f481024d1ce6669ed3ea36e79dac5104522daca0a0d",
+      "sportType": "Hike",
+      "displayType": "远足",
+      "name": null,
+      "kind": "hike",
+      "start": 1792923352,
+      "date": "2026-10-25",
+      "distance": 13447.49,
+      "movingTime": 15029.722,
+      "elapsedTime": 19197.434,
+      "calories": 1307,
+      "caloriesSynced": true,
+      "elevation": null,
+      "hasGps": true,
+      "track": true,
+      "trackSynced": true,
+      "timeSource": "device-timer",
+      "origin": "phone",
+      "detail": true
+    },
     {
       "id": "18889a07a01eb451b496d6f55571ab7d8e867e2bc0e0970aa51f02d7730e1e9e",
       "sportType": "Ride",
