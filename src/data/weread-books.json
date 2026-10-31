@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-30T00:59:51.637Z",
+  "generatedAt": "2026-10-31T00:48:14.705Z",
   "books": [
     {
       "bookId": "3300161041",
@@ -16,7 +16,7 @@
       "publishTime": "2025-09-02 00:00:00",
       "isbn": null,
       "publicRating": 866,
-      "publicRatingCount": 3008
+      "publicRatingCount": 3011
     },
     {
       "bookId": "3300020163",
@@ -33,7 +33,7 @@
       "publishTime": "2021-08-01 00:00:00",
       "isbn": "9787536094352",
       "publicRating": 887,
-      "publicRatingCount": 36993
+      "publicRatingCount": 37004
     },
     {
       "bookId": "26211887",
@@ -67,7 +67,7 @@
       "publishTime": "2023-04-01 00:00:00",
       "isbn": "9787521752236",
       "publicRating": 931,
-      "publicRatingCount": 4211
+      "publicRatingCount": 4216
     },
     {
       "bookId": "3300117751",
@@ -152,7 +152,7 @@
       "publishTime": "2023-06-01 00:00:00",
       "isbn": "9787572610912",
       "publicRating": 921,
-      "publicRatingCount": 111840
+      "publicRatingCount": 111857
     },
     {
       "bookId": "909893",
@@ -271,7 +271,7 @@
       "publishTime": "2022-08-01 00:00:00",
       "isbn": "9787555913726",
       "publicRating": 916,
-      "publicRatingCount": 68881
+      "publicRatingCount": 68909
     },
     {
       "bookId": "41598972",
@@ -288,7 +288,7 @@
       "publishTime": "2021-09-10 00:00:00",
       "isbn": "9787552036107",
       "publicRating": 782,
-      "publicRatingCount": 9412
+      "publicRatingCount": 9420
     },
     {
       "bookId": "651366",
@@ -322,7 +322,7 @@
       "publishTime": "2022-10-01 00:00:00",
       "isbn": "9787559852533",
       "publicRating": 920,
-      "publicRatingCount": 23912
+      "publicRatingCount": 23921
     },
     {
       "bookId": "39136896",
@@ -338,8 +338,8 @@
       "publisher": "人民邮电出版社",
       "publishTime": "2021-06-01 00:00:00",
       "isbn": "9787115564672",
-      "publicRating": 734,
-      "publicRatingCount": 4686
+      "publicRating": 735,
+      "publicRatingCount": 4687
     },
     {
       "bookId": "3300018939",
@@ -390,7 +390,7 @@
       "publishTime": "2022-07-01 00:00:00",
       "isbn": "9787547738207",
       "publicRating": 792,
-      "publicRatingCount": 3384
+      "publicRatingCount": 3385
     },
     {
       "bookId": "CB_6UTBcPBak4Bj6aN6YD",
@@ -441,7 +441,7 @@
       "publishTime": "2022-01-01 00:00:00",
       "isbn": "9787521736816",
       "publicRating": 852,
-      "publicRatingCount": 8981
+      "publicRatingCount": 8985
     },
     {
       "bookId": "35433088",
@@ -458,7 +458,7 @@
       "publishTime": "2021-01-01 00:00:00",
       "isbn": "9787536093171",
       "publicRating": 677,
-      "publicRatingCount": 4063
+      "publicRatingCount": 4064
     },
     {
       "bookId": "CB_CMT96994O0zH6a76YD",
@@ -560,7 +560,7 @@
       "publishTime": "2021-09-01 00:00:00",
       "isbn": "9787201175133",
       "publicRating": 918,
-      "publicRatingCount": 25191
+      "publicRatingCount": 25203
     },
     {
       "bookId": "24953118",
@@ -594,7 +594,7 @@
       "publishTime": "2021-06-01 00:00:00",
       "isbn": "9787553522838",
       "publicRating": 918,
-      "publicRatingCount": 35839
+      "publicRatingCount": 35850
     },
     {
       "bookId": "729213",
@@ -628,7 +628,7 @@
       "publishTime": "2020-08-01 00:00:00",
       "isbn": "9787201161693",
       "publicRating": 894,
-      "publicRatingCount": 140855
+      "publicRatingCount": 140876
     },
     {
       "bookId": "25856501",
@@ -679,7 +679,7 @@
       "publishTime": "2021-11-01 00:00:00",
       "isbn": "9787536094857",
       "publicRating": 604,
-      "publicRatingCount": 1979
+      "publicRatingCount": 1980
     },
     {
       "bookId": "41355053",
@@ -696,7 +696,7 @@
       "publishTime": "2021-08-01 00:00:00",
       "isbn": "9787208172036",
       "publicRating": 895,
-      "publicRatingCount": 4163
+      "publicRatingCount": 4164
     },
     {
       "bookId": "24953405",
@@ -798,7 +798,7 @@
       "publishTime": "2017-08-01 00:00:00",
       "isbn": "9787549599349",
       "publicRating": 687,
-      "publicRatingCount": 5590
+      "publicRatingCount": 5591
     }
   ]
 }
