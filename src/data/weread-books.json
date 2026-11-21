@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T02:34:29.188Z",
+  "generatedAt": "2026-11-21T02:14:31.136Z",
   "books": [
     {
       "bookId": "3300004347",
@@ -16,7 +16,7 @@
       "publishTime": "2016-04-01 00:00:00",
       "isbn": "9787539990583",
       "publicRating": 935,
-      "publicRatingCount": 5125
+      "publicRatingCount": 5127
     },
     {
       "bookId": "3300178650",
@@ -33,7 +33,7 @@
       "publishTime": "2024-11-06 00:00:00",
       "isbn": "9787516837917",
       "publicRating": 917,
-      "publicRatingCount": 2390
+      "publicRatingCount": 2397
     },
     {
       "bookId": "3300161041",
@@ -50,7 +50,7 @@
       "publishTime": "2025-09-02 00:00:00",
       "isbn": null,
       "publicRating": 866,
-      "publicRatingCount": 3042
+      "publicRatingCount": 3047
     },
     {
       "bookId": "3300020163",
@@ -67,7 +67,7 @@
       "publishTime": "2021-08-01 00:00:00",
       "isbn": "9787536094352",
       "publicRating": 887,
-      "publicRatingCount": 37184
+      "publicRatingCount": 37196
     },
     {
       "bookId": "26211887",
@@ -101,7 +101,7 @@
       "publishTime": "2023-04-01 00:00:00",
       "isbn": "9787521752236",
       "publicRating": 931,
-      "publicRatingCount": 4296
+      "publicRatingCount": 4304
     },
     {
       "bookId": "3300117751",
@@ -118,7 +118,7 @@
       "publishTime": "2024-10-20 00:00:00",
       "isbn": "9787559489357",
       "publicRating": 815,
-      "publicRatingCount": 2395
+      "publicRatingCount": 2394
     },
     {
       "bookId": "CB_3frFf5Ffj4Mq76875N1Im0O9",
@@ -152,7 +152,7 @@
       "publishTime": "2021-09-01 00:00:00",
       "isbn": "9787521731583",
       "publicRating": 775,
-      "publicRatingCount": 9159
+      "publicRatingCount": 9158
     },
     {
       "bookId": "CB_CIK1J21JHFvi6sA6su2Tz4Wb",
@@ -186,7 +186,7 @@
       "publishTime": "2023-06-01 00:00:00",
       "isbn": "9787572610912",
       "publicRating": 921,
-      "publicRatingCount": 112171
+      "publicRatingCount": 112197
     },
     {
       "bookId": "909893",
@@ -271,7 +271,7 @@
       "publishTime": "2019-12-01 00:00:00",
       "isbn": "9787544779319",
       "publicRating": 768,
-      "publicRatingCount": 5319
+      "publicRatingCount": 5322
     },
     {
       "bookId": "32463124",
@@ -305,7 +305,7 @@
       "publishTime": "2022-08-01 00:00:00",
       "isbn": "9787555913726",
       "publicRating": 916,
-      "publicRatingCount": 69264
+      "publicRatingCount": 69305
     },
     {
       "bookId": "41598972",
@@ -322,7 +322,7 @@
       "publishTime": "2021-09-10 00:00:00",
       "isbn": "9787552036107",
       "publicRating": 783,
-      "publicRatingCount": 9584
+      "publicRatingCount": 9600
     },
     {
       "bookId": "651366",
@@ -339,7 +339,7 @@
       "publishTime": "2012-07-01 00:00:00",
       "isbn": "9787301174821",
       "publicRating": 856,
-      "publicRatingCount": 30706
+      "publicRatingCount": 30704
     },
     {
       "bookId": "3300053438",
@@ -356,7 +356,7 @@
       "publishTime": "2022-10-01 00:00:00",
       "isbn": "9787559852533",
       "publicRating": 920,
-      "publicRatingCount": 24022
+      "publicRatingCount": 24031
     },
     {
       "bookId": "39136896",
@@ -423,8 +423,8 @@
       "publisher": "北京日报出版社",
       "publishTime": "2022-07-01 00:00:00",
       "isbn": "9787547738207",
-      "publicRating": 791,
-      "publicRatingCount": 3397
+      "publicRating": 790,
+      "publicRatingCount": 3400
     },
     {
       "bookId": "CB_6UTBcPBak4Bj6aN6YD",
@@ -458,7 +458,7 @@
       "publishTime": "2017-05-01 00:00:00",
       "isbn": "9787532774685",
       "publicRating": 860,
-      "publicRatingCount": 6390
+      "publicRatingCount": 6395
     },
     {
       "bookId": "42766048",
@@ -475,7 +475,7 @@
       "publishTime": "2022-01-01 00:00:00",
       "isbn": "9787521736816",
       "publicRating": 852,
-      "publicRatingCount": 9049
+      "publicRatingCount": 9055
     },
     {
       "bookId": "35433088",
@@ -492,7 +492,7 @@
       "publishTime": "2021-01-01 00:00:00",
       "isbn": "9787536093171",
       "publicRating": 676,
-      "publicRatingCount": 4066
+      "publicRatingCount": 4065
     },
     {
       "bookId": "CB_CMT96994O0zH6a76YD",
@@ -526,7 +526,7 @@
       "publishTime": "2017-09-01 00:00:00",
       "isbn": "9787508679099",
       "publicRating": 718,
-      "publicRatingCount": 7676
+      "publicRatingCount": 7677
     },
     {
       "bookId": "CB_Gm3BudBrC0v66a46YD",
@@ -594,7 +594,7 @@
       "publishTime": "2021-09-01 00:00:00",
       "isbn": "9787201175133",
       "publicRating": 918,
-      "publicRatingCount": 25476
+      "publicRatingCount": 25496
     },
     {
       "bookId": "24953118",
@@ -628,7 +628,7 @@
       "publishTime": "2021-06-01 00:00:00",
       "isbn": "9787553522838",
       "publicRating": 918,
-      "publicRatingCount": 36016
+      "publicRatingCount": 36034
     },
     {
       "bookId": "729213",
@@ -662,7 +662,7 @@
       "publishTime": "2020-08-01 00:00:00",
       "isbn": "9787201161693",
       "publicRating": 894,
-      "publicRatingCount": 141307
+      "publicRatingCount": 141362
     },
     {
       "bookId": "25856501",
@@ -713,7 +713,7 @@
       "publishTime": "2021-11-01 00:00:00",
       "isbn": "9787536094857",
       "publicRating": 604,
-      "publicRatingCount": 1984
+      "publicRatingCount": 1987
     },
     {
       "bookId": "41355053",
@@ -730,7 +730,7 @@
       "publishTime": "2021-08-01 00:00:00",
       "isbn": "9787208172036",
       "publicRating": 895,
-      "publicRatingCount": 4186
+      "publicRatingCount": 4189
     },
     {
       "bookId": "24953405",
@@ -747,7 +747,7 @@
       "publishTime": "2012-04-01 00:00:00",
       "isbn": "9787544722278",
       "publicRating": 814,
-      "publicRatingCount": 5528
+      "publicRatingCount": 5529
     },
     {
       "bookId": "38493609",
@@ -832,7 +832,7 @@
       "publishTime": "2017-08-01 00:00:00",
       "isbn": "9787549599349",
       "publicRating": 687,
-      "publicRatingCount": 5594
+      "publicRatingCount": 5595
     }
   ]
 }
